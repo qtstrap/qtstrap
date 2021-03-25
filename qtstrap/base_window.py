@@ -2,9 +2,9 @@ from .qt import *
 
 
 class BaseMainWindow(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, name="MainWindow"):
         super().__init__(parent=parent)
-        self.setObjectName("MainWindow")
+        self.setObjectName(name)
         self.load_settings()
 
     def closeEvent(self, event):
