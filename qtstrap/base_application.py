@@ -9,14 +9,20 @@ class BaseApplication(QApplication):
         if register_ctrlc_handler:
             self.init_ctrlc_handler()
 
-    def init_ctrlc_handler(self):
-        # signal handler callback
-        def ctrlc_handler(sig, frame):
-            self.window.close()
-            self.shutdown()
-            
+    def ctrlc_handler(self, sig=None, frame=None):
+        # give all the app's children a chance to close
+        for child in self.children():
+            if hasattr(child, 'close'):
+                child.close()
+
+        # TODO: should we somehow wait for our children to close?
+
+        # tell the application to close
+        self.shutdown()
+
+    def init_ctrlc_handler(self):            
         # grab the keyboard interrupt signal 
-        signal.signal(signal.SIGINT, ctrlc_handler)
+        signal.signal(signal.SIGINT, self.ctrlc_handler)
 
         # empty timer callback
         def update():
