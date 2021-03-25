@@ -35,7 +35,7 @@ publish: venv
 
 #
 tests: venv
-	echo running tests
+	$(VENV_PYTHON) -m pytest
 
 # remove build artifacts
 clean:
