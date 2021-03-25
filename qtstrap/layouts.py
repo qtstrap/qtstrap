@@ -11,7 +11,13 @@ alignments = {
 
 class ContextLayout:
     def __init__(self, parent=None, stretch=None, margins=None, align=None, **kwargs):
-        if parent is None or isinstance(parent, QWidget):
+        if isinstance(parent, QMainWindow):
+            # a layout can't be added directly to a QMainWindow, because it requires a "centralWidget"
+            # we can use a throwaway QWidget as a shim
+            widget = QWidget(parent=parent)
+            parent.setCentralWidget(widget)
+            super().__init__(widget, **kwargs)
+        elif parent is None or isinstance(parent, QWidget):
             super().__init__(parent, **kwargs)
         else:
             super().__init__(**kwargs)
