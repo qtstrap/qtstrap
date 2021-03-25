@@ -39,6 +39,22 @@ def disable_children(thing):
             disable_children(thing.itemAt(i))
 
 
+def get_children(obj) -> list[QObject]:
+    """
+    Recursively visit all the children of the specified object and collect them in a list.
+    """
+    children = []
+
+    def _get_children(obj, prefix=''):
+        for child in obj.children():
+            children.append(child)
+            _get_all_children(child, '  ' + prefix )
+
+    _get_all_children(obj)
+
+    return children
+
+
 def print_children(obj, prefix=''):
     """
     Recursively visit all the children of the specified object and print them.
