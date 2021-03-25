@@ -1,5 +1,4 @@
-from .qt import *
-from .layouts import CHBoxLayout
+from qtstrap import *
 
 
 class CSplitter(QSplitter):
