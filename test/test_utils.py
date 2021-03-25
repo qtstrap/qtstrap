@@ -6,7 +6,7 @@ from qtstrap import (
     CVBoxLayout,
     enable_children,
     disable_children,
-    get_all_children,
+    get_children,
     set_font_options,
 )
 
@@ -71,7 +71,7 @@ def test_enable_and_disable_children(qtbot):
 
 def test_get_all_children(qtbot):
     widget = Widget()
-    children = get_all_children(widget)
+    children = get_children(widget)
 
     # this Widget should have 3 children: a layout, a pushbutton, and a label
     assert len(children) == 3

@@ -1,7 +1,7 @@
 from qtstrap import *
 
 
-def enable_children(thing):
+def enable_children(thing: QObject) -> None:
     """
     Recursively walk the provided thing and enable all of its widget children.
     """
@@ -20,7 +20,7 @@ def enable_children(thing):
             enable_children(thing.itemAt(i))
 
 
-def disable_children(thing):
+def disable_children(thing: QObject) -> None:
     """
     Recursively walk the provided thing and disable all of its widget children.
     """
@@ -39,7 +39,7 @@ def disable_children(thing):
             disable_children(thing.itemAt(i))
 
 
-def get_children(obj) -> list[QObject]:
+def get_children(obj: QObject) -> list:
     """
     Recursively visit all the children of the specified object and collect them in a list.
     """
@@ -48,14 +48,14 @@ def get_children(obj) -> list[QObject]:
     def _get_children(obj, prefix=''):
         for child in obj.children():
             children.append(child)
-            _get_all_children(child, '  ' + prefix )
+            _get_children(child, '  ' + prefix )
 
-    _get_all_children(obj)
+    _get_children(obj)
 
     return children
 
 
-def print_children(obj, prefix=''):
+def print_children(obj: QObject, prefix='') -> None:
     """
     Recursively visit all the children of the specified object and print them.
     """
@@ -64,7 +64,7 @@ def print_children(obj, prefix=''):
         print_children(child, '  ' + prefix )
 
 
-def set_font_options(obj, options={}):
+def set_font_options(obj: QObject, options={}):
     """
     Set the QFont options of the specified object.
     Font options are specified by providing the name of the QFont setter method.
