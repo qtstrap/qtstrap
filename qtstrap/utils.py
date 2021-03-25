@@ -65,6 +65,19 @@ def print_children(obj, prefix=''):
 
 
 def set_font_options(obj, options={}):
+    """
+    Set the QFont options of the specified object.
+    Font options are specified by providing the name of the QFont setter method.
+    
+    Example:
+    set_font_options(widget, {'setPointSize': 12, 'setBold': True})
+
+    is equivalent to writing:
+    font = widget.font()
+    font.setPointSize(12)
+    font.setBold(True)
+    widget.setFont(font)
+    """
     font = obj.font()
     for setting, value in options.items():
         getattr(font, setting)(value)
