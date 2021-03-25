@@ -1,7 +1,18 @@
+from qtstrap import *
 
 
 def enable_children(thing):
-    """ recursively walk the provided thing and enable all of its widget children """
+    """
+    Recursively walk the provided thing and enable all of its widget children.
+    """
+    # QMainWindows don't have children, they have a centralWidget
+    if isinstance(thing, QMainWindow):
+        thing = thing.centralWidget()
+
+    # QWidgets don't have children, they have a layout that has children
+    if isinstance(thing, QWidget):
+        thing = thing.layout()
+
     for i in range(thing.count()):
         if thing.itemAt(i).widget():
             thing.itemAt(i).widget().setEnabled(True)
@@ -10,7 +21,17 @@ def enable_children(thing):
 
 
 def disable_children(thing):
-    """ recursively walk the provided thing and disable all of its widget children """
+    """
+    Recursively walk the provided thing and disable all of its widget children.
+    """
+    # QMainWindows don't have children, they have a centralWidget
+    if isinstance(thing, QMainWindow):
+        thing = thing.centralWidget()
+
+    # QWidgets don't have children, they have a layout that has children
+    if isinstance(thing, QWidget):
+        thing = thing.layout()
+
     for i in range(thing.count()):
         if thing.itemAt(i).widget():
             thing.itemAt(i).widget().setEnabled(False)
