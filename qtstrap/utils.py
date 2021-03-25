@@ -39,10 +39,13 @@ def disable_children(thing):
             disable_children(thing.itemAt(i))
 
 
-def print_all_children(obj, prefix=''):
+def print_children(obj, prefix=''):
+    """
+    Recursively visit all the children of the specified object and print them.
+    """
     for child in obj.children():
         print(prefix, child)
-        print_all_children(child, '  ' + prefix )
+        print_children(child, '  ' + prefix )
 
 
 def set_font_options(obj, options={}):
