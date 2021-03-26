@@ -27,7 +27,7 @@ setup(
     name="qtstrap",
     version="0.0.3",
     packages=["qtstrap", 'qtstrap.widgets'],
-    install_requires=[],
+    install_requires=["PySide2"],
     # setup_requires=[],
     # tests_require=[],
     platforms=["any"],
