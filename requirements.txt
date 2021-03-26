@@ -1,3 +1,4 @@
+-e .
 atomicwrites==1.4.0
 attrs==20.3.0
 bleach==3.3.0
@@ -21,7 +22,6 @@ PySide2==5.15.2
 pytest==6.2.2
 pytest-qt==3.3.0
 pywin32-ctypes==0.2.0
--e git+git@github.com:DaelonSuzuka/qtstrap.git@eab0bf7c5d85b15e78aa4a6ce178096a9b28abf6#egg=qtstrap
 readme-renderer==29.0
 requests==2.25.1
 requests-toolbelt==0.9.1
