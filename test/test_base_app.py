@@ -1,11 +1,4 @@
-from qtstrap import (
-    QtCore,
-    BaseMainWindow,
-    BaseApplication,
-    QPushButton,
-    QLabel,
-    CVBoxLayout,
-)
+from qtstrap import *
 import pytest
 
 

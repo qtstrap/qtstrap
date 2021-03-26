@@ -1,14 +1,4 @@
-from qtstrap import (
-    BaseMainWindow,
-    QWidget,
-    QPushButton,
-    QLabel,
-    CVBoxLayout,
-    enable_children,
-    disable_children,
-    get_children,
-    set_font_options,
-)
+from qtstrap import *
 
 
 class Widget(QWidget):
