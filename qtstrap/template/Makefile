@@ -68,7 +68,7 @@ else
 	VENV := $(VENV_DIR)/bin
 	PYTHON := python3
 	VENV_PYTHON := $(VENV)/$(PYTHON)
-	VENV_PYINSTALLER := $(VENV)\pyinstaller
+	VENV_PYINSTALLER := $(VENV)/pyinstaller
 	RM := rm -rf 
 endif
 
