@@ -6,6 +6,8 @@ alignments = {
     'right': Qt.AlignRight,
     'top': Qt.AlignTop,
     'bot': Qt.AlignBottom,
+    'bottom': Qt.AlignBottom,
+    'center': Qt.AlignCenter,
 }
 
 
