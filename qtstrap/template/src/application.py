@@ -5,18 +5,16 @@ from main_window import MainWindow
 """
 application.py
 
-
+TODO: explain this
 
 """
 
 
 class Application(BaseApplication):
-    # replace these with your own information
-    # setting these values at the application level makes it easier to use QSettings later on
-    organization_name = 'ExampleCo'
-    organization_domain = 'ExampleCo'
-    application_name = 'Your Application'
-    application_version = '0.1'
+    organization_name = '$publisher'
+    organization_domain = '$publisher'
+    application_name = '$appname'
+    application_version = '$version'
     
     def __init__(self) -> None:
         super().__init__()

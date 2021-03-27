@@ -41,7 +41,17 @@ def init():
     parent = Path(__file__).parent 
     template = Path(parent / 'template')
     template_files = template.rglob('*')
-    
+
+    # copy template files to current working directory
+    for f in template_files:
+        dest = f.relative_to(template)
+        if not dest.exists():
+            if f.is_dir():
+                Path.mkdir(dest)
+            if f.is_file():
+                shutil.copy(f, dest)
+
+    # create project.ini based on user input
     if not Path('project.ini').exists():
         result = prompt(init_prompt)
         if result:
@@ -53,26 +63,27 @@ def init():
                 f.write('AppIconName = resources/application.ico\n')
                 guid = '{{' + str(uuid.uuid4()) + '}'
                 f.write(f'AppId = {guid}\n')
+            
+            # replace placeholder text with values supplied by the user
+            with open('src/application.py') as f:
+                contents = f.read()
+        
+            contents = contents.replace('$appname', result["app_name"])
+            contents = contents.replace('$publisher', result["app_publisher"])
+            contents = contents.replace('$version', '0.1')
 
-    for f in template_files:
-        dest = f.relative_to(template)
-        if not dest.exists():
-            if f.is_dir():
-                Path.mkdir(dest)
-            if f.is_file():
-                shutil.copy(f, dest)
-                # print(f'copying {dest}')
-        # else:
-        #     print(f'skipping {dest}')
-
-
-@main.command()
-def run():
-    print('run')
+            with open('src/application.py', 'w') as f:
+                f.write(contents)
 
 
-@main.command()
-def build():
-    print('build')
+
+# @main.command()
+# def run():
+#     print('run')
+
+
+# @main.command()
+# def build():
+#     print('build')
 
 
