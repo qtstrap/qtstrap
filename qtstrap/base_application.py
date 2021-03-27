@@ -11,6 +11,8 @@ class BaseApplication(QApplication):
     def __init__(self, *args, register_ctrlc_handler=True, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
+        self.init_app_info()
+
         if register_ctrlc_handler:
             self.init_ctrlc_handler()
 
