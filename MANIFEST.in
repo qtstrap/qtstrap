@@ -1,2 +1,3 @@
 include qtstrap/template/*
 include qtstrap/template/src/*
+include qtstrap/template/resources/*
