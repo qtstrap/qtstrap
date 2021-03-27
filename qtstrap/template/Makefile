@@ -32,9 +32,13 @@ debug: venv
 bundle: venv
 	$(VENV_PYINSTALLER) -y bundle.spec
 
-# run the bundled exe
+# run the bundled executable
 run_bundle:
+ifeq ($(OS),Windows_NT)
 	dist/$(AppName)/$(AppName).exe
+else
+	dist/$(AppName)/$(AppName)
+endif
 
 # **************************************************************************** #
 # Release Targets
