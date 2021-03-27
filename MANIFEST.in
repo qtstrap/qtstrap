@@ -1,0 +1,2 @@
+include qtstrap/template/*
+include qtstrap/template/src/*

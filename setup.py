@@ -25,7 +25,7 @@ CLASSIFIERS = [
 
 setup(
     name="qtstrap",
-    version="0.0.4",
+    version="0.0.5",
     packages=['qtstrap', 'qtstrap.widgets'],
     install_requires=[
         'PySide2',
@@ -37,10 +37,6 @@ setup(
         'console_scripts': [
             'qtstrap=qtstrap.__main__:main'
         ]
-    },
-    package_data={
-        '': ['template/*'],
-        '': ['template/src/*'],
     },
     include_package_data=True,
     # setup_requires=[],
