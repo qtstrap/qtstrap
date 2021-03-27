@@ -1,10 +1,16 @@
 from .qt import *
+from pathlib import Path
 
 
 class BaseMainWindow(QMainWindow):
-    def __init__(self, parent=None, name="MainWindow"):
-        super().__init__(parent=parent)
-        self.setObjectName(name)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        icon_path = 'resources/application.ico'
+        if Path(icon_path).exists():
+            self.setWindowIcon(QIcon(icon_path))
+            
+        self.setObjectName("MainWindow")
         self.load_settings()
 
     def closeEvent(self, event):
