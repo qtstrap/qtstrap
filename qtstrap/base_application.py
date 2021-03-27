@@ -3,8 +3,13 @@ import signal
 
 
 class BaseApplication(QApplication):
-    def __init__(self, register_ctrlc_handler=True) -> None:
-        super().__init__()
+    organization_name = None
+    organization_domain = None
+    application_name = None
+    application_version = None
+    
+    def __init__(self, *args, register_ctrlc_handler=True, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
         if register_ctrlc_handler:
             self.init_ctrlc_handler()
@@ -32,3 +37,13 @@ class BaseApplication(QApplication):
         self.timer = QTimer()
         self.timer.timeout.connect(update)
         self.timer.start(100)
+    
+    def init_app_info(self):
+        if self.organization_name:
+            self.setOrganizationName(self.organization_name)
+        if self.organization_domain:
+            self.setOrganizationDomain(self.organization_domain)
+        if self.application_name:
+            self.setApplicationName(self.application_name)
+        if self.application_version:
+            self.setApplicationVersion(self.application_version)
