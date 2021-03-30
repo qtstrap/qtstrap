@@ -1,5 +1,10 @@
 site_name: qtstrap
-theme: 
+site_description: 'qtstrap docs'
+site_author: 'David Kincaid'
+docs_dir: docs/
+repo_name: 'qtstrap/qtstrap'
+repo_url: 'https://github.com/qtstrap/qtstrap'
+theme:
     name: readthedocs
 nav:
     - Home: index.md
