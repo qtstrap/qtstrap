@@ -38,7 +38,7 @@ class BaseApplication(QApplication):
         # create timer to force python interpreter to get some runtime
         self.timer = QTimer()
         self.timer.timeout.connect(update)
-        self.timer.start(100)
+        self.timer.start(10)
     
     def init_app_info(self):
         if self.organization_name:

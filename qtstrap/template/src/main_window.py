@@ -1,14 +1,6 @@
 from qtstrap import *
 
 
-"""
-main_window.py
-
-TODO: explain this
-
-"""
-
-
 class MainWindow(BaseMainWindow):
     def __init__(self):
         super().__init__()

@@ -7,12 +7,21 @@ repo_url: 'https://github.com/qtstrap/qtstrap'
 theme:
     name: readthedocs
 nav:
-    - Overview: index.md
-    - Installation: installation.md
-    - Getting Started: gettingstarted.md
-    - Project Structure: 
-        - Project Structure: structure/structure.md
-        - Makefile: structure/makefile.md
-    # - Widgets: 
-    #     - Base Application: widgets/baseapplication.md
-    #     - Base Main Window: widgets/basemainwindow.md
+    - Overview:
+        - Home: index.md
+        - Quickstart: 
+            - Installation: quickstart/installation.md
+            - Getting Started: quickstart/gettingstarted.md
+            - BaseApplication: quickstart/baseapplication.md
+            - BaseMainWindow: quickstart/basemainwindow.md
+        - Project Structure: 
+            - Project Structure: structure/structure.md
+            - Makefile: structure/makefile.md
+    # - API Reference:
+    #     - Widgets: 
+    #         - BaseApplication: reference/widgets/baseapplication.md
+    #         - BaseMainWindow: reference/widgets/basemainwindow.md
+    #     - Context Layouts:
+    #         - Context Layouts: reference/context_layouts/context_layouts.md
+    #     - Utils: 
+    #         - Timestamp: reference/utils/timestamp.md

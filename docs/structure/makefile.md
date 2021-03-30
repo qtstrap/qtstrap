@@ -16,5 +16,10 @@ The Makefile also seamlessly manages your python virtual environment using the f
 
 - `make venv` create the venv, if it doesn't exist
 - `make pip` passes it's args to the venv's pip
-- `make clean_venv`
-- `make reset_venv`
+- `make clean_venv` deletes the venv
+- `make reset_venv` deletes the venv and then rebuilds it
+
+
+# Virtual Environment Management
+
+TODO: a brief intro to Makefiles, and then an explanation of how this Makefile manages the venv

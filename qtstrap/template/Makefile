@@ -100,7 +100,7 @@ pip: venv
 
 # update requirements.txt to match the state of the venv
 freeze_reqs: venv
-	$(VENV_PYTHON) -m pip freeze > requirements.txt
+	$(VENV_PYTHON) -m pip freeze > frozen_reqs.txt
 
 # try to update the venv - expirimental feature, don't rely on it
 update_venv: venv

@@ -1,15 +1,9 @@
-#!/usr/bin/env python3
-
-
 from application import Application
 
 
-def run():    
-    # Create the Qt Application
-    app = Application()
-
-    # Run the main Qt loop
-    app.exec_()
+def run():
+    app = Application() # Create the Qt Application
+    app.exec_() # Run the main Qt loop
 
 
 if __name__ == "__main__":
