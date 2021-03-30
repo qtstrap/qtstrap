@@ -9,7 +9,7 @@
   <meta name="author" content="David Kincaid">
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>BaseApplication - qtstrap</title>
+  <title>Context Layouts - qtstrap</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "BaseApplication";
-    var mkdocs_page_input_path = "quickstart/baseapplication.md";
+    var mkdocs_page_name = "Context Layouts";
+    var mkdocs_page_input_path = "quickstart/context_layouts.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -57,13 +57,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">BaseApplication</a>
-    <ul class="current">
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../baseapplication/">BaseApplication</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../basemainwindow/">BaseMainWindow</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../context_layouts/">Context Layouts</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Context Layouts</a>
+    <ul class="current">
+    </ul>
                 </li>
     </ul>
                     </li>
@@ -105,10 +105,10 @@
         
       
     
-    <li>BaseApplication</li>
+    <li>Context Layouts</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/quickstart/baseapplication.md"> Edit on qtstrap/qtstrap</a>
+        <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/quickstart/context_layouts.md"> Edit on qtstrap/qtstrap</a>
       
     </li>
   </ul>
@@ -118,47 +118,44 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="baseapplication">BaseApplication</h1>
-<p><code>BaseApplication</code> is a subclass of <code>QApplication</code>, adding several behaviors that address shortcomings of the Qt/PySide2/PyQt environment.</p>
-<h1 id="ctrlc-handler">Ctrl+C Handler</h1>
-<p>Due to the way that the thin layer of python interacts with the Qt libraries underneath, a naked PySide2/PyQt application can't be stopped using ctrl+c like a normal program. I find this extremely annoying. </p>
-<p>The solution to this has two parts. Part 1 is to use the python <code>signal</code> library to bind a function to the SIGINT signal. Unfortunately, this isn't enough, because in order for signal handler to fire, the python interpreter needs to get some cpu time. Once you start the Qt interpreter using <code>app.exec_()</code>, execution passes down into Qt's C++ code and doesn't return until the application exits. Thus, we need to artifically secure some runtime for the python interpreter.</p>
-<p>This is part 2: creating a <code>QTimer</code> that triggers every 10ms(the exact time is not important) and calls an empty python function, <code>update()</code>. When the timer triggers and <code>update()</code> is called, execution is passed back to the python interpreter, giving it a chance to process signals. </p>
-<pre><code class="language-py">def init_ctrlc_handler(self):            
-    # grab the keyboard interrupt signal 
-    signal.signal(signal.SIGINT, self.ctrlc_handler)
+                <h1 id="context-layouts">Context Layouts</h1>
+<p>This is how Qt expects you to build user interfaces with code:</p>
+<pre><code class="language-py">window = QWidget()
+button1 = QPushButton(&quot;One&quot;)
+button2 = QPushButton(&quot;Two&quot;)
+button3 = QPushButton(&quot;Three&quot;)
+button4 = QPushButton(&quot;Four&quot;)
 
-    # empty timer callback
-    def update():
-        pass
+layout = QVBoxLayout()
 
-    # create timer to force python interpreter to get some runtime
-    self.timer = QTimer() # create a QTimer
-    self.timer.timeout.connect(update) # connect to our empty timer callback
-    self.timer.start(10) # set the timer to trigger every 10mS
-</code></pre>
-<h1 id="app-info">App Info</h1>
-<p>Several Qt modules can automatically query the running <code>QApplication</code> for a number of attributes:</p>
-<ul>
-<li>organizationName</li>
-<li>organizationDomain</li>
-<li>applicationName</li>
-<li>applicationVersion</li>
-</ul>
-<p>One example is <code>QSettings</code>, which "provides persistent, platform-independent application settings". Using <code>QSettings</code> reqires an applicationName and an organizationName. </p>
-<pre><code class="language-py"># every time you want to access QSettings, yuck
-settings = QSettings('Organization', 'Application')
-</code></pre>
-<p>However, if you give this information to your <code>QApplication</code>, then <code>QSettings</code> will use those values so you don't have to specify them every time.</p>
-<pre><code class="language-py"># once, at startup
-app = QApplication()
-app.setOrganizationName('Organization')
-app.setApplicationName('Application')
+hbox1 = QHBoxLayout()
+hbox1.addWidget(button1)
+hbox1.addWidget(button2)
 
-# every time you want to access QSettings, much better!
-settings = QSettings()
+hbox2 = QHBoxLayout()
+hbox2.addWidget(button3)
+hbox2.addWidget(button4)
+
+layout.addLayout(hbox1)
+layout.addLayout(hbox2)
+
+window.setLayout(layout)
 </code></pre>
-<p>As a side bonus, a <code>QMainWindow</code> will automatically set its window title attribute to the <code>QApplication</code>'s <code>applicationName</code>.</p>
+<p>It works, but it's extremely ugly.</p>
+<pre><code class="language-py">window = QWidget()
+button1 = QPushButton(&quot;One&quot;)
+button2 = QPushButton(&quot;Two&quot;)
+button3 = QPushButton(&quot;Three&quot;)
+button4 = QPushButton(&quot;Four&quot;)
+
+with CVBoxLayout(window) as layout:
+    with layout.hbox() as layout:
+        layout.add(button1)
+        layout.add(button2)
+    with layout.hbox() as layout:
+        layout.add(button3)
+        layout.add(button4)
+</code></pre>
               
             </div>
           </div>
@@ -166,10 +163,10 @@ settings = QSettings()
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../basemainwindow/" class="btn btn-neutral float-right" title="BaseMainWindow">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../structure/structure/" class="btn btn-neutral float-right" title="Project Structure">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../gettingstarted/" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../basemainwindow/" class="btn btn-neutral" title="BaseMainWindow"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -195,10 +192,10 @@ settings = QSettings()
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../gettingstarted/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../basemainwindow/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../basemainwindow/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../structure/structure/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
