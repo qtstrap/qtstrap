@@ -1,5 +1,6 @@
 site_name: qtstrap
-theme: readthedocs
+theme: 
+    name: 'readthedocs'
 nav:
     - Home: index.md
     - Installation: installation.md
