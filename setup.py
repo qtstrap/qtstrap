@@ -28,7 +28,6 @@ setup(
     version="0.0.7",
     packages=['qtstrap', 'qtstrap.widgets'],
     install_requires=[
-        'PySide2',
         'click',
         'PyInquirer',
         'pyinstaller',
