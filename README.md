@@ -6,6 +6,8 @@ The goal of qtstrap is get your applications up and running quickly, so you can 
 
 # Features
 
+More complete docs are available [here](https://qtstrap.github.io/qtstrap/).
+
 * `qtstrap` command line tool to bootstrap new projects
 * crossplatform makefile with useful development commands
 * preconfigured pyinstaller spec file
@@ -42,7 +44,7 @@ You can test that everything installed properly by executing:
 ```sh
 $ make run
 ```
-If you see a window like this, they you're good to go:
+If you see a window like this, then you're good to go:
 
-![screenshot](screenshot1.png) 
+![screenshot](docs/screenshot1.png) 
 

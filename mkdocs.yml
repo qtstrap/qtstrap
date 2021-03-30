@@ -7,6 +7,12 @@ repo_url: 'https://github.com/qtstrap/qtstrap'
 theme:
     name: readthedocs
 nav:
-    - Home: index.md
+    - Overview: index.md
     - Installation: installation.md
-    - Widgets: widgets.md
+    - Getting Started: gettingstarted.md
+    - Project Structure: 
+        - Project Structure: structure/structure.md
+        - Makefile: structure/makefile.md
+    # - Widgets: 
+    #     - Base Application: widgets/baseapplication.md
+    #     - Base Main Window: widgets/basemainwindow.md
