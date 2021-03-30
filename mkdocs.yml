@@ -14,6 +14,7 @@ nav:
             - Getting Started: quickstart/gettingstarted.md
             - BaseApplication: quickstart/baseapplication.md
             - BaseMainWindow: quickstart/basemainwindow.md
+            - Context Layouts: quickstart/context_layouts.md
         - Project Structure: 
             - Project Structure: structure/structure.md
             - Makefile: structure/makefile.md
