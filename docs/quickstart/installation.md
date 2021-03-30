@@ -26,4 +26,4 @@ $ make run
 ```
 If you see a window like this, then you're good to go:
 
-![screenshot](screenshot1.png) 
+![screenshot](../screenshot1.png) 
