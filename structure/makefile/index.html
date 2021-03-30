@@ -47,24 +47,30 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Overview</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../installation/">Installation</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Project Structure</span></p>
+                <p class="caption"><span class="caption-text">Overview</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../structure/">Project Structure</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Makefile</a>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Quickstart</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/installation/">Installation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/gettingstarted/">Getting Started</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/baseapplication/">BaseApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/basemainwindow/">BaseMainWindow</a>
+                </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Project Structure</a>
     <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../structure/">Project Structure</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Makefile</a>
+    <ul class="current">
+    </ul>
+                </li>
     </ul>
                     </li>
                 </ul>
@@ -90,6 +96,10 @@
       
         
           <li>Project Structure &raquo;</li>
+        
+      
+        
+          <li>Overview &raquo;</li>
         
       
     
@@ -122,9 +132,11 @@
 <ul>
 <li><code>make venv</code> create the venv, if it doesn't exist</li>
 <li><code>make pip</code> passes it's args to the venv's pip</li>
-<li><code>make clean_venv</code></li>
-<li><code>make reset_venv</code></li>
+<li><code>make clean_venv</code> deletes the venv</li>
+<li><code>make reset_venv</code> deletes the venv and then rebuilds it</li>
 </ul>
+<h1 id="virtual-environment-management">Virtual Environment Management</h1>
+<p>TODO: a brief intro to Makefiles, and then an explanation of how this Makefile manages the venv</p>
               
             </div>
           </div>
