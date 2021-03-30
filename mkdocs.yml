@@ -1,1 +1,5 @@
 site_name: qtstrap
+nav:
+    - Home: index.md
+    - Installation: installation.md
+    - Widgets: widgets.md
