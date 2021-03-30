@@ -1,4 +1,5 @@
 site_name: qtstrap
+theme: mkdocs
 nav:
     - Home: index.md
     - Installation: installation.md
