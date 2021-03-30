@@ -60,6 +60,8 @@
                 <li class="toctree-l2"><a class="reference internal" href="../baseapplication/">BaseApplication</a>
                 </li>
                 <li class="toctree-l2 current"><a class="reference internal current" href="./">BaseMainWindow</a>
+    <ul class="current">
+    </ul>
                 </li>
     </ul>
                     </li>
@@ -114,7 +116,14 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="basemainwindow">BaseMainWindow</h1>
+<p><code>BaseMainWindow</code> is a subclass of <code>QMainWindow</code>, adding several behaviors that address shortcomings of the Qt/PySide2/PyQt environment.</p>
+<h1 id="window-icon">Window Icon</h1>
+<p>The <code>BaseMainWindow</code> will look for an icon file at <code>resources/application.ico</code> and automatically set it as the window icon, if it finds it. This icon is also used when packaging your application for distribution.</p>
+<p>qtstrap ships with a default icon you can use until you create your own.</p>
+<h1 id="window-settings">Window Settings</h1>
+<p>A <code>BaseMainWindow</code> will stay where you put it, even when you close and and reopen your app.</p>
+<p><code>BaseMainWindow</code> has a pair of methods, <code>.save_settings()</code> and <code>.load_settings()</code>, that will save and restore the window's geometry(it's size and position) and it's state(minimized/maximized, etc). <code>.load_settings()</code> is automatically called when starting the application, and <code>.save_settings()</code> is automatically called when closing it. </p>
               
             </div>
           </div>
