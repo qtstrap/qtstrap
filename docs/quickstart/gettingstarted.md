@@ -69,3 +69,5 @@ class MainWindow(BaseMainWindow):
         self.label.setVisible(True)
 
 ```
+
+`main_window.py` is where your application's MainWindow is defined.
