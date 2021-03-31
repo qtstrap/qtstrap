@@ -25,7 +25,7 @@ CLASSIFIERS = [
 
 setup(
     name="qtstrap",
-    version="0.0.7",
+    version="0.0.8",
     packages=['qtstrap', 'qtstrap.widgets'],
     install_requires=[
         'click',
