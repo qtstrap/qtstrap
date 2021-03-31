@@ -21,3 +21,4 @@ qtstrap is a framework that helps you skip over the boring and tedious parts of 
 - Create an application auto-updater
 - Create an application crash reporter
 - Set up CI/CD
+- Add 'Qt principles' section
