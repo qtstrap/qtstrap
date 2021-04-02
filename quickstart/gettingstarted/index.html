@@ -59,10 +59,6 @@
     <ul class="current">
     <li class="toctree-l3"><a class="reference internal" href="#mainpy">main.py</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#applicationpy">application.py</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#main_windowpy">main_window.py</a>
-    </li>
     </ul>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../baseapplication/">BaseApplication</a>
@@ -128,59 +124,44 @@
 <p>After installing qtstrap and creating a new project using <code>qtstrap init</code>, the first thing you should do is familiarize yourself with the <a href="../../structure/structure/">qtstrap project structure</a>.</p>
 <p>This will create a project skeleton in your current directory.</p>
 <h2 id="mainpy"><code>main.py</code></h2>
-<pre><code class="language-py">from application import Application
+<pre><code class="language-py">from qtstrap import *
+import app_info
 
 
 def run():
-    app = Application() # Create the Qt Application
-    app.exec_() # Run the main Qt loop
+    # create the fundamental Qt objects
+    app = BaseApplication(app_info=app_info)
+    window = BaseMainWindow()
+
+    # make everything a little easier to see
+    set_font_options(window, {'setPointSize': 12})
+    window.setMinimumSize(400, 300)
+
+    # create the two widgets for our app
+    label = QLabel('Hello World!', visible=False)
+    button = QPushButton('Click me!')
+
+    # create a function to use as an event handler
+    def on_click():
+        button.setVisible(False)
+        label.setVisible(True)
+
+    # register the handler to the event
+    button.clicked.connect(on_click)
+
+    # build a layout for our two widgets
+    with CVBoxLayout(window) as layout:
+        with layout.hbox(align='center') as layout:
+            layout.add(label)
+        layout.add(button)
+
+    window.show() # show the window
+    app.exec_() # start the Qt event loop
 
 
 if __name__ == &quot;__main__&quot;:
     run()
 </code></pre>
-<p><code>main.py</code> is the entry point into your application. It contains the function <code>run()</code> which creates an instance of <code>Application</code> and starts the Qt event loop with <code>.exec_()</code>.</p>
-<p>If you want to do anything before starting Qt, it belongs here in <code>run()</code>. Examples could be installing custom logging handlers or checking for updates.</p>
-<h2 id="applicationpy"><code>application.py</code></h2>
-<pre><code class="language-py">from qtstrap import *
-from main_window import MainWindow
-
-
-class Application(BaseApplication):    
-    def __init__(self) -&gt; None:
-        super().__init__()
-
-        self.window = MainWindow() # create window
-        self.window.show() # open it
-</code></pre>
-<p><code>application.py</code> is where your customized <code>QApplication</code> lives. Here, we create an instance of <code>MainWindow</code> and open it. Any kind of long running or singleton modules or subsystems can be initialized here, where they'll live for the lifetime of the QApplication. <code>BaseApplication</code> has several useful behaviors that can read about <a href="../baseapplication/">here</a>.</p>
-<h2 id="main_windowpy"><code>main_window.py</code></h2>
-<pre><code class="language-py">from qtstrap import *
-
-
-class MainWindow(BaseMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        set_font_options(self, {'setPointSize': 12})
-        self.setMinimumSize(400, 300)
-
-        self.label = QLabel('Hello World!')
-        self.button = QPushButton('Click me!', clicked=self.on_click)
-
-        with CVBoxLayout(self) as layout:
-            with layout.hbox(align='center') as layout:
-                layout.add(self.label)
-            layout.add(self.button)
-
-        self.label.setVisible(False)
-
-    def on_click(self):
-        self.button.setVisible(False)
-        self.label.setVisible(True)
-
-</code></pre>
-<p><code>main_window.py</code> is where your application's MainWindow is defined.</p>
               
             </div>
           </div>
