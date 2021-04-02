@@ -26,11 +26,17 @@ CLASSIFIERS = [
 setup(
     name="qtstrap",
     version="0.0.12",
-    packages=['qtstrap', 'qtstrap.widgets', 'qtstrap.extras'],
+    packages=[
+        'qtstrap',
+        'qtstrap.widgets',
+        'qtstrap.extras',
+    ],
     install_requires=[
+        'QtPy',
         'click',
         'PyInquirer',
         'appdirs',
+        'qtawesome',
         'pyinstaller',
     ],
     entry_points={
