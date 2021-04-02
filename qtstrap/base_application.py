@@ -2,6 +2,12 @@ from .qt import *
 import signal
 from pathlib import Path
 
+try:
+    import app_info
+    app_info_available = True
+except ModuleNotFoundError:
+    app_info_available = False
+
 
 class BaseApplication(QApplication):
     organization_name = None
@@ -9,10 +15,10 @@ class BaseApplication(QApplication):
     application_name = None
     application_version = None
     
-    def __init__(self, *args, app_info=None, register_ctrlc_handler=True, **kwargs) -> None:
+    def __init__(self, *args, register_ctrlc_handler=True, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        if app_info:
+        if app_info_available:
             self.init_app_info(app_info)
 
         if register_ctrlc_handler:

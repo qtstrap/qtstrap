@@ -1,10 +1,9 @@
 from qtstrap import *
-import app_info
 
 
 def run():
     # create the fundamental Qt objects
-    app = BaseApplication(app_info=app_info)
+    app = BaseApplication()
     window = BaseMainWindow()
 
     # make everything a little easier to see
