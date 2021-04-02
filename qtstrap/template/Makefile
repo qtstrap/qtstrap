@@ -37,10 +37,6 @@ debug: venv
 # **************************************************************************** #
 # Build Targets
 
-beep:
-	echo $(AppName)
-	echo $(AppVersion)
-
 # build a one folder bundle 
 bundle: venv
 	$(VENV_PYINSTALLER) -y bundle.spec
