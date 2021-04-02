@@ -41,7 +41,7 @@ tests: venv
 clean:
 	-$(RM) build
 	-$(RM) dist
-	-$(RM) codex_engine_pyqt.egg-info
+	-$(RM) qtstrap.egg-info
 
 
 # **************************************************************************** #
