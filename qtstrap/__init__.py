@@ -1,3 +1,4 @@
+from .settings import *
 from .qt import *
 from .utils import *
 from .layouts import *

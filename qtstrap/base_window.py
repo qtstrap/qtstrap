@@ -18,11 +18,11 @@ class BaseMainWindow(QMainWindow):
         super().closeEvent(event)
         
     def save_settings(self):
-        QSettings().setValue("window_geometry", self.saveGeometry())
-        QSettings().setValue("window_state", self.saveState())
+        QSettings().setValue("mainwindow/geometry", self.saveGeometry())
+        QSettings().setValue("mainwindow/state", self.saveState())
 
     def load_settings(self):
-        if QSettings().value("window_geometry") is not None:
-            self.restoreGeometry(QSettings().value("window_geometry"))
-        if QSettings().value("window_state") is not None:
-            self.restoreState(QSettings().value("window_state"))
+        if QSettings().value("mainwindow/geometry") is not None:
+            self.restoreGeometry(QSettings().value("mainwindow/geometry"))
+        if QSettings().value("mainwindow/state") is not None:
+            self.restoreState(QSettings().value("mainwindow/state"))
