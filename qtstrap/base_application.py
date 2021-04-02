@@ -1,12 +1,8 @@
+from qtstrap import OPTIONS
 from .qt import *
 import signal
 from pathlib import Path
-
-try:
-    import app_info
-    app_info_available = True
-except ModuleNotFoundError:
-    app_info_available = False
+from appdirs import AppDirs
 
 
 class BaseApplication(QApplication):
@@ -18,8 +14,10 @@ class BaseApplication(QApplication):
     def __init__(self, *args, register_ctrlc_handler=True, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        if app_info_available:
-            self.init_app_info(app_info)
+        if OPTIONS.app_info:
+            self.init_app_info(OPTIONS.app_info)
+            self.init_app_dirs(OPTIONS.app_info)
+            self.init_app_icon(OPTIONS.app_info.AppIconName)
 
         if register_ctrlc_handler:
             self.init_ctrlc_handler()
@@ -61,3 +59,17 @@ class BaseApplication(QApplication):
         if info.AppVersion:
             self.application_version = info.AppVersion
             self.setApplicationVersion(info.AppVersion)
+
+    def init_app_icon(self, icon_path):
+        if icon_path and Path(icon_path).exists():
+                self.setWindowIcon(QIcon(icon_path))
+
+    def init_app_dirs(self, info):
+        if not OPTIONS.portable:
+            self.dirs = AppDirs(info.AppName, info.AppPublisher)
+            self.config_dir = self.dirs.user_config_dir
+
+            # make sure config dir exists
+            Path(self.config_dir).mkdir(parents=True, exist_ok=True)
+        else:
+            self.config_dir = OPTIONS.APPLICATION_PATH
