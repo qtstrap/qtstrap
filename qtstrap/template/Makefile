@@ -34,6 +34,10 @@ run: venv
 debug: venv
 	$(VENV_PYTHON) -m pdb src/main.py
 
+# run the test suite
+test: venv
+	$(VENV_PYTHON) -m pytest
+
 # **************************************************************************** #
 # Build Targets
 
