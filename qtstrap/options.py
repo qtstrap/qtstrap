@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+from appdirs import AppDirs
 
 
 class OPTIONS:
@@ -23,3 +24,11 @@ except ModuleNotFoundError:
 # check for the file ".portable"
 if Path(OPTIONS.PORTABLE_FLAG_FILE).exists():
     OPTIONS.portable = True
+
+
+# set up appdirs
+if not OPTIONS.portable and OPTIONS.app_info:
+    dirs = AppDirs(app_info.AppName, app_info.AppPublisher)
+    OPTIONS.config_dir = dirs.user_config_dir
+else:
+    OPTIONS.config_dir = OPTIONS.APPLICATION_PATH.as_posix()
