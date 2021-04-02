@@ -58,7 +58,13 @@ endif
 
 # wrap the bundle into a zip file
 zip:
+	echo > dist/$(AppName)/.portable
 	$(PYTHON) -m zipfile -c dist/$(AppName)-$(AppVersion)-portable.zip dist/$(AppName)/
+ifeq ($(OS),Windows_NT)
+	del dist\$(AppName)\.portable
+else
+	-@ $(RM) dist/$(AppName)/.portable
+endif
 
 # build an installer with InnoSetup
 installer:
