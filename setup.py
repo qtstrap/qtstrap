@@ -26,7 +26,7 @@ CLASSIFIERS = [
 setup(
     name="qtstrap",
     version="0.0.12",
-    packages=['qtstrap', 'qtstrap.widgets'],
+    packages=['qtstrap', 'qtstrap.widgets', 'qtstrap.extras'],
     install_requires=[
         'click',
         'PyInquirer',
