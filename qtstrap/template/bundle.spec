@@ -1,18 +1,16 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 import configparser
-from pathlib import Path
 
 
-with open('project.ini') as f:
+with open('src/app_info.py') as f:
     file_content = '[dummy_section]\n' + f.read()
-
 
 config = configparser.ConfigParser()
 config.read_string(file_content)
 
-app_name = config['dummy_section']['AppName']
-icon_file = config['dummy_section']['AppIconName']
+app_name = config['dummy_section']['AppName'].replace('"', '')
+icon_file = config['dummy_section']['AppIconName'].replace('"', '')
 
 
 a = Analysis(

@@ -51,35 +51,23 @@ def init():
             if f.is_file():
                 shutil.copy(f, dest)
 
-    # create project.ini based on user input
-    if not Path('project.ini').exists():
+    # create app_info.py based on user input
+    if not Path('src/app_info.py').exists():
         result = prompt(init_prompt)
         if result:
-            with open('project.ini', 'w') as f:
-                f.write(f'AppName = {result["app_name"]}\n')
-                f.write(f'AppVersion = 0.1\n')
-                f.write(f'AppPublisher = {result["app_publisher"]}\n')
-                f.write(f'AppExeName = {result["app_name"]}.exe\n')
-                f.write('AppIconName = resources/application.ico\n')
+            with open('src/app_info.py', 'w') as f:
+                f.write(f'AppName = "{result["app_name"]}"\n')
+                f.write(f'AppVersion = "0.1"\n')
+                f.write(f'AppPublisher = "{result["app_publisher"]}"\n')
+                f.write(f'AppExeName = "{result["app_name"]}.exe"\n')
+                f.write('AppIconName = "resources/application.ico"\n')
                 guid = '{{' + str(uuid.uuid4()) + '}'
-                f.write(f'AppId = {guid}\n')
-            
-            # replace placeholder text with values supplied by the user
-            with open('src/application.py') as f:
-                contents = f.read()
-        
-            contents = contents.replace('$appname', result["app_name"])
-            contents = contents.replace('$publisher', result["app_publisher"])
-            contents = contents.replace('$version', '0.1')
-
-            with open('src/application.py', 'w') as f:
-                f.write(contents)
+                f.write(f'AppId = "{guid}"\n')
 
 
-
-# @main.command()
-# def run():
-#     print('run')
+@main.command()
+def version():
+    print('qtstrap v<something>')
 
 
 # @main.command()

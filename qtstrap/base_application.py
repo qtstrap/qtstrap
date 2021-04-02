@@ -1,5 +1,6 @@
 from .qt import *
 import signal
+from pathlib import Path
 
 
 class BaseApplication(QApplication):
@@ -8,10 +9,11 @@ class BaseApplication(QApplication):
     application_name = None
     application_version = None
     
-    def __init__(self, *args, register_ctrlc_handler=True, **kwargs) -> None:
+    def __init__(self, *args, app_info=None, register_ctrlc_handler=True, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        self.init_app_info()
+        if app_info:
+            self.init_app_info(app_info)
 
         if register_ctrlc_handler:
             self.init_ctrlc_handler()
@@ -40,12 +42,16 @@ class BaseApplication(QApplication):
         self.timer.timeout.connect(update)
         self.timer.start(10)
     
-    def init_app_info(self):
-        if self.organization_name:
-            self.setOrganizationName(self.organization_name)
-        if self.organization_domain:
-            self.setOrganizationDomain(self.organization_domain)
-        if self.application_name:
-            self.setApplicationName(self.application_name)
-        if self.application_version:
-            self.setApplicationVersion(self.application_version)
+    def init_app_info(self, info):
+        if info.AppPublisher:
+            self.organization_name = info.AppPublisher
+            self.setOrganizationName(info.AppPublisher)
+        if info.AppPublisher:
+            self.organization_domain = info.AppPublisher
+            self.setOrganizationDomain(info.AppPublisher)
+        if info.AppName:
+            self.application_name = info.AppName
+            self.setApplicationName(info.AppName)
+        if info.AppVersion:
+            self.application_version = info.AppVersion
+            self.setApplicationVersion(info.AppVersion)

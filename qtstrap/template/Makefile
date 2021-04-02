@@ -8,8 +8,17 @@ MAKEFLAGS += -s
 # **************************************************************************** #
 
 # load the project variables
-ifneq (,$(wildcard project.ini))
-include project.ini
+ifneq (,$(wildcard src/app_info.py))
+include src/app_info.py
+
+# remove extra quotes
+AppName := $(patsubst "%",%,$(AppName))
+AppVersion := $(patsubst "%",%,$(AppVersion))
+AppPublisher := $(patsubst "%",%,$(AppPublisher))
+AppExeName := $(patsubst "%",%,$(AppExeName))
+AppIconName := $(patsubst "%",%,$(AppIconName))
+AppId := $(patsubst "%",%,$(AppId))
+
 # export them for InnoSetup
 export
 endif
@@ -27,6 +36,10 @@ debug: venv
 
 # **************************************************************************** #
 # Build Targets
+
+beep:
+	echo $(AppName)
+	echo $(AppVersion)
 
 # build a one folder bundle 
 bundle: venv
@@ -100,7 +113,7 @@ pip: venv
 
 # update requirements.txt to match the state of the venv
 freeze_reqs: venv
-	$(VENV_PYTHON) -m pip freeze > frozen_reqs.txt
+	$(VENV_PYTHON) -m pip freeze > requirements.txt
 
 # try to update the venv - expirimental feature, don't rely on it
 update_venv: venv
