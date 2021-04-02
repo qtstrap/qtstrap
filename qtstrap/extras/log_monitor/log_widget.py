@@ -1,8 +1,15 @@
 from qtstrap import *
+from qtpy.QtSql import *
 from .log_table_view import LogTableView
 from .log_filter_controls import FilterControls
 from .log_database_handler import DatabaseHandler, db_conn_name
-from command_palette import CommandPalette, Command
+
+
+try:
+    from command_palette import CommandPalette, Command
+    command_palette_available = True
+except:
+    command_palette_available = False
 
 
 class LogMonitorWidget(QWidget):
@@ -10,9 +17,10 @@ class LogMonitorWidget(QWidget):
         super().__init__(parent=parent)
         self.tab_name = "Log Monitor"
 
-        self.commands = [
-            Command("Log Monitor: Switch profile", triggered=self.open_profile_prompt),
-        ]
+        if command_palette_available:
+            self.commands = [
+                Command("Log Monitor: Switch profile", triggered=self.open_profile_prompt),
+            ]
 
         self.log_table = LogTableView()
         DatabaseHandler.register_callback(self.log_table.schedule_refresh)
@@ -56,10 +64,11 @@ class LogMonitorDockWidget(QDockWidget):
 
         self.setWidget(LogMonitorWidget(self))
 
-        self.commands = [
-            Command("Log Monitor: Show log monitor", triggered=self.show, shortcut='Ctrl+L'),
-            Command("Log Monitor: Hide log monitor", triggered=self.hide),
-        ]
+        if command_palette_available:
+            self.commands = [
+                Command("Log Monitor: Show log monitor", triggered=self.show, shortcut='Ctrl+L'),
+                Command("Log Monitor: Hide log monitor", triggered=self.hide),
+            ]
 
         self.setAllowedAreas(Qt.AllDockWidgetAreas)
         self.dockLocationChanged.connect(lambda: QTimer.singleShot(0, self.adjust_size))
@@ -89,10 +98,11 @@ class LogMonitorDropdown(QDialog):
 
         CHBoxLayout(self).add(LogMonitorWidget(self))
         
-        self.commands = [
-            Command("Log Monitor: Show log monitor", triggered=self.show, shortcut='Ctrl+L'),
-            Command("Log Monitor: Hide log monitor", triggered=self.hide),
-        ]
+        if command_palette_available:
+            self.commands = [
+                Command("Log Monitor: Show log monitor", triggered=self.show, shortcut='Ctrl+L'),
+                Command("Log Monitor: Hide log monitor", triggered=self.hide),
+            ]
         
         self.hide()
 
@@ -108,7 +118,6 @@ class LogMonitorDropdown(QDialog):
         else:
             self.center_on_parent()
             self.show()
-
 
     def center_on_parent(self):
         offset = 33

@@ -1,6 +1,7 @@
 from qtstrap import *
 import qtawesome as qta
-from style import colors
+from qtstrap.extras.style import colors
+import json
 
 
 log_levels = {
@@ -365,7 +366,8 @@ class FilterControls(QStackedWidget):
         self.query_limit = QLineEdit()
 
         # load settings and send filter components to widgets
-        self.settings = QSettings().value('log_monitor', self.default_settings)
+        prev = QSettings().value('log_monitor/log_settings', json.dumps(self.default_settings))
+        self.settings = json.loads(prev)
 
         profiles = self.settings['profiles']
         current_profile_name = self.settings['selected_profile']
@@ -420,7 +422,7 @@ class FilterControls(QStackedWidget):
             layout.add(QLabel(), 1)
 
     def save_settings(self):
-        QSettings().setValue('log_monitor', self.settings)
+        QSettings().setValue('log_monitor/log_settings', json.dumps(self.settings))
 
     def add_profile(self, name):
         new_profile = dict(self.empty_profile)

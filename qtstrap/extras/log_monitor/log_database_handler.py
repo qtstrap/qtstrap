@@ -1,5 +1,6 @@
 import logging
 from qtstrap import *
+from qtpy.QtSql import *
 import time
 
 
