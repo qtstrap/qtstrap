@@ -16,10 +16,12 @@ class BaseApplication(QApplication):
             self.init_ctrlc_handler()
 
     def ctrlc_handler(self, sig=None, frame=None):
+        #! I don't think this does what I was hoping
         # give all the app's children a chance to close
-        for child in self.children():
-            if hasattr(child, 'close'):
-                child.close()
+        # for child in self.children():
+        #     print(child)
+        #     if hasattr(child, 'close'):
+        #         child.close()
 
         # TODO: should we somehow wait for our children to close?
 
