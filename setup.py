@@ -3,7 +3,7 @@
 
 
 import pathlib
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 here = pathlib.Path(__file__).parent
@@ -26,11 +26,7 @@ CLASSIFIERS = [
 setup(
     name="qtstrap",
     version="0.0.12",
-    packages=[
-        'qtstrap',
-        'qtstrap.widgets',
-        'qtstrap.extras',
-    ],
+    packages=find_packages(),
     install_requires=[
         'QtPy',
         'click',
