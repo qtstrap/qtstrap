@@ -12,4 +12,5 @@ from .persistent_widgets import (
     PersistentListWidget,
     PersistentTreeWidget,
     PersistentComboBox,
+    PersistentCheckableAction,
 )
