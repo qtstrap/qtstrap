@@ -4,6 +4,9 @@ import logging
 from qtstrap import OPTIONS
 
 
+# Make sure the log database directory exists
+Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
+
 db_path = OPTIONS.config_dir + '/log.db'
 
 
