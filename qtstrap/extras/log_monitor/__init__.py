@@ -2,6 +2,7 @@ from .log_widget import LogMonitorWidget, LogMonitorDockWidget, LogMonitorDropdo
 from .log_database_handler import DatabaseHandler
 import logging
 from qtstrap import OPTIONS
+from pathlib import Path
 
 
 # Make sure the log database directory exists
