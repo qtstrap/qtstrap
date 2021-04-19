@@ -16,17 +16,8 @@ class BaseApplication(QApplication):
             self.init_ctrlc_handler()
 
     def ctrlc_handler(self, sig=None, frame=None):
-        #! I don't think this does what I was hoping
-        # give all the app's children a chance to close
-        # for child in self.children():
-        #     print(child)
-        #     if hasattr(child, 'close'):
-        #         child.close()
-
-        # TODO: should we somehow wait for our children to close?
-
-        # tell the application to close
-        self.shutdown()
+        self.closeAllWindows() # this makes sure the MainWindow's .close() method gets called
+        self.quit()
 
     def init_ctrlc_handler(self):            
         # grab the keyboard interrupt signal 
