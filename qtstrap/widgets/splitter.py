@@ -31,14 +31,16 @@ class CSplitter(QSplitter):
         pass
 
 
-class CPersistentSplitter(CSplitter):
+class PersistentCSplitter(CSplitter):
     def __init__(self, name, parent=None, **kwargs):
         super().__init__(parent, **kwargs)
         self.name = name
-        self.restore_state()
 
         self.splitterMoved.connect(lambda: QSettings().setValue(self.name, self.saveState()))
     
     def restore_state(self):
         if state := QSettings().value(self.name, None):
             self.restoreState(state)
+
+    def __exit__(self, type, value, traceback):
+        self.restore_state()
