@@ -1,5 +1,5 @@
 
-from .splitter import CSplitter, CPersistentSplitter
+from .splitter import CSplitter, PersistentCSplitter
 from .buttons import StateButton, IconToggleButton, ConfirmToggleButton
 from .labeledit import LabelEdit
 from .link_label import LinkLabel
