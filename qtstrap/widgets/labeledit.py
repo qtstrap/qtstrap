@@ -26,10 +26,13 @@ class LabelEdit(QWidget):
         self.label.setText(text)
         self.text_changed.emit(self.edit.text())
 
-    def mouseDoubleClickEvent(self, event: PySide2.QtGui.QMouseEvent) -> None:
+    def start_editing(self):
         self.edit.setText(self.label.text())
         self.edit.setFocus()
         self.stack.setCurrentIndex(1)
+
+    def mouseDoubleClickEvent(self, event: PySide2.QtGui.QMouseEvent) -> None:
+        self.start_editing()
         return super().mouseDoubleClickEvent(event)
 
     def accept(self):
