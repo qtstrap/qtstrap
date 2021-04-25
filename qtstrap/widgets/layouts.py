@@ -1,4 +1,5 @@
-from .qt import *
+from qtstrap import *
+from .splitter import CSplitter, PersistentCSplitter
 
 
 alignments = {
@@ -18,6 +19,12 @@ class ContextLayout:
             # we can use a throwaway QWidget as a shim
             widget = QWidget(parent=parent)
             parent.setCentralWidget(widget)
+            super().__init__(widget, **kwargs)
+        elif isinstance(parent, QSplitter):
+            # a layout can't be added directly to a QSplitter, only a widget
+            # we can use a throwaway QWidget as a shim
+            widget = QWidget(parent=parent)
+            parent.addWidget(widget)
             super().__init__(widget, **kwargs)
         elif parent is None or isinstance(parent, QWidget):
             super().__init__(parent, **kwargs)
@@ -73,15 +80,24 @@ class ContextLayout:
         self.next_layout = CGridLayout(self._layout, *args, **kwargs)
         return self
 
+    def split(self, name=None, **kwargs):
+        if name:
+            self.next_layout = PersistentCSplitter(name, self._layout, **kwargs)
+        else:
+            self.next_layout = CSplitter(self._layout, **kwargs)
+        return self
+
     def __enter__(self):
         if self.next_layout is not None:
+            self.next_layout.__enter__()
             self._stack.append(self.next_layout)
             self.next_layout = None
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, *_):
         if len(self._stack) > 0:
-            self._stack.pop()
+            item = self._stack.pop()
+            item.__exit__()
 
 
 class CVBoxLayout(ContextLayout, QVBoxLayout):

@@ -1,4 +1,5 @@
 from qtstrap import *
+from .layouts import *
 
 
 class CSplitter(QSplitter):
@@ -6,6 +7,9 @@ class CSplitter(QSplitter):
         if isinstance(parent, QWidget):
             super().__init__(parent, **kwargs)
             CHBoxLayout(parent).add(self)
+        elif isinstance(parent, QLayout):
+            super().__init__(**kwargs)
+            parent.add(self)
         
         if orientation:
             self.setOrientation(orientation)
@@ -27,7 +31,7 @@ class CSplitter(QSplitter):
     def __enter__(self):
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, *args):
         pass
 
 
@@ -42,5 +46,5 @@ class PersistentCSplitter(CSplitter):
         if state := QSettings().value(self.name, None):
             self.restoreState(state)
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, *args):
         self.restore_state()

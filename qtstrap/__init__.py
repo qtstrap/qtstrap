@@ -2,7 +2,6 @@ from .options import *
 from .settings import *
 from .qt import *
 from .utils import *
-from .layouts import *
 from .widgets import *
 from .base_application import BaseApplication
 from .base_window import BaseMainWindow
