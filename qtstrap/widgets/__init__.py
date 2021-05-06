@@ -10,7 +10,6 @@ from .labeledit import LabelEdit
 from .link_label import LinkLabel
 from .line_widgets import VLine, HLine
 from .persistent_widgets import (
-    PersistentTabWidget,
     PersistentCheckBox,
     PersistentLineEdit,
     PersistentTextEdit,
@@ -19,3 +18,4 @@ from .persistent_widgets import (
     PersistentComboBox,
     PersistentCheckableAction,
 )
+from .persistent_tab_widget import PersistentTabWidget

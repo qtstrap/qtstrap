@@ -1,27 +1,6 @@
 from qtstrap import *
 
 
-class PersistentTabWidget(QTabWidget):
-    def __init__(self, name, tabs=None, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.name = name
-        if tabs:
-            if isinstance(tabs, list):
-                for tab in tabs:
-                    if hasattr(tab, 'tab_name'):
-                        self.addTab(tab, tab.tab_name)
-            if isinstance(tabs, dict):
-                for name, tab in tabs.items():
-                    self.addTab(tab, name)
-            self.restore_state()
-
-    def restore_state(self):
-        prev_index = QSettings().value(self.name, 0)
-        if isinstance(prev_index, int):
-            self.setCurrentIndex(min(int(prev_index), self.count()))
-        self.currentChanged.connect(lambda i: QSettings().setValue(self.name, i))
-
-
 class PersistentCheckBox(QCheckBox):
     def __init__(self, name, changed=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
