@@ -7,6 +7,7 @@ from .base_application import BaseApplication, install_app_info, install_ctrlc_h
 from .base_window import BaseMainWindow
 from .toolbar import BaseToolbar, SettingsToolbar
 from .timestamp import TimeStamp, time_since
+from .decorators import singleton, trace
 
 
 # create a shorter alias for accessing the current QApplication
