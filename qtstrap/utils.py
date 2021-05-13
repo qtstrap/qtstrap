@@ -83,3 +83,29 @@ def set_font_options(obj: QObject, options={}):
         getattr(font, setting)(value)
     obj.setFont(font)
     return obj
+
+
+class SignalBlocker:
+    def __init__(self, widget):
+        self.widget = widget
+
+    def __enter__(self):
+        self.widget.blockSignals(True)
+
+    def __exit__(self, *_):
+        self.widget.blockSignals(False)
+
+
+class Defer:
+    def __init__(self, thing, *args, **kwargs):
+        self.thing = thing
+        self.args = args
+        self.kwargs = kwargs
+
+    def __enter__(self): ...
+
+    def __exit__(self, *_):
+        if self.args or self.kwargs:
+            self.thing(*self.args, **self.kwargs)
+        else:
+            self.thing()
