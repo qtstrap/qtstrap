@@ -25,7 +25,7 @@ CLASSIFIERS = [
 
 setup(
     name="qtstrap",
-    version="0.0.22",
+    version="0.0.23",
     packages=find_packages(),
     install_requires=[
         'QtPy',
