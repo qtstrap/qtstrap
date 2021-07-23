@@ -1,4 +1,4 @@
-from qt import *
+from qtstrap import *
 import typing
 from style import colors
 import re
