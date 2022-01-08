@@ -1,5 +1,5 @@
 from qtstrap import *
-from .splitter import CSplitter, PersistentCSplitter
+# from .splitter import CSplitter, PersistentCSplitter
 
 
 alignments = {
@@ -80,12 +80,12 @@ class ContextLayout:
         self.next_layout = CGridLayout(self._layout, *args, **kwargs)
         return self
 
-    def split(self, name=None, **kwargs):
-        if name:
-            self.next_layout = PersistentCSplitter(name, self._layout, **kwargs)
-        else:
-            self.next_layout = CSplitter(self._layout, **kwargs)
-        return self
+    # def split(self, name=None, **kwargs):
+    #     if name:
+    #         self.next_layout = PersistentCSplitter(name, self._layout, **kwargs)
+    #     else:
+    #         self.next_layout = CSplitter(self._layout, **kwargs)
+    #     return self
 
     def __enter__(self):
         if self.next_layout is not None:
