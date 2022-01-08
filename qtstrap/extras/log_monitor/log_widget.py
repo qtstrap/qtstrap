@@ -31,7 +31,7 @@ class LogMonitorWidget(QWidget):
 
         self.query_existing_loggers()
 
-        with CPersistentSplitter('log_monitor_splitter', self) as splitter:
+        with PersistentCSplitter('log_monitor_splitter', self) as splitter:
             splitter.add(self.filter_controls, 1)
             splitter.add(self.log_table, 10)
 
