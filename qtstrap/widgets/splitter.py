@@ -3,7 +3,7 @@ from .layouts import *
 
 
 class CSplitter(QSplitter):
-    def __init__(self, parent=None, orientation=None, **kwargs):
+    def __init__(self, parent=None, margins=None, orientation=None, **kwargs):
         if isinstance(parent, QWidget):
             super().__init__(parent, **kwargs)
             CHBoxLayout(parent).add(self)
@@ -11,6 +11,9 @@ class CSplitter(QSplitter):
             super().__init__(**kwargs)
             parent.add(self)
         
+        if margins:
+            self.setContentsMargins(*margins)
+
         if orientation:
             self.setOrientation(orientation)
 
