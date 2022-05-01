@@ -90,6 +90,7 @@ freeze_reqs: venv
 
 # try to update the venv - expirimental feature, don't rely on it
 update_venv: venv
+	$(VENV_PYTHON) -m pip install --upgrade pip
 	$(VENV_PYTHON) -m pip install -r requirements.txt
 
 # deletes the venv
