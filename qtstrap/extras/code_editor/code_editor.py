@@ -1,23 +1,29 @@
 from qtstrap import *
-from .editor import CodeEditor
+from .highlighters import PythonHighlighter
 
 
-class CodeLine(CodeEditor):
-    def __init__(self, *args, changed, words, **kwargs):
+class CodeEditor(QTextEdit):
+    def __init__(self, *args, changed=None, model=None, highlighter=PythonHighlighter, **kwargs):
         super().__init__(*args, **kwargs)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setLineWrapMode(QTextEdit.NoWrap)
-        self.setFixedHeight(28)
-        self.textChanged.connect(changed)
 
-        self.completer = QCompleter(words, self)
-        self.completer.setModelSorting(QCompleter.CaseInsensitivelySortedModel)
+        set_font_options(self, {
+            'setFamily': 'Courier',
+            'setStyleHint': QFont.Monospace,
+            'setFixedPitch': True,
+        })
+        
+        self.setTabStopWidth(QFontMetricsF(self.font()).width(' ') * 4)
+        self.syntax = highlighter(self)
+        
+        if changed:
+            self.textChanged.connect(changed)
+
+        self.model = model
+
+        self.completer = QCompleter(self.model, self)
         self.completer.setWidget(self)
         self.completer.popup().setMinimumWidth(150)
-        self.completer.setCompletionMode(QCompleter.PopupCompletion)
-        self.completer.setCaseSensitivity(Qt.CaseInsensitive)
-        self.completer.setFilterMode(Qt.MatchContains)
+        self.completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
 
         self.completer.activated.connect(self.insert_completion)
 
@@ -33,8 +39,8 @@ class CodeLine(CodeEditor):
         tc = self.textCursor()
         tc.select(QTextCursor.WordUnderCursor)
         return tc.selectedText()
-
-    def keyPressEvent(self, event: PySide2.QtCore.QEvent):
+        
+    def keyPressEvent(self, event:QKeyEvent):
         force_popup = False
         if event.modifiers() == Qt.ControlModifier:
             if event.key() == Qt.Key_Space:
@@ -45,10 +51,6 @@ class CodeLine(CodeEditor):
             if event.key() in keys:
                 event.ignore()
                 return
-    
-        if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
-            event.accept()
-            return
 
         braces = {
             '"': '"',
@@ -71,14 +73,19 @@ class CodeLine(CodeEditor):
                 cur.insertText(braces[event.text()])
                 cur.setPosition(start)
                 cur.insertText(event.text())
-                cur.movePosition(QTextCursor.WordRight, QTextCursor.KeepAnchor)
+                cur.setPosition(start + 1)
+                cur.setPosition(end + 1, QTextCursor.KeepAnchor)
                 self.setTextCursor(cur)
                 return
 
         super().keyPressEvent(event)
 
         prefix = self.text_under_cursor()
+        if event.key() == Qt.Key_Period:
+            force_popup = True
         if prefix or force_popup:
+            if self.model:
+                self.model.set_prefix(prefix, self.textCursor())
             self.completer.setCompletionPrefix(prefix)
             index = self.completer.completionModel().index(0, 0)
             self.completer.popup().setCurrentIndex(index)
