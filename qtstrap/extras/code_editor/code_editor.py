@@ -12,7 +12,10 @@ class CodeEditor(QTextEdit):
             'setFixedPitch': True,
         })
         
-        self.setTabStopWidth(QFontMetricsF(self.font()).width(' ') * 4)
+        if qtpy.QT5:
+            self.setTabStopWidth(QFontMetricsF(self.font()).width(' ') * 4)
+        elif qtpy.QT6:
+            self.setTabStopWidth(QFontMetricsF(self.font()).tightBoundingRect(' ').width() * 4)
         self.syntax = highlighter(self)
         
         if changed:

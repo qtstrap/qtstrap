@@ -31,7 +31,7 @@ class LabelEdit(QWidget):
         self.edit.setFocus()
         self.stack.setCurrentIndex(1)
 
-    def mouseDoubleClickEvent(self, event: PySide2.QtGui.QMouseEvent) -> None:
+    def mouseDoubleClickEvent(self, event: QtGui.QMouseEvent) -> None:
         self.start_editing()
         return super().mouseDoubleClickEvent(event)
 

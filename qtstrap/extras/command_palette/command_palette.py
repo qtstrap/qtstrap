@@ -46,9 +46,9 @@ class PopupDelegate(QStyledItemDelegate):
         self.prefix = prefix
 
     def paint(self, 
-            painter: PySide2.QtGui.QPainter, 
-            option: PySide2.QtWidgets.QStyleOptionViewItem, 
-            index: PySide2.QtCore.QModelIndex
+            painter: QtGui.QPainter, 
+            option: QtWidgets.QStyleOptionViewItem, 
+            index: QtCore.QModelIndex
         ):
 
         self.initStyleOption(option, index)
@@ -112,10 +112,10 @@ class CommandModel(QAbstractListModel):
         self.sorted_commands.extend([cmd for cmd in registry.commands if prefix.lower() not in cmd.text().lower()])
         return result
 
-    def rowCount(self, parent: PySide2.QtCore.QModelIndex) -> int:
+    def rowCount(self, parent: QtCore.QModelIndex) -> int:
         return len(registry.commands)
 
-    def data(self, index: PySide2.QtCore.QModelIndex, role: int) -> typing.Any:
+    def data(self, index: QtCore.QModelIndex, role: int) -> typing.Any:
         if not index.isValid():
             return None
 
@@ -125,7 +125,7 @@ class CommandModel(QAbstractListModel):
         elif role == Qt.UserRole:
             return self.sorted_commands[index.row()].shortcut().toString()
 
-    def index(self, row: int, column: int, parent: PySide2.QtCore.QModelIndex) -> PySide2.QtCore.QModelIndex:
+    def index(self, row: int, column: int, parent: QtCore.QModelIndex) -> QtCore.QModelIndex:
         return self.createIndex(row, column)
 
 

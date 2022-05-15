@@ -31,7 +31,7 @@ def uncache(exclude):
         del sys.modules[mod]
 
 
-from PySide2 import QtCore
+from .qt import QtCore
 
 
 class PortableSettings(QtCore.QSettings):
