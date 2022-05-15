@@ -1,9 +1,8 @@
 from qtstrap import *
-from .highlighters import PythonHighlighter
 
 
 class CodeEditor(QTextEdit):
-    def __init__(self, *args, changed=None, model=None, highlighter=PythonHighlighter, **kwargs):
+    def __init__(self, *args, changed=None, model=None, highlighter=None, **kwargs):
         super().__init__(*args, **kwargs)
 
         set_font_options(self, {
@@ -16,7 +15,8 @@ class CodeEditor(QTextEdit):
             self.setTabStopWidth(QFontMetricsF(self.font()).width(' ') * 4)
         elif qtpy.QT6:
             self.setTabStopWidth(QFontMetricsF(self.font()).tightBoundingRect(' ').width() * 4)
-        self.syntax = highlighter(self)
+        if highlighter:
+            self.syntax = highlighter(self)
         
         if changed:
             self.textChanged.connect(changed)
