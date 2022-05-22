@@ -1,6 +1,5 @@
 from qtstrap import *
 import typing
-from style import colors
 import re
 
 
@@ -40,7 +39,7 @@ class PopupDelegate(QStyledItemDelegate):
         self.prefix = ""
         self.normal = QPen('gray')
         self.contains = QPen('lightgray')
-        self.highlight = QPen(QColor(colors.blue))
+        self.highlight = QPen(QColor('#0074D9'))
 
     def set_prefix(self, prefix):
         self.prefix = prefix
