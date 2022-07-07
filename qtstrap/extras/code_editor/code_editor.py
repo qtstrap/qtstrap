@@ -11,10 +11,9 @@ class CodeEditor(QTextEdit):
             'setFixedPitch': True,
         })
         
-        if qtpy.QT5:
-            self.setTabStopWidth(QFontMetricsF(self.font()).width(' ') * 4)
-        elif qtpy.QT6:
-            self.setTabStopWidth(QFontMetricsF(self.font()).tightBoundingRect(' ').width() * 4)
+        self.installEventFilter(self)
+        self.update_tab_width()
+
         if highlighter:
             self.syntax = highlighter(self)
         
@@ -29,6 +28,19 @@ class CodeEditor(QTextEdit):
         self.completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
 
         self.completer.activated.connect(self.insert_completion)
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.FontChange:
+            self.update_tab_width()
+            return False
+
+        return False
+
+    def update_tab_width(self):
+        if qtpy.QT5:
+            self.setTabStopWidth(QFontMetricsF(self.font()).width(' ') * 4)
+        elif qtpy.QT6:
+            self.setTabStopWidth(QFontMetricsF(self.font()).maxWidth() * 4)
 
     def insert_completion(self, completion):
         tc = self.textCursor()
