@@ -83,6 +83,8 @@ class CodeEditor(QTextEdit):
             if event.text() in braces:
                 start = cur.selectionStart()
                 end = cur.selectionEnd()
+                cur.beginEditBlock()
+                cur.setKeepPositionOnInsert(True)
                 cur.clearSelection()
                 cur.setPosition(end)
                 cur.insertText(braces[event.text()])
@@ -91,6 +93,7 @@ class CodeEditor(QTextEdit):
                 cur.setPosition(start + 1)
                 cur.setPosition(end + 1, QTextCursor.KeepAnchor)
                 self.setTextCursor(cur)
+                cur.endEditBlock()
                 return
 
         super().keyPressEvent(event)
