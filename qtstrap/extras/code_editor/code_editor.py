@@ -79,7 +79,117 @@ class CodeEditor(QTextEdit):
         }
 
         cur = self.textCursor()
+
+        if event.modifiers() == Qt.AltModifier:
+            if event.key() == Qt.Key_Up:
+                cur.beginEditBlock()
+
+                og_start = cur.selectionStart()
+                og_end = cur.selectionEnd()
+                cur.setPosition(og_start)
+                cur.movePosition(QTextCursor.StartOfLine)
+                start = cur.selectionStart()
+                cur.setPosition(og_end)
+                cur.movePosition(QTextCursor.EndOfLine)
+                end = cur.selectionEnd()
+
+                cur.setPosition(start)
+                cur.setPosition(end + 1, QTextCursor.KeepAnchor)
+                
+                self.setTextCursor(cur)
+
+                text = cur.selectedText()
+                cur.removeSelectedText()
+
+                cur.movePosition(QTextCursor.Up)
+                cur.movePosition(QTextCursor.StartOfLine)
+
+                self.setTextCursor(cur)
+
+                cur.insertText(text)
+                cur.movePosition(QTextCursor.Up)
+                self.setTextCursor(cur)
+
+                cur.endEditBlock()
+                event.ignore()
+                return
+
+            if event.key() == Qt.Key_Down:
+                cur.beginEditBlock()
+                og_start = cur.selectionStart()
+                og_end = cur.selectionEnd()
+                cur.setPosition(og_start)
+                cur.movePosition(QTextCursor.StartOfLine)
+                start = cur.selectionStart()
+                cur.setPosition(og_end)
+                cur.movePosition(QTextCursor.EndOfLine)
+                end = cur.selectionEnd()
+
+                cur.setPosition(start)
+                cur.setPosition(end + 1, QTextCursor.KeepAnchor)
+                
+                self.setTextCursor(cur)
+
+                text = cur.selectedText()
+                cur.removeSelectedText()
+
+                cur.movePosition(QTextCursor.Down)
+                cur.movePosition(QTextCursor.StartOfLine)
+
+                self.setTextCursor(cur)
+
+                cur.insertText(text)
+                cur.movePosition(QTextCursor.Up)
+                self.setTextCursor(cur)
+
+                cur.endEditBlock()
+                event.ignore()
+                return
+
         if cur.hasSelection():
+            if event.key() in [Qt.Key_Tab, Qt.Key_Backtab]:
+                cur.beginEditBlock()
+
+                og_start = cur.selectionStart()
+                og_end = cur.selectionEnd()
+                cur.setPosition(og_start)
+                cur.movePosition(QTextCursor.StartOfLine)
+                start = cur.selectionStart()
+                cur.setPosition(og_end)
+                cur.movePosition(QTextCursor.EndOfLine)
+                end = cur.selectionEnd()
+
+                cur.setPosition(start)
+                cur.setPosition(end, QTextCursor.KeepAnchor)
+                
+                self.setTextCursor(cur)
+
+                shift = False
+                if event.modifiers() == Qt.ShiftModifier:
+                    shift = True
+
+                text = self.toPlainText()[start: end]
+                tabs = 0
+                lines = []
+                for line in text.split('\n'):
+                    if line:
+                        if shift:
+                            tabs -= 1
+                            line = line.removeprefix('\t')
+                        else:
+                            tabs += 1
+                            line = '\t' + line
+                    lines.append(line)
+
+                cur.insertText('\n'.join(lines))
+                
+                cur.setPosition(og_start)
+                cur.setPosition(og_end, QTextCursor.KeepAnchor)
+                self.setTextCursor(cur)
+
+                cur.endEditBlock()
+                event.ignore()
+                return
             if event.text() in braces:
                 start = cur.selectionStart()
                 end = cur.selectionEnd()
