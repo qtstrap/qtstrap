@@ -194,7 +194,6 @@ class CodeEditor(QTextEdit):
                 start = cur.selectionStart()
                 end = cur.selectionEnd()
                 cur.beginEditBlock()
-                cur.setKeepPositionOnInsert(True)
                 cur.clearSelection()
                 cur.setPosition(end)
                 cur.insertText(braces[event.text()])
