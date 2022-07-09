@@ -12,6 +12,14 @@ alignments = {
 }
 
 
+orientations = {
+    'h': Qt.Horizontal,
+    'horizontal': Qt.Horizontal,
+    'v': Qt.Vertical,
+    'vertical': Qt.Vertical,
+}
+
+
 class ContextLayout:
     def __init__(self, parent=None, stretch=None, margins=None, align=None, **kwargs):
         if isinstance(parent, QMainWindow):
@@ -80,12 +88,19 @@ class ContextLayout:
         self.next_layout = CGridLayout(self._layout, *args, **kwargs)
         return self
 
-    # def split(self, name=None, **kwargs):
-    #     if name:
-    #         self.next_layout = PersistentCSplitter(name, self._layout, **kwargs)
-    #     else:
-    #         self.next_layout = CSplitter(self._layout, **kwargs)
-    #     return self
+    def split(self, name=None, **kwargs):
+        if name:
+            self.next_layout = PersistentCSplitter(name, self._layout, **kwargs)
+        else:
+            self.next_layout = CSplitter(self._layout, **kwargs)
+        return self
+
+    def scroll(self, name=None, **kwargs):
+        if name:
+            self.next_layout = PersistentCScrollArea(name, self._layout, **kwargs)
+        else:
+            self.next_layout = CScrollArea(self._layout, **kwargs)
+        return self
 
     def __enter__(self):
         if self.next_layout is not None:
@@ -100,6 +115,9 @@ class ContextLayout:
             item.__exit__()
 
 
+# *************************************************************************** #
+
+
 class CVBoxLayout(ContextLayout, QVBoxLayout):
     pass
 
@@ -110,3 +128,129 @@ class CHBoxLayout(ContextLayout, QHBoxLayout):
 
 class CGridLayout(ContextLayout, QGridLayout):
     pass
+
+
+# --------------------------------------------------------------------------- #
+
+
+class CSplitter(QSplitter):
+    def __init__(self, parent=None, margins=None, orientation=None, **kwargs):
+        if orientation in orientations:
+            orientation = orientations[orientation]
+
+        if isinstance(parent, QWidget):
+            super().__init__(parent, orientation, **kwargs)
+            CHBoxLayout(parent).add(self)
+        elif isinstance(parent, QLayout):
+            super().__init__(orientation, **kwargs)
+            parent.add(self)
+
+        if margins:
+            self.setContentsMargins(*margins)
+
+    def add(self, item, stretch=None):
+        if isinstance(item, QWidget):
+            self.addWidget(item)
+            if stretch:
+                self.setStretchFactor(self.count()-1, stretch)
+        elif isinstance(item, QLayout):
+            self.addWidget(QWidget(self, layout=item))
+            if stretch:
+                self.setStretchFactor(self.count()-1, stretch)
+        elif isinstance(item, list):
+            for i in item:
+                self.add(i)
+        return item
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        pass
+
+
+class PersistentCSplitter(CSplitter):
+    def __init__(self, name, parent=None, **kwargs):
+        super().__init__(parent, **kwargs)
+        self.name = name
+
+        self.splitterMoved.connect(lambda: QSettings().setValue(self.name, self.saveState()))
+    
+    def restore_state(self):
+        if state := QSettings().value(self.name, None):
+            self.restoreState(state)
+
+    def __exit__(self, *args):
+        self.restore_state()
+
+
+# --------------------------------------------------------------------------- #
+
+
+class CScrollArea(QScrollArea):
+    def __init__(self, parent=None, margins=None, orientation=None, **kwargs):
+        super().__init__(**kwargs)
+
+        if isinstance(parent, QWidget):
+            CVBoxLayout(parent).add(self)
+        elif isinstance(parent, QLayout):
+            parent.add(self)
+
+        widget = QWidget()
+        layout = CVBoxLayout(widget)
+        layout.setAlignment(Qt.AlignTop)
+        self.setWidget(widget)
+        self.setWidgetResizable(True)
+        
+        if margins:
+            self.setContentsMargins(*margins)
+
+        if orientation:
+            if orientation in orientations:
+                orientation = orientations[orientation]
+            self.setOrientation(orientation)
+
+    def add(self, item, stretch=None):
+        if isinstance(item, QWidget):
+            self.widget().layout().addWidget(item)
+            if stretch:
+                self.widget().layout().setStretchFactor(self.count()-1, stretch)
+        elif isinstance(item, QLayout):
+            self.addWidget(QWidget(self, layout=item))
+            if stretch:
+                self.setStretchFactor(self.count()-1, stretch)
+        elif isinstance(item, list):
+            for i in item:
+                self.add(i)
+        return item
+    
+    def addWidget(self, *args, **kwargs):
+        self.widget().layout().addWidget(*args, **kwargs)
+        
+    def addLayout(self, *args, **kwargs):
+        self.widget().layout().addLayout(*args, **kwargs)
+    
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        pass
+
+
+class PersistentCScrollArea(QScrollArea):
+    def __init__(self, name, parent=None, **kwargs):
+        super().__init__(parent, **kwargs)
+        self.name = name
+
+        self.scrolled.connect(lambda: QSettings().setValue(self.name, self.saveState()))
+    
+        
+    def scroll_to(self, value):
+        self.verticalScrollBar().setValue(value)
+
+    def restore_state(self):
+        if state := QSettings().value(self.name, None):
+            self.restoreState(state)
+
+    def __exit__(self, *args):
+        self.restore_state()
