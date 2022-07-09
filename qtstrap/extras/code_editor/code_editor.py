@@ -98,17 +98,18 @@ class CodeEditor(QTextEdit):
                 event.accept()
                 return
 
+        cur = self.textCursor()
         # indent or dedent the selection
-        if event.key() in [Qt.Key_Tab, Qt.Key_Backtab]:
-            if event.modifiers() == Qt.ShiftModifier:
-                self.indent_selection(-1)
-            else:
-                self.indent_selection(1)
-            event.accept()
-            return
+        if cur.hasSelection():
+            if event.key() in [Qt.Key_Tab, Qt.Key_Backtab]:
+                if event.modifiers() == Qt.ShiftModifier:
+                    self.indent_selection(-1)
+                else:
+                    self.indent_selection(1)
+                event.accept()
+                return
 
         # wrap the selection with (), "", etc
-        cur = self.textCursor()
         if cur.hasSelection():
             if event.text() in self.braces:
                 self.wrap_selection(event.text())
