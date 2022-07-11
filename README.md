@@ -2,7 +2,7 @@
 
 
 [![license](https://img.shields.io/pypi/l/qtstrap.svg)](./LICENSE)
-[![pypi version](https://img.shields.io/pypi/v/qtstrap.svg)](https://pypi.org/project/QtPy/)
+[![pypi version](https://img.shields.io/pypi/v/qtstrap.svg)](https://pypi.org/project/qtstrap/)
 [![PyPI status](https://img.shields.io/pypi/status/qtstrap.svg)](https://github.com/qtstrap/qtstrap)
 
 
