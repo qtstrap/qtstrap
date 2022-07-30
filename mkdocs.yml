@@ -6,6 +6,11 @@ repo_name: 'qtstrap/qtstrap'
 repo_url: 'https://github.com/qtstrap/qtstrap'
 theme:
     name: readthedocs
+plugins:
+  - search
+  - mermaid2
+  - literate-nav
+
 nav:
     - Overview:
         - Home: index.md
@@ -18,11 +23,5 @@ nav:
         - Project Structure: 
             - Project Structure: structure/structure.md
             - Makefile: structure/makefile.md
-    # - API Reference:
-    #     - Widgets: 
-    #         - BaseApplication: reference/widgets/baseapplication.md
-    #         - BaseMainWindow: reference/widgets/basemainwindow.md
-    #     - Context Layouts:
-    #         - Context Layouts: reference/context_layouts/context_layouts.md
-    #     - Utils: 
-    #         - Timestamp: reference/utils/timestamp.md
+    - API Reference:
+      - api/*
