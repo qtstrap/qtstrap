@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="David Kincaid" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Utils.decorators - qtstrap</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Utils.decorators";
+        var mkdocs_page_input_path = "api/utils.decorators.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> qtstrap
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Overview</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Quickstart</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/installation/">Installation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/gettingstarted/">Getting Started</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/baseapplication/">BaseApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/basemainwindow/">BaseMainWindow</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/context_layouts/">Context Layouts</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Project Structure</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../structure/structure/">Project Structure</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../structure/makefile/">Makefile</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_line/">Extras.code editor.code line</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.highlighters/">Extras.code editor.highlighters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.highlighters.python/">Extras.code editor.highlighters.python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor/">Extras.code editor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.command_palette.command_palette/">Extras.command palette.command palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.command_palette/">Extras.command palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_database_handler/">Extras.log monitor.log database handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_filter_controls/">Extras.log monitor.log filter controls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_profile/">Extras.log monitor.log profile</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_table_view/">Extras.log monitor.log table view</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_widget/">Extras.log monitor.log widget</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor/">Extras.log monitor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras/">Extras</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.colors/">Extras.style.colors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.dark_palette/">Extras.style.dark palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.adapter/">Utils.adapter</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Utils.decorators</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#function-trace">function trace</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.defer/">Utils.defer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.signals/">Utils.signals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.singleton/">Utils.singleton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.timestamp/">Utils.timestamp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.utils/">Utils.utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.buttons/">Widgets.buttons</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.labeledit/">Widgets.labeledit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.layouts/">Widgets.layouts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.line_widgets/">Widgets.line widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.link_label/">Widgets.link label</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets/">Widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_tab_widget/">Widgets.persistent tab widget</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_widgets/">Widgets.persistent widgets</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">qtstrap</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>API Reference &raquo;</li>
+      <li>Utils.decorators</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/api/utils.decorators.md"> Edit on qtstrap/qtstrap</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- markdownlint-disable -->
+
+<p><a href="..\..\qtstrap\utils\decorators.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h1 id="module-utilsdecorators"><kbd>module</kbd> <code>utils.decorators</code></h1>
+<hr />
+<p><a href="..\..\qtstrap\utils\decorators.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="function-trace"><kbd>function</kbd> <code>trace</code></h2>
+<pre><code class="language-python">trace(func)
+</code></pre>
+<hr />
+<p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../utils.adapter/" class="btn btn-neutral float-left" title="Utils.adapter"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../utils.defer/" class="btn btn-neutral float-right" title="Utils.defer">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../utils.adapter/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../utils.defer/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

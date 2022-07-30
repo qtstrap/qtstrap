@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="David Kincaid" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Widgets.layouts - qtstrap</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Widgets.layouts";
+        var mkdocs_page_input_path = "api/widgets.layouts.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> qtstrap
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Overview</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Quickstart</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/installation/">Installation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/gettingstarted/">Getting Started</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/baseapplication/">BaseApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/basemainwindow/">BaseMainWindow</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/context_layouts/">Context Layouts</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Project Structure</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../structure/structure/">Project Structure</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../structure/makefile/">Makefile</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_line/">Extras.code editor.code line</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.highlighters/">Extras.code editor.highlighters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.highlighters.python/">Extras.code editor.highlighters.python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor/">Extras.code editor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.command_palette.command_palette/">Extras.command palette.command palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.command_palette/">Extras.command palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_database_handler/">Extras.log monitor.log database handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_filter_controls/">Extras.log monitor.log filter controls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_profile/">Extras.log monitor.log profile</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_table_view/">Extras.log monitor.log table view</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor.log_widget/">Extras.log monitor.log widget</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.log_monitor/">Extras.log monitor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras/">Extras</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.colors/">Extras.style.colors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.dark_palette/">Extras.style.dark palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.adapter/">Utils.adapter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.decorators/">Utils.decorators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.defer/">Utils.defer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.signals/">Utils.signals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.singleton/">Utils.singleton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.timestamp/">Utils.timestamp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.utils/">Utils.utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.buttons/">Widgets.buttons</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.labeledit/">Widgets.labeledit</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Widgets.layouts</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-contextlayout">class ContextLayout</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayout__init__">method ContextLayout.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayoutadd">method ContextLayout.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayoutgrid">method ContextLayout.grid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayouthbox">method ContextLayout.hbox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayoutscroll">method ContextLayout.scroll</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayoutsplit">method ContextLayout.split</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayoutvbox">method ContextLayout.vbox</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-cvboxlayout">class CVBoxLayout</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayout__init__">method CVBoxLayout.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayoutadd">method CVBoxLayout.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayoutgrid">method CVBoxLayout.grid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayouthbox">method CVBoxLayout.hbox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayoutscroll">method CVBoxLayout.scroll</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayoutsplit">method CVBoxLayout.split</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cvboxlayoutvbox">method CVBoxLayout.vbox</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-chboxlayout">class CHBoxLayout</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayout__init__">method CHBoxLayout.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayoutadd">method CHBoxLayout.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayoutgrid">method CHBoxLayout.grid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayouthbox">method CHBoxLayout.hbox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayoutscroll">method CHBoxLayout.scroll</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayoutsplit">method CHBoxLayout.split</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-chboxlayoutvbox">method CHBoxLayout.vbox</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-cgridlayout">class CGridLayout</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayout__init__">method CGridLayout.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutadd">method CGridLayout.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutgrid">method CGridLayout.grid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayouthbox">method CGridLayout.hbox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutscroll">method CGridLayout.scroll</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutsplit">method CGridLayout.split</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutvbox">method CGridLayout.vbox</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-csplitter">class CSplitter</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-csplitter__init__">method CSplitter.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-csplitteradd">method CSplitter.add</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-persistentcsplitter">class PersistentCSplitter</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitter__init__">method PersistentCSplitter.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitteradd">method PersistentCSplitter.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitterrestore_state">method PersistentCSplitter.restore_state</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-cscrollarea">class CScrollArea</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cscrollarea__init__">method CScrollArea.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cscrollareaadd">method CScrollArea.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cscrollareaaddlayout">method CScrollArea.addLayout</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cscrollareaaddwidget">method CScrollArea.addWidget</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-persistentcscrollarea">class PersistentCScrollArea</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollarea__init__">method PersistentCScrollArea.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollarearestore_state">method PersistentCScrollArea.restore_state</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollareascroll_to">method PersistentCScrollArea.scroll_to</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.line_widgets/">Widgets.line widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.link_label/">Widgets.link label</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets/">Widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_tab_widget/">Widgets.persistent tab widget</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_widgets/">Widgets.persistent widgets</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">qtstrap</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>API Reference &raquo;</li>
+      <li>Widgets.layouts</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/api/widgets.layouts.md"> Edit on qtstrap/qtstrap</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- markdownlint-disable -->
+
+<p><a href="..\..\qtstrap\widgets\layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h1 id="module-widgetslayouts"><kbd>module</kbd> <code>widgets.layouts</code></h1>
+<h2 id="global-variables"><strong>Global Variables</strong></h2>
+<ul>
+<li><strong>PYQT6</strong></li>
+<li><strong>PYQT5</strong></li>
+<li><strong>PYSIDE2</strong></li>
+<li><strong>PYSIDE6</strong></li>
+<li><strong>alignments</strong></li>
+<li><strong>orientations</strong></li>
+</ul>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L23"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-contextlayout"><kbd>class</kbd> <code>ContextLayout</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayout__init__"><kbd>method</kbd> <code>ContextLayout.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L68"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayoutadd"><kbd>method</kbd> <code>ContextLayout.add</code></h3>
+<pre><code class="language-python">add(item, *args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L87"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayoutgrid"><kbd>method</kbd> <code>ContextLayout.grid</code></h3>
+<pre><code class="language-python">grid(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L83"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayouthbox"><kbd>method</kbd> <code>ContextLayout.hbox</code></h3>
+<pre><code class="language-python">hbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayoutscroll"><kbd>method</kbd> <code>ContextLayout.scroll</code></h3>
+<pre><code class="language-python">scroll(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayoutsplit"><kbd>method</kbd> <code>ContextLayout.split</code></h3>
+<pre><code class="language-python">split(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayoutvbox"><kbd>method</kbd> <code>ContextLayout.vbox</code></h3>
+<pre><code class="language-python">vbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L121"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-cvboxlayout"><kbd>class</kbd> <code>CVBoxLayout</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayout__init__"><kbd>method</kbd> <code>CVBoxLayout.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L68"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayoutadd"><kbd>method</kbd> <code>CVBoxLayout.add</code></h3>
+<pre><code class="language-python">add(item, *args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L87"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayoutgrid"><kbd>method</kbd> <code>CVBoxLayout.grid</code></h3>
+<pre><code class="language-python">grid(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L83"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayouthbox"><kbd>method</kbd> <code>CVBoxLayout.hbox</code></h3>
+<pre><code class="language-python">hbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayoutscroll"><kbd>method</kbd> <code>CVBoxLayout.scroll</code></h3>
+<pre><code class="language-python">scroll(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayoutsplit"><kbd>method</kbd> <code>CVBoxLayout.split</code></h3>
+<pre><code class="language-python">split(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cvboxlayoutvbox"><kbd>method</kbd> <code>CVBoxLayout.vbox</code></h3>
+<pre><code class="language-python">vbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L125"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-chboxlayout"><kbd>class</kbd> <code>CHBoxLayout</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayout__init__"><kbd>method</kbd> <code>CHBoxLayout.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L68"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayoutadd"><kbd>method</kbd> <code>CHBoxLayout.add</code></h3>
+<pre><code class="language-python">add(item, *args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L87"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayoutgrid"><kbd>method</kbd> <code>CHBoxLayout.grid</code></h3>
+<pre><code class="language-python">grid(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L83"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayouthbox"><kbd>method</kbd> <code>CHBoxLayout.hbox</code></h3>
+<pre><code class="language-python">hbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayoutscroll"><kbd>method</kbd> <code>CHBoxLayout.scroll</code></h3>
+<pre><code class="language-python">scroll(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayoutsplit"><kbd>method</kbd> <code>CHBoxLayout.split</code></h3>
+<pre><code class="language-python">split(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-chboxlayoutvbox"><kbd>method</kbd> <code>CHBoxLayout.vbox</code></h3>
+<pre><code class="language-python">vbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L129"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-cgridlayout"><kbd>class</kbd> <code>CGridLayout</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayout__init__"><kbd>method</kbd> <code>CGridLayout.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L68"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutadd"><kbd>method</kbd> <code>CGridLayout.add</code></h3>
+<pre><code class="language-python">add(item, *args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L87"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutgrid"><kbd>method</kbd> <code>CGridLayout.grid</code></h3>
+<pre><code class="language-python">grid(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L83"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayouthbox"><kbd>method</kbd> <code>CGridLayout.hbox</code></h3>
+<pre><code class="language-python">hbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutscroll"><kbd>method</kbd> <code>CGridLayout.scroll</code></h3>
+<pre><code class="language-python">scroll(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutsplit"><kbd>method</kbd> <code>CGridLayout.split</code></h3>
+<pre><code class="language-python">split(name=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutvbox"><kbd>method</kbd> <code>CGridLayout.vbox</code></h3>
+<pre><code class="language-python">vbox(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L136"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-csplitter"><kbd>class</kbd> <code>CSplitter</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L137"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-csplitter__init__"><kbd>method</kbd> <code>CSplitter.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None, margins=None, orientation=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L151"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-csplitteradd"><kbd>method</kbd> <code>CSplitter.add</code></h3>
+<pre><code class="language-python">add(item, stretch=None)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L172"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-persistentcsplitter"><kbd>class</kbd> <code>PersistentCSplitter</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L173"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcsplitter__init__"><kbd>method</kbd> <code>PersistentCSplitter.__init__</code></h3>
+<pre><code class="language-python">__init__(name, parent=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L151"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcsplitteradd"><kbd>method</kbd> <code>PersistentCSplitter.add</code></h3>
+<pre><code class="language-python">add(item, stretch=None)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcsplitterrestore_state"><kbd>method</kbd> <code>PersistentCSplitter.restore_state</code></h3>
+<pre><code class="language-python">restore_state()
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-cscrollarea"><kbd>class</kbd> <code>CScrollArea</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L191"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cscrollarea__init__"><kbd>method</kbd> <code>CScrollArea.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None, margins=None, orientation=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L213"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cscrollareaadd"><kbd>method</kbd> <code>CScrollArea.add</code></h3>
+<pre><code class="language-python">add(item, stretch=None)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L230"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cscrollareaaddlayout"><kbd>method</kbd> <code>CScrollArea.addLayout</code></h3>
+<pre><code class="language-python">addLayout(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L227"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cscrollareaaddwidget"><kbd>method</kbd> <code>CScrollArea.addWidget</code></h3>
+<pre><code class="language-python">addWidget(*args, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L240"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-persistentcscrollarea"><kbd>class</kbd> <code>PersistentCScrollArea</code></h2>
+<p><a href="..\..\qtstrap\widgets\layouts.py#L241"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcscrollarea__init__"><kbd>method</kbd> <code>PersistentCScrollArea.__init__</code></h3>
+<pre><code class="language-python">__init__(name, parent=None, **kwargs)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L251"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcscrollarearestore_state"><kbd>method</kbd> <code>PersistentCScrollArea.restore_state</code></h3>
+<pre><code class="language-python">restore_state()
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\widgets\layouts.py#L248"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcscrollareascroll_to"><kbd>method</kbd> <code>PersistentCScrollArea.scroll_to</code></h3>
+<pre><code class="language-python">scroll_to(value)
+</code></pre>
+<hr />
+<p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../widgets.labeledit/" class="btn btn-neutral float-left" title="Widgets.labeledit"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../widgets.line_widgets/" class="btn btn-neutral float-right" title="Widgets.line widgets">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../widgets.labeledit/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../widgets.line_widgets/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="David Kincaid" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Widgets.layouts - qtstrap</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Widgets.layouts";
+        var mkdocs_page_input_path = "reference/widgets.layouts.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> qtstrap
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Overview</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Quickstart</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/installation/">Installation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/gettingstarted/">Getting Started</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/baseapplication/">BaseApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/basemainwindow/">BaseMainWindow</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../quickstart/context_layouts/">Context Layouts</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Project Structure</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../structure/structure/">Project Structure</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../structure/makefile/">Makefile</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.code_editor.code_editor/">Extras.code editor.code editor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.code_editor.code_line/">Extras.code editor.code line</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.code_editor.highlighters/">Extras.code editor.highlighters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.code_editor.highlighters.python/">Extras.code editor.highlighters.python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.code_editor/">Extras.code editor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.command_palette.command_palette/">Extras.command palette.command palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.command_palette/">Extras.command palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.log_monitor.log_database_handler/">Extras.log monitor.log database handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.log_monitor.log_filter_controls/">Extras.log monitor.log filter controls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.log_monitor.log_profile/">Extras.log monitor.log profile</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.log_monitor.log_table_view/">Extras.log monitor.log table view</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.log_monitor.log_widget/">Extras.log monitor.log widget</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.log_monitor/">Extras.log monitor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras/">Extras</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.style.colors/">Extras.style.colors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.style.dark_palette/">Extras.style.dark palette</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/extras.style/">Extras.style</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/options/">Options</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/settings/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.adapter/">Utils.adapter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.decorators/">Utils.decorators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.defer/">Utils.defer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils/">Utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.signals/">Utils.signals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.singleton/">Utils.singleton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.timestamp/">Utils.timestamp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/utils.utils/">Utils.utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.buttons/">Widgets.buttons</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.labeledit/">Widgets.labeledit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.layouts/">Widgets.layouts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.line_widgets/">Widgets.line widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.link_label/">Widgets.link label</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets/">Widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.persistent_tab_widget/">Widgets.persistent tab widget</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/widgets.persistent_widgets/">Widgets.persistent widgets</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">qtstrap</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Widgets.layouts</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/reference/widgets.layouts.md"> Edit on qtstrap/qtstrap</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="widgets.layouts.*"></a></p>
+<h2 id="_1">*</h2>
+<p><a id="widgets.layouts.alignments"></a></p>
+<h4 id="alignments">alignments</h4>
+<p><a id="widgets.layouts.orientations"></a></p>
+<h4 id="orientations">orientations</h4>
+<p><a id="widgets.layouts.ContextLayout"></a></p>
+<h2 id="contextlayout-objects">ContextLayout Objects</h2>
+<pre><code class="language-python">class ContextLayout()
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.__init__"></a></p>
+<h4 id="__init__">__init__</h4>
+<pre><code class="language-python">def __init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.__getattr__"></a></p>
+<h4 id="__getattr__">__getattr__</h4>
+<pre><code class="language-python">def __getattr__(name)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout._layout"></a></p>
+<h4 id="_layout">_layout</h4>
+<pre><code class="language-python">@property
+def _layout()
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.__call__"></a></p>
+<h4 id="__call__">__call__</h4>
+<pre><code class="language-python">def __call__()
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.add"></a></p>
+<h4 id="add">add</h4>
+<pre><code class="language-python">def add(item, *args, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.vbox"></a></p>
+<h4 id="vbox">vbox</h4>
+<pre><code class="language-python">def vbox(*args, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.hbox"></a></p>
+<h4 id="hbox">hbox</h4>
+<pre><code class="language-python">def hbox(*args, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.grid"></a></p>
+<h4 id="grid">grid</h4>
+<pre><code class="language-python">def grid(*args, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.split"></a></p>
+<h4 id="split">split</h4>
+<pre><code class="language-python">def split(name=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.scroll"></a></p>
+<h4 id="scroll">scroll</h4>
+<pre><code class="language-python">def scroll(name=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.__enter__"></a></p>
+<h4 id="__enter__">__enter__</h4>
+<pre><code class="language-python">def __enter__()
+</code></pre>
+<p><a id="widgets.layouts.ContextLayout.__exit__"></a></p>
+<h4 id="__exit__">__exit__</h4>
+<pre><code class="language-python">def __exit__(*_)
+</code></pre>
+<p><a id="widgets.layouts.CVBoxLayout"></a></p>
+<h2 id="cvboxlayout-objects">CVBoxLayout Objects</h2>
+<pre><code class="language-python">class CVBoxLayout(ContextLayout, QVBoxLayout)
+</code></pre>
+<p><a id="widgets.layouts.CHBoxLayout"></a></p>
+<h2 id="chboxlayout-objects">CHBoxLayout Objects</h2>
+<pre><code class="language-python">class CHBoxLayout(ContextLayout, QHBoxLayout)
+</code></pre>
+<p><a id="widgets.layouts.CGridLayout"></a></p>
+<h2 id="cgridlayout-objects">CGridLayout Objects</h2>
+<pre><code class="language-python">class CGridLayout(ContextLayout, QGridLayout)
+</code></pre>
+<p><a id="widgets.layouts.CSplitter"></a></p>
+<h2 id="csplitter-objects">CSplitter Objects</h2>
+<pre><code class="language-python">class CSplitter(QSplitter)
+</code></pre>
+<p><a id="widgets.layouts.CSplitter.__init__"></a></p>
+<h4 id="__init___1">__init__</h4>
+<pre><code class="language-python">def __init__(parent=None, margins=None, orientation=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.CSplitter.add"></a></p>
+<h4 id="add_1">add</h4>
+<pre><code class="language-python">def add(item, stretch=None)
+</code></pre>
+<p><a id="widgets.layouts.CSplitter.__enter__"></a></p>
+<h4 id="__enter___1">__enter__</h4>
+<pre><code class="language-python">def __enter__()
+</code></pre>
+<p><a id="widgets.layouts.CSplitter.__exit__"></a></p>
+<h4 id="__exit___1">__exit__</h4>
+<pre><code class="language-python">def __exit__(*args)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCSplitter"></a></p>
+<h2 id="persistentcsplitter-objects">PersistentCSplitter Objects</h2>
+<pre><code class="language-python">class PersistentCSplitter(CSplitter)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCSplitter.__init__"></a></p>
+<h4 id="__init___2">__init__</h4>
+<pre><code class="language-python">def __init__(name, parent=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCSplitter.restore_state"></a></p>
+<h4 id="restore_state">restore_state</h4>
+<pre><code class="language-python">def restore_state()
+</code></pre>
+<p><a id="widgets.layouts.PersistentCSplitter.__exit__"></a></p>
+<h4 id="__exit___2">__exit__</h4>
+<pre><code class="language-python">def __exit__(*args)
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea"></a></p>
+<h2 id="cscrollarea-objects">CScrollArea Objects</h2>
+<pre><code class="language-python">class CScrollArea(QScrollArea)
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea.__init__"></a></p>
+<h4 id="__init___3">__init__</h4>
+<pre><code class="language-python">def __init__(parent=None, margins=None, orientation=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea.add"></a></p>
+<h4 id="add_2">add</h4>
+<pre><code class="language-python">def add(item, stretch=None)
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea.addWidget"></a></p>
+<h4 id="addwidget">addWidget</h4>
+<pre><code class="language-python">def addWidget(*args, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea.addLayout"></a></p>
+<h4 id="addlayout">addLayout</h4>
+<pre><code class="language-python">def addLayout(*args, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea.__enter__"></a></p>
+<h4 id="__enter___2">__enter__</h4>
+<pre><code class="language-python">def __enter__()
+</code></pre>
+<p><a id="widgets.layouts.CScrollArea.__exit__"></a></p>
+<h4 id="__exit___3">__exit__</h4>
+<pre><code class="language-python">def __exit__(*args)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCScrollArea"></a></p>
+<h2 id="persistentcscrollarea-objects">PersistentCScrollArea Objects</h2>
+<pre><code class="language-python">class PersistentCScrollArea(QScrollArea)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCScrollArea.__init__"></a></p>
+<h4 id="__init___4">__init__</h4>
+<pre><code class="language-python">def __init__(name, parent=None, **kwargs)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCScrollArea.scroll_to"></a></p>
+<h4 id="scroll_to">scroll_to</h4>
+<pre><code class="language-python">def scroll_to(value)
+</code></pre>
+<p><a id="widgets.layouts.PersistentCScrollArea.restore_state"></a></p>
+<h4 id="restore_state_1">restore_state</h4>
+<pre><code class="language-python">def restore_state()
+</code></pre>
+<p><a id="widgets.layouts.PersistentCScrollArea.__exit__"></a></p>
+<h4 id="__exit___4">__exit__</h4>
+<pre><code class="language-python">def __exit__(*args)
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
