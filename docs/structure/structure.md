@@ -2,33 +2,24 @@
 This is the project structure that's created by running `qtstrap init`:
 
 ```
-|-- src
+|-- app
 |   |-- main.py
-|   |-- application.py
-|   |-- mainwindow.py
+|   |-- appinfo.py
 |-- resources
 |   |-- application.ico
 |   |-- icon.svg
 |-- bundle.spec
 |-- installer.iss
 |-- Makefile
-|-- project.ini
 |-- requirements.txt
 ```
 
 # Files
 
-## `src` folder
-Your application's python source code should all be placed here. A newly created qtstrap project contains `src/main.py`, `src/application.py`, and `src/main_window.py`.
+## `app` folder
+Your application's python source code should all be placed here. A newly created qtstrap project contains `app/main.py`, `app/application.py`, and `app/main_window.py`.
 
-## [`Makefile`](makefile.md)
-The provided Makefile has several targets that assist with general project development. Using the Makefile means that you do not have to activate the venv unless you need to interact with it directly. The Makefile uses specially constructed targets to automatically build the venv and execute using the venv's python installation.
-
-Most of the time you'll just use `make run` to start your application. When you're ready to package up your app for distribution, you'll want to use `make bundle`, `make zip`, and (on Windows) `make installer`.
-
-More information about the Makefile and it's targets can found [here](makefile.md)
-
-## `project.ini`
+## `appinfo.py`
 Contains information about the project like the Application Name and Publisher. This file is referenced by `bundle.spec` and `installer.iss`, and used to feed information to PyInstaller and InnoSetup.
 
 The project file defines the following fields:
@@ -39,6 +30,13 @@ The project file defines the following fields:
 - `AppExeName` the name of the executable created by `make bundle`
 - `AppIconName` the path to your application's icon
 - `AppId` a GUID used by Inno Setup to uniquely identify your app
+
+## [`Makefile`](makefile.md)
+The provided Makefile has several targets that assist with general project development. Using the Makefile means that you do not have to activate the venv unless you need to interact with it directly. The Makefile uses specially constructed targets to automatically build the venv and execute using the venv's python installation.
+
+Most of the time you'll just use `make run` to start your application. When you're ready to package up your app for distribution, you'll want to use `make bundle`, `make zip`, and (on Windows) `make installer`.
+
+More information about the Makefile and it's targets can found [here](makefile.md)
 
 ## `resources/application.ico` and `icon.svg`
 Icon files that are automatically applied to the app's titlebar, taskbar entry, bundle, and installer. When running the bundled executable, the installer, or the installed version of your app, the icon should also appear in Windows Task Manager.
