@@ -21,6 +21,7 @@ jobs:
           python3 -m pip install --upgrade pip     # install pip
           python3 -m pip install mkdocs            # install mkdocs 
           python3 -m pip install mkdocs-mermaid2-plugin
+          python3 -m pip install mkdocs-literate-nav
       - name: Build site
         run: mkdocs build
       - name: Deploy
