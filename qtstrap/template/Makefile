@@ -7,9 +7,13 @@ MAKEFLAGS += -s
 
 # **************************************************************************** #
 
+APP_FOLDER = app
+APP_MAIN = $(APP_FOLDER)/main.py
+APP_INFO = $(APP_FOLDER)/app_info.py
+
 # load the project variables
-ifneq (,$(wildcard src/app_info.py))
-include src/app_info.py
+ifneq (,$(wildcard $(APP_INFO)))
+include $(APP_INFO)
 
 # remove extra quotes
 AppName := $(patsubst "%",%,$(AppName))
@@ -28,11 +32,11 @@ endif
 
 # run the application
 run: venv
-	$(VENV_PYTHON) src/main.py
+	$(VENV_PYTHON) $(APP_MAIN)
 
 # run the application in pdb
 debug: venv
-	$(VENV_PYTHON) -m pdb src/main.py
+	$(VENV_PYTHON) -m pdb $(APP_MAIN)
 
 # run the test suite
 test: venv

@@ -25,7 +25,7 @@ UsedUserAreasWarning=no
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=dist\installer
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}-Setup
-SetupIconFile=dist\{#MyAppName}\{#MyAppIconName}
+SetupIconFile=dist\{#MyAppName}\resources\{#MyAppIconName}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -49,4 +49,3 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-

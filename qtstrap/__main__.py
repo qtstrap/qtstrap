@@ -52,10 +52,10 @@ def init():
                 shutil.copy(f, dest)
 
     # create app_info.py based on user input
-    if not Path('src/app_info.py').exists():
+    if not Path('app/app_info.py').exists():
         result = prompt(init_prompt)
         if result:
-            with open('src/app_info.py', 'w') as f:
+            with open('app/app_info.py', 'w') as f:
                 f.write(f'AppName = "{result["app_name"]}"\n')
                 f.write(f'AppVersion = "0.1"\n')
                 f.write(f'AppPublisher = "{result["app_publisher"]}"\n')
@@ -73,5 +73,3 @@ def version():
 # @main.command()
 # def build():
 #     print('build')
-
-

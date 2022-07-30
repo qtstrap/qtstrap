@@ -4,7 +4,7 @@ import sys
 def uncache(exclude):
     """Remove package modules from cache except excluded ones.
     On next import they will be reloaded.
-    
+
     Args:
         exclude (iter<str>): Sequence of module paths.
     """
@@ -31,24 +31,31 @@ def uncache(exclude):
         del sys.modules[mod]
 
 
-from .qt import QtCore
+try:
+    from .qt import QtCore
 
+    class PortableSettings(QtCore.QSettings):
+        settings_file_path = 'settings.ini'
 
-class PortableSettings(QtCore.QSettings):
-    settings_file_path = 'settings.ini'
+        def __init__(self, *args, **kwargs):
+            super().__init__(
+                self.settings_file_path,
+                QtCore.QSettings.IniFormat,
+                *args,
+                **kwargs
+            )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(self.settings_file_path, QtCore.QSettings.IniFormat, *args, **kwargs)
+        @staticmethod
+        def _install():
+            QtCore.QSettings = PortableSettings
+            uncache(['QtCore'])
 
-    @staticmethod
-    def _install():
-        QtCore.QSettings = PortableSettings
-        uncache(['QtCore'])
+    from qtstrap.options import OPTIONS
 
-
-from qtstrap.options import OPTIONS
-
-
-if OPTIONS.portable:
-    PortableSettings.settings_file_path = OPTIONS.PORTABLE_SETTINGS_FILE.as_posix()
-    PortableSettings._install()
+    if OPTIONS.portable:
+        PortableSettings.settings_file_path = (
+            OPTIONS.PORTABLE_SETTINGS_FILE.as_posix()
+        )
+        PortableSettings._install()
+except:
+    pass

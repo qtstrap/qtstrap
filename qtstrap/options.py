@@ -15,6 +15,7 @@ class OPTIONS:
 # attempt to import app_info.py
 try:
     import app_info
+
     OPTIONS.app_info_available = True
     OPTIONS.app_info = app_info
 except ModuleNotFoundError:

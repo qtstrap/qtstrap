@@ -3,7 +3,7 @@
 import configparser
 
 
-with open('src/app_info.py') as f:
+with open('app/app_info.py') as f:
     file_content = '[dummy_section]\n' + f.read()
 
 config = configparser.ConfigParser()
@@ -14,8 +14,8 @@ icon_file = config['dummy_section']['AppIconName'].replace('"', '')
 
 
 a = Analysis(
-    ['src/main.py'],
-    pathex=['./src'],
+    ['app/main.py'],
+    pathex=['./app'],
     binaries=[],
     datas=[(icon_file, 'resources')],
     hiddenimports=[],
