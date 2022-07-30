@@ -84,40 +84,34 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Overview &raquo;</li>
-          <li>Project Structure &raquo;</li><li>Project Structure</li>
+          <li>Project Structure &raquo;</li>
+      <li>Project Structure</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/structure/structure.md"> Edit on qtstrap/qtstrap</a>
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
                 <h1 id="project-structure">Project Structure</h1>
 <p>This is the project structure that's created by running <code>qtstrap init</code>:</p>
-<pre><code>|-- src
+<pre><code>|-- app
 |   |-- main.py
-|   |-- application.py
-|   |-- mainwindow.py
+|   |-- appinfo.py
 |-- resources
 |   |-- application.ico
 |   |-- icon.svg
 |-- bundle.spec
 |-- installer.iss
 |-- Makefile
-|-- project.ini
 |-- requirements.txt
 </code></pre>
 <h1 id="files">Files</h1>
-<h2 id="src-folder"><code>src</code> folder</h2>
-<p>Your application's python source code should all be placed here. A newly created qtstrap project contains <code>src/main.py</code>, <code>src/application.py</code>, and <code>src/main_window.py</code>.</p>
-<h2 id="makefile"><a href="../makefile/"><code>Makefile</code></a></h2>
-<p>The provided Makefile has several targets that assist with general project development. Using the Makefile means that you do not have to activate the venv unless you need to interact with it directly. The Makefile uses specially constructed targets to automatically build the venv and execute using the venv's python installation.</p>
-<p>Most of the time you'll just use <code>make run</code> to start your application. When you're ready to package up your app for distribution, you'll want to use <code>make bundle</code>, <code>make zip</code>, and (on Windows) <code>make installer</code>.</p>
-<p>More information about the Makefile and it's targets can found <a href="../makefile/">here</a></p>
-<h2 id="projectini"><code>project.ini</code></h2>
+<h2 id="app-folder"><code>app</code> folder</h2>
+<p>Your application's python source code should all be placed here. A newly created qtstrap project contains <code>app/main.py</code>, <code>app/application.py</code>, and <code>app/main_window.py</code>.</p>
+<h2 id="appinfopy"><code>appinfo.py</code></h2>
 <p>Contains information about the project like the Application Name and Publisher. This file is referenced by <code>bundle.spec</code> and <code>installer.iss</code>, and used to feed information to PyInstaller and InnoSetup.</p>
 <p>The project file defines the following fields:</p>
 <ul>
@@ -128,6 +122,10 @@
 <li><code>AppIconName</code> the path to your application's icon</li>
 <li><code>AppId</code> a GUID used by Inno Setup to uniquely identify your app</li>
 </ul>
+<h2 id="makefile"><a href="../makefile/"><code>Makefile</code></a></h2>
+<p>The provided Makefile has several targets that assist with general project development. Using the Makefile means that you do not have to activate the venv unless you need to interact with it directly. The Makefile uses specially constructed targets to automatically build the venv and execute using the venv's python installation.</p>
+<p>Most of the time you'll just use <code>make run</code> to start your application. When you're ready to package up your app for distribution, you'll want to use <code>make bundle</code>, <code>make zip</code>, and (on Windows) <code>make installer</code>.</p>
+<p>More information about the Makefile and it's targets can found <a href="../makefile/">here</a></p>
 <h2 id="resourcesapplicationico-and-iconsvg"><code>resources/application.ico</code> and <code>icon.svg</code></h2>
 <p>Icon files that are automatically applied to the app's titlebar, taskbar entry, bundle, and installer. When running the bundled executable, the installer, or the installed version of your app, the icon should also appear in Windows Task Manager.</p>
 <h2 id="requirementstxt"><code>requirements.txt</code></h2>
