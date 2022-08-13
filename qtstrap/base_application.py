@@ -35,8 +35,8 @@ def install_app_info(app):
         if info.AppVersion:
             app.setApplicationVersion(info.AppVersion)
 
-        if info.AppIconName and Path(info.AppIconName).exists():
-                app.setWindowIcon(QIcon(info.AppIconName))
+        if files := list(Path(OPTIONS.APPLICATION_PATH).rglob(info.AppIconName)):
+            app.setWindowIcon(QIcon(files[0].as_posix()))
 
 
 class BaseApplication(QApplication):
