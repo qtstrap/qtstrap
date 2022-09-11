@@ -9,15 +9,18 @@ with open('app/app_info.py') as f:
 config = configparser.ConfigParser()
 config.read_string(file_content)
 
-app_name = config['dummy_section']['AppName'].replace('"', '')
-icon_file = config['dummy_section']['AppIconName'].replace('"', '')
+section = config['dummy_section']
 
+app_name = section['AppName'].replace('"', '')
+icon_file = str(section['AppIconPath'] + '/' + section['AppIconName']).replace('"', '')
 
 a = Analysis(
     ['app/main.py'],
     pathex=['./app'],
     binaries=[],
-    datas=[(icon_file, 'resources')],
+    datas=[
+        ('app/resources', 'resources'),
+    ],
     hiddenimports=[],
     hookspath=[],
     runtime_hooks=[],

@@ -60,7 +60,8 @@ def init():
                 f.write(f'AppVersion = "0.1"\n')
                 f.write(f'AppPublisher = "{result["app_publisher"]}"\n')
                 f.write(f'AppExeName = "{result["app_name"]}.exe"\n')
-                f.write('AppIconName = "resources/application.ico"\n')
+                f.write('AppIconName = "application.ico"\n')
+                f.write('AppIconPath = "app/resources"\n')
                 guid = '{{' + str(uuid.uuid4()) + '}'
                 f.write(f'AppId = "{guid}"\n')
 
