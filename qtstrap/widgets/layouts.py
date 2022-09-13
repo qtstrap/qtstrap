@@ -148,6 +148,9 @@ class CSplitter(QSplitter):
         if margins:
             self.setContentsMargins(*margins)
 
+        if orientation:
+            self.setOrientation(orientation)
+
     def add(self, item, stretch=None):
         if isinstance(item, QWidget):
             self.addWidget(item)
