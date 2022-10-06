@@ -4,45 +4,57 @@ from qtstrap.extras.style import colors
 import json
 
 
-log_levels = {
-    'DEBUG': colors.aqua,
-    'INFO': colors.green,
-    'WARNING': colors.yellow,
-    'ERROR': colors.orange,
-    'CRITICAL': colors.red,
+LOG_FILTER_COLORS = {
+    'dark': {
+        'D': colors.aqua, # DEBUG
+        'I': colors.green, # INFO
+        'W': colors.orange, # WARNING
+        'E': colors.red, # ERROR
+        'C': colors.fuchsia, # CRITICAL
+        'off': colors.gray,
+        'enabled': colors.gray,
+        'disabled': colors.silver,
+    },
+    'light': {
+        'D': colors.blue, # DEBUG
+        'I': colors.green, # INFO
+        'W': colors.orange, # WARNING
+        'E': colors.red, # ERROR
+        'C': colors.fuchsia, # CRITICAL
+        'off': colors.black,
+        'enabled': colors.black,
+        'disabled': colors.gray,
+    }
 }
-level_map = {
-    'D': 'DEBUG',
-    'I': 'INFO',
-    'W': 'WARNING',
-    'E': 'ERROR',
-    'C': 'CRITICAL',
-}
+
+
+def get_color(key):
+    return LOG_FILTER_COLORS[OPTIONS.theme][key]
 
 
 class LoggerDelegate(QStyledItemDelegate):
     def paint(self, painter, option, index):
         self.initStyleOption(option, index)
-        value = index.data(Qt.DisplayRole)
+        text = index.data(Qt.DisplayRole)
         checked = index.data(Qt.UserRole)
 
-        if value is None:
+        if text is None:
             return
 
         painter.save()
 
-        if len(value) == 1:
+        if len(text) == 1:
             if option.state & QStyle.State_Selected and checked:
-                painter.setPen(QPen(log_levels[level_map[value]]))
+                painter.setPen(QPen(get_color(text)))
             else: 
-                painter.setPen(QPen('gray'))
-            painter.drawText(option.rect, Qt.AlignCenter, value)
+                painter.setPen(QPen(get_color('off')))
+            painter.drawText(option.rect, Qt.AlignCenter, text)
         else:
             if option.state & QStyle.State_Selected:
-                painter.setPen(QPen('lightgray'))
+                painter.setPen(QPen(get_color('enabled')))
             else: 
-                painter.setPen(QPen('gray'))
-            painter.drawText(option.rect, Qt.AlignLeft, value)
+                painter.setPen(QPen(get_color('disabled')))
+            painter.drawText(option.rect, Qt.AlignLeft, text)
 
         painter.restore()
 
@@ -75,10 +87,10 @@ class LoggerTreeWidgetItem(QTreeWidgetItem):
         else:
             if self.data(column, Qt.UserRole):
                 self.setData(column, Qt.UserRole, False)
-                self.levels[level_map[self.text(column)]] = False
+                self.levels[self.text(column)] = False
             else:
                 self.setData(column, Qt.UserRole, True)
-                self.levels[level_map[self.text(column)]] = True
+                self.levels[self.text(column)] = True
 
     def double_clicked(self, column):        
         def select_children(item, state):
@@ -135,13 +147,12 @@ class LoggerTreeWidget(QTreeWidget):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.header().setMinimumSectionSize(1)
         self.header().hide()
+        self.header().setStretchLastSection(False)
+        self.header().setSectionResizeMode(0, QHeaderView.Stretch)
 
         self.setColumnCount(7)
-        self.setColumnWidth(1,15)
-        self.setColumnWidth(2,15)
-        self.setColumnWidth(3,15)
-        self.setColumnWidth(4,15)
-        self.setColumnWidth(5,15)
+        for i in range(1, 7):
+            self.setColumnWidth(i, 15)
 
         self.loggers = {}
         self.visible_loggers = []

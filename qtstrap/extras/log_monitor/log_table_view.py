@@ -1,7 +1,7 @@
 from qtstrap import *
 from qtpy.QtSql import *
 import time
-from .log_filter_controls import log_levels
+from .log_filter_controls import get_color
 from .log_profile import LogProfile, Column, default_columns
 from .log_database_handler import db_conn_name
 
@@ -19,7 +19,7 @@ class LogDbModel(QSqlQueryModel):
             try:
                 if index.column() == self.log_level_column:
                     level = super().data(index, Qt.DisplayRole)
-                    return QColor(log_levels[level])
+                    return QColor(get_color(level[0]))
             except (IndexError, KeyError):
                 pass
             return None
