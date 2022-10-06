@@ -8,6 +8,7 @@ class OPTIONS:
     app_info_available = False
     app_info = None
     portable = False
+    theme = 'light'
     PORTABLE_SETTINGS_FILE = Path(APPLICATION_PATH / 'settings.ini')
     PORTABLE_FLAG_FILE = Path(APPLICATION_PATH / '.portable')
 
