@@ -1,7 +1,7 @@
 import time
 
 
-session_start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+session_start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() - 0.1))
 
 
 class Column:
