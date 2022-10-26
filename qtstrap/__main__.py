@@ -2,7 +2,7 @@ import sys
 import click
 from pathlib import Path
 import shutil
-from PyInquirer import prompt, print_json, Separator
+from InquirerPy import prompt
 import uuid
 import os
 
@@ -51,19 +51,21 @@ def init():
             if f.is_file():
                 shutil.copy(f, dest)
 
+    if Path('app/app_info.py').exists():
+        return
+
     # create app_info.py based on user input
-    if not Path('app/app_info.py').exists():
-        result = prompt(init_prompt)
-        if result:
-            with open('app/app_info.py', 'w') as f:
-                f.write(f'AppName = "{result["app_name"]}"\n')
-                f.write(f'AppVersion = "0.1"\n')
-                f.write(f'AppPublisher = "{result["app_publisher"]}"\n')
-                f.write(f'AppExeName = "{result["app_name"]}.exe"\n')
-                f.write('AppIconName = "application.ico"\n')
-                f.write('AppIconPath = "app/resources"\n')
-                guid = '{{' + str(uuid.uuid4()) + '}'
-                f.write(f'AppId = "{guid}"\n')
+    result = prompt(init_prompt)
+    if result:
+        with open('app/app_info.py', 'w') as f:
+            f.write(f'AppName = "{result["app_name"]}"\n')
+            f.write(f'AppVersion = "0.1"\n')
+            f.write(f'AppPublisher = "{result["app_publisher"]}"\n')
+            f.write(f'AppExeName = "{result["app_name"]}.exe"\n')
+            f.write('AppIconName = "application.ico"\n')
+            f.write('AppIconPath = "app/resources"\n')
+            guid = '{{' + str(uuid.uuid4()) + '}'
+            f.write(f'AppId = "{guid}"\n')
 
 
 @main.command()
