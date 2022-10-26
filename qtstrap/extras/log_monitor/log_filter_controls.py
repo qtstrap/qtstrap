@@ -282,9 +282,9 @@ class ProfileSelector(QWidget):
         self.selector = QComboBox()
         self.editor = QLineEdit()
 
-        self.add = QPushButton(qta.icon('fa.plus-square-o', color='lightgray'), '')
-        self.accept = QPushButton(qta.icon('fa5.check-square', color='lightgray'), '')
-        self.edit = QPushButton(qta.icon('fa.pencil-square-o', color='lightgray'), '')
+        self.add = QPushButton(qta.icon('fa.plus-square-o', color=get_color('enabled')), '')
+        self.accept = QPushButton(qta.icon('fa5.check-square', color=get_color('enabled')), '')
+        self.edit = QPushButton(qta.icon('fa.pencil-square-o', color=get_color('enabled')), '')
 
         self.selector.currentIndexChanged.connect(self.on_change)
         self.add.clicked.connect(self.on_add)
