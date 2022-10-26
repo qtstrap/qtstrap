@@ -2,7 +2,12 @@
 
 import sys
 from pathlib import Path
-import pretty_errors
+
+
+try:
+    import pretty_errors
+except:
+    pass
 
 
 from .options import *
