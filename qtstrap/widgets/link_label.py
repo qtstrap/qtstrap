@@ -25,5 +25,9 @@ class LinkLabel(QLabel):
         self._link = link
         self._update_text()
 
+    def setBoth(self, value):
+        self.setText(value)
+        self.setLink(value)
+
     def _update_text(self):
         super().setText(f'<a href="{self._text}">{self._link}</a>')
