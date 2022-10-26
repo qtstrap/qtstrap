@@ -19,6 +19,9 @@ class PersistentCheckBox(QCheckBox):
         elif prev_state == int(Qt.PartiallyChecked):
             self.setCheckState(Qt.PartiallyChecked)
 
+    def __bool__(self):
+        return self.checkState() == Qt.Checked
+
 
 class PersistentLineEdit(QLineEdit):
     def __init__(self, name, *args, default='', changed=None, **kwargs):
@@ -140,3 +143,6 @@ class PersistentCheckableAction(QAction):
             self.setChecked(True)
         elif prev_state == 'false':
             self.setChecked(False)
+            
+    def __bool__(self):
+        return self.checkState() == Qt.Checked
