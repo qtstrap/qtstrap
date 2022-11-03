@@ -83,5 +83,3 @@ def set_font_options(obj: QObject, options={}):
         getattr(font, setting)(value)
     obj.setFont(font)
     return obj
-
-

@@ -1,6 +1,5 @@
 
 
-
 class SignalBlocker:
     """ A context manager that blocks the signals of the provided widget.
     

@@ -1,7 +1,5 @@
 
 
-
-
 def trace(func):
     print('tracing', func)
     def new(*args, **kwargs):
