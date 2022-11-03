@@ -16,6 +16,7 @@ from .persistent_widgets import (
     PersistentCheckBox,
     PersistentLineEdit,
     PersistentTextEdit,
+    PersistentPlainTextEdit,
     PersistentListWidget,
     PersistentTreeWidget,
     PersistentComboBox,

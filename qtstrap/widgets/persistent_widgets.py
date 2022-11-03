@@ -55,6 +55,22 @@ class PersistentTextEdit(QTextEdit):
         self.setText(str(QSettings().value(self.name, self.default)))
 
 
+class PersistentPlainTextEdit(QPlainTextEdit):
+    def __init__(self, name, *args, default='', changed=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.name = name
+        self.default = default
+        self.restore_state()
+
+        if changed:
+            self.textChanged.connect(changed)
+
+        self.textChanged.connect(lambda: QSettings().setValue(self.name, self.toPlainText()))
+    
+    def restore_state(self):
+        self.setPlainText(str(QSettings().value(self.name, self.default)))
+
+
 class PersistentListWidget(QListWidget):
     def __init__(self, name, items=[], default=[], changed=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
