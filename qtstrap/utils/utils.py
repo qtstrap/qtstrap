@@ -45,10 +45,10 @@ def get_children(obj: QObject) -> list:
     """
     children = []
 
-    def _get_children(obj, prefix=''):
+    def _get_children(obj):
         for child in obj.children():
             children.append(child)
-            _get_children(child, '  ' + prefix )
+            _get_children(child)
 
     _get_children(obj)
 
