@@ -35,3 +35,9 @@ darkPalette.setColor(QPalette.Disabled, QPalette.Text, QColor(127, 127, 127))
 darkPalette.setColor(QPalette.Disabled, QPalette.ButtonText, QColor(127, 127, 127))
 darkPalette.setColor(QPalette.Disabled, QPalette.Highlight, QColor(80, 80, 80))
 darkPalette.setColor(QPalette.Disabled, QPalette.HighlightedText, QColor(127, 127, 127))
+
+
+def install_dark_palette(app):
+    app.setStyle('Fusion')
+    app.setSetPalette(darkPalette)
+    OPTIONS.theme = 'dark'
