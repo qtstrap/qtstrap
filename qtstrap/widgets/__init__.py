@@ -23,4 +23,10 @@ from .persistent_widgets import (
     PersistentCheckableAction,
 )
 from .persistent_tab_widget import PersistentTabWidget
+from .toggle import (
+    Toggle, 
+    AnimatedToggle, 
+    PersistentToggle, 
+    PersistentAnimatedToggle
+)
 from .toolbar import BaseToolbar, SettingsToolbar
