@@ -1,4 +1,4 @@
-from .qt import *
+from qtstrap import *
 import qtawesome as qta
 
 
@@ -25,7 +25,7 @@ class BaseToolbar(QToolBar):
 
     def add_spacer(self):
         empty = QWidget(self)
-        empty.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding);
+        empty.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.addWidget(empty)
 
 

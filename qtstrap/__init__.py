@@ -30,7 +30,6 @@ if Path(sys.argv[0]).parts[-1] != 'qtstrap':
             install_ctrlc_handler,
         )
         from .base_window import BaseMainWindow
-        from .toolbar import BaseToolbar, SettingsToolbar
 
         # create a shorter alias for accessing the current QApplication
         App = QApplication.instance

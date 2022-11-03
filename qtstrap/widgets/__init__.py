@@ -22,3 +22,4 @@ from .persistent_widgets import (
     PersistentCheckableAction,
 )
 from .persistent_tab_widget import PersistentTabWidget
+from .toolbar import BaseToolbar, SettingsToolbar
