@@ -46,5 +46,5 @@ darkPalette.setColor(QPalette.Disabled, QPalette.HighlightedText, QColor(127, 12
 
 def install_dark_palette(app):
     app.setStyle('Fusion')
-    app.setSetPalette(darkPalette)
+    app.setPalette(darkPalette)
     OPTIONS.theme = 'dark'
