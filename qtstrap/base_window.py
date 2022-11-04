@@ -17,7 +17,7 @@ class BaseMainWindow(QMainWindow):
         QSettings().setValue("mainwindow/state", self.saveState())
 
     def load_settings(self):
-        if QSettings().value("mainwindow/geometry") is not None:
-            self.restoreGeometry(QSettings().value("mainwindow/geometry"))
-        if QSettings().value("mainwindow/state") is not None:
-            self.restoreState(QSettings().value("mainwindow/state"))
+        if geometry := QSettings().value("mainwindow/geometry") is not None:
+            self.restoreGeometry(geometry)
+        if state := QSettings().value("mainwindow/state") is not None:
+            self.restoreState(state)
