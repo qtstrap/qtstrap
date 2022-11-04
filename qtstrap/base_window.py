@@ -1,5 +1,4 @@
 from .qt import *
-from pathlib import Path
 
 
 class BaseMainWindow(QMainWindow):
