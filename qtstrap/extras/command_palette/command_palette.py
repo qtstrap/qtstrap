@@ -1,6 +1,31 @@
 from qtstrap import *
+from qtstrap.extras.style import colors
 import typing
 import re
+
+
+COMMAND_PALETTE_COLORS = {
+    'dark': {
+        'text_normal': 'gray',
+        'text_highlighted': 'lightgray',
+        'text_contains': '0074D9',
+        'selected_text_normal': 'lightgray',
+        'selected_text_highlighted': 'gray',
+        'bg_highlighted': '#243F89',
+    },
+    'light': {
+        'text_normal': 'black',
+        'text_highlighted': 'gray',
+        'text_contains': '#0074D9',
+        'selected_text_normal': 'lightgray',
+        'selected_text_highlighted': 'gray',
+        'bg_highlighted': '#0060c0',
+    }
+}
+
+
+def get_color(key):
+    return COMMAND_PALETTE_COLORS[OPTIONS.theme][key]
 
 
 class CommandRegistry(QObject):
@@ -37,16 +62,26 @@ class PopupDelegate(QStyledItemDelegate):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.prefix = ""
-        self.normal = QPen('gray')
-        self.contains = QPen('lightgray')
-        self.highlight = QPen(QColor('#0074D9'))
+
+
+        self.normal = QPen(get_color('text_normal'))
+        self.selected = QPen(get_color('selected_text_normal'))
+        self.contains = QPen(get_color('text_highlighted'))
+        self.highlight = QPen(QColor(get_color('text_contains')))
+        self.background = QColor(get_color('bg_highlighted'))
+
+        # self.normal = QPen('black')
+        # self.selected = QPen('lightgray')
+        # self.contains = QPen('grey')
+        # self.highlight = QPen(QColor('#0074D9'))
+        # self.background = QColor('#0060c0')
 
     def set_prefix(self, prefix):
         self.prefix = prefix
 
-    def paint(self, 
-            painter: QtGui.QPainter, 
-            option: QtWidgets.QStyleOptionViewItem, 
+    def paint(self,
+            painter: QtGui.QPainter,
+            option: QtWidgets.QStyleOptionViewItem,
             index: QtCore.QModelIndex
         ):
 
@@ -62,7 +97,7 @@ class PopupDelegate(QStyledItemDelegate):
         painter.save()
 
         if option.state & QStyle.State_Selected:
-            painter.fillRect(option.rect, QColor('#243F89'))
+            painter.fillRect(option.rect, self.background)
 
         if prefix == "":
             painter.setPen(self.normal)
@@ -86,7 +121,10 @@ class PopupDelegate(QStyledItemDelegate):
                     if text.lower() == prefix.lower():
                         painter.setPen(self.highlight)
                     else:
-                        painter.setPen(self.contains)
+                        if option.state & QStyle.State_Selected:
+                            painter.setPen(self.selected)
+                        else:
+                            painter.setPen(self.normal)
 
                     if prev:
                         rect = QRect(prev.x() + prev.width(), prev.y(), option.rect.width(), prev.height())
