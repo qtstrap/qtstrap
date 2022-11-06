@@ -40,15 +40,10 @@ class SettingsToolbar(BaseToolbar):
         self.settings_button.setMenu(self.settings_menu)
         self.settings_button.setPopupMode(QToolButton.InstantPopup)
 
-        self.quit_action = QAction(
-            '&Exit', self.settings_menu,
-            shortcut='Ctrl+Q',
-            statusTip='Exit application',
-            triggered=self.close
-        )
+        self.add_action('&Exit', shortcut='Ctrl+Q', statusTip='Exit application').triggered.connect(App.close)
 
-    def add_action(self, action):
-        self.settings_menu.addAction(action)
+    def add_action(self, *args, **kwargs):
+        return self.settings_menu.addAction(*args, **kwargs)
 
     def add_separator(self):
         self.settings_menu.addSeparator()
