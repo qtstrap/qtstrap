@@ -1,22 +1,26 @@
 from qtstrap import *
-# from .splitter import CSplitter, PersistentCSplitter
 
 
 alignments = {
     'left': Qt.AlignLeft,
+    'l': Qt.AlignLeft,
     'right': Qt.AlignRight,
+    'r': Qt.AlignRight,
     'top': Qt.AlignTop,
-    'bot': Qt.AlignBottom,
+    't': Qt.AlignTop,
     'bottom': Qt.AlignBottom,
+    'bot': Qt.AlignBottom,
+    'b': Qt.AlignBottom,
     'center': Qt.AlignCenter,
+    'c': Qt.AlignCenter,
 }
 
 
 orientations = {
-    'h': Qt.Horizontal,
     'horizontal': Qt.Horizontal,
-    'v': Qt.Vertical,
+    'h': Qt.Horizontal,
     'vertical': Qt.Vertical,
+    'v': Qt.Vertical,
 }
 
 
@@ -247,7 +251,6 @@ class PersistentCScrollArea(QScrollArea):
 
         self.scrolled.connect(lambda: QSettings().setValue(self.name, self.saveState()))
     
-        
     def scroll_to(self, value):
         self.verticalScrollBar().setValue(value)
 
