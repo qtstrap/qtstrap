@@ -14,9 +14,9 @@ class PersistentCheckBox(QCheckBox):
     
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
-        if prev_state == int(Qt.Checked):
+        if prev_state == Qt.Checked:
             self.setCheckState(Qt.Checked)
-        elif prev_state == int(Qt.PartiallyChecked):
+        elif prev_state == Qt.PartiallyChecked:
             self.setCheckState(Qt.PartiallyChecked)
 
     def __bool__(self):
