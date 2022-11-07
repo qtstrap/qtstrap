@@ -27,23 +27,3 @@ class BaseToolbar(QToolBar):
         empty = QWidget(self)
         empty.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.addWidget(empty)
-
-
-class SettingsToolbar(BaseToolbar):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.settings_button = QToolButton(self, icon=qta.icon('fa.gear', color='gray'))
-        self.addWidget(self.settings_button)
-
-        self.settings_menu = QMenu(self.settings_button)
-        self.settings_button.setMenu(self.settings_menu)
-        self.settings_button.setPopupMode(QToolButton.InstantPopup)
-
-        self.add_action('&Exit', shortcut='Ctrl+Q', statusTip='Exit application').triggered.connect(App.close)
-
-    def add_action(self, *args, **kwargs):
-        return self.settings_menu.addAction(*args, **kwargs)
-
-    def add_separator(self):
-        self.settings_menu.addSeparator()

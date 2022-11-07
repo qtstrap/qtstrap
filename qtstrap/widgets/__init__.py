@@ -29,4 +29,4 @@ from .toggle import (
     PersistentToggle, 
     PersistentAnimatedToggle
 )
-from .toolbar import BaseToolbar, SettingsToolbar
+from .toolbar import BaseToolbar
