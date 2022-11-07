@@ -11,10 +11,11 @@ location_map = {
 
 
 class BaseToolbar(QToolBar):
-    def __init__(self, parent=None, name=None, location=None, size=40):
-        super().__init__(parent=parent)
+    def __init__(self, parent=None, name=None, location=None, size=40, **kwargs):
+        super().__init__(parent=parent, **kwargs)
 
         self.setMovable(False)
+        self.setContextMenuPolicy(Qt.PreventContextMenu)
         self.setIconSize(QSize(size, size))
         if name:
             self.setObjectName(name)
