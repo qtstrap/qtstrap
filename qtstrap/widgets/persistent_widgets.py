@@ -161,4 +161,4 @@ class PersistentCheckableAction(QAction):
             self.setChecked(False)
             
     def __bool__(self):
-        return self.checkState() == Qt.Checked
+        return self.isChecked()
