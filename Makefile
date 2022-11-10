@@ -21,7 +21,7 @@ endif
 run: venv
 	$(VENV_PYTHON) src/main.py
 
-# reinstall codex to the virtualenv
+# reinstall this package to the virtualenv
 reload: venv
 	$(VENV_PYTHON) -m pip install -e .
 
