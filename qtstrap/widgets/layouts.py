@@ -47,8 +47,11 @@ class ContextLayout:
             else:
                 parent.addLayout(self)
 
-        if margins:
-            self.setContentsMargins(*margins)
+        if margins is not None:
+            if isinstance(margins, tuple):
+                self.setContentsMargins(*margins)
+            elif isinstance(margins, int):
+                self.setContentsMargins(margins, margins, margins, margins)
 
         if align in alignments:
             self.setAlignment(alignments[align])
