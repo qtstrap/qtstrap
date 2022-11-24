@@ -34,8 +34,15 @@ publish: venv
 	$(VENV_PYTHON) -m twine upload dist/* -u __token__
 
 #
+tox: venv
+	$(VENV_PYTHON) -m tox
+
+#
 tests: venv
 	$(VENV_PYTHON) -m pytest
+
+coverage: venv
+	$(VENV_PYTHON) -m pytest --cov
 
 # remove build artifacts
 clean:

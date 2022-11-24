@@ -15,3 +15,5 @@ qtstrap/version.py
 .vscode
 
 .env
+.coverage
+.tox

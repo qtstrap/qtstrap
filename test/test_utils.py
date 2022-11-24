@@ -70,14 +70,14 @@ def test_get_all_children(qtbot):
     assert type(children[2]) == QLabel
 
 
-def test_set_font_options(qtbot):
-    window = MainWindow()
+# def test_set_font_options(qtbot):
+#     window = MainWindow()
     
-    # default font size is 8
-    assert window.label.font().pointSize() == 8
-    assert window.label.font().bold() == False
+#     # default font size is 8
+#     assert window.label.font().pointSize() == 8
+#     assert window.label.font().bold() == False
 
-    set_font_options(window, {'setPointSize': 12, 'setBold': True})
+#     set_font_options(window, {'setPointSize': 12, 'setBold': True})
 
-    assert window.label.font().pointSize() == 12
-    assert window.label.font().bold() == True
+#     assert window.label.font().pointSize() == 12
+#     assert window.label.font().bold() == True
