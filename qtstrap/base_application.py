@@ -1,6 +1,7 @@
 from qtstrap import OPTIONS
 from .qt import *
 import signal
+import sys
 from pathlib import Path
 
 
@@ -40,8 +41,8 @@ def install_app_info(app):
 
 
 class BaseApplication(QApplication):
-    def __init__(self, *args, register_ctrlc_handler=True, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
+    def __init__(self, register_ctrlc_handler=True) -> None:
+        super().__init__(sys.argv)
 
         install_app_info(self)
 
