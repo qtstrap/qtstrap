@@ -45,6 +45,46 @@ def accepts_file_drops(extensions: str|[str]):
     return decorator
 
 
+def draggable(target):
+    old_init = target.__init__
+
+    def new_init(obj, *args, **kwargs):
+        old_init(obj, *args, **kwargs)
+        
+        obj.drag_start_position = None
+
+    def new_mousePressEvent(self, event: QMouseEvent):
+        if event.button() == Qt.LeftButton:
+            self.drag_start_position = event.pos()
+    
+        return super(self.__class__, self).mousePressEvent(event)
+
+    def new_mouseMoveEvent(self, event: QMouseEvent) -> None:
+        if event.buttons() != Qt.LeftButton:
+            return super(self.__class__, self).mouseMoveEvent(event)
+
+        distance_moved = QPoint(event.pos() - self.drag_start_position).manhattanLength()
+        if distance_moved < QApplication.startDragDistance():
+            return super(self.__class__, self).mouseMoveEvent(event)
+        
+        if hasattr(self, 'get_drag_data'):
+            mime = self.get_drag_data()
+        else:
+            mime = QMimeData()
+            mime.setText('test_drop_please_ignore')
+
+        drop = PreviewDrag(self, mimedata=mime).exec_()
+
+        if hasattr(self, 'handle_drop'):
+            self.handle_drop(drop)
+    
+    target.__init__ = new_init
+    target.mousePressEvent = new_mousePressEvent
+    target.mouseMoveEvent = new_mouseMoveEvent
+
+    return target
+
+
 class PreviewDrag(QDrag):
     def __init__(self, source, mimedata=None):
         super().__init__(source)
