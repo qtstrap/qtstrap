@@ -43,3 +43,15 @@ def accepts_file_drops(extensions: str|[str]):
         return target
 
     return decorator
+
+
+class PreviewDrag(QDrag):
+    def __init__(self, source, mimedata=None):
+        super().__init__(source)
+
+        pixmap = QPixmap(source.size())
+        source.render(pixmap)
+        self.setPixmap(pixmap)
+
+        if mimedata:
+            self.setMimeData(mimedata)
