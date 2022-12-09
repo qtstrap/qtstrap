@@ -25,8 +25,7 @@ class LogMonitorWidget(QWidget):
         self.log_table = LogTableView()
         DatabaseHandler.register_callback(self.log_table.schedule_refresh)
 
-        self.filter_controls = FilterControls()
-        self.filter_controls.filter_updated.connect(self.log_table.set_filter)
+        self.filter_controls = FilterControls(table=self.log_table)
         self.filter_controls.update_filter()
 
         self.query_existing_loggers()
@@ -92,7 +91,7 @@ class LogMonitorDockWidget(QDockWidget):
         return action
 
 
-class LogMonitorDropdown(QDialog):
+class LogMonitorDropdown(QWidget):
     def __init__(self, parent=None, shortcut='`'):
         super().__init__(parent=parent)
         self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint)
@@ -102,7 +101,7 @@ class LogMonitorDropdown(QDialog):
 
         parent.installEventFilter(self)
 
-        CHBoxLayout(self).add(LogMonitorWidget(self))
+        CHBoxLayout(self, margins=0).add(LogMonitorWidget(self))
         
         if command_palette_available:
             self.commands = [

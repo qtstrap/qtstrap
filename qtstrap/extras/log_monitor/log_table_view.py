@@ -2,7 +2,7 @@ from qtstrap import *
 from qtpy.QtSql import *
 import time
 from .log_filter_controls import get_color
-from .log_profile import LogProfile, Column, default_columns
+from .log_profile import LogProfile
 from .log_database_handler import db_conn_name
 
 
@@ -28,6 +28,8 @@ class LogDbModel(QSqlQueryModel):
 
 
 class LogTableView(QTableView):
+    columns_changed = Signal()
+
     def __init__(self):
         super().__init__()
         self.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -38,7 +40,6 @@ class LogTableView(QTableView):
         header.setStretchLastSection(True)
         header.setContextMenuPolicy(Qt.CustomContextMenu)
         header.customContextMenuRequested.connect(self.header_menu)
-        header.setSectionsMovable(True)
         header.viewport().installEventFilter(self)
 
         self.db_model = LogDbModel(self)
@@ -50,7 +51,7 @@ class LogTableView(QTableView):
         
         self.scan_timer = QTimer()
         self.scan_timer.timeout.connect(self.attempt_refresh)
-        self.scan_timer.start(250)
+        self.scan_timer.start(200)
 
     def attempt_refresh(self):
         if self.need_to_refresh:
@@ -64,6 +65,9 @@ class LogTableView(QTableView):
     def set_filter(self, filt):
         self.profile.set_filter(filt)
         self.refresh()
+
+    def set_columns(self, columns):
+        self.profile.set_columns(columns)
 
     def refresh(self):
         at_bottom = False
@@ -94,8 +98,10 @@ class LogTableView(QTableView):
 
     def mouse_released(self):
         for section in range(self.horizontalHeader().count()):
-            col = self.profile.visible_columns[section]
-            col.width = self.horizontalHeader().sectionSize(section)
+            width = self.horizontalHeader().sectionSize(section)
+            self.profile.visible_columns[section].width = width
+
+        self.columns_changed.emit()
 
     def header_menu(self):
         menu = QMenu()
@@ -108,3 +114,5 @@ class LogTableView(QTableView):
 
         if menu.exec_(QCursor.pos()):
             self.need_to_refresh = True
+            self.columns_changed.emit()
+            

@@ -277,41 +277,46 @@ class ProfileSelector(QWidget):
 
         self.selector = QComboBox()
         self.editor = QLineEdit()
+        self.editor.setPlaceholderText('Profile name')
+        
+        self.menu_btn = MenuButton()
 
-        self.add = QPushButton(qta.icon('fa.plus-square-o', color=get_color('enabled')), '')
-        self.accept = QPushButton(qta.icon('fa5.check-square', color=get_color('enabled')), '')
-        self.edit = QPushButton(qta.icon('fa.pencil-square-o', color=get_color('enabled')), '')
+        self.menu_btn.addAction('New Profile').triggered.connect(self.on_add)
+        self.menu_btn.addAction('Delete Profile').triggered.connect(self.on_remove)
 
         self.selector.currentIndexChanged.connect(self.on_change)
-        self.add.clicked.connect(self.on_add)
-        self.accept.clicked.connect(self.on_accept)
-        self.editor.returnPressed.connect(self.on_accept)
         
-        grid = CGridLayout(self, margins=(0, 0, 0, 0), spacing=2)
-
-        grid.add(self.selector, 0, 0, 1, 3)
-        grid.add(self.editor, 0, 0, 1, 3)
-        grid.add(self.add, 0, 3)
-        grid.add(self.accept, 0, 3)
-        grid.add(self.edit, 0, 4)
-
-        self.accept.hide()
+        self.editor.installEventFilter(self)
         self.editor.hide()
+        
+        with CGridLayout(self, margins=0, spacing=2) as layout:
+            layout.add(self.selector, 0, 0, 1, 3)
+            layout.add(self.editor, 0, 0, 1, 3)
+            layout.add(self.menu_btn, 0, 4)
+
+    def eventFilter(self, source, event):
+        if event.type() == QEvent.KeyPress:
+            if event.key() == Qt.Key_Return:
+                self.on_accept()
+                return True
+            
+            if event.key() == QtCore.Qt.Key_Escape:
+                self.on_cancel()
+                event.accept()
+                return True
+
+        return False
 
     def on_change(self):
         name = self.selector.currentText()
         self.changed.emit(name)
 
     def on_add(self):
-        self.accept.show()
-        self.add.hide()
         self.selector.hide()
         self.editor.show()
         self.editor.setFocus()
 
     def on_accept(self):
-        self.accept.hide()
-        self.add.show()
         self.selector.show()
         self.editor.hide()
 
@@ -319,15 +324,18 @@ class ProfileSelector(QWidget):
         if len(name) > 0:
             self.added.emit(name)
         self.editor.clear()
+        
+    def on_cancel(self):
+        self.selector.show()
+        self.editor.hide()
+        self.editor.clear()
 
     def on_remove(self):
         name = self.selector.currentText()
         self.removed.emit(name)
 
 
-class FilterControls(QStackedWidget):
-    filter_updated = Signal(dict)
-
+class FilterControls(QWidget):
     empty_profile = {
         'loggers': {
             'global': ['DEBUG','INFO','WARNING','ERROR','CRITICAL'],
@@ -348,7 +356,7 @@ class FilterControls(QStackedWidget):
         }
     }
 
-    def __init__(self):
+    def __init__(self, table):
         super().__init__()
 
         self.setStyleSheet("""
@@ -361,6 +369,9 @@ class FilterControls(QStackedWidget):
         self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
 
         self.settings_file = OPTIONS.config_dir / 'log_profiles.json'
+
+        self.table = table
+        self.table.columns_changed.connect(self.columns_changed)
 
         # create widgets
         self.profiles = ProfileSelector()
@@ -400,6 +411,7 @@ class FilterControls(QStackedWidget):
         self.logger_filter.set_visible_loggers(self.current_profile['visible_loggers'])
         self.session_checkbox.setChecked(self.current_profile['current_session_only'])
         self.query_limit.setText(str(self.current_profile['query_limit']))
+        self.table.set_columns(self.current_profile.get('column_data', {}))
 
         # connect signals
         self.logger_filter.filter_updated.connect(self.update_filter)
@@ -407,18 +419,14 @@ class FilterControls(QStackedWidget):
         self.profiles.changed.connect(self.change_profile)
         self.profiles.added.connect(self.add_profile)
         self.profiles.removed.connect(self.remove_profile)
-        self.profiles.edit.clicked.connect(lambda: self.setCurrentIndex(1))
         self.session_checkbox.stateChanged.connect(self.update_filter)
         self.query_limit.textChanged.connect(self.update_filter)
 
         # send the filter to the model
         self.update_filter()
 
-        self.addWidget(QWidget())
-        self.addWidget(QWidget())
-
         # controls layout
-        with CVBoxLayout(self.widget(0), margins=(0, 0, 0, 0)) as layout:
+        with CVBoxLayout(self, margins=0) as layout:
             layout.add(self.profiles)
             with layout.hbox() as layout:
                 layout.add(QLabel('Current Session:'))
@@ -430,13 +438,6 @@ class FilterControls(QStackedWidget):
                 layout.add(QLabel(), 1)
             layout.add(self.text_filter)
             layout.add(self.logger_filter)
-
-        # editor layout
-        with CVBoxLayout(self.widget(1), margins=(0, 0, 0, 0)) as layout:
-            with layout.hbox() as layout:
-                layout.add(QLabel(), 1)
-                layout.add(QPushButton('X', maximumWidth=20, clicked=lambda: self.setCurrentIndex(0)))
-            layout.add(QLabel(), 1)
 
     def save_settings(self):
         with open(self.settings_file, 'w') as f:
@@ -460,7 +461,11 @@ class FilterControls(QStackedWidget):
 
         self.current_profile = self.settings['profiles'][profile_name]
         self.logger_filter.set_visible_loggers(self.current_profile['visible_loggers'])
+        self.table.set_columns(self.current_profile.get('column_data', {}))
         self.update_filter()
+
+    def columns_changed(self):
+        self.current_profile['column_data'] = self.table.profile.column_data
         self.save_settings()
 
     def update_filter(self):
@@ -475,5 +480,5 @@ class FilterControls(QStackedWidget):
         self.current_profile['current_session_only'] = self.session_checkbox.isChecked()
         self.current_profile['query_limit'] = int(self.query_limit.text())
 
-        self.filter_updated.emit(self.current_profile)
+        self.table.set_filter(self.current_profile)
         self.save_settings()
