@@ -58,9 +58,11 @@ class LogMonitorWidget(QWidget):
 
 
 class LogMonitorDockWidget(QDockWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, shortcut='Ctrl+L'):
         super().__init__('Log Monitor', parent=parent)
         self.setObjectName('LogMonitor')
+
+        self.shortcut = shortcut
 
         self.setWidget(LogMonitorWidget(self))
 
@@ -86,21 +88,23 @@ class LogMonitorDockWidget(QDockWidget):
             
     def toggleViewAction(self):
         action = super().toggleViewAction()
-        action.setShortcut('Ctrl+L')
+        action.setShortcut(self.shortcut)
         return action
 
 
 class LogMonitorDropdown(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, shortcut='`'):
         super().__init__(parent=parent)
         self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setFocusPolicy(Qt.StrongFocus)
+
+        self.shortcut = shortcut
 
         CHBoxLayout(self).add(LogMonitorWidget(self))
         
         if command_palette_available:
             self.commands = [
-                Command("Log Monitor: Show log monitor", triggered=self.show, shortcut='Ctrl+L'),
+                Command("Log Monitor: Show log monitor", triggered=self.show, shortcut=self.shortcut),
                 Command("Log Monitor: Hide log monitor", triggered=self.hide),
             ]
         
@@ -108,7 +112,7 @@ class LogMonitorDropdown(QDialog):
 
     def toggleViewAction(self):
         action = QAction("Toggle Log Monitor", self)
-        action.setShortcut('`')
+        action.setShortcut(self.shortcut)
         action.triggered.connect(self.toggle_view)
         return action
 
