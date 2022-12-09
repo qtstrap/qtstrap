@@ -5,7 +5,7 @@ from .options import *
 class PortableSettings(QSettings):
     settings_file_path = 'settings.ini'
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(
             self.settings_file_path,
             QSettings.IniFormat,
@@ -14,7 +14,7 @@ class PortableSettings(QSettings):
         )
 
     @staticmethod
-    def _install():
+    def _install() -> None:
         PortableSettings.settings_file_path = (
-            OPTIONS.PORTABLE_SETTINGS_FILE.as_posix()
-        )
+            OPTIONS.config_dir / 'settings.ini'
+        ).as_posix()

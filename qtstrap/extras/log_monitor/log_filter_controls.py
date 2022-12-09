@@ -360,6 +360,8 @@ class FilterControls(QStackedWidget):
         """)
         self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
 
+        self.settings_file = OPTIONS.config_dir / 'log_profiles.json'
+
         # create widgets
         self.profiles = ProfileSelector()
 
@@ -374,7 +376,13 @@ class FilterControls(QStackedWidget):
         self.query_limit.setValidator(QIntValidator())
 
         # load settings and send filter components to widgets
-        prev = QSettings().value('log_monitor/log_settings', json.dumps(self.default_settings))
+        prev = json.dumps(self.default_settings)
+        try:
+            with open(self.settings_file, 'r') as f:
+                prev = f.read()
+        except:
+            pass
+
         self.settings = json.loads(prev)
 
         profiles = self.settings['profiles']
@@ -431,7 +439,8 @@ class FilterControls(QStackedWidget):
             layout.add(QLabel(), 1)
 
     def save_settings(self):
-        QSettings().setValue('log_monitor/log_settings', json.dumps(self.settings))
+        with open(self.settings_file, 'w') as f:
+            f.write(json.dumps(self.settings, indent=4))
 
     def add_profile(self, name):
         new_profile = dict(self.empty_profile)

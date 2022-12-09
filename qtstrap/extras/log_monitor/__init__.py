@@ -2,13 +2,9 @@ from .log_widget import LogMonitorWidget, LogMonitorDockWidget, LogMonitorDropdo
 from .log_database_handler import DatabaseHandler
 import logging
 from qtstrap import OPTIONS
-from pathlib import Path
 
 
-# Make sure the log database directory exists
-Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
-
-db_path = OPTIONS.config_dir + '/log.db'
+db_path = (OPTIONS.config_dir / 'log.db').as_posix()
 
 
 def install(database_name=db_path):

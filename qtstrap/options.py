@@ -10,7 +10,7 @@ class OPTIONS:
     portable = False
     theme = 'light'
     PORTABLE_SETTINGS_FILE = Path(APPLICATION_PATH / 'settings.ini')
-    PORTABLE_FLAG_FILE = Path(APPLICATION_PATH / '.portable')
+    PORTABLE_FLAG_PATH = Path(APPLICATION_PATH / '.portable')
 
 
 # attempt to import app_info.py
@@ -24,13 +24,15 @@ except ModuleNotFoundError:
 
 
 # check for the file ".portable"
-if Path(OPTIONS.PORTABLE_FLAG_FILE).exists():
+if Path(OPTIONS.PORTABLE_FLAG_PATH).exists():
     OPTIONS.portable = True
 
 
 # set up appdirs
 if not OPTIONS.portable and OPTIONS.app_info:
     dirs = AppDirs(app_info.AppName, app_info.AppPublisher)
-    OPTIONS.config_dir = dirs.user_config_dir
+    OPTIONS.config_dir = Path(dirs.user_config_dir)
+    # Make sure the config directory exists
+    Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
 else:
-    OPTIONS.config_dir = OPTIONS.APPLICATION_PATH.as_posix()
+    OPTIONS.config_dir = OPTIONS.PORTABLE_FLAG_PATH
