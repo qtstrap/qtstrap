@@ -95,10 +95,12 @@ class LogMonitorDockWidget(QDockWidget):
 class LogMonitorDropdown(QDialog):
     def __init__(self, parent=None, shortcut='`'):
         super().__init__(parent=parent)
-        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
+        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint)
         self.setFocusPolicy(Qt.StrongFocus)
 
         self.shortcut = shortcut
+
+        parent.installEventFilter(self)
 
         CHBoxLayout(self).add(LogMonitorWidget(self))
         
@@ -109,6 +111,13 @@ class LogMonitorDropdown(QDialog):
             ]
         
         self.hide()
+
+    def eventFilter(self, source: QObject, event: QEvent) -> bool:
+        if self.isVisible():
+            if isinstance(event, QMoveEvent):
+                self.center_on_parent()
+
+        return super().eventFilter(source, event)
 
     def toggleViewAction(self):
         action = QAction("Toggle Log Monitor", self)
