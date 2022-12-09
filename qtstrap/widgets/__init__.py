@@ -8,7 +8,12 @@ from .layouts import (
     CScrollArea, 
     PersistentCScrollArea,
 )
-from .buttons import StateButton, IconToggleButton, ConfirmToggleButton
+from .buttons import (
+    StateButton, 
+    IconToggleButton, 
+    ConfirmToggleButton,
+    MenuButton,
+)
 from .labeledit import LabelEdit
 from .link_label import LinkLabel
 from .line_widgets import VLine, HLine
@@ -27,6 +32,6 @@ from .toggle import (
     Toggle, 
     AnimatedToggle, 
     PersistentToggle, 
-    PersistentAnimatedToggle
+    PersistentAnimatedToggle,
 )
 from .toolbar import BaseToolbar

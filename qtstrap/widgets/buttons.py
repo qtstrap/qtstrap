@@ -101,3 +101,14 @@ class ConfirmToggleButton(QPushButton):
     def update_icon(self):
         if self.icons:
             self.setIcon(self.icons[self.state])
+
+
+class MenuButton(QPushButton):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self._menu = QMenu(self)
+        self.setMenu(self._menu)
+
+    def addAction(self, *args, **kwargs):
+        return self._menu.addAction(*args, **kwargs)
