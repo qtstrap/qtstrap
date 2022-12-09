@@ -16,19 +16,20 @@ class Column:
 
 
 default_columns = [
-    Column("TimeStamp", "Time", width=150, visible=True),
+    Column("TimeStamp", "Time", width=130, visible=True),
+    Column("LogLevel", "'Level#'", width=40, visible=False),
+    Column("LogLevelName", "Level", width=60, visible=True),
     Column("Source", width=200, visible=True),
-    Column("LogLevel", "Level#", width=100, visible=False),
-    Column("LogLevelName", "Level", width=80, visible=True),
-    Column("Message", width=100, visible=True),
-    Column("Args", width=100, visible=False),
     Column("Module", width=100, visible=False),
-    Column("FuncName", "Func", width=100, visible=False),
-    Column("LineNo", "Line", width=100, visible=False),
+    Column("FuncName || ':' || LineNo", "'Func:Line'", width=120, visible=True),
+    Column("FuncName", "Func", width=120, visible=False),
+    Column("LineNo", "Line", width=40, visible=False),
+    Column("Args", width=100, visible=False),
     Column("Exception", width=100, visible=False),
     Column("Process", width=100, visible=False),
     Column("Thread", width=100, visible=False),
     Column("ThreadName", width=100, visible=False),
+    Column("Message", width=100, visible=True),
 ]
 
 
@@ -37,7 +38,7 @@ class LogProfile:
         self.columns = default_columns
 
         self.loggers = {
-            'global': ['DEBUG','INFO','WARNING','ERROR','CRITICAL'],
+            'global': ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
         }
         self.visible_loggers = ['global']
         self.text_filter = ''
@@ -65,9 +66,9 @@ class LogProfile:
         for col in self.columns:
             if col.visible:
                 if col.name != col.title:
-                    columns.append(f'"{col.name}" AS "{col.title}"')
+                    columns.append(f'{col.name} AS {col.title}')
                 else:
-                    columns.append(f'"{col.name}"')
+                    columns.append(f'{col.name}')
 
         query += ', '.join(columns)
         query += " FROM 'log'"
