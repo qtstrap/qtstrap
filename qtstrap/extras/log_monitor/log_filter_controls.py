@@ -375,6 +375,7 @@ class FilterControls(QStackedWidget):
         self.logger_filter = LoggerTreeWidget()
         self.session_checkbox = QCheckBox()
         self.query_limit = QLineEdit()
+        self.query_limit.setValidator(QIntValidator())
 
         # load settings and send filter components to widgets
         prev = QSettings().value('log_monitor/log_settings', json.dumps(self.default_settings))
@@ -404,6 +405,7 @@ class FilterControls(QStackedWidget):
         self.profiles.removed.connect(self.remove_profile)
         self.profiles.edit.clicked.connect(lambda: self.setCurrentIndex(1))
         self.session_checkbox.stateChanged.connect(self.update_filter)
+        self.query_limit.textChanged.connect(self.update_filter)
 
         # send the filter to the model
         self.update_filter()
@@ -466,7 +468,7 @@ class FilterControls(QStackedWidget):
         self.current_profile['loggers'] = loggers
         self.current_profile['visible_loggers'] = visible_loggers
         self.current_profile['current_session_only'] = self.session_checkbox.isChecked()
-        self.current_profile['query_limit'] = 1000
+        self.current_profile['query_limit'] = int(self.query_limit.text())
 
         self.filter_updated.emit(self.current_profile)
         self.save_settings()
