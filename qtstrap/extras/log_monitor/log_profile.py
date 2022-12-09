@@ -1,7 +1,7 @@
 import time
 
 
-session_start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() - 0.1))
+session_start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() - 0.5))
 
 
 class Column:
@@ -58,7 +58,7 @@ class LogProfile:
         self.current_session_only = filt['current_session_only']
         self.query_limit = filt['query_limit']
 
-    def build_query(self):
+    def build_query(self, row_count):
         query = "SELECT "
 
         columns = []
@@ -76,6 +76,9 @@ class LogProfile:
         if self.current_session_only:
             where.append(f"TimeStamp > '{session_start_time}'")
 
+        if self.query_limit:
+            where.append(f"rowid > {row_count - self.query_limit}")
+
         if self.text_filter:
             where.append(f"Message LIKE '%{self.text_filter}%'")
         
@@ -89,9 +92,6 @@ class LogProfile:
             where.append(f"({' OR '.join(sources)})")
 
         if where:
-            query += f' WHERE ' + ' AND '.join(where)
-        
-        if self.query_limit:
-            query += f" LIMIT {self.query_limit}"
+            query += ' WHERE ' + ' AND '.join(where)
 
         return query

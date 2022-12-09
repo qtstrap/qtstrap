@@ -69,8 +69,14 @@ class LogTableView(QTableView):
         at_bottom = False
         if self.verticalScrollBar().value() == self.verticalScrollBar().maximum():
             at_bottom = True
+
+        db = QSqlDatabase.database(db_conn_name)
+
+        query = db.exec_("SELECT COUNT(*) FROM 'log'")
+        query.next()
+        row_count = query.value(0)
         
-        self.db_model.setQuery(self.profile.build_query(), QSqlDatabase.database(db_conn_name))
+        self.db_model.setQuery(self.profile.build_query(row_count), db)
         while self.db_model.canFetchMore():
             self.db_model.fetchMore()
 
