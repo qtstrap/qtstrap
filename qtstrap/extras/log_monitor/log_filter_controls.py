@@ -201,10 +201,6 @@ class LoggerTreeWidget(QTreeWidget):
         for name in loggers:
             self.register_logger(name)
 
-    def set_visible_loggers(self, logger_filter):
-        for logger in logger_filter:
-            self.setItemSelected(self.loggers[logger], True)
-
     def contextMenuEvent(self, event):
         menu = QMenu()
         pos = event.globalPos()
