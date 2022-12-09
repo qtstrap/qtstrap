@@ -48,10 +48,10 @@ def accepts_file_drops(extensions: str|[str]):
 def draggable(target):
     old_init = target.__init__
 
-    def new_init(obj, *args, **kwargs):
-        old_init(obj, *args, **kwargs)
+    def new_init(self, *args, **kwargs):
+        old_init(self, *args, **kwargs)
         
-        obj.drag_start_position = None
+        self.drag_start_position = None
 
     def new_mousePressEvent(self, event: QMouseEvent):
         if event.button() == Qt.LeftButton:
@@ -61,6 +61,9 @@ def draggable(target):
 
     def new_mouseMoveEvent(self, event: QMouseEvent) -> None:
         if event.buttons() != Qt.LeftButton:
+            return super(self.__class__, self).mouseMoveEvent(event)
+
+        if self.drag_start_position is None:
             return super(self.__class__, self).mouseMoveEvent(event)
 
         distance_moved = QPoint(event.pos() - self.drag_start_position).manhattanLength()
@@ -77,6 +80,8 @@ def draggable(target):
 
         if hasattr(self, 'handle_drop'):
             self.handle_drop(drop)
+
+        self.drag_start_position = None
     
     target.__init__ = new_init
     target.mousePressEvent = new_mousePressEvent
