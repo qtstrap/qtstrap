@@ -116,6 +116,8 @@ class LogMonitorDropdown(QDialog):
         if self.isVisible():
             if isinstance(event, QMoveEvent):
                 self.center_on_parent()
+            if isinstance(event, QResizeEvent):
+                self.center_on_parent()
 
         return super().eventFilter(source, event)
 
