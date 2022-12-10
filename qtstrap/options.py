@@ -35,4 +35,7 @@ if not OPTIONS.portable and OPTIONS.app_info:
     # Make sure the config directory exists
     Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
 else:
-    OPTIONS.config_dir = OPTIONS.PORTABLE_FLAG_PATH
+    if OPTIONS.PORTABLE_FLAG_PATH.is_dir():
+        OPTIONS.config_dir = OPTIONS.PORTABLE_FLAG_PATH
+    else:
+        OPTIONS.config_dir = OPTIONS.PORTABLE_FLAG_PATH.parent
