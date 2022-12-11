@@ -50,6 +50,7 @@ class Adapter(QObject):
     def kill(self):
         if self._other:
             for name in self._get_signals(self._other):
+                # TODO: this might not be safe
                 getattr(self._other, name).disconnect(getattr(self, name).emit)
 
 if __name__ == '__main__':
