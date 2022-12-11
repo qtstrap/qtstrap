@@ -9,6 +9,6 @@ def trace(func):
 
     def new(*args, **kwargs):
         print(f'[{time() - start_time:.3f}] executing', func, args, kwargs)
-        func(*args, **kwargs)
+        return func(*args, **kwargs)
 
     return new
