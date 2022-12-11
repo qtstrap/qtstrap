@@ -11,6 +11,12 @@ class CodeLine(CodeEditor):
         self.setFixedHeight(28)
 
     def keyPressEvent(self, event:QKeyEvent):
+        # emit ctrl+enter signal
+        if event.modifiers() == Qt.ControlModifier:
+            if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
+                self.ctrl_enter_pressed.emit()
+
+        # definitely never print a newline
         if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
             event.accept()
             return

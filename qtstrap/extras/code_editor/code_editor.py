@@ -2,6 +2,8 @@ from qtstrap import *
 
 
 class CodeEditor(QTextEdit):
+    ctrl_enter_pressed = Signal()
+
     def __init__(self, *args, changed=None, model=None, highlighter=None, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -65,7 +67,7 @@ class CodeEditor(QTextEdit):
         tc = self.textCursor()
         tc.select(QTextCursor.WordUnderCursor)
         return tc.selectedText()
-        
+
     def keyPressEvent(self, event:QKeyEvent):
         force_popup = False
         if event.modifiers() == Qt.ControlModifier:
@@ -79,10 +81,29 @@ class CodeEditor(QTextEdit):
                 event.ignore()
                 return
 
+        # emit ctrl+enter signal
+        if event.modifiers() == Qt.ControlModifier:
+            if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
+                self.ctrl_enter_pressed.emit()
+                event.accept()
+                return
+
         # comment or uncomment the selection
         if event.modifiers() == Qt.ControlModifier:
             if event.key() == Qt.Key_Slash:
                 self.toggle_comments()
+                event.accept()
+                return
+
+        # duplicate the selection up or down
+        if event.modifiers() == Qt.ShiftModifier | Qt.AltModifier:
+            if event.key() == Qt.Key_Up:
+                self.duplicate_selection(-1)
+                event.accept()
+                return
+
+            if event.key() == Qt.Key_Down:
+                self.duplicate_selection(1)
                 event.accept()
                 return
 
@@ -184,6 +205,46 @@ class CodeEditor(QTextEdit):
         self.setTextCursor(cur)
         cur.endEditBlock()
 
+    def duplicate_selection(self, direction):
+        if direction == 1:
+            direction = QTextCursor.Down
+        if direction == -1:
+            direction = QTextCursor.Up
+        
+        cur = self.textCursor()
+        cur.beginEditBlock()
+
+        og_start = cur.selectionStart()
+        og_end = cur.selectionEnd()
+        cur.setPosition(og_start)
+        cur.movePosition(QTextCursor.StartOfLine)
+        start = cur.selectionStart()
+        cur.setPosition(og_end)
+        cur.movePosition(QTextCursor.EndOfLine)
+        end = cur.selectionEnd()
+
+        cur.setPosition(start)
+        cur.setPosition(end, QTextCursor.KeepAnchor)
+        cur.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor)
+        text = cur.selectedText()
+
+        if direction == QTextCursor.Up:
+            cur.setPosition(start)
+            cur.insertText(text)
+            cur.setPosition(og_start)
+            cur.setPosition(og_end, QTextCursor.KeepAnchor)
+
+        if direction == QTextCursor.Down:
+            cur.setPosition(end)
+            cur.movePosition(QTextCursor.Down)
+            cur.insertText(text)
+            cur.setPosition(og_start + len(text))
+            cur.setPosition(og_end + len(text), QTextCursor.KeepAnchor)
+
+        self.setTextCursor(cur)
+        cur.endEditBlock()
+
+
     def move_selection(self, direction):
         if direction == 1:
             direction = QTextCursor.Down
@@ -207,35 +268,37 @@ class CodeEditor(QTextEdit):
             cur.movePosition(QTextCursor.Up)
             cur.movePosition(QTextCursor.EndOfLine, QTextCursor.KeepAnchor)
             cur.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor)
-            line = cur.selectedText()
+            text = cur.selectedText()
+            print('move:', text)
             cur.setPosition(end)
             cur.movePosition(QTextCursor.Down)
             cur.movePosition(QTextCursor.StartOfLine)
-            cur.insertText(line)
+            cur.insertText(text)
             cur.setPosition(start)
             cur.movePosition(QTextCursor.Up)
             cur.movePosition(QTextCursor.EndOfLine, QTextCursor.KeepAnchor)
             cur.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor)
             cur.removeSelectedText()
-            cur.setPosition(og_start - len(line))
-            cur.setPosition(og_end - len(line), QTextCursor.KeepAnchor)
+            cur.setPosition(og_start - len(text))
+            cur.setPosition(og_end - len(text), QTextCursor.KeepAnchor)
             
         if direction == QTextCursor.Down:
             cur.setPosition(end)
             cur.movePosition(QTextCursor.Down, QTextCursor.KeepAnchor)
             cur.movePosition(QTextCursor.EndOfLine, QTextCursor.KeepAnchor)
-            line = cur.selectedText()
+            text = cur.selectedText()
+            print('move:', text)
             cur.setPosition(start)
             cur.movePosition(QTextCursor.Up)
             cur.movePosition(QTextCursor.EndOfLine)
-            cur.insertText(line)
-            cur.setPosition(end + len(line))
+            cur.insertText(text)
+            cur.setPosition(end + len(text))
             cur.movePosition(QTextCursor.Down)
             cur.movePosition(QTextCursor.EndOfLine, QTextCursor.KeepAnchor)
             cur.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor)
             cur.removeSelectedText()
-            cur.setPosition(og_start + len(line))
-            cur.setPosition(og_end + len(line), QTextCursor.KeepAnchor)
+            cur.setPosition(og_start + len(text))
+            cur.setPosition(og_end + len(text), QTextCursor.KeepAnchor)
 
         self.setTextCursor(cur)
         cur.endEditBlock()
