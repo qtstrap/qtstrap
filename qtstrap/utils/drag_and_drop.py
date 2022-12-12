@@ -56,19 +56,17 @@ def draggable(target):
     def new_mousePressEvent(self, event: QMouseEvent):
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
-    
-        return super(self.__class__, self).mousePressEvent(event)
 
     def new_mouseMoveEvent(self, event: QMouseEvent) -> None:
         if event.buttons() != Qt.LeftButton:
-            return super(self.__class__, self).mouseMoveEvent(event)
+            return
 
         if self.drag_start_position is None:
-            return super(self.__class__, self).mouseMoveEvent(event)
+            return
 
         distance_moved = QPoint(event.pos() - self.drag_start_position).manhattanLength()
         if distance_moved < QApplication.startDragDistance():
-            return super(self.__class__, self).mouseMoveEvent(event)
+            return
         
         if hasattr(self, 'get_drag_data'):
             mime = self.get_drag_data()
