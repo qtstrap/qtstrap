@@ -78,17 +78,24 @@ class DatabaseHandler(logging.Handler):
     def emit(self, record):
         self.format(record)
         self.format_time(record)
+
+        # single quotes need to be escaped in an SQL query
+        record.msg = record.msg.replace("'", "''")
         
-        if record.exc_info:  # for exceptions
-            record.exc_text = logging._defaultFormatter.formatException(record.exc_info)
+        if record.exc_info:
+            record.exc_text = logging._defaultFormatter.formatException(record.exc_info).replace("'", "''")
         else:
             record.exc_text = ""
 
         # Insert the log record
-        try:
-            QSqlDatabase.database(db_conn_name).exec_(insertion_sql % record.__dict__)
-        except ValueError:
-            pass
+        db = QSqlDatabase.database(db_conn_name)
+
+        query_string = insertion_sql % record.__dict__
+        result = db.exec_(query_string)
+        # if db.lastError().isValid():
+        #     print(db.lastError())
+        #     print(query_string)
+        #     print(result.executedQuery())
 
         for cb in self.callbacks:
             cb()

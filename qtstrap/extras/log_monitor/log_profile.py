@@ -38,6 +38,7 @@ default_columns = [
     Column("Level", "LogLevelName", width=60, visible=True),
     Column("Source", width=200, visible=True),
     Column("Module", width=100, visible=False),
+    Column("'Module:Func:Line'", "Module || ':' || FuncName || ':' || LineNo", width=120, visible=False),
     Column("'Func:Line'", "FuncName || ':' || LineNo", width=120, visible=True),
     Column("Func", "FuncName", width=120, visible=False),
     Column("Line", "LineNo", width=40, visible=False),
