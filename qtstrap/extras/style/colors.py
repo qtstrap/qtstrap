@@ -16,6 +16,7 @@ class colors:
     fuchsia = '#F012BE'
     purple = '#B10DC9'
     black = '#111111'
+    grey = '#AAAAAA'
     gray = '#AAAAAA'
     silver = '#DDDDDD'
     white = '#FFFFFF'
@@ -36,6 +37,7 @@ class qcolors:
     fuchsia = QColor(colors.fuchsia)
     purple = QColor(colors.purple)
     black = QColor(colors.black)
+    grey = QColor(colors.grey)
     gray = QColor(colors.gray)
     silver = QColor(colors.silver)
     white = QColor(colors.white)
