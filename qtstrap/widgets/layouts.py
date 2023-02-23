@@ -94,6 +94,10 @@ class ContextLayout:
     def grid(self, *args, **kwargs):
         self.next_layout = CGridLayout(self._layout, *args, **kwargs)
         return self
+    
+    def form(self, *args, **kwargs):
+        self.next_layout = CFormLayout(self._layout, *args, **kwargs)
+        return self
 
     def split(self, name=None, **kwargs):
         if name:
@@ -125,16 +129,10 @@ class ContextLayout:
 # *************************************************************************** #
 
 
-class CVBoxLayout(ContextLayout, QVBoxLayout):
-    pass
-
-
-class CHBoxLayout(ContextLayout, QHBoxLayout):
-    pass
-
-
-class CGridLayout(ContextLayout, QGridLayout):
-    pass
+class CVBoxLayout(ContextLayout, QVBoxLayout): ...
+class CHBoxLayout(ContextLayout, QHBoxLayout): ...
+class CGridLayout(ContextLayout, QGridLayout): ...
+class CFormLayout(ContextLayout, QFormLayout): ...
 
 
 # --------------------------------------------------------------------------- #

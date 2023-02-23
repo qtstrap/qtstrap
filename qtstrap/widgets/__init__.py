@@ -3,6 +3,7 @@ from .layouts import (
     CVBoxLayout,
     CHBoxLayout,
     CGridLayout,
+    CFormLayout,
     CSplitter, 
     PersistentCSplitter,
     CScrollArea, 
