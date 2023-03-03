@@ -1,5 +1,4 @@
 from qtstrap import *
-from qtstrap.extras.style import colors
 import typing
 import re
 
@@ -8,7 +7,7 @@ COMMAND_PALETTE_COLORS = {
     'dark': {
         'text_normal': 'gray',
         'text_highlighted': 'lightgray',
-        'text_contains': '0074D9',
+        'text_contains': '#0074D9',
         'selected_text_normal': 'lightgray',
         'selected_text_highlighted': 'gray',
         'bg_highlighted': '#243F89',
@@ -63,18 +62,12 @@ class PopupDelegate(QStyledItemDelegate):
         super().__init__(parent)
         self.prefix = ""
 
-
+    def get_colors(self):
         self.normal = QPen(get_color('text_normal'))
         self.selected = QPen(get_color('selected_text_normal'))
         self.contains = QPen(get_color('text_highlighted'))
         self.highlight = QPen(QColor(get_color('text_contains')))
         self.background = QColor(get_color('bg_highlighted'))
-
-        # self.normal = QPen('black')
-        # self.selected = QPen('lightgray')
-        # self.contains = QPen('grey')
-        # self.highlight = QPen(QColor('#0074D9'))
-        # self.background = QColor('#0060c0')
 
     def set_prefix(self, prefix):
         self.prefix = prefix
@@ -89,6 +82,7 @@ class PopupDelegate(QStyledItemDelegate):
         prefix = self.prefix
         value = index.data(Qt.EditRole)
         shortcut = index.data(Qt.UserRole)
+        selected = option.state & QStyle.State_Selected
 
         # adjust full drawing area
         option.rect.setX(option.rect.x() + 5)
@@ -96,11 +90,14 @@ class PopupDelegate(QStyledItemDelegate):
 
         painter.save()
 
-        if option.state & QStyle.State_Selected:
+        if selected:
             painter.fillRect(option.rect, self.background)
 
         if prefix == "":
-            painter.setPen(self.normal)
+            if selected:
+                painter.setPen(self.selected)
+            else:
+                painter.setPen(self.normal)
             painter.drawText(option.rect, Qt.AlignLeft, value)
         else:
             if prefix.lower() in value.lower():
@@ -121,7 +118,7 @@ class PopupDelegate(QStyledItemDelegate):
                     if text.lower() == prefix.lower():
                         painter.setPen(self.highlight)
                     else:
-                        if option.state & QStyle.State_Selected:
+                        if selected:
                             painter.setPen(self.selected)
                         else:
                             painter.setPen(self.normal)
@@ -131,7 +128,10 @@ class PopupDelegate(QStyledItemDelegate):
 
                     prev = painter.drawText(rect, Qt.AlignLeft, text)
             else:
-                painter.setPen(self.normal)
+                if selected:
+                    painter.setPen(self.selected)
+                else:
+                    painter.setPen(self.normal)
                 painter.drawText(option.rect, Qt.AlignLeft, value)
 
         painter.setPen(self.normal)
@@ -176,6 +176,7 @@ class CommandCompleter(QWidget):
         self.list.setSelectionMode(QAbstractItemView.SingleSelection)
         self.list.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.list.setFixedHeight(500)
+        self.list.setResizeMode(QListView.Adjust)
 
         self.command_model = CommandModel(self)
         self.list.setModel(self.command_model)
@@ -183,10 +184,13 @@ class CommandCompleter(QWidget):
         self.delegate = PopupDelegate(self)
         self.list.setItemDelegate(self.delegate)
         
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(self.list)
+        with CVBoxLayout(self, margins=0) as layout:
+            layout.add(self.list)
+
         self.active = False
+        
+    def reset(self):
+        self.delegate.get_colors()
 
     def open(self):
         self.active = True
@@ -229,9 +233,8 @@ class CommandCompleter(QWidget):
         return index.data(Qt.EditRole)
 
 
-class _CommandPalette(QDialog):
-    _instance = None
-
+@singleton
+class CommandPalette(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName('CommandPalette')
@@ -247,22 +250,21 @@ class _CommandPalette(QDialog):
         self.action.triggered.connect(self.palette)
 
         self.line = QLineEdit()
-        self.line.setStyleSheet("""
-            QLineEdit {
-                font-size: 16pt;
-                border: 1px solid #0074D9;
-            }
-        """)
+        # self.line.setStyleSheet("""
+        #     QLineEdit {
+        #         font-size: 16pt;
+        #         border: 1px solid #0074D9;
+        #     }
+        # """)
         self.command_completer = CommandCompleter(self)
 
         self.line.textChanged.connect(self.command_completer.update_prefix)
         self.line.returnPressed.connect(self.accept)
         self.command_completer.list.clicked.connect(self.accept)
 
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-        layout.addWidget(self.line)
-        layout.addWidget(self.command_completer)
+        with CVBoxLayout(self, margins=(5, 5, 5, 5)) as layout:
+            layout.add(self.line)
+            layout.add(self.command_completer)
 
         self.command_completer.close()
 
@@ -283,6 +285,7 @@ class _CommandPalette(QDialog):
         self.line.setValidator(validator)
         self.line.setInputMask(mask)
 
+        self.command_completer.reset()
         self.center_on_parent()
         self.show()
         self.activateWindow()
@@ -345,10 +348,3 @@ class _CommandPalette(QDialog):
         r = self.parent().frameGeometry()
         rect = QRect(r.x() - (self.width() / 2), r.y(), r.width(), 100)
         self.move(rect.center())
-
-
-def CommandPalette(parent=None):
-    if _CommandPalette._instance is None:
-        _CommandPalette._instance = _CommandPalette(parent)
-
-    return _CommandPalette._instance
