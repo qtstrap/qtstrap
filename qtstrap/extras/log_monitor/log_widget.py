@@ -6,7 +6,8 @@ from .log_database_handler import DatabaseHandler, db_conn_name
 
 
 try:
-    from command_palette import CommandPalette, Command
+    from qtstrap.extras.command_palette import CommandPalette, Command
+
     command_palette_available = True
 except:
     command_palette_available = False
