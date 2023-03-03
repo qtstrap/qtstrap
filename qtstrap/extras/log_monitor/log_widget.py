@@ -16,11 +16,11 @@ except:
 class LogMonitorWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.tab_name = "Log Monitor"
+        self.tab_name = 'Log Monitor'
 
         if command_palette_available:
             self.commands = [
-                Command("Log Monitor: Switch profile", triggered=self.open_profile_prompt),
+                Command('Log Monitor: Switch profile', triggered=self.open_profile_prompt),
             ]
 
         self.log_table = LogTableView()
@@ -42,11 +42,10 @@ class LogMonitorWidget(QWidget):
         self.completer.setCaseSensitivity(Qt.CaseInsensitive)
         self.completer.setCompletionMode(QCompleter.PopupCompletion)
 
-        QTimer.singleShot(0, lambda: CommandPalette().open(
-            placeholder='Select a profile',
-            cb=lambda result: print(result),
-            completer=self.completer
-        ))
+        def cb(result):
+            print(result)
+
+        call_later(lambda: CommandPalette().open(placeholder='Select a profile', cb=cb, completer=self.completer))
 
     def query_existing_loggers(self):
         db = QSqlDatabase.database(db_conn_name)
@@ -68,8 +67,8 @@ class LogMonitorDockWidget(QDockWidget):
 
         if command_palette_available:
             self.commands = [
-                Command("Log Monitor: Show log monitor", triggered=self.show, shortcut='Ctrl+L'),
-                Command("Log Monitor: Hide log monitor", triggered=self.hide),
+                Command('Log Monitor: Show log monitor', triggered=self.show, shortcut='Ctrl+L'),
+                Command('Log Monitor: Hide log monitor', triggered=self.hide),
             ]
 
         self.setAllowedAreas(Qt.AllDockWidgetAreas)
@@ -79,13 +78,13 @@ class LogMonitorDockWidget(QDockWidget):
 
         if not self.parent().restoreDockWidget(self):
             self.parent().addDockWidget(self.starting_area, self)
-        
+
         self.closeEvent = lambda x: self.hide()
 
     def adjust_size(self):
         if self.isFloating():
             self.adjustSize()
-            
+
     def toggleViewAction(self):
         action = super().toggleViewAction()
         action.setShortcut(self.shortcut)
@@ -103,13 +102,13 @@ class LogMonitorDropdown(QWidget):
         parent.installEventFilter(self)
 
         CHBoxLayout(self, margins=0).add(LogMonitorWidget(self))
-        
+
         if command_palette_available:
             self.commands = [
-                Command("Log Monitor: Show log monitor", triggered=self.show, shortcut=self.shortcut),
-                Command("Log Monitor: Hide log monitor", triggered=self.hide),
+                Command('Log Monitor: Show log monitor', triggered=self.show, shortcut=self.shortcut),
+                Command('Log Monitor: Hide log monitor', triggered=self.hide),
             ]
-        
+
         self.hide()
 
     def eventFilter(self, source: QObject, event: QEvent) -> bool:
@@ -122,7 +121,7 @@ class LogMonitorDropdown(QWidget):
         return super().eventFilter(source, event)
 
     def toggleViewAction(self):
-        action = QAction("Toggle Log Monitor", self)
+        action = QAction('Toggle Log Monitor', self)
         action.setShortcut(self.shortcut)
         action.triggered.connect(self.toggle_view)
         return action
