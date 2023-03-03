@@ -78,5 +78,7 @@ def apply_theme(theme, widget):
 
     _themes[theme](widget)
 
-    fusion = QStyleFactory.create('fusion')
-    widget.setStyle(fusion)
+    if theme == 'dark':
+        widget.setStyle('fusion')
+    if theme == 'light':
+        widget.setStyle('windowsvista')
