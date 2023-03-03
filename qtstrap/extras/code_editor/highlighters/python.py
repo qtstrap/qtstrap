@@ -15,6 +15,7 @@ def format(color, style=''):
     return _format
 
 
+# modeled off the default VSCode themes
 STYLES = {
     'light': {
         'keyword': format('#0000FF'),
