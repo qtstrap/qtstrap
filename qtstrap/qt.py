@@ -28,4 +28,4 @@ some_widget['name_of_child']
 def button1_hander():
     pass
 """
-QObject.__getitem__ = lambda self, name: self.findChild(QWidget, name)
+# QObject.__getitem__ = lambda self, name: self.findChild(QWidget, name)
