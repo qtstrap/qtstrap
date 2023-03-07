@@ -99,11 +99,11 @@ class PythonHighlighter(QSyntaxHighlighter):
         super().__init__(document)
         self.build_rules()
 
-        def rehighlight():
-            self.build_rules()
-            self.rehighlight()
+        App().theme_changed.connect(self._rehighlight)
 
-        App().theme_changed.connect(rehighlight)
+    def _rehighlight(self):
+        self.build_rules()
+        self.rehighlight()
 
     def build_rules(self):
         # Multi-line strings (expression, flag, style)

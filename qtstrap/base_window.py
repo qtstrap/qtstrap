@@ -12,6 +12,15 @@ class SettingsMenu(QMenu):
         return action
 
 
+class ThemeMenu(QMenu):
+    def __init__(self, parent=None) -> None:
+        super().__init__(parent=parent)
+        self.setTitle('Theme')
+
+        self.addAction('Light').triggered.connect(lambda: QApplication.instance().change_theme('light'))
+        self.addAction('Dark').triggered.connect(lambda: QApplication.instance().change_theme('dark'))
+
+
 class BaseMainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

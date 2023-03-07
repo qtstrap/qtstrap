@@ -1,8 +1,10 @@
 from qtstrap import OPTIONS
+from qtstrap.extras.style import apply_theme
 from .qt import *
 import signal
 import sys
 from pathlib import Path
+import qtawesome as qta
 
 
 def install_ctrlc_handler(app):
@@ -41,6 +43,8 @@ def install_app_info(app):
 
 
 class BaseApplication(QApplication):
+    theme_changed = Signal()
+
     def __init__(self, register_ctrlc_handler=True) -> None:
         super().__init__(sys.argv)
 
@@ -48,3 +52,20 @@ class BaseApplication(QApplication):
 
         if register_ctrlc_handler:
             install_ctrlc_handler(self)
+
+        default_theme = 'light'
+        theme = QSettings().value('theme', default_theme)
+        self.change_theme(theme)
+
+    def change_theme(self, theme: str, force=False):
+        if not force and theme == OPTIONS.theme:
+            return
+
+        OPTIONS.theme = theme
+        QSettings().setValue('theme', theme)
+
+        # TODO: find and redraw all icons
+        qta.reset_cache()
+        apply_theme(theme, self)
+
+        self.theme_changed.emit()

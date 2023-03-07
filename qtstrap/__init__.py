@@ -34,7 +34,10 @@ if Path(sys.argv[0]).parts[-1] != 'qtstrap':
             install_app_info,
             install_ctrlc_handler,
         )
-        from .base_window import BaseMainWindow
+        from .base_window import (
+            BaseMainWindow,
+            ThemeMenu,
+        )
 
         # create a shorter alias for accessing the current QApplication
         App = QApplication.instance

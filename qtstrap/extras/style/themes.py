@@ -1,7 +1,11 @@
 from qtstrap import *
 
+# TODO: theme editor
+# TODO: support adding more themes
+# TODO: correctly integrate with OPTIONS.theme
 
-def dark(widget):
+
+def dark() -> QPalette:
     dark_palette = QPalette()
 
     # base
@@ -31,10 +35,10 @@ def dark(widget):
     dark_palette.setColor(QPalette.Disabled, QPalette.Highlight, QColor(80, 80, 80))
     dark_palette.setColor(QPalette.Disabled, QPalette.HighlightedText, QColor(127, 127, 127))
 
-    widget.setPalette(dark_palette)
+    return dark_palette
 
 
-def light(widget):
+def light() -> QPalette:
     light_palette = QPalette()
 
     # base
@@ -64,21 +68,25 @@ def light(widget):
     light_palette.setColor(QPalette.Disabled, QPalette.Highlight, QColor(190, 190, 190))
     light_palette.setColor(QPalette.Disabled, QPalette.HighlightedText, QColor(115, 115, 115))
 
-    widget.setPalette(light_palette)
+    return light_palette
 
 
 _themes = {
-    'dark': dark,
-    'light': light,
+    'dark': {
+        'palette': dark,
+        'style': 'fusion',
+    },
+    'light': {
+        'palette': light,
+        'style': 'windowsvista',
+    },
 }
 
 
 def apply_theme(theme, widget):
     widget.style().unpolish(widget)
 
-    _themes[theme](widget)
-
-    if theme == 'dark':
-        widget.setStyle('fusion')
-    if theme == 'light':
-        widget.setStyle('windowsvista')
+    palette = _themes[theme]['palette']()
+    widget.setPalette(palette)
+    style = _themes[theme]['style']
+    widget.setStyle(style)
