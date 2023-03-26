@@ -1,4 +1,10 @@
-from qtstrap import QObject, SignalInstance
+from qtstrap import QObject
+
+
+try:
+    from qtstrap import SignalInstance
+except:
+    from qtstrap import pyqtBoundSignal as SignalInstance
 
 
 class Adapter(QObject):
