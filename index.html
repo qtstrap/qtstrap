@@ -179,13 +179,51 @@
 <li>preconfigured InnoSetup setup compiler script</li>
 <li>custom Qt widgets with useful behaviors</li>
 <li>Pythonic layout system using ContextLayouts</li>
+<li>light/dark theme with application-level theme switching</li>
+<li><code>extras</code>:</li>
+<li>CommandPalette, like VSCode or SublimeText</li>
+<li>Logging Subsystem: log to local database + log viewer widgets</li>
+<li>CodeEditor: Custom QTextEditor subclass customized for code editing</li>
 <li>Some other stuff I haven't remembered yet</li>
+</ul>
+<h2 id="widget-types">Widget types</h2>
+<ul>
+<li>Buttons:</li>
+<li>StateButton</li>
+<li>IconToggleButton</li>
+<li>ConfirmToggleButton</li>
+<li>MenuButton</li>
+<li>LabelEdit</li>
+<li>HLine and VLine</li>
+<li>LinkLabel</li>
+<li>Persistent Widgets (for rapid prototyping of saved data)</li>
+<li>PersistentCheckableAction</li>
+<li>PersistentCheckBox</li>
+<li>PersistentComboBox</li>
+<li>PersistentLineEdit</li>
+<li>PersistentListWidget</li>
+<li>PersistentPlainTextEdit</li>
+<li>PersistentTabWidget</li>
+<li>PersistentTextEdit</li>
+<li>PersistentTreeWidget</li>
+</ul>
+<h2 id="utility-classes-and-functions">Utility Classes and Functions</h2>
+<ul>
+<li>Adapter</li>
+<li>SignalBlocker</li>
+<li>TimeStamp</li>
+<li>StringBuilder</li>
+<li>call_later()</li>
+<li>decorators:</li>
+<li>@accepts_file_drops()</li>
+<li>@trace</li>
+<li>@singleton</li>
+<li>context managers:</li>
+<li>Defer</li>
 </ul>
 <h1 id="roadmap">Roadmap</h1>
 <ul>
-<li>Use QtPy to become PySide2/PyQt agnostic</li>
 <li>Write documentation for ContextLayouts</li>
-<li>Find a way to for BaseApplication to pull app info from project.ini</li>
 <li>Create a sane menu bar constructor</li>
 <li>Create an application auto-updater</li>
 <li>Create an application crash reporter</li>
