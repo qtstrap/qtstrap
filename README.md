@@ -21,6 +21,47 @@ More complete docs are available [here](https://qtstrap.github.io/qtstrap/).
 * Pythonic layout system using ContextLayouts
 * Some other stuff I haven't remembered yet
 
+## Custom Widgets
+
+- `LabelEdit`
+- `HLine` and `VLine`
+- `LinkLabel`
+- Buttons:
+  - `StateButton`
+  - `IconToggleButton`
+  - `ConfirmToggleButton`
+  - `MenuButton`
+- Persistent Widgets (for rapid prototyping of saved data):
+  - `PersistentCheckableAction`
+  - `PersistentCheckBox`
+  - `PersistentComboBox`
+  - `PersistentLineEdit`
+  - `PersistentListWidget`
+  - `PersistentPlainTextEdit`
+  - `PersistentTabWidget`
+  - `PersistentTextEdit`
+  - `PersistentTreeWidget`
+
+## Utility Classes and Functions
+- `Adapter`
+- `TimeStamp`
+- `StringBuilder`
+- `call_later()`
+
+## decorators:
+- `@accepts_file_drops`
+- `@trace`
+- `@singleton`
+
+## context managers:
+- `Defer`
+- `SignalBlocker`
+
+## qtstrap.extras:
+  - `CommandPalette`, like VSCode or SublimeText
+  - Logging Subsystem: log to local database + log viewer widgets
+  - `CodeEditor`: Custom QTextEditor subclass customized for code editing
+
 
 # Dependencies
 
