@@ -66,6 +66,20 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Extras</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/">Extras</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/code_editor/">Code Editor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/command_palette/">Command Palette</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/log_monitor/">Log Monitor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/styles/">Styles</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
@@ -76,6 +90,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#class-codeeditor">class CodeEditor</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#method-codeeditor__init__">method CodeEditor.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-codeeditorduplicate_selection">method CodeEditor.duplicate_selection</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-codeeditoreventfilter">method CodeEditor.eventFilter</a>
     </li>
@@ -135,6 +151,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
@@ -143,9 +161,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.adapter/">Utils.adapter</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.call_later/">Utils.call later</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.decorators/">Utils.decorators</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.defer/">Utils.defer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.drag_and_drop/">Utils.drag and drop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.get_ip/">Utils.get ip</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
                   </li>
@@ -153,7 +177,11 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.singleton/">Utils.singleton</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.string_builder/">Utils.string builder</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.timestamp/">Utils.timestamp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.trace/">Utils.trace</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.utils/">Utils.utils</a>
                   </li>
@@ -172,6 +200,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_tab_widget/">Widgets.persistent tab widget</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_widgets/">Widgets.persistent widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.toggle/">Widgets.toggle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.toolbar/">Widgets.toolbar</a>
                   </li>
               </ul>
       </div>
@@ -205,6 +237,7 @@
 <h1 id="module-extrascode_editorcode_editor"><kbd>module</kbd> <code>extras.code_editor.code_editor</code></h1>
 <h2 id="global-variables"><strong>Global Variables</strong></h2>
 <ul>
+<li><strong>TYPE_CHECKING</strong></li>
 <li><strong>PYQT6</strong></li>
 <li><strong>PYQT5</strong></li>
 <li><strong>PYSIDE2</strong></li>
@@ -213,62 +246,67 @@
 <hr />
 <p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-codeeditor"><kbd>class</kbd> <code>CodeEditor</code></h2>
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditor__init__"><kbd>method</kbd> <code>CodeEditor.__init__</code></h3>
 <pre><code class="language-python">__init__(*args, changed=None, model=None, highlighter=None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L211"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-codeeditorduplicate_selection"><kbd>method</kbd> <code>CodeEditor.duplicate_selection</code></h3>
+<pre><code class="language-python">duplicate_selection(direction)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditoreventfilter"><kbd>method</kbd> <code>CodeEditor.eventFilter</code></h3>
 <pre><code class="language-python">eventFilter(obj, event)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L138"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L161"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditorexpand_selection"><kbd>method</kbd> <code>CodeEditor.expand_selection</code></h3>
 <pre><code class="language-python">expand_selection(cursor)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L243"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditorindent_selection"><kbd>method</kbd> <code>CodeEditor.indent_selection</code></h3>
 <pre><code class="language-python">indent_selection(direction)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L56"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L60"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditorinsert_completion"><kbd>method</kbd> <code>CodeEditor.insert_completion</code></h3>
 <pre><code class="language-python">insert_completion(completion)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L69"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L73"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditorkeypressevent"><kbd>method</kbd> <code>CodeEditor.keyPressEvent</code></h3>
-<pre><code class="language-python">keyPressEvent(event: PySide6.QtGui.QKeyEvent)
+<pre><code class="language-python">keyPressEvent(event: PySide2.QtGui.QKeyEvent)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L251"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditormove_selection"><kbd>method</kbd> <code>CodeEditor.move_selection</code></h3>
 <pre><code class="language-python">move_selection(direction)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L309"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L373"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditortext"><kbd>method</kbd> <code>CodeEditor.text</code></h3>
 <pre><code class="language-python">text()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L68"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditortext_under_cursor"><kbd>method</kbd> <code>CodeEditor.text_under_cursor</code></h3>
 <pre><code class="language-python">text_under_cursor()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L164"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditortoggle_comments"><kbd>method</kbd> <code>CodeEditor.toggle_comments</code></h3>
 <pre><code class="language-python">toggle_comments()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L50"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditorupdate_tab_width"><kbd>method</kbd> <code>CodeEditor.update_tab_width</code></h3>
 <pre><code class="language-python">update_tab_width()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L292"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\code_editor\code_editor.py#L356"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-codeeditorwrap_selection"><kbd>method</kbd> <code>CodeEditor.wrap_selection</code></h3>
 <pre><code class="language-python">wrap_selection(key)
 </code></pre>
@@ -278,7 +316,7 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../structure/makefile/" class="btn btn-neutral float-left" title="Makefile"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../extras/styles/" class="btn btn-neutral float-left" title="Styles"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../extras.code_editor.code_line/" class="btn btn-neutral float-right" title="Extras.code editor.code line">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -302,7 +340,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../structure/makefile/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../extras/styles/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../extras.code_editor.code_line/" style="color: #fcfcfc">Next &raquo;</a></span>

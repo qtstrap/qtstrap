@@ -66,6 +66,20 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Extras</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/">Extras</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/code_editor/">Code Editor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/command_palette/">Command Palette</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/log_monitor/">Log Monitor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/styles/">Styles</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
@@ -95,6 +109,10 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#method-column__init__">method Column.__init__</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-columnget_data">method Column.get_data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-columnset_data">method Column.set_data</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-columnset_visibility">method Column.set_visibility</a>
     </li>
         </ul>
@@ -103,6 +121,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#method-logprofile__init__">method LogProfile.__init__</a>
         <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#property-logprofilecolumn_data">property LogProfile.column_data</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#property-logprofilevisible_columns">property LogProfile.visible_columns</a>
     </li>
         </ul>
@@ -110,6 +130,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#method-logprofilebuild_query">method LogProfile.build_query</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-logprofileget_log_level_column">method LogProfile.get_log_level_column</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-logprofileset_columns">method LogProfile.set_columns</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-logprofileset_filter">method LogProfile.set_filter</a>
     </li>
@@ -131,6 +153,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
@@ -139,9 +163,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.adapter/">Utils.adapter</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.call_later/">Utils.call later</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.decorators/">Utils.decorators</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.defer/">Utils.defer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.drag_and_drop/">Utils.drag and drop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.get_ip/">Utils.get ip</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
                   </li>
@@ -149,7 +179,11 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.singleton/">Utils.singleton</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.string_builder/">Utils.string builder</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.timestamp/">Utils.timestamp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.trace/">Utils.trace</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.utils/">Utils.utils</a>
                   </li>
@@ -168,6 +202,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_tab_widget/">Widgets.persistent tab widget</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_widgets/">Widgets.persistent widgets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.toggle/">Widgets.toggle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.toolbar/">Widgets.toolbar</a>
                   </li>
               </ul>
       </div>
@@ -209,34 +247,51 @@
 <h2 id="class-column"><kbd>class</kbd> <code>Column</code></h2>
 <p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L8"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-column__init__"><kbd>method</kbd> <code>Column.__init__</code></h3>
-<pre><code class="language-python">__init__(name=None, title=None, visible=True, width=50)
+<pre><code class="language-python">__init__(title=None, query=None, visible=True, width=0)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L14"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L23"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-columnget_data"><kbd>method</kbd> <code>Column.get_data</code></h3>
+<pre><code class="language-python">get_data()
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L19"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-columnset_data"><kbd>method</kbd> <code>Column.set_data</code></h3>
+<pre><code class="language-python">set_data(data)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L16"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-columnset_visibility"><kbd>method</kbd> <code>Column.set_visibility</code></h3>
 <pre><code class="language-python">set_visibility(visible)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-logprofile"><kbd>class</kbd> <code>LogProfile</code></h2>
-<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L36"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L55"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-logprofile__init__"><kbd>method</kbd> <code>LogProfile.__init__</code></h3>
 <pre><code class="language-python">__init__()
 </code></pre>
 <hr />
+<h4 id="property-logprofilecolumn_data"><kbd>property</kbd> LogProfile.column_data</h4>
+<hr />
 <h4 id="property-logprofilevisible_columns"><kbd>property</kbd> LogProfile.visible_columns</h4>
 <hr />
-<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L88"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-logprofilebuild_query"><kbd>method</kbd> <code>LogProfile.build_query</code></h3>
-<pre><code class="language-python">build_query()
+<pre><code class="language-python">build_query(row_count)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L51"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L74"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-logprofileget_log_level_column"><kbd>method</kbd> <code>LogProfile.get_log_level_column</code></h3>
 <pre><code class="language-python">get_log_level_column()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-logprofileset_columns"><kbd>method</kbd> <code>LogProfile.set_columns</code></h3>
+<pre><code class="language-python">set_columns(column_data)
+</code></pre>
+<hr />
+<p><a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L77"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-logprofileset_filter"><kbd>method</kbd> <code>LogProfile.set_filter</code></h3>
 <pre><code class="language-python">set_filter(filt)
 </code></pre>

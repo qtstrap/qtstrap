@@ -66,6 +66,20 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Extras</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/">Extras</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/code_editor/">Code Editor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/command_palette/">Command Palette</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/log_monitor/">Log Monitor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../extras/styles/">Styles</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
@@ -103,6 +117,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
@@ -111,9 +127,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.adapter/">Utils.adapter</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.call_later/">Utils.call later</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.decorators/">Utils.decorators</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.defer/">Utils.defer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.drag_and_drop/">Utils.drag and drop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.get_ip/">Utils.get ip</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
                   </li>
@@ -121,7 +143,11 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.singleton/">Utils.singleton</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.string_builder/">Utils.string builder</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.timestamp/">Utils.timestamp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.trace/">Utils.trace</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Utils.utils</a>
     <ul class="current">
@@ -155,6 +181,10 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_widgets/">Widgets.persistent widgets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.toggle/">Widgets.toggle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.toolbar/">Widgets.toolbar</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -187,6 +217,7 @@
 <h1 id="module-utilsutils"><kbd>module</kbd> <code>utils.utils</code></h1>
 <h2 id="global-variables"><strong>Global Variables</strong></h2>
 <ul>
+<li><strong>TYPE_CHECKING</strong></li>
 <li><strong>PYQT6</strong></li>
 <li><strong>PYQT5</strong></li>
 <li><strong>PYSIDE2</strong></li>
@@ -195,31 +226,31 @@
 <hr />
 <p><a href="..\..\qtstrap\utils\utils.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-enable_children"><kbd>function</kbd> <code>enable_children</code></h2>
-<pre><code class="language-python">enable_children(thing: PySide6.QtCore.QObject) → None
+<pre><code class="language-python">enable_children(thing: PySide2.QtCore.QObject) → None
 </code></pre>
 <p>Recursively walk the provided thing and enable all of its widget children. </p>
 <hr />
 <p><a href="..\..\qtstrap\utils\utils.py#L23"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-disable_children"><kbd>function</kbd> <code>disable_children</code></h2>
-<pre><code class="language-python">disable_children(thing: PySide6.QtCore.QObject) → None
+<pre><code class="language-python">disable_children(thing: PySide2.QtCore.QObject) → None
 </code></pre>
 <p>Recursively walk the provided thing and disable all of its widget children. </p>
 <hr />
 <p><a href="..\..\qtstrap\utils\utils.py#L42"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-get_children"><kbd>function</kbd> <code>get_children</code></h2>
-<pre><code class="language-python">get_children(obj: PySide6.QtCore.QObject) → list
+<pre><code class="language-python">get_children(obj: PySide2.QtCore.QObject) → list
 </code></pre>
 <p>Recursively visit all the children of the specified object and collect them in a list. </p>
 <hr />
 <p><a href="..\..\qtstrap\utils\utils.py#L58"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-print_children"><kbd>function</kbd> <code>print_children</code></h2>
-<pre><code class="language-python">print_children(obj: PySide6.QtCore.QObject, prefix='') → None
+<pre><code class="language-python">print_children(obj: PySide2.QtCore.QObject, prefix='') → None
 </code></pre>
 <p>Recursively visit all the children of the specified object and print them. </p>
 <hr />
 <p><a href="..\..\qtstrap\utils\utils.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-set_font_options"><kbd>function</kbd> <code>set_font_options</code></h2>
-<pre><code class="language-python">set_font_options(obj: PySide6.QtCore.QObject, options={})
+<pre><code class="language-python">set_font_options(obj: PySide2.QtCore.QObject, options={})
 </code></pre>
 <p>Set the QFont options of the specified object. Font options are specified by providing the name of the QFont setter method. </p>
 <p><strong>Example:</strong>
@@ -231,7 +262,7 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../utils.timestamp/" class="btn btn-neutral float-left" title="Utils.timestamp"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../utils.trace/" class="btn btn-neutral float-left" title="Utils.trace"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../widgets.buttons/" class="btn btn-neutral float-right" title="Widgets.buttons">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -255,7 +286,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../utils.timestamp/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../utils.trace/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../widgets.buttons/" style="color: #fcfcfc">Next &raquo;</a></span>
