@@ -10,6 +10,7 @@
 **Global Variables**
 ---------------
 - **dark_palette**
+- **themes**
 
 
 

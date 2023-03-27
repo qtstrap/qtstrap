@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -30,14 +31,27 @@ Return a QTextCharFormat with the given attributes.
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L39"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>function</kbd> `get_style`
+
+```python
+get_style(kind)
+```
+
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PythonHighlighter`
+Syntax highlighter for the Python language. 
 
-
-
-
-<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L70"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.__init__`
 
@@ -54,7 +68,21 @@ __init__(document)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L113"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `PythonHighlighter.build_rules`
+
+```python
+build_rules()
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L137"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.highlightBlock`
 
@@ -62,13 +90,11 @@ __init__(document)
 highlightBlock(text)
 ```
 
-Apply syntax highlighting to the given block of text.  
-
-
+Apply syntax highlighting to the given block of text. 
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L131"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\highlighters\python.py#L156"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.match_multiline`
 

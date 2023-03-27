@@ -16,6 +16,8 @@
 - **line_widgets**
 - **persistent_widgets**
 - **persistent_tab_widget**
+- **toggle**
+- **toolbar**
 
 
 

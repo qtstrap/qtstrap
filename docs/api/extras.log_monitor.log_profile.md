@@ -27,7 +27,7 @@
 ### <kbd>method</kbd> `Column.__init__`
 
 ```python
-__init__(name=None, title=None, visible=True, width=50)
+__init__(title=None, query=None, visible=True, width=0)
 ```
 
 
@@ -39,7 +39,35 @@ __init__(name=None, title=None, visible=True, width=50)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L14"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L23"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `Column.get_data`
+
+```python
+get_data()
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L19"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `Column.set_data`
+
+```python
+set_data(data)
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L16"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Column.set_visibility`
 
@@ -54,14 +82,14 @@ set_visibility(visible)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LogProfile`
 
 
 
 
-<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L36"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L55"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogProfile.__init__`
 
@@ -69,6 +97,14 @@ set_visibility(visible)
 __init__()
 ```
 
+
+
+
+
+
+---
+
+#### <kbd>property</kbd> LogProfile.column_data
 
 
 
@@ -86,12 +122,12 @@ __init__()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L88"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogProfile.build_query`
 
 ```python
-build_query()
+build_query(row_count)
 ```
 
 
@@ -100,7 +136,7 @@ build_query()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L51"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L74"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogProfile.get_log_level_column`
 
@@ -114,7 +150,21 @@ get_log_level_column()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `LogProfile.set_columns`
+
+```python
+set_columns(column_data)
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_profile.py#L77"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogProfile.set_filter`
 

@@ -11,14 +11,14 @@
 
 ---
 
-<a href="..\..\qtstrap\utils\signals.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\utils\signals.py#L3"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `SignalBlocker`
 A context manager that blocks the signals of the provided widget. 
 
 The signals are unblocked at the end of the with block. 
 
-<a href="..\..\qtstrap\utils\signals.py#L9"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\utils\signals.py#L8"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `SignalBlocker.__init__`
 

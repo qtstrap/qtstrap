@@ -16,14 +16,11 @@ More complete docs are available [here](https://qtstrap.github.io/qtstrap/).
 
 * `qtstrap` command line tool to bootstrap new projects
 * crossplatform makefile with useful development commands
-* preconfigured pyinstaller spec file
-* preconfigured InnoSetup setup compiler script
+* preconfigured build system using PyInstaller and InnoSetup
 * custom Qt widgets with useful behaviors
 * Pythonic layout system using ContextLayouts
 * Some other stuff I haven't remembered yet
 
-# License
-This project is released under the MIT license.
 
 # Dependencies
 

@@ -15,17 +15,16 @@
 - **log_table_view**
 - **log_widget**
 - **db_path**
+- **exception_logger_name**
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\__init__.py#L14"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\__init__.py#L12"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `install`
 
 ```python
-install(
-    database_name='C:\\Users\\daelon\\AppData\\Local\\Daelonco\\qtstrap/log.db'
-)
+install(database_name='P:/qtstrap/qtstrap/log.db', install_excepthook=True)
 ```
 
 

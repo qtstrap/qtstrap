@@ -9,17 +9,31 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
 - **PYSIDE6**
-- **log_levels**
-- **level_map**
+- **LOG_FILTER_COLORS**
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L31"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>function</kbd> `get_color`
+
+```python
+get_color(key)
+```
+
+
+
+
 
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L23"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LoggerDelegate`
 
@@ -31,7 +45,7 @@
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L36"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerDelegate.paint`
 
@@ -46,14 +60,14 @@ paint(painter, option, index)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L50"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L62"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LoggerTreeWidgetItem`
 
 
 
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L51"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L63"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.__init__`
 
@@ -70,7 +84,7 @@ __init__(parent, name, full_name)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L69"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.clicked`
 
@@ -84,7 +98,7 @@ clicked(column)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L83"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L95"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.double_clicked`
 
@@ -98,7 +112,7 @@ double_clicked(column)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L111"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L123"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.get_levels`
 
@@ -112,7 +126,7 @@ get_levels()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L114"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L126"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.set_all_levels`
 
@@ -126,7 +140,7 @@ set_all_levels(state: bool)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L104"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L116"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.set_levels`
 
@@ -140,7 +154,7 @@ set_levels(level_filter=[])
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L110"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidgetItem.update_data`
 
@@ -155,14 +169,14 @@ update_data()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L132"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LoggerTreeWidget`
 
 
 
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L123"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L135"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.__init__`
 
@@ -179,7 +193,7 @@ __init__()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L157"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L168"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.click`
 
@@ -193,7 +207,7 @@ click(item, column)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L197"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L204"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.contextMenuEvent`
 
@@ -207,7 +221,7 @@ contextMenuEvent(event)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L252"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L259"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.deselect_all`
 
@@ -221,7 +235,7 @@ deselect_all()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L227"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L234"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.disable_all_levels`
 
@@ -235,7 +249,7 @@ disable_all_levels(pos)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L219"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L226"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.disable_everything`
 
@@ -249,7 +263,7 @@ disable_everything()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L161"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L172"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.double_click`
 
@@ -263,7 +277,7 @@ double_click(item, column)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L223"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L230"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.enable_all_levels`
 
@@ -277,7 +291,7 @@ enable_all_levels(pos)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L215"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L222"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.enable_everything`
 
@@ -291,7 +305,7 @@ enable_everything()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L169"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L180"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.register_logger`
 
@@ -305,7 +319,7 @@ register_logger(full_name)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L189"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L200"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.register_loggers`
 
@@ -319,7 +333,7 @@ register_loggers(loggers)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L244"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L251"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.select_all`
 
@@ -333,7 +347,7 @@ select_all()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L256"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L263"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.select_only`
 
@@ -347,7 +361,7 @@ select_only(pos)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L165"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L176"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.selection_changed`
 
@@ -361,7 +375,7 @@ selection_changed()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L209"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L216"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.set_levels_of_children`
 
@@ -375,7 +389,7 @@ set_levels_of_children(item, state)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L231"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L238"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LoggerTreeWidget.set_visible_loggers`
 
@@ -390,14 +404,14 @@ set_visible_loggers(visible_loggers)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L262"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L269"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `ProfileSelector`
 
 
 
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L267"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L274"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ProfileSelector.__init__`
 
@@ -414,7 +428,21 @@ __init__()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L305"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L297"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `ProfileSelector.eventFilter`
+
+```python
+eventFilter(source, event)
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L319"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ProfileSelector.on_accept`
 
@@ -428,7 +456,7 @@ on_accept()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L298"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L314"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ProfileSelector.on_add`
 
@@ -442,7 +470,21 @@ on_add()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L294"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L328"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `ProfileSelector.on_cancel`
+
+```python
+on_cancel()
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L310"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ProfileSelector.on_change`
 
@@ -456,7 +498,7 @@ on_change()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L316"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L333"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ProfileSelector.on_remove`
 
@@ -471,19 +513,19 @@ on_remove()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L321"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L338"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `FilterControls`
 
 
 
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L344"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L359"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `FilterControls.__init__`
 
 ```python
-__init__()
+__init__(table)
 ```
 
 
@@ -495,7 +537,7 @@ __init__()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L427"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L446"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `FilterControls.add_profile`
 
@@ -509,7 +551,7 @@ add_profile(name)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L440"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L459"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `FilterControls.change_profile`
 
@@ -523,7 +565,21 @@ change_profile(profile_name)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L433"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L467"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `FilterControls.columns_changed`
+
+```python
+columns_changed()
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L452"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `FilterControls.remove_profile`
 
@@ -537,7 +593,7 @@ remove_profile(name)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L424"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L442"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `FilterControls.save_settings`
 
@@ -551,7 +607,7 @@ save_settings()
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L448"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_filter_controls.py#L471"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `FilterControls.update_filter`
 

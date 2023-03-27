@@ -12,16 +12,22 @@ plugins:
   - literate-nav
 
 nav:
-    - Overview:
-        - Home: index.md
-        - Quickstart: 
-            - Installation: quickstart/installation.md
-            - Getting Started: quickstart/gettingstarted.md
-            - BaseApplication: quickstart/baseapplication.md
-            - BaseMainWindow: quickstart/basemainwindow.md
-            - Context Layouts: quickstart/context_layouts.md
-        - Project Structure: 
-            - Project Structure: structure/structure.md
-            - Makefile: structure/makefile.md
-    - API Reference:
-      - api/*
+  - Overview:
+    - Home: index.md
+    - Quickstart: 
+      - Installation: quickstart/installation.md
+      - Getting Started: quickstart/gettingstarted.md
+      - BaseApplication: quickstart/baseapplication.md
+      - BaseMainWindow: quickstart/basemainwindow.md
+      - Context Layouts: quickstart/context_layouts.md
+    - Project Structure: 
+      - Project Structure: structure/structure.md
+      - Makefile: structure/makefile.md
+    - Extras: 
+      - Extras: extras/index.md
+      - Code Editor: extras/code_editor.md
+      - Command Palette: extras/command_palette.md
+      - Log Monitor: extras/log_monitor.md
+      - Styles: extras/styles.md
+  - API Reference:
+    - api/*

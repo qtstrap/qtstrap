@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -34,6 +35,20 @@ __init__(text='', link='', both=None, parent=None)
 
 
 
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\widgets\link_label.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `LinkLabel.setBoth`
+
+```python
+setBoth(value)
+```
 
 
 

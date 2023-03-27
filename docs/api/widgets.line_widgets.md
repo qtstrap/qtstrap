@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**

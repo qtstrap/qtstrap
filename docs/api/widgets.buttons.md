@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -211,6 +212,45 @@ uncheck()
 
 ```python
 update_icon()
+```
+
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\widgets\buttons.py#L106"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>class</kbd> `MenuButton`
+
+
+
+
+<a href="..\..\qtstrap\widgets\buttons.py#L107"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `MenuButton.__init__`
+
+```python
+__init__(*args, **kwargs)
+```
+
+
+
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\widgets\buttons.py#L113"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `MenuButton.addAction`
+
+```python
+addAction(*args, **kwargs)
 ```
 
 

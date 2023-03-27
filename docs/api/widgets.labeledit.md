@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -88,7 +89,7 @@ eventFilter(source, event)
 ### <kbd>method</kbd> `LabelEdit.mouseDoubleClickEvent`
 
 ```python
-mouseDoubleClickEvent(event: PySide6.QtGui.QMouseEvent) → None
+mouseDoubleClickEvent(event: PySide2.QtGui.QMouseEvent) → None
 ```
 
 

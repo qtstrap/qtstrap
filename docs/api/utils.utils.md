@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -21,7 +22,7 @@
 ## <kbd>function</kbd> `enable_children`
 
 ```python
-enable_children(thing: PySide6.QtCore.QObject) → None
+enable_children(thing: PySide2.QtCore.QObject) → None
 ```
 
 Recursively walk the provided thing and enable all of its widget children. 
@@ -34,7 +35,7 @@ Recursively walk the provided thing and enable all of its widget children.
 ## <kbd>function</kbd> `disable_children`
 
 ```python
-disable_children(thing: PySide6.QtCore.QObject) → None
+disable_children(thing: PySide2.QtCore.QObject) → None
 ```
 
 Recursively walk the provided thing and disable all of its widget children. 
@@ -47,7 +48,7 @@ Recursively walk the provided thing and disable all of its widget children.
 ## <kbd>function</kbd> `get_children`
 
 ```python
-get_children(obj: PySide6.QtCore.QObject) → list
+get_children(obj: PySide2.QtCore.QObject) → list
 ```
 
 Recursively visit all the children of the specified object and collect them in a list. 
@@ -60,7 +61,7 @@ Recursively visit all the children of the specified object and collect them in a
 ## <kbd>function</kbd> `print_children`
 
 ```python
-print_children(obj: PySide6.QtCore.QObject, prefix='') → None
+print_children(obj: PySide2.QtCore.QObject, prefix='') → None
 ```
 
 Recursively visit all the children of the specified object and print them. 
@@ -73,7 +74,7 @@ Recursively visit all the children of the specified object and print them.
 ## <kbd>function</kbd> `set_font_options`
 
 ```python
-set_font_options(obj: PySide6.QtCore.QObject, options={})
+set_font_options(obj: PySide2.QtCore.QObject, options={})
 ```
 
 Set the QFont options of the specified object. Font options are specified by providing the name of the QFont setter method. 

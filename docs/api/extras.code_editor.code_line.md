@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -46,7 +47,7 @@ __init__(*args, **kwargs)
 ### <kbd>method</kbd> `CodeLine.keyPressEvent`
 
 ```python
-keyPressEvent(event: PySide6.QtGui.QKeyEvent)
+keyPressEvent(event: PySide2.QtGui.QKeyEvent)
 ```
 
 

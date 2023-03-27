@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -80,7 +81,7 @@ format_time(record)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_database_handler.py#L96"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_database_handler.py#L103"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>classmethod</kbd> `DatabaseHandler.register_callback`
 
@@ -94,7 +95,7 @@ register_callback(cb)
 
 ---
 
-<a href="..\..\qtstrap\extras\log_monitor\log_database_handler.py#L100"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\log_monitor\log_database_handler.py#L107"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `DatabaseHandler.write`
 

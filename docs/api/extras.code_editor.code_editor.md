@@ -9,6 +9,7 @@
 
 **Global Variables**
 ---------------
+- **TYPE_CHECKING**
 - **PYQT6**
 - **PYQT5**
 - **PYSIDE2**
@@ -24,7 +25,7 @@
 
 
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.__init__`
 
@@ -41,7 +42,21 @@ __init__(*args, changed=None, model=None, highlighter=None, **kwargs)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L211"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `CodeEditor.duplicate_selection`
+
+```python
+duplicate_selection(direction)
+```
+
+
+
+
+
+---
+
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.eventFilter`
 
@@ -55,7 +70,7 @@ eventFilter(obj, event)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L138"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L161"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.expand_selection`
 
@@ -69,7 +84,7 @@ expand_selection(cursor)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L243"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.indent_selection`
 
@@ -83,7 +98,7 @@ indent_selection(direction)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L56"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L60"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.insert_completion`
 
@@ -97,12 +112,12 @@ insert_completion(completion)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L69"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L73"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.keyPressEvent`
 
 ```python
-keyPressEvent(event: PySide6.QtGui.QKeyEvent)
+keyPressEvent(event: PySide2.QtGui.QKeyEvent)
 ```
 
 
@@ -111,7 +126,7 @@ keyPressEvent(event: PySide6.QtGui.QKeyEvent)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L251"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.move_selection`
 
@@ -125,7 +140,7 @@ move_selection(direction)
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L309"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L373"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.text`
 
@@ -139,7 +154,7 @@ text()
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L68"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.text_under_cursor`
 
@@ -153,7 +168,7 @@ text_under_cursor()
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L164"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.toggle_comments`
 
@@ -167,7 +182,7 @@ toggle_comments()
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L50"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.update_tab_width`
 
@@ -181,7 +196,7 @@ update_tab_width()
 
 ---
 
-<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L292"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="..\..\qtstrap\extras\code_editor\code_editor.py#L356"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeEditor.wrap_selection`
 
