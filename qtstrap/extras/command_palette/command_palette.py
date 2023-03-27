@@ -235,7 +235,7 @@ class CommandCompleter(QWidget):
 
 @singleton
 class CommandPalette(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, shortcut='Ctrl+Shift+P'):
         super().__init__(parent)
         self.setObjectName('CommandPalette')
         self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
@@ -245,8 +245,10 @@ class CommandPalette(QDialog):
         
         self.setMinimumWidth(700)
 
+        self.shortcut = shortcut
+
         self.action = QAction("Command Palette", self)
-        self.action.setShortcut('Ctrl+Shift+P')
+        self.action.setShortcut(self.shortcut)
         self.action.triggered.connect(self.palette)
 
         self.line = QLineEdit()
@@ -276,7 +278,7 @@ class CommandPalette(QDialog):
         self.open()
         self.command_completer.open()
 
-    def _open(self, cb=None, prompt=None, placeholder=None, completer=None, validator=None, mask=None):
+    def _open(self, cb=None, prompt=None, placeholder=None, choices=None, completer=None, validator=None, mask=None):
         self.callback = cb
 
         self.line.setText(prompt)
@@ -291,8 +293,8 @@ class CommandPalette(QDialog):
         self.activateWindow()
         self.line.setFocus()
 
-    def open(self, cb=None, prompt=None, placeholder=None, completer=None, validator=None, mask=None):
-        QTimer.singleShot(0, lambda: self._open(cb, prompt, placeholder, completer, validator, mask))
+    def open(self, cb=None, prompt=None, placeholder=None, choices=None, completer=None, validator=None, mask=None):
+        QTimer.singleShot(0, lambda: self._open(cb, prompt, placeholder, choices, completer, validator, mask))
 
     def accept(self):
         if self.command_completer.active:
