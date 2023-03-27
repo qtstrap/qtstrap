@@ -18,6 +18,8 @@ class CodeEditor(QTextEdit):
             '`': '`',
         }
 
+        self.comment_symbol = '//'
+
         set_font_options(self, {
             'setFamily': 'Courier',
             'setStyleHint': QFont.Monospace,
@@ -183,14 +185,15 @@ class CodeEditor(QTextEdit):
         og_length = len(text)
         lines = []
         
-        add = not all([s[0] == '#' for s in text_lines if s])
+        comment_length = len(self.comment_symbol)
+        add = not all([s[:comment_length] == self.comment_symbol for s in text_lines if s])
 
         for line in text_lines:
             if line:
                 if add:
-                    line = '# ' + line
+                    line = f'{self.comment_symbol} ' + line
                 else:
-                    line = line.removeprefix('# ')
+                    line = line.removeprefix(f'{self.comment_symbol} ')
             lines.append(line)
 
         text = '\n'.join(lines)
@@ -269,7 +272,6 @@ class CodeEditor(QTextEdit):
             cur.movePosition(QTextCursor.EndOfLine, QTextCursor.KeepAnchor)
             cur.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor)
             text = cur.selectedText()
-            print('move:', text)
             cur.setPosition(end)
             cur.movePosition(QTextCursor.Down)
             cur.movePosition(QTextCursor.StartOfLine)
@@ -287,7 +289,6 @@ class CodeEditor(QTextEdit):
             cur.movePosition(QTextCursor.Down, QTextCursor.KeepAnchor)
             cur.movePosition(QTextCursor.EndOfLine, QTextCursor.KeepAnchor)
             text = cur.selectedText()
-            print('move:', text)
             cur.setPosition(start)
             cur.movePosition(QTextCursor.Up)
             cur.movePosition(QTextCursor.EndOfLine)
