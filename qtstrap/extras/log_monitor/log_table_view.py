@@ -23,6 +23,8 @@ class LogDbModel(QSqlQueryModel):
             except (IndexError, KeyError):
                 pass
             return None
+        elif role == Qt.ToolTipRole:                    # <- new lines
+            return super().data(index, Qt.DisplayRole)  # <- new lines
         else:
             return super().data(index, role)
 
