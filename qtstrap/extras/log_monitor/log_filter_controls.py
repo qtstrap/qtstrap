@@ -466,6 +466,7 @@ class FilterControls(QWidget):
 
     def columns_changed(self):
         self.current_profile['column_data'] = self.table.profile.column_data
+        self.table.set_columns(self.current_profile.get('column_data', {}))
         self.save_settings()
 
     def update_filter(self):
