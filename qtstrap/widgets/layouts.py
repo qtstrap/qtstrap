@@ -72,6 +72,10 @@ class ContextLayout:
     def __call__(self):
         return self._layout
 
+    def __iadd__(self, item):
+        self.add(item)
+        return self
+
     def add(self, item, *args, **kwargs):
         if isinstance(item, QWidget):
             self._layout.addWidget(item, *args, **kwargs)
@@ -156,6 +160,10 @@ class CSplitter(QSplitter):
         if orientation:
             self.setOrientation(orientation)
 
+    def __iadd__(self, item):
+        self.add(item)
+        return self
+
     def add(self, item, stretch=None):
         if isinstance(item, QWidget):
             self.addWidget(item)
@@ -217,6 +225,10 @@ class CScrollArea(QScrollArea):
             if orientation in orientations:
                 orientation = orientations[orientation]
             self.setOrientation(orientation)
+
+    def __iadd__(self, item):
+        self.add(item)
+        return self
 
     def add(self, item, stretch=None):
         if isinstance(item, QWidget):
