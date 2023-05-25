@@ -149,13 +149,16 @@ class CSplitter(QSplitter):
 
         if isinstance(parent, QWidget):
             super().__init__(parent, orientation, **kwargs)
-            CHBoxLayout(parent).add(self)
+            CHBoxLayout(parent, margins=margins).add(self)
         elif isinstance(parent, QLayout):
             super().__init__(orientation, **kwargs)
             parent.add(self)
 
-        if margins:
-            self.setContentsMargins(*margins)
+        if margins is not None:
+            if isinstance(margins, tuple):
+                self.setContentsMargins(*margins)
+            elif isinstance(margins, int):
+                self.setContentsMargins(margins, margins, margins, margins)
 
         if orientation:
             self.setOrientation(orientation)
