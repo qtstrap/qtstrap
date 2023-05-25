@@ -21,11 +21,13 @@ if Path(sys.argv[0]).parts[-1] != 'qtstrap':
             'No Qt Bindings found. Try "pip install PySide6" or "pip install PySide6"'
         ) from e
     else:
-        from .settings import *
+        from .settings import PortableSettings
         
         if OPTIONS.portable:
             from .settings import PortableSettings as QSettings
             QSettings._install()
+
+        from .settings_model import SettingsModel
 
         from .utils import *
         from .widgets import *
