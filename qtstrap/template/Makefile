@@ -79,6 +79,38 @@ run_bundle:
 	dist/$(AppName)/$(AppName)
 
 # **************************************************************************** #
+# nuitka stuff
+# needs nuitka==1.7.0,ordered_set,zstandard packages
+
+NFLAGS := app/main.py
+NFLAGS += --quiet
+NFLAGS += --plugin-enable=pyside6
+NFLAGS += --disable-console
+NFLAGS += --include-data-dir=app/resources=resources
+NFLAGS += --windows-icon-from-ico=$(AppIconPath)/$(AppIconName)
+
+NFLAGS_STANDALONE := $(NFLAGS)
+NFLAGS_STANDALONE += --standalone
+NFLAGS_STANDALONE += --output-dir=dist/nuitka/standalone
+NFLAGS_STANDALONE += --output-filename=$(AppName).exe
+
+# create a standalone folder build
+#! MUST BE RUN IN THE VENV
+nuitka_standalone:
+	nuitka $(NFLAGS_STANDALONE)
+
+NFLAGS_ONEFILE := $(NFLAGS)
+NFLAGS_ONEFILE += --standalone
+NFLAGS_ONEFILE += --onefile
+NFLAGS_ONEFILE += --output-dir=dist/nuitka/onefile
+NFLAGS_ONEFILE += --output-filename=$(AppName)_v$(AppVersion).exe
+
+# create a onefile build
+#! MUST BE RUN IN THE VENV
+nuitka_onefile:
+	nuitka $(NFLAGS_ONEFILE)
+
+# **************************************************************************** #
 # Release Targets
 
 # wrap the bundle into a zip file
