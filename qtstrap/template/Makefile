@@ -66,7 +66,7 @@ onefile: venv
 
 # run the bundled executable
 run_onefile:
-	dist/$(AppName)
+	dist/$(AppName)_v$(AppVersion)
 
 # ---------------------------------------------------------------------------- #
 
