@@ -6,7 +6,7 @@ from pathlib import Path
 
 try:
     import pretty_errors
-except:
+except ImportError:
     pass
 
 
