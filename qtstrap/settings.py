@@ -7,10 +7,10 @@ class PortableSettings(QSettings):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(
-            self.settings_file_path,
-            QSettings.IniFormat,
             *args,
-            **kwargs
+            fileName=self.settings_file_path,
+            format=QSettings.IniFormat,
+            **kwargs,
         )
 
     @staticmethod
