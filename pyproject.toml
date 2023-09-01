@@ -10,3 +10,9 @@ build-backend = 'setuptools.build_meta'
 # [tool.setuptools_scm]
 # write_to = "qtstrap/version.py"
 # git_describe_command = "git describe --dirty --tags --long --match v* --first-parent"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
