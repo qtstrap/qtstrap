@@ -27,8 +27,6 @@ if Path(sys.argv[0]).parts[-1] != 'qtstrap':
             from .settings import PortableSettings as QSettings
             QSettings._install()
 
-        from .settings_model import SettingsModel
-
         from .utils import *
         from .widgets import *
         from .base_application import (
