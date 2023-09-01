@@ -8,13 +8,14 @@ class Toggle(QCheckBox):
     _transparent_pen = QPen(Qt.transparent)
     _light_grey_pen = QPen(Qt.lightGray)
 
-    def __init__(self,
-            *args,
-            bar_color=Qt.gray,
-            checked_color="#00B0FF",
-            handle_color=Qt.white,
-            **kwargs
-        ):
+    def __init__(
+        self,
+        *args,
+        bar_color=Qt.gray,
+        checked_color='#00B0FF',
+        handle_color=Qt.white,
+        **kwargs,
+    ):
         super().__init__(*args, **kwargs)
 
         self._bar_brush = QBrush(bar_color)
@@ -45,11 +46,7 @@ class Toggle(QCheckBox):
         p.setRenderHint(QPainter.Antialiasing)
 
         p.setPen(self._transparent_pen)
-        barRect = QRectF(
-            0, 0,
-            contRect.width() - handleRadius,
-            0.40 * contRect.height()
-        )
+        barRect = QRectF(0, 0, contRect.width() - handleRadius, 0.40 * contRect.height())
         barRect.moveCenter(contRect.center())
         rounding = barRect.height() / 2
 
@@ -67,11 +64,7 @@ class Toggle(QCheckBox):
             p.setPen(self._light_grey_pen)
             p.setBrush(self._handle_brush)
 
-        p.drawEllipse(
-            QPointF(xPos, barRect.center().y()),
-            handleRadius,
-            handleRadius
-        )
+        p.drawEllipse(QPointF(xPos, barRect.center().y()), handleRadius, handleRadius)
 
         p.end()
 
@@ -110,22 +103,17 @@ class AnimatedToggle(Toggle):
     _transparent_pen = QPen(Qt.transparent)
     _light_grey_pen = QPen(Qt.lightGray)
 
-    def __init__(self,
-            *args, 
-            pulse_unchecked_color="#44999999",
-            pulse_checked_color="#4400B0EE", 
-            **kwargs
-        ):
+    def __init__(self, *args, pulse_unchecked_color='#44999999', pulse_checked_color='#4400B0EE', **kwargs):
 
         self._pulse_radius = 0
 
         super().__init__(*args, **kwargs)
 
-        self.animation = QPropertyAnimation(self, b"handle_position", self)
+        self.animation = QPropertyAnimation(self, b'handle_position', self)
         self.animation.setEasingCurve(QEasingCurve.InOutCubic)
         self.animation.setDuration(200)
 
-        self.pulse_anim = QPropertyAnimation(self, b"pulse_radius", self)
+        self.pulse_anim = QPropertyAnimation(self, b'pulse_radius', self)
         self.pulse_anim.setDuration(350)
         self.pulse_anim.setStartValue(10)
         self.pulse_anim.setEndValue(20)
@@ -157,11 +145,7 @@ class AnimatedToggle(Toggle):
         p.setRenderHint(QPainter.Antialiasing)
 
         p.setPen(self._transparent_pen)
-        barRect = QRectF(
-            0, 0,
-            contRect.width() - handleRadius,
-            0.40 * contRect.height()
-        )
+        barRect = QRectF(0, 0, contRect.width() - handleRadius, 0.40 * contRect.height())
         barRect.moveCenter(contRect.center())
         rounding = barRect.height() / 2
 
@@ -179,7 +163,7 @@ class AnimatedToggle(Toggle):
             p.drawEllipse(
                 QPointF(xPos, barRect.center().y()),
                 self._pulse_radius,
-                self._pulse_radius
+                self._pulse_radius,
             )
 
         if self.isChecked():
@@ -192,11 +176,7 @@ class AnimatedToggle(Toggle):
             p.setPen(self._light_grey_pen)
             p.setBrush(self._handle_brush)
 
-        p.drawEllipse(
-            QPointF(xPos, barRect.center().y()),
-            handleRadius,
-            handleRadius
-        )
+        p.drawEllipse(QPointF(xPos, barRect.center().y()), handleRadius, handleRadius)
 
         p.end()
 
@@ -211,7 +191,7 @@ class PersistentToggle(Toggle):
             self.stateChanged.connect(changed)
 
         self.stateChanged.connect(lambda: QSettings().setValue(self.name, self.checkState()))
-    
+
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
         if prev_state == int(Qt.Checked):
@@ -230,7 +210,7 @@ class PersistentAnimatedToggle(AnimatedToggle):
             self.stateChanged.connect(changed)
 
         self.stateChanged.connect(lambda: QSettings().setValue(self.name, self.checkState()))
-    
+
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
         if prev_state == int(Qt.Checked):

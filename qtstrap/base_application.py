@@ -9,16 +9,16 @@ import qtawesome as qta
 
 def install_ctrlc_handler(app):
     def ctrlc_handler(sig=None, frame=None):
-        app.closeAllWindows() # this makes sure the MainWindow's .close() method gets called
+        app.closeAllWindows()   # this makes sure the MainWindow's .close() method gets called
         app.quit()
-       
-    # grab the keyboard interrupt signal 
+
+    # grab the keyboard interrupt signal
     signal.signal(signal.SIGINT, ctrlc_handler)
 
     # empty timer callback
     def update():
         pass
-    
+
     # create timer to force python interpreter to get some runtime
     app._ctrlc_timer = QTimer()
     app._ctrlc_timer.timeout.connect(update)

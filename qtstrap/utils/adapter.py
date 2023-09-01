@@ -8,8 +8,8 @@ except:
 
 
 class Adapter(QObject):
-    """ A signal adapter that helps create disposable connections between objects. 
-    
+    """A signal adapter that helps create disposable connections between objects.
+
     A signal-based interface can be defined using an Adapter.
 
     Passing an existing Adapter when creating a new Adapter will automatically link all of
@@ -21,6 +21,7 @@ class Adapter(QObject):
     Technically, Qt Signals already have a .disconnect() method, but I've never gotten it work
     reliably. Using an Adapter essentially gives you a nuclear .disconnect().
     """
+
     def __init__(self, other=None):
         super().__init__()
         self._other = other
@@ -43,7 +44,7 @@ class Adapter(QObject):
     def __str__(self):
         s = ''
         if not self._original:
-            s += ('inherited ')
+            s += 'inherited '
         s += f"{self.__class__.__name__}(Adapter): <{', '.join(self._get_signals(self))}>"
         return s
 
@@ -58,6 +59,7 @@ class Adapter(QObject):
             for name in self._get_signals(self._other):
                 # TODO: this might not be safe
                 getattr(self._other, name).disconnect(getattr(self, name).emit)
+
 
 if __name__ == '__main__':
     from qtstrap import Signal

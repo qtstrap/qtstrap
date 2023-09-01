@@ -1,7 +1,7 @@
 import time
 
 
-session_start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() - 1))
+session_start_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time() - 1))
 
 
 class Column:
@@ -28,26 +28,26 @@ class Column:
                 data['width'] = self.width
         if self.default_visiblity != self.visible:
             data['visible'] = self.visible
-        
+
         return data
 
 
 default_columns = [
-    Column("Time", "TimeStamp", width=130, visible=True),
-    Column("'Level#'", "LogLevel", width=40, visible=False),
-    Column("Level", "LogLevelName", width=60, visible=True),
-    Column("Source", width=200, visible=True),
-    Column("Module", width=100, visible=False),
+    Column('Time', 'TimeStamp', width=130, visible=True),
+    Column("'Level#'", 'LogLevel', width=40, visible=False),
+    Column('Level', 'LogLevelName', width=60, visible=True),
+    Column('Source', width=200, visible=True),
+    Column('Module', width=100, visible=False),
     Column("'Module:Func:Line'", "Module || ':' || FuncName || ':' || LineNo", width=120, visible=False),
     Column("'Func:Line'", "FuncName || ':' || LineNo", width=120, visible=True),
-    Column("Func", "FuncName", width=120, visible=False),
-    Column("Line", "LineNo", width=40, visible=False),
-    Column("Args", width=100, visible=False),
-    Column("Exception", width=100, visible=False),
-    Column("Process", width=100, visible=False),
-    Column("Thread", width=100, visible=False),
-    Column("ThreadName", width=100, visible=False),
-    Column("Message", visible=True),
+    Column('Func', 'FuncName', width=120, visible=False),
+    Column('Line', 'LineNo', width=40, visible=False),
+    Column('Args', width=100, visible=False),
+    Column('Exception', width=100, visible=False),
+    Column('Process', width=100, visible=False),
+    Column('Thread', width=100, visible=False),
+    Column('ThreadName', width=100, visible=False),
+    Column('Message', visible=True),
 ]
 
 
@@ -86,7 +86,7 @@ class LogProfile:
             c.set_data(column_data.get(c.title, {}))
 
     def build_query(self, row_count):
-        query = "SELECT "
+        query = 'SELECT '
 
         columns = []
         for col in self.columns:
@@ -104,18 +104,18 @@ class LogProfile:
             where.append(f"TimeStamp > '{session_start_time}'")
 
         if self.query_limit:
-            where.append(f"rowid > {row_count - self.query_limit}")
+            where.append(f'rowid > {row_count - self.query_limit}')
 
         if self.text_filter:
             where.append(f"Message LIKE '%{self.text_filter}%'")
-        
+
         if self.visible_loggers:
             sources = []
             for logger in self.visible_loggers:
                 levels = ', '.join([f'"{l}"' for l in self.loggers[logger]])
                 s = f'(Source = "{logger}" AND LogLevelName IN ({levels}))'
                 sources.append(s)
-            
+
             where.append(f"({' OR '.join(sources)})")
 
         if where:

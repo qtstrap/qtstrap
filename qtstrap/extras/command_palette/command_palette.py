@@ -19,7 +19,7 @@ COMMAND_PALETTE_COLORS = {
         'selected_text_normal': 'lightgray',
         'selected_text_highlighted': 'gray',
         'bg_highlighted': '#0060c0',
-    }
+    },
 }
 
 
@@ -52,7 +52,7 @@ class Command(QAction):
 
         self.usage_count = 0
         self.triggered.connect(self.used)
-    
+
     def used(self):
         self.usage_count += 1
 
@@ -60,7 +60,7 @@ class Command(QAction):
 class PopupDelegate(QStyledItemDelegate):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.prefix = ""
+        self.prefix = ''
 
     def get_colors(self):
         self.normal = QPen(get_color('text_normal'))
@@ -72,11 +72,12 @@ class PopupDelegate(QStyledItemDelegate):
     def set_prefix(self, prefix):
         self.prefix = prefix
 
-    def paint(self,
-            painter: QtGui.QPainter,
-            option: QtWidgets.QStyleOptionViewItem,
-            index: QtCore.QModelIndex
-        ):
+    def paint(
+        self,
+        painter: QtGui.QPainter,
+        option: QtWidgets.QStyleOptionViewItem,
+        index: QtCore.QModelIndex,
+    ):
 
         self.initStyleOption(option, index)
         prefix = self.prefix
@@ -93,7 +94,7 @@ class PopupDelegate(QStyledItemDelegate):
         if selected:
             painter.fillRect(option.rect, self.background)
 
-        if prefix == "":
+        if prefix == '':
             if selected:
                 painter.setPen(self.selected)
             else:
@@ -102,13 +103,13 @@ class PopupDelegate(QStyledItemDelegate):
         else:
             if prefix.lower() in value.lower():
                 parts = re.split(prefix, value, flags=re.IGNORECASE)
-                
+
                 # the split is case insensitive, so use the lengths of the
                 # parts to slice the original text out of the complete string
                 sections = [parts[0]]
                 length = len(parts[0])
                 for part in parts[1:]:
-                    sections.append(value[length:length + len(prefix)])
+                    sections.append(value[length : length + len(prefix)])
                     sections.append(part)
                     length += len(prefix) + len(part)
 
@@ -124,7 +125,12 @@ class PopupDelegate(QStyledItemDelegate):
                             painter.setPen(self.normal)
 
                     if prev:
-                        rect = QRect(prev.x() + prev.width(), prev.y(), option.rect.width(), prev.height())
+                        rect = QRect(
+                            prev.x() + prev.width(),
+                            prev.y(),
+                            option.rect.width(),
+                            prev.height(),
+                        )
 
                     prev = painter.drawText(rect, Qt.AlignLeft, text)
             else:
@@ -158,7 +164,7 @@ class CommandModel(QAbstractListModel):
 
         if role == Qt.EditRole:
             return self.sorted_commands[index.row()].text()
-        
+
         elif role == Qt.UserRole:
             return self.sorted_commands[index.row()].shortcut().toString()
 
@@ -183,12 +189,12 @@ class CommandCompleter(QWidget):
 
         self.delegate = PopupDelegate(self)
         self.list.setItemDelegate(self.delegate)
-        
+
         with CVBoxLayout(self, margins=0) as layout:
             layout.add(self.list)
 
         self.active = False
-        
+
     def reset(self):
         self.delegate.get_colors()
 
@@ -208,7 +214,7 @@ class CommandCompleter(QWidget):
 
         index = self.list.model().index(0, 0, QModelIndex())
         self.list.setCurrentIndex(index)
-        
+
         # redraw items in popup
         for row in range(self.list.model().rowCount(QModelIndex())):
             index = self.list.model().index(row, 0, QModelIndex())
@@ -240,14 +246,14 @@ class CommandPalette(QDialog):
         self.setObjectName('CommandPalette')
         self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setFocusPolicy(Qt.StrongFocus)
-        
+
         set_font_options(self, {'setPointSize': 16})
-        
+
         self.setMinimumWidth(700)
 
         self.shortcut = shortcut
 
-        self.action = QAction("Command Palette", self)
+        self.action = QAction('Command Palette', self)
         self.action.setShortcut(self.shortcut)
         self.action.triggered.connect(self.palette)
 
@@ -278,7 +284,16 @@ class CommandPalette(QDialog):
         self.open()
         self.command_completer.open()
 
-    def _open(self, cb=None, prompt=None, placeholder=None, choices=None, completer=None, validator=None, mask=None):
+    def _open(
+        self,
+        cb=None,
+        prompt=None,
+        placeholder=None,
+        choices=None,
+        completer=None,
+        validator=None,
+        mask=None,
+    ):
         self.callback = cb
 
         self.line.setText(prompt)
@@ -293,8 +308,20 @@ class CommandPalette(QDialog):
         self.activateWindow()
         self.line.setFocus()
 
-    def open(self, cb=None, prompt=None, placeholder=None, choices=None, completer=None, validator=None, mask=None):
-        QTimer.singleShot(0, lambda: self._open(cb, prompt, placeholder, choices, completer, validator, mask))
+    def open(
+        self,
+        cb=None,
+        prompt=None,
+        placeholder=None,
+        choices=None,
+        completer=None,
+        validator=None,
+        mask=None,
+    ):
+        QTimer.singleShot(
+            0,
+            lambda: self._open(cb, prompt, placeholder, choices, completer, validator, mask),
+        )
 
     def accept(self):
         if self.command_completer.active:
@@ -321,7 +348,7 @@ class CommandPalette(QDialog):
         if event.type() == QEvent.KeyPress:
             if event.key() == Qt.Key_Return:
                 self.accept()
-                
+
             if source is not self:
                 if self.command_completer.active:
                     if event.key() == Qt.Key_Up:
@@ -333,7 +360,7 @@ class CommandPalette(QDialog):
                         event.accept()
                         self.command_completer.move_selection_down()
                         return True
-            
+
             if event.key() == QtCore.Qt.Key_Escape:
                 self.dismiss()
                 event.accept()

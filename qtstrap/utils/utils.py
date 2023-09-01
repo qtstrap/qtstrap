@@ -61,14 +61,14 @@ def print_children(obj: QObject, prefix='') -> None:
     """
     for child in obj.children():
         print(prefix, child)
-        print_children(child, '  ' + prefix )
+        print_children(child, '  ' + prefix)
 
 
 def set_font_options(obj: QObject, options={}):
     """
     Set the QFont options of the specified object.
     Font options are specified by providing the name of the QFont setter method.
-    
+
     Example:
     set_font_options(widget, {'setPointSize': 12, 'setBold': True})
 

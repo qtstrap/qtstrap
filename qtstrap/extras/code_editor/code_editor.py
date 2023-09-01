@@ -20,18 +20,21 @@ class CodeEditor(QTextEdit):
 
         self.comment_symbol = '//'
 
-        set_font_options(self, {
-            'setFamily': 'Courier',
-            'setStyleHint': QFont.Monospace,
-            'setFixedPitch': True,
-        })
-        
+        set_font_options(
+            self,
+            {
+                'setFamily': 'Courier',
+                'setStyleHint': QFont.Monospace,
+                'setFixedPitch': True,
+            },
+        )
+
         self.installEventFilter(self)
         self.update_tab_width()
 
         if highlighter:
             self.syntax = highlighter(self)
-        
+
         if changed:
             self.textChanged.connect(changed)
 
@@ -70,14 +73,20 @@ class CodeEditor(QTextEdit):
         tc.select(QTextCursor.WordUnderCursor)
         return tc.selectedText()
 
-    def keyPressEvent(self, event:QKeyEvent):
+    def keyPressEvent(self, event: QKeyEvent):
         force_popup = False
         if event.modifiers() == Qt.ControlModifier:
             if event.key() == Qt.Key_Space:
                 force_popup = True
 
         # ignore some keys when autocomplete popup is open
-        keys = [Qt.Key_Enter, Qt.Key_Return, Qt.Key_Escape, Qt.Key_Tab, Qt.Key_Backtab]
+        keys = [
+            Qt.Key_Enter,
+            Qt.Key_Return,
+            Qt.Key_Escape,
+            Qt.Key_Tab,
+            Qt.Key_Backtab,
+        ]
         if self.completer.popup().isVisible():
             if event.key() in keys:
                 event.ignore()
@@ -153,7 +162,8 @@ class CodeEditor(QTextEdit):
             self.completer.popup().setCurrentIndex(index)
 
             cr = self.cursorRect()
-            cr.setWidth(self.completer.popup().sizeHintForColumn(0) + self.completer.popup().verticalScrollBar().sizeHint().width())
+            popup = self.completer.popup()
+            cr.setWidth(popup.sizeHintForColumn(0) + popup.verticalScrollBar().sizeHint().width())
             self.completer.complete(cr)
         else:
             self.completer.popup().hide()
@@ -176,15 +186,15 @@ class CodeEditor(QTextEdit):
 
         cur.setPosition(start)
         cur.setPosition(end, QTextCursor.KeepAnchor)
-        
+
         self.setTextCursor(cur)
 
-        text = self.toPlainText()[start: end]
+        text = self.toPlainText()[start:end]
         text_lines = text.split('\n')
         first_line = text_lines[0]
         og_length = len(text)
         lines = []
-        
+
         comment_length = len(self.comment_symbol)
         add = not all([s[:comment_length] == self.comment_symbol for s in text_lines if s])
 
@@ -204,7 +214,7 @@ class CodeEditor(QTextEdit):
 
         cur.setPosition(final_start)
         cur.setPosition(final_end, QTextCursor.KeepAnchor)
-            
+
         self.setTextCursor(cur)
         cur.endEditBlock()
 
@@ -213,7 +223,7 @@ class CodeEditor(QTextEdit):
             direction = QTextCursor.Down
         if direction == -1:
             direction = QTextCursor.Up
-        
+
         cur = self.textCursor()
         cur.beginEditBlock()
 
@@ -246,7 +256,6 @@ class CodeEditor(QTextEdit):
 
         self.setTextCursor(cur)
         cur.endEditBlock()
-
 
     def move_selection(self, direction):
         if direction == 1:
@@ -283,7 +292,7 @@ class CodeEditor(QTextEdit):
             cur.removeSelectedText()
             cur.setPosition(og_start - len(text))
             cur.setPosition(og_end - len(text), QTextCursor.KeepAnchor)
-            
+
         if direction == QTextCursor.Down:
             cur.setPosition(end)
             cur.movePosition(QTextCursor.Down, QTextCursor.KeepAnchor)
@@ -319,14 +328,14 @@ class CodeEditor(QTextEdit):
 
         cur.setPosition(start)
         cur.setPosition(end, QTextCursor.KeepAnchor)
-        
+
         self.setTextCursor(cur)
 
-        text = self.toPlainText()[start: end]
+        text = self.toPlainText()[start:end]
         first_char = text[0]
         og_length = len(text)
         lines = []
-        
+
         for line in text.split('\n'):
             if line:
                 if direction == 1:
@@ -349,7 +358,7 @@ class CodeEditor(QTextEdit):
 
         cur.setPosition(final_start)
         cur.setPosition(final_end, QTextCursor.KeepAnchor)
-            
+
         self.setTextCursor(cur)
         cur.endEditBlock()
 

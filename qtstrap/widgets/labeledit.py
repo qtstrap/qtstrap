@@ -47,7 +47,7 @@ class LabelEdit(QWidget):
             if event.key() == Qt.Key_Return:
                 self.accept()
                 return True
-            
+
             if event.key() == QtCore.Qt.Key_Escape:
                 self.dismiss()
                 event.accept()

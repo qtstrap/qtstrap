@@ -17,14 +17,13 @@ if Path(sys.argv[0]).parts[-1] != 'qtstrap':
     try:
         from .qt import *
     except ModuleNotFoundError as e:
-        raise ModuleNotFoundError(
-            'No Qt Bindings found. Try "pip install PySide6" or "pip install PySide6"'
-        ) from e
+        raise ModuleNotFoundError('No Qt Bindings found. Try "pip install PySide6" or "pip install PySide6"') from e
     else:
         from .settings import PortableSettings
-        
+
         if OPTIONS.portable:
             from .settings import PortableSettings as QSettings
+
             QSettings._install()
 
         from .utils import *

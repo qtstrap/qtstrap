@@ -6,25 +6,25 @@ import json
 
 LOG_FILTER_COLORS = {
     'dark': {
-        'D': colors.aqua, # DEBUG
-        'I': colors.green, # INFO
-        'W': colors.orange, # WARNING
-        'E': colors.red, # ERROR
-        'C': colors.fuchsia, # CRITICAL
+        'D': colors.aqua,  # DEBUG
+        'I': colors.green,  # INFO
+        'W': colors.orange,  # WARNING
+        'E': colors.red,  # ERROR
+        'C': colors.fuchsia,  # CRITICAL
         'off': colors.gray,
         'enabled': colors.gray,
         'disabled': colors.silver,
     },
     'light': {
-        'D': colors.blue, # DEBUG
-        'I': colors.green, # INFO
-        'W': colors.orange, # WARNING
-        'E': colors.red, # ERROR
-        'C': colors.fuchsia, # CRITICAL
+        'D': colors.blue,  # DEBUG
+        'I': colors.green,  # INFO
+        'W': colors.orange,  # WARNING
+        'E': colors.red,  # ERROR
+        'C': colors.fuchsia,  # CRITICAL
         'off': colors.black,
         'enabled': colors.black,
         'disabled': colors.gray,
-    }
+    },
 }
 
 
@@ -46,13 +46,13 @@ class LoggerDelegate(QStyledItemDelegate):
         if len(text) == 1:
             if option.state & QStyle.State_Selected and checked:
                 painter.setPen(QPen(get_color(text)))
-            else: 
+            else:
                 painter.setPen(QPen(get_color('off')))
             painter.drawText(option.rect, Qt.AlignCenter, text)
         else:
             if option.state & QStyle.State_Selected:
                 painter.setPen(QPen(get_color('enabled')))
-            else: 
+            else:
                 painter.setPen(QPen(get_color('disabled')))
             painter.drawText(option.rect, Qt.AlignLeft, text)
 
@@ -92,7 +92,7 @@ class LoggerTreeWidgetItem(QTreeWidgetItem):
                 self.setData(column, Qt.UserRole, True)
                 self.levels[self.text(column)] = True
 
-    def double_clicked(self, column):        
+    def double_clicked(self, column):
         def select_children(item, state):
             item.setSelected(state)
             for i in range(item.childCount()):
@@ -103,7 +103,7 @@ class LoggerTreeWidgetItem(QTreeWidgetItem):
                 state = self.isSelected()
             else:
                 state = self.selected
-            
+
             for i in range(self.childCount()):
                 select_children(self.child(i), state)
 
@@ -134,12 +134,12 @@ class LoggerTreeWidget(QTreeWidget):
 
     def __init__(self):
         super().__init__()
-        
+
         self.setItemDelegate(LoggerDelegate())
         self.setSelectionMode(QAbstractItemView.NoSelection)
         self.setRootIsDecorated(False)
         self.setIndentation(10)
-        self.setStyleSheet("QTreeView::branch { border-image: url(none.png); }" );
+        self.setStyleSheet('QTreeView::branch { border-image: url(none.png); }')
         self.setUniformRowHeights(True)
         self.setExpandsOnDoubleClick(False)
         self.setItemsExpandable(False)
@@ -179,7 +179,7 @@ class LoggerTreeWidget(QTreeWidget):
 
     def register_logger(self, full_name):
         if full_name in self.loggers:
-            return 
+            return
         else:
             parts = full_name.rsplit('.', 1)  # split off the last name only
             name = parts[-1]
@@ -278,17 +278,17 @@ class ProfileSelector(QWidget):
         self.selector = QComboBox()
         self.editor = QLineEdit()
         self.editor.setPlaceholderText('Profile name')
-        
+
         self.menu_btn = MenuButton()
 
         self.menu_btn.addAction('New Profile').triggered.connect(self.on_add)
         self.menu_btn.addAction('Delete Profile').triggered.connect(self.on_remove)
 
         self.selector.currentIndexChanged.connect(self.on_change)
-        
+
         self.editor.installEventFilter(self)
         self.editor.hide()
-        
+
         with CGridLayout(self, margins=0, spacing=2) as layout:
             layout.add(self.selector, 0, 0, 1, 3)
             layout.add(self.editor, 0, 0, 1, 3)
@@ -299,7 +299,7 @@ class ProfileSelector(QWidget):
             if event.key() == Qt.Key_Return:
                 self.on_accept()
                 return True
-            
+
             if event.key() == QtCore.Qt.Key_Escape:
                 self.on_cancel()
                 event.accept()
@@ -324,7 +324,7 @@ class ProfileSelector(QWidget):
         if len(name) > 0:
             self.added.emit(name)
         self.editor.clear()
-        
+
     def on_cancel(self):
         self.selector.show()
         self.editor.hide()
@@ -338,10 +338,16 @@ class ProfileSelector(QWidget):
 class FilterControls(QWidget):
     empty_profile = {
         'loggers': {
-            'global': ['DEBUG','INFO','WARNING','ERROR','CRITICAL'],
+            'global': [
+                'DEBUG',
+                'INFO',
+                'WARNING',
+                'ERROR',
+                'CRITICAL',
+            ],
         },
         'visible_loggers': [
-            'global'
+            'global',
         ],
         'text': '',
         'current_session_only': True,
@@ -351,21 +357,21 @@ class FilterControls(QWidget):
     default_settings = {
         'selected_profile': 'default',
         'registered_loggers': ['global'],
-        'profiles': {
-            'default': empty_profile
-        }
+        'profiles': {'default': empty_profile},
     }
 
     def __init__(self, table):
         super().__init__()
 
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             QTreeWidget {
                 selection-background-color: transparent;
                 selection-color: lightgray; 
                 color: gray;
             }
-        """)
+        """
+        )
         self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
 
         self.settings_file = OPTIONS.config_dir / 'log_profiles.json'

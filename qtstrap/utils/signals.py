@@ -1,10 +1,9 @@
-
-
 class SignalBlocker:
-    """ A context manager that blocks the signals of the provided widget.
-    
+    """A context manager that blocks the signals of the provided widget.
+
     The signals are unblocked at the end of the with block.
     """
+
     def __init__(self, widget):
         self.widget = widget
 

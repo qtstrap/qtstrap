@@ -11,7 +11,7 @@ class PersistentCheckBox(QCheckBox):
             self.stateChanged.connect(changed)
 
         self.stateChanged.connect(lambda: QSettings().setValue(self.name, self.checkState()))
-    
+
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
         if prev_state == Qt.Checked:
@@ -34,7 +34,7 @@ class PersistentLineEdit(QLineEdit):
             self.textChanged.connect(changed)
 
         self.textChanged.connect(lambda: QSettings().setValue(self.name, self.text()))
-    
+
     def restore_state(self):
         self.setText(str(QSettings().value(self.name, self.default)))
 
@@ -50,7 +50,7 @@ class PersistentTextEdit(QTextEdit):
             self.textChanged.connect(changed)
 
         self.textChanged.connect(lambda: QSettings().setValue(self.name, self.toPlainText()))
-    
+
     def restore_state(self):
         self.setText(str(QSettings().value(self.name, self.default)))
 
@@ -66,7 +66,7 @@ class PersistentPlainTextEdit(QPlainTextEdit):
             self.textChanged.connect(changed)
 
         self.textChanged.connect(lambda: QSettings().setValue(self.name, self.toPlainText()))
-    
+
     def restore_state(self):
         self.setPlainText(str(QSettings().value(self.name, self.default)))
 
@@ -80,7 +80,7 @@ class PersistentListWidget(QListWidget):
         if items:
             self.addItems(items)
             self.restore_state()
-                
+
         if changed:
             self.itemSelectionChanged.connect(changed)
 
@@ -107,7 +107,7 @@ class PersistentTreeWidget(QTreeWidget):
         if items:
             self.addItems(items)
             self.restore_state()
-                
+
         if changed:
             self.itemSelectionChanged.connect(changed)
 
@@ -159,6 +159,6 @@ class PersistentCheckableAction(QAction):
             self.setChecked(True)
         elif prev_state == 'false':
             self.setChecked(False)
-            
+
     def __bool__(self):
         return self.isChecked()

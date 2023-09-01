@@ -19,7 +19,7 @@ class StateButton(QPushButton):
         self.setIconSize(QSize(60, 60))
         self.icons = []
         self._state = None
-        
+
         self.clicked.connect(self.next_state)
         self.state_changed.connect(self.update_icon)
 

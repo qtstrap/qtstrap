@@ -6,7 +6,7 @@ from .log_profile import LogProfile
 from .log_database_handler import db_conn_name
 
 
-session_start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+session_start_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
 
 class LogDbModel(QSqlQueryModel):
@@ -45,12 +45,12 @@ class LogTableView(QTableView):
         header.viewport().installEventFilter(self)
 
         self.db_model = LogDbModel(self)
-        
+
         self.profile = LogProfile()
 
         self.setModel(self.db_model)
         self.need_to_refresh = False
-        
+
         self.scan_timer = QTimer()
         self.scan_timer.timeout.connect(self.attempt_refresh)
         self.scan_timer.start(200)
@@ -81,7 +81,7 @@ class LogTableView(QTableView):
         query = db.exec_("SELECT COUNT(*) FROM 'log'")
         query.next()
         row_count = query.value(0)
-        
+
         self.db_model.setQuery(self.profile.build_query(row_count), db)
         while self.db_model.canFetchMore():
             self.db_model.fetchMore()
@@ -117,4 +117,3 @@ class LogTableView(QTableView):
         if menu.exec_(QCursor.pos()):
             self.need_to_refresh = True
             self.columns_changed.emit()
-            

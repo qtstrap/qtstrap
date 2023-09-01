@@ -10,7 +10,7 @@ class CodeLine(CodeEditor):
         self.setLineWrapMode(QTextEdit.NoWrap)
         self.setFixedHeight(28)
 
-    def keyPressEvent(self, event:QKeyEvent):
+    def keyPressEvent(self, event: QKeyEvent):
         # emit ctrl+enter signal
         if event.modifiers() == Qt.ControlModifier:
             if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
@@ -20,5 +20,5 @@ class CodeLine(CodeEditor):
         if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
             event.accept()
             return
-        
+
         super().keyPressEvent(event)

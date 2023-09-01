@@ -7,7 +7,7 @@ darkPalette = QStyleFactory.create('fusion').standardPalette()
 light = QColor('#525252')
 mid = QColor('#414141')
 dark = QColor('#313131')
-accent= QColor('#ca3e47')
+accent = QColor('#ca3e47')
 
 
 # base

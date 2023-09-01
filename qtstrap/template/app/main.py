@@ -28,9 +28,9 @@ def run():
             layout.add(label)
         layout.add(button)
 
-    window.show() # show the window
-    app.exec_() # start the Qt event loop
+    window.show()   # show the window
+    app.exec_()   # start the Qt event loop
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     run()

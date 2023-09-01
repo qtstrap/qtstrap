@@ -98,7 +98,7 @@ class ContextLayout:
     def grid(self, *args, **kwargs):
         self.next_layout = CGridLayout(self._layout, *args, **kwargs)
         return self
-    
+
     def form(self, *args, **kwargs):
         self.next_layout = CFormLayout(self._layout, *args, **kwargs)
         return self
@@ -133,10 +133,20 @@ class ContextLayout:
 # *************************************************************************** #
 
 
-class CVBoxLayout(ContextLayout, QVBoxLayout): ...
-class CHBoxLayout(ContextLayout, QHBoxLayout): ...
-class CGridLayout(ContextLayout, QGridLayout): ...
-class CFormLayout(ContextLayout, QFormLayout): ...
+class CVBoxLayout(ContextLayout, QVBoxLayout):
+    ...
+
+
+class CHBoxLayout(ContextLayout, QHBoxLayout):
+    ...
+
+
+class CGridLayout(ContextLayout, QGridLayout):
+    ...
+
+
+class CFormLayout(ContextLayout, QFormLayout):
+    ...
 
 
 # --------------------------------------------------------------------------- #
@@ -171,11 +181,11 @@ class CSplitter(QSplitter):
         if isinstance(item, QWidget):
             self.addWidget(item)
             if stretch:
-                self.setStretchFactor(self.count()-1, stretch)
+                self.setStretchFactor(self.count() - 1, stretch)
         elif isinstance(item, QLayout):
             self.addWidget(QWidget(self, layout=item))
             if stretch:
-                self.setStretchFactor(self.count()-1, stretch)
+                self.setStretchFactor(self.count() - 1, stretch)
         elif isinstance(item, list):
             for i in item:
                 self.add(i)
@@ -194,7 +204,7 @@ class PersistentCSplitter(CSplitter):
         self.name = name
 
         self.splitterMoved.connect(lambda: QSettings().setValue(self.name, self.saveState()))
-    
+
     def restore_state(self):
         if state := QSettings().value(self.name, None):
             self.restoreState(state)
@@ -220,7 +230,7 @@ class CScrollArea(QScrollArea):
         layout.setAlignment(Qt.AlignTop)
         self.setWidget(widget)
         self.setWidgetResizable(True)
-        
+
         if margins:
             self.setContentsMargins(*margins)
 
@@ -237,22 +247,22 @@ class CScrollArea(QScrollArea):
         if isinstance(item, QWidget):
             self.widget().layout().addWidget(item)
             if stretch:
-                self.widget().layout().setStretchFactor(self.count()-1, stretch)
+                self.widget().layout().setStretchFactor(self.count() - 1, stretch)
         elif isinstance(item, QLayout):
             self.addWidget(QWidget(self, layout=item))
             if stretch:
-                self.setStretchFactor(self.count()-1, stretch)
+                self.setStretchFactor(self.count() - 1, stretch)
         elif isinstance(item, list):
             for i in item:
                 self.add(i)
         return item
-    
+
     def addWidget(self, *args, **kwargs):
         self.widget().layout().addWidget(*args, **kwargs)
-        
+
     def addLayout(self, *args, **kwargs):
         self.widget().layout().addLayout(*args, **kwargs)
-    
+
     def __enter__(self):
         return self
 
@@ -266,7 +276,7 @@ class PersistentCScrollArea(QScrollArea):
         self.name = name
 
         self.scrolled.connect(lambda: QSettings().setValue(self.name, self.saveState()))
-    
+
     def scroll_to(self, value):
         self.verticalScrollBar().setValue(value)
 

@@ -5,7 +5,7 @@ class PersistentTabWidget(QTabWidget):
     def __init__(self, name, tabs=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
-        
+
         self.movable = False
         if 'movable' in kwargs:
             self.movable = kwargs['movable']

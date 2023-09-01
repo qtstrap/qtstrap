@@ -15,6 +15,4 @@ class PortableSettings(QSettings):
 
     @staticmethod
     def _install() -> None:
-        PortableSettings.settings_file_path = (
-            OPTIONS.config_dir / 'settings.ini'
-        ).as_posix()
+        PortableSettings.settings_file_path = (OPTIONS.config_dir / 'settings.ini').as_posix()

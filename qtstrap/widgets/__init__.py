@@ -4,14 +4,14 @@ from .layouts import (
     CHBoxLayout,
     CGridLayout,
     CFormLayout,
-    CSplitter, 
+    CSplitter,
     PersistentCSplitter,
-    CScrollArea, 
+    CScrollArea,
     PersistentCScrollArea,
 )
 from .buttons import (
-    StateButton, 
-    IconToggleButton, 
+    StateButton,
+    IconToggleButton,
     ConfirmToggleButton,
     MenuButton,
 )
@@ -30,9 +30,9 @@ from .persistent_widgets import (
 )
 from .persistent_tab_widget import PersistentTabWidget
 from .toggle import (
-    Toggle, 
-    AnimatedToggle, 
-    PersistentToggle, 
+    Toggle,
+    AnimatedToggle,
+    PersistentToggle,
     PersistentAnimatedToggle,
 )
 from .toolbar import BaseToolbar

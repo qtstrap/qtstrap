@@ -1,4 +1,8 @@
-from .log_widget import LogMonitorWidget, LogMonitorDockWidget, LogMonitorDropdown
+from .log_widget import (
+    LogMonitorWidget,
+    LogMonitorDockWidget,
+    LogMonitorDropdown,
+)
 from .log_database_handler import DatabaseHandler
 import logging
 from qtstrap import OPTIONS
@@ -18,6 +22,7 @@ def install(database_name=db_path, install_excepthook=True):
 
     if install_excepthook:
         _excepthook = sys.excepthook
+
         def handle_exception(exc_type, exc_value, exc_traceback):
             module = exc_traceback.tb_frame.f_code.co_filename
             lineno = exc_traceback.tb_lineno
@@ -27,4 +32,5 @@ def install(database_name=db_path, install_excepthook=True):
 
             exception_logger.error(msg, exc_info=(exc_type, exc_value, exc_traceback))
             _excepthook(exc_type, exc_value, exc_traceback)
+
         sys.excepthook = handle_exception

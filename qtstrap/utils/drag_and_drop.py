@@ -2,7 +2,7 @@ from __future__ import annotations
 from qtstrap import *
 
 
-def accepts_file_drops(extensions: str|[str]):
+def accepts_file_drops(extensions: str | [str]):
     """
     Decorator that enables drag-and-drop on a QWidget.
     Accepts a str or a list of strings of the valid file extensions.
@@ -19,7 +19,7 @@ def accepts_file_drops(extensions: str|[str]):
     def dragEnterEvent(self, event):
         prefix = 'file:///'
         strip = len(prefix)
-        
+
         if event.mimeData().hasUrls():
             if len(event.mimeData().urls()) != 1:
                 event.ignore()
@@ -50,7 +50,7 @@ def draggable(target):
 
     def new_init(self, *args, **kwargs):
         old_init(self, *args, **kwargs)
-        
+
         self.drag_start_position = None
 
     def new_mousePressEvent(self, event: QMouseEvent):
@@ -67,7 +67,7 @@ def draggable(target):
         distance_moved = QPoint(event.pos() - self.drag_start_position).manhattanLength()
         if distance_moved < QApplication.startDragDistance():
             return
-        
+
         if hasattr(self, 'get_drag_data'):
             mime = self.get_drag_data()
         else:
@@ -80,7 +80,7 @@ def draggable(target):
             self.handle_drop(drop)
 
         self.drag_start_position = None
-    
+
     target.__init__ = new_init
     target.mousePressEvent = new_mousePressEvent
     target.mouseMoveEvent = new_mouseMoveEvent
