@@ -1,0 +1,14 @@
+# python stuff
+__pycache__
+*.pyc
+.venv
+
+# build system stuff
+build
+dist
+
+# editor stuff
+.vscode
+
+# other stuff
+.env

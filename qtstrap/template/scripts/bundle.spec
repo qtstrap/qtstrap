@@ -1,25 +1,22 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-import configparser
+import sys
+
+sys.path.append('app')
+
+from pathlib import Path
+from app_info import AppName, AppIconPath, AppIconName
 
 
-with open('app/app_info.py') as f:
-    file_content = '[dummy_section]\n' + f.read()
+app_path = Path('../app')
 
-config = configparser.ConfigParser()
-config.read_string(file_content)
-
-section = config['dummy_section']
-
-app_name = section['AppName'].replace('"', '')
-icon_file = str(section['AppIconPath'] + '/' + section['AppIconName']).replace('"', '')
 
 a = Analysis(
-    ['app/main.py'],
-    pathex=['./app'],
+    [app_path / 'main.py'],
+    pathex=[app_path],
     binaries=[],
     datas=[
-        ('app/resources', 'resources'),
+        (app_path / 'resources', 'resources'),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -28,13 +25,13 @@ a = Analysis(
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=None,
-    noarchive=False
+    noarchive=False,
 )
 
 pyz = PYZ(
-    a.pure, 
+    a.pure,
     a.zipped_data,
-    cipher=None
+    cipher=None,
 )
 
 exe = EXE(
@@ -42,13 +39,13 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name=app_name,
+    name=AppName,
+    icon=Path('..') / AppIconPath / AppIconName,
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=False,
-    icon=icon_file,
-    console=False 
+    console=False,
 )
 
 coll = COLLECT(
@@ -59,5 +56,5 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name=app_name
+    name=AppName,
 )
