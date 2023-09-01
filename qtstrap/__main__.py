@@ -1,10 +1,8 @@
-import sys
 import click
 from pathlib import Path
 import shutil
-from InquirerPy import prompt
+from InquirerPy.resolver import prompt
 import uuid
-import os
 
 
 @click.group()
@@ -15,7 +13,7 @@ def main():
 def validate_name(answer):
     if len(answer) == 0:
         return "name can't be empty"
-    if " " in answer:
+    if ' ' in answer:
         return "name can't contain spaces"
     return True
 
@@ -38,7 +36,7 @@ init_prompt = [
 
 @main.command()
 def init():
-    parent = Path(__file__).parent 
+    parent = Path(__file__).parent
     template = Path(parent / 'template')
     template_files = template.rglob('*')
 
@@ -59,7 +57,7 @@ def init():
     if result:
         with open('app/app_info.py', 'w') as f:
             f.write(f'AppName = "{result["app_name"]}"\n')
-            f.write(f'AppVersion = "0.1"\n')
+            f.write('AppVersion = "0.1"\n')
             f.write(f'AppPublisher = "{result["app_publisher"]}"\n')
             f.write(f'AppExeName = "{result["app_name"]}.exe"\n')
             f.write('AppIconName = "application.ico"\n')
@@ -71,8 +69,3 @@ def init():
 @main.command()
 def version():
     print('qtstrap v<something>')
-
-
-# @main.command()
-# def build():
-#     print('build')
