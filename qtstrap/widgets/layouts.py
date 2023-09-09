@@ -142,12 +142,41 @@ class CHBoxLayout(ContextLayout, QHBoxLayout):
 
 
 class CGridLayout(ContextLayout, QGridLayout):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    ...
 
-    def add(self, item: QWidget, *args, rowspan: int=1, colspan: int=1, **kwargs):
-        self.addWidget(item, *args, rowspan, colspan, **kwargs)
-        return item
+    def addWidget(
+        self,
+        item: QWidget,
+        row: int,
+        column: int,
+        row_span: int = 1,  # positional only
+        column_span: int = 1,  # positional only
+        *,
+        rowSpan: int = 1,  # named only
+        columnSpan: int = 1,  # named only
+        **kwargs,
+    ) -> None:
+        """Change the function signature to allow using the spans as named params"""
+        rspan = rowSpan if rowSpan != 1 else row_span
+        cspan = columnSpan if columnSpan != 1 else column_span
+        super().addWidget(item, row, column, rspan, cspan, **kwargs)
+
+    def addLayout(
+        self,
+        item: QLayout,
+        row: int,
+        column: int,
+        row_span: int = 1,  # positional only
+        column_span: int = 1,  # positional only
+        *,
+        rowSpan: int = 1,  # named only
+        columnSpan: int = 1,  # named only
+        **kwargs,
+    ) -> None:
+        """Change the function signature to allow using the spans as named params"""
+        rspan = rowSpan if rowSpan != 1 else row_span
+        cspan = columnSpan if columnSpan != 1 else column_span
+        super().addLayout(item, row, column, rspan, cspan, **kwargs)
 
 
 class CFormLayout(ContextLayout, QFormLayout):
