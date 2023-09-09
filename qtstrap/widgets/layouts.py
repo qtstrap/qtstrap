@@ -142,7 +142,12 @@ class CHBoxLayout(ContextLayout, QHBoxLayout):
 
 
 class CGridLayout(ContextLayout, QGridLayout):
-    ...
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def add(self, item: QWidget, *args, rowspan: int=1, colspan: int=1, **kwargs):
+        self.addWidget(item, *args, rowspan, colspan, **kwargs)
+        return item
 
 
 class CFormLayout(ContextLayout, QFormLayout):
