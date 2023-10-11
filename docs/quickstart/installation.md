@@ -14,7 +14,7 @@ This is the recommended way to create a new project using qtstrap:
 $ mkdir test && cd test
 $ python3 -m venv .venv
 $ source .venv/bin/activate
-$ python3 -m pip install qtstrap PySide2
+$ python3 -m pip install qtstrap PySide6
 $ qtstrap init
 ```
 
