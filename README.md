@@ -35,7 +35,7 @@ The init script will prompt you to enter the name of your application and the na
 
 You can test that everything installed properly by executing:
 ```sh
-$ python app/main.py
+$ python3 app/main.py
 ```
 If you see a window like this, then you're good to go:
 
