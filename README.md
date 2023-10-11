@@ -21,6 +21,26 @@ More complete docs are available [here](https://qtstrap.github.io/qtstrap/).
 * Pythonic layout system using ContextLayouts
 * Some other stuff I haven't remembered yet
 
+# Quick start
+
+```sh
+$ mkdir test && cd test
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+$ python3 -m pip install qtstrap PySide6
+$ qtstrap init
+```
+
+The init script will prompt you to enter the name of your application and the name of its publisher(which is probably you), and then it will generate an application skeleton.
+
+You can test that everything installed properly by executing:
+```sh
+$ python app/main.py
+```
+If you see a window like this, then you're good to go:
+
+![screenshot](../screenshot1.png) 
+
 ## Custom Widgets
 
 - `LabelEdit`
