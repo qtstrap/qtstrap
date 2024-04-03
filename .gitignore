@@ -17,3 +17,5 @@ qtstrap/version.py
 .env
 .coverage
 .tox
+
+.history
