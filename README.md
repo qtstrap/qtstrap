@@ -39,7 +39,7 @@ $ python3 app/main.py
 ```
 If you see a window like this, then you're good to go:
 
-![screenshot](../screenshot1.png) 
+![screenshot](docs/screenshot1.png) 
 
 ## Custom Widgets
 
