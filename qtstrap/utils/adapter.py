@@ -1,5 +1,5 @@
 from qtstrap import QObject
-
+from qtpy.QtCore import SIGNAL
 
 try:
     from qtstrap import SignalInstance
@@ -57,24 +57,28 @@ class Adapter(QObject):
     def kill(self):
         if self._other:
             for name in self._get_signals(self._other):
-                # TODO: this might not be safe
-                getattr(self._other, name).disconnect(getattr(self, name).emit)
+                self.disconnect(self._other, SIGNAL(name), getattr(self, name).emit)
+            #     # TODO: this might not be safe
+            #     getattr(self._other, name).disconnect(getattr(self, name).emit)
 
 
 if __name__ == '__main__':
     from qtstrap import Signal
 
-    class Example(QObject):
-        class SignalInterface(Adapter):
-            signal1 = Signal()
-            signal2 = Signal(str)
+    class SignalInterface(Adapter):
+        sig = Signal()
 
-        def __init__(self):
-            super().__init__()
-            self.interface = self.SignalInterface()
+    original = SignalInterface()
+    original.sig.connect(lambda: print('original'))
 
-    ex = Example()
-    adapter = ex.interface.adapter()
+    copy = original.adapter()
+    copy.sig.connect(lambda: print('copy'))
 
-    print(ex.interface)
-    print(adapter)
+    original.sig.emit()
+
+    copy.kill()
+
+    original.sig.emit()
+
+    print(original)
+    print(copy)
