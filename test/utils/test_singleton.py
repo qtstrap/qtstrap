@@ -2,12 +2,9 @@ from qtstrap.utils import singleton
 
 
 def test_singleton(qtbot):
-    
     @singleton
-    class Test:
-        def __init__(self):
-            pass
-    
+    class Test: ...
+
     a = Test()
     b = Test()
 
