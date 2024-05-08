@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.labeledit`
 
@@ -18,14 +18,14 @@
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LabelEdit`
 
 
 
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.__init__`
 
@@ -42,7 +42,7 @@ __init__(text, *args, changed=None, **kwargs)
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.accept`
 
@@ -56,7 +56,7 @@ accept()
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L42"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L42"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.dismiss`
 
@@ -70,7 +70,7 @@ dismiss()
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.eventFilter`
 
@@ -84,7 +84,7 @@ eventFilter(source, event)
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.mouseDoubleClickEvent`
 
@@ -98,7 +98,7 @@ mouseDoubleClickEvent(event: PySide2.QtGui.QMouseEvent) → None
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L25"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L25"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.setText`
 
@@ -112,7 +112,7 @@ setText(text)
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L29"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L29"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.start_editing`
 
@@ -126,7 +126,7 @@ start_editing()
 
 ---
 
-<a href="..\..\qtstrap\widgets\labeledit.py#L22"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/labeledit.py#L22"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LabelEdit.text`
 

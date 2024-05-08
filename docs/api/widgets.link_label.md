@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="..\..\qtstrap\widgets\link_label.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/link_label.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.link_label`
 
@@ -18,14 +18,14 @@
 
 ---
 
-<a href="..\..\qtstrap\widgets\link_label.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/link_label.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LinkLabel`
 
 
 
 
-<a href="..\..\qtstrap\widgets\link_label.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/link_label.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LinkLabel.__init__`
 
@@ -42,7 +42,7 @@ __init__(text='', link='', both=None, parent=None)
 
 ---
 
-<a href="..\..\qtstrap\widgets\link_label.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/link_label.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LinkLabel.setBoth`
 
@@ -56,7 +56,7 @@ setBoth(value)
 
 ---
 
-<a href="..\..\qtstrap\widgets\link_label.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/link_label.py#L24"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LinkLabel.setLink`
 
@@ -70,7 +70,7 @@ setLink(link)
 
 ---
 
-<a href="..\..\qtstrap\widgets\link_label.py#L20"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/link_label.py#L20"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LinkLabel.setText`
 

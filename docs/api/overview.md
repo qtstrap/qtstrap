@@ -4,6 +4,7 @@
 
 ## Modules
 
+- [`experimental`](./experimental.md#module-experimental)
 - [`extras`](./extras.md#module-extras)
 - [`extras.code_editor`](./extras.code_editor.md#module-extrascode_editor)
 - [`extras.code_editor.code_editor`](./extras.code_editor.code_editor.md#module-extrascode_editorcode_editor)
@@ -22,6 +23,7 @@
 - [`extras.style.colors`](./extras.style.colors.md#module-extrasstylecolors)
 - [`extras.style.dark_palette`](./extras.style.dark_palette.md#module-extrasstyledark_palette)
 - [`extras.style.themes`](./extras.style.themes.md#module-extrasstylethemes)
+- [`optional`](./optional.md#module-optional)
 - [`options`](./options.md#module-options)
 - [`utils`](./utils.md#module-utils)
 - [`utils.adapter`](./utils.adapter.md#module-utilsadapter)
@@ -72,12 +74,12 @@
 - [`colors.colors`](./extras.style.colors.md#class-colors)
 - [`colors.qcolors`](./extras.style.colors.md#class-qcolors)
 - [`options.OPTIONS`](./options.md#class-options)
-- [`adapter.Adapter`](./utils.adapter.md#class-adapter): A signal adapter that helps create disposable connections between objects. 
+- [`adapter.Adapter`](./utils.adapter.md#class-adapter): A signal adapter that helps create disposable connections between objects.
 - [`defer.Defer`](./utils.defer.md#class-defer): A context manager that emulates the defer keyword from other languages.
 - [`drag_and_drop.PreviewDrag`](./utils.drag_and_drop.md#class-previewdrag)
 - [`signals.SignalBlocker`](./utils.signals.md#class-signalblocker): A context manager that blocks the signals of the provided widget.
 - [`string_builder.Builder`](./utils.string_builder.md#class-builder): Utility class for incrementally building strings.
-- [`timestamp.TimeStamp`](./utils.timestamp.md#class-timestamp)
+- [`timestamp.TimeStamp`](./utils.timestamp.md#class-timestamp): A TimeStamp object that can be used to track the time since it was created.
 - [`buttons.ConfirmToggleButton`](./widgets.buttons.md#class-confirmtogglebutton)
 - [`buttons.IconToggleButton`](./widgets.buttons.md#class-icontogglebutton)
 - [`buttons.MenuButton`](./widgets.buttons.md#class-menubutton)
@@ -90,6 +92,7 @@
 - [`layouts.CSplitter`](./widgets.layouts.md#class-csplitter)
 - [`layouts.CVBoxLayout`](./widgets.layouts.md#class-cvboxlayout)
 - [`layouts.ContextLayout`](./widgets.layouts.md#class-contextlayout)
+- [`layouts.ContextLayoutBase`](./widgets.layouts.md#class-contextlayoutbase)
 - [`layouts.PersistentCScrollArea`](./widgets.layouts.md#class-persistentcscrollarea)
 - [`layouts.PersistentCSplitter`](./widgets.layouts.md#class-persistentcsplitter)
 - [`line_widgets.HLine`](./widgets.line_widgets.md#class-hline)
@@ -125,9 +128,10 @@
 - [`drag_and_drop.accepts_file_drops`](./utils.drag_and_drop.md#function-accepts_file_drops): Decorator that enables drag-and-drop on a QWidget.
 - [`drag_and_drop.draggable`](./utils.drag_and_drop.md#function-draggable)
 - [`get_ip.get_ip`](./utils.get_ip.md#function-get_ip): Get the current machine's IPv4 address.
-- [`singleton.singleton`](./utils.singleton.md#function-singleton):     
-- [`timestamp.time_since`](./utils.timestamp.md#function-time_since)
-- [`trace.trace`](./utils.trace.md#function-trace)
+- [`singleton.singleton`](./utils.singleton.md#function-singleton): Class decorator that only allows one instance to be created.
+- [`timestamp.time_since`](./utils.timestamp.md#function-time_since): Calculate the elapsed time since the given TimeStamp or time value.
+- [`trace.out`](./utils.trace.md#function-out): The print function used by the trace decorator.
+- [`trace.trace`](./utils.trace.md#function-trace): A decorator that logs registration, execution, and completion times of a function.
 - [`utils.disable_children`](./utils.utils.md#function-disable_children): Recursively walk the provided thing and disable all of its widget children.
 - [`utils.enable_children`](./utils.utils.md#function-enable_children): Recursively walk the provided thing and enable all of its widget children.
 - [`utils.get_children`](./utils.utils.md#function-get_children): Recursively visit all the children of the specified object and collect them in a list.

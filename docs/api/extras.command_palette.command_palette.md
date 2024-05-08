@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `extras.command_palette.command_palette`
 
@@ -19,7 +19,7 @@
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L26"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L26"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `get_color`
 
@@ -34,14 +34,14 @@ get_color(key)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L30"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L30"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CommandRegistry`
 
 
 
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L31"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L31"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandRegistry.__init__`
 
@@ -58,7 +58,7 @@ __init__() → None
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandRegistry.execute`
 
@@ -72,7 +72,7 @@ execute(command_name)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandRegistry.register_command`
 
@@ -87,14 +87,14 @@ register_command(command)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `Command`
 
 
 
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L48"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L48"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Command.__init__`
 
@@ -111,7 +111,7 @@ __init__(*args, **kwargs)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L56"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L56"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Command.used`
 
@@ -126,14 +126,14 @@ used()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L60"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L60"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PopupDelegate`
 
 
 
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PopupDelegate.__init__`
 
@@ -150,7 +150,7 @@ __init__(parent=None)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PopupDelegate.get_colors`
 
@@ -164,7 +164,7 @@ get_colors()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PopupDelegate.paint`
 
@@ -182,7 +182,7 @@ paint(
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PopupDelegate.set_prefix`
 
@@ -197,7 +197,7 @@ set_prefix(prefix)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L143"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L149"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CommandModel`
 
@@ -209,7 +209,7 @@ set_prefix(prefix)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L161"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandModel.data`
 
@@ -223,7 +223,7 @@ data(index: PySide2.QtCore.QModelIndex, role: int) → Any
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L165"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandModel.index`
 
@@ -237,7 +237,7 @@ index(row: int, column: int, parent: PySide2.QtCore.QModelIndex) → QModelIndex
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L152"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L158"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandModel.rowCount`
 
@@ -251,7 +251,7 @@ rowCount(parent: PySide2.QtCore.QModelIndex) → int
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L146"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L152"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandModel.sort_commands`
 
@@ -266,14 +266,14 @@ sort_commands(prefix)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L169"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CommandCompleter`
 
 
 
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L170"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L176"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.__init__`
 
@@ -290,7 +290,7 @@ __init__(parent=None)
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L200"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L206"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.close`
 
@@ -304,7 +304,7 @@ close()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L231"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L237"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.get_selection`
 
@@ -318,7 +318,7 @@ get_selection()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L224"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L230"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.move_selection_down`
 
@@ -332,7 +332,7 @@ move_selection_down()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L217"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L223"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.move_selection_up`
 
@@ -346,7 +346,7 @@ move_selection_up()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L195"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L201"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.open`
 
@@ -360,7 +360,7 @@ open()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L192"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L198"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.reset`
 
@@ -374,7 +374,7 @@ reset()
 
 ---
 
-<a href="..\..\qtstrap\extras\command_palette\command_palette.py#L205"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/extras/command_palette/command_palette.py#L211"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CommandCompleter.update_prefix`
 

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="..\..\qtstrap\widgets\toolbar.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/toolbar.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.toolbar`
 
@@ -19,14 +19,14 @@
 
 ---
 
-<a href="..\..\qtstrap\widgets\toolbar.py#L13"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/toolbar.py#L13"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `BaseToolbar`
 
 
 
 
-<a href="..\..\qtstrap\widgets\toolbar.py#L14"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/toolbar.py#L14"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `BaseToolbar.__init__`
 
@@ -43,7 +43,7 @@ __init__(parent=None, name=None, location=None, size=40, **kwargs)
 
 ---
 
-<a href="..\..\qtstrap\widgets\toolbar.py#L27"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/widgets/toolbar.py#L27"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `BaseToolbar.add_spacer`
 

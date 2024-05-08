@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="..\..\qtstrap\utils\trace.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/utils/trace.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `utils.trace`
 
@@ -13,7 +13,22 @@
 
 ---
 
-<a href="..\..\qtstrap\utils\trace.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/utils/trace.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>function</kbd> `out`
+
+```python
+out(*args)
+```
+
+The print function used by the trace decorator. 
+
+Overwrite this function to change the output behavior, eg to use logging instead of print. 
+
+
+---
+
+<a href="../../qtstrap/utils/trace.py#L16"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `trace`
 
@@ -21,9 +36,7 @@
 trace(func)
 ```
 
-
-
-
+A decorator that logs registration, execution, and completion times of a function. 
 
 
 

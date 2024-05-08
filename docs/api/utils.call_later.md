@@ -1,23 +1,16 @@
 <!-- markdownlint-disable -->
 
-<a href="..\..\qtstrap\utils\call_later.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/utils/call_later.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `utils.call_later`
 
 
 
 
-**Global Variables**
----------------
-- **TYPE_CHECKING**
-- **PYQT6**
-- **PYQT5**
-- **PYSIDE2**
-- **PYSIDE6**
 
 ---
 
-<a href="..\..\qtstrap\utils\call_later.py#L6"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../../qtstrap/utils/call_later.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `call_later`
 
