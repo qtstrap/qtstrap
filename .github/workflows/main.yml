@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: "recursive" 
           fetch-depth: 0       # Fetch all history for .GitInfo and .Lastmod
       - name: Setup Python
         uses: actions/setup-python@v5
