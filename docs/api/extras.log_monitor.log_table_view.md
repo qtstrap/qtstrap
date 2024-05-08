@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `extras.log_monitor.log_table_view`
 
@@ -20,14 +20,14 @@
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L12"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L12"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LogDbModel`
 
 
 
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L13"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L13"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogDbModel.__init__`
 
@@ -44,7 +44,7 @@ __init__(parent=None)
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L17"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L17"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogDbModel.data`
 
@@ -59,14 +59,14 @@ data(index, role=PySide2.QtCore.Qt.ItemDataRole.DisplayRole)
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L32"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L32"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LogTableView`
 
 
 
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.__init__`
 
@@ -83,7 +83,7 @@ __init__()
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L58"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L58"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.attempt_refresh`
 
@@ -97,7 +97,7 @@ attempt_refresh()
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L95"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L95"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.eventFilter`
 
@@ -111,7 +111,7 @@ eventFilter(object, event)
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.header_menu`
 
@@ -125,7 +125,7 @@ header_menu()
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L101"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L101"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.mouse_released`
 
@@ -139,7 +139,7 @@ mouse_released()
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L74"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L74"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.refresh`
 
@@ -153,7 +153,7 @@ refresh()
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.schedule_refresh`
 
@@ -167,7 +167,7 @@ schedule_refresh()
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.set_columns`
 
@@ -181,7 +181,7 @@ set_columns(columns)
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/log_table_view.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_table_view.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogTableView.set_filter`
 

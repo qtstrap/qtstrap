@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="../../qtstrap/widgets/layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.layouts`
 
@@ -15,7 +15,7 @@
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `ContextLayoutBase`
 
@@ -27,7 +27,7 @@
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayoutBase.add`
 
@@ -46,14 +46,14 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `ContextLayout`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.__init__`
 
@@ -76,7 +76,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.add`
 
@@ -94,7 +94,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.form`
 
@@ -108,7 +108,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.grid`
 
@@ -122,7 +122,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.hbox`
 
@@ -136,7 +136,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.scroll`
 
@@ -150,7 +150,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.split`
 
@@ -164,7 +164,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.vbox`
 
@@ -179,14 +179,14 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L217"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L217"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CVBoxLayout`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.__init__`
 
@@ -209,7 +209,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.add`
 
@@ -227,7 +227,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.form`
 
@@ -241,7 +241,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.grid`
 
@@ -255,7 +255,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.hbox`
 
@@ -269,7 +269,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.scroll`
 
@@ -283,7 +283,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.split`
 
@@ -297,7 +297,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.vbox`
 
@@ -312,14 +312,14 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L221"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L221"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CHBoxLayout`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.__init__`
 
@@ -342,7 +342,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.add`
 
@@ -360,7 +360,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.form`
 
@@ -374,7 +374,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.grid`
 
@@ -388,7 +388,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.hbox`
 
@@ -402,7 +402,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.scroll`
 
@@ -416,7 +416,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.split`
 
@@ -430,7 +430,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.vbox`
 
@@ -445,14 +445,14 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L225"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L225"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CGridLayout`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.__init__`
 
@@ -475,7 +475,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.add`
 
@@ -493,7 +493,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L245"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L245"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.addLayout`
 
@@ -514,7 +514,7 @@ Change the function signature to allow using the spans as named params
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L228"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L228"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.addWidget`
 
@@ -535,7 +535,7 @@ Change the function signature to allow using the spans as named params
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.form`
 
@@ -549,7 +549,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.grid`
 
@@ -563,7 +563,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.hbox`
 
@@ -577,7 +577,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.scroll`
 
@@ -591,7 +591,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.split`
 
@@ -605,7 +605,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.vbox`
 
@@ -620,14 +620,14 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L263"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L263"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CFormLayout`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.__init__`
 
@@ -650,7 +650,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.add`
 
@@ -668,7 +668,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.form`
 
@@ -682,7 +682,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.grid`
 
@@ -696,7 +696,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.hbox`
 
@@ -710,7 +710,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.scroll`
 
@@ -724,7 +724,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.split`
 
@@ -738,7 +738,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.vbox`
 
@@ -753,14 +753,14 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L270"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L270"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CSplitter`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L271"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L271"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CSplitter.__init__`
 
@@ -782,7 +782,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CSplitter.add`
 
@@ -800,14 +800,14 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L332"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L332"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PersistentCSplitter`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L333"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L333"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.__init__`
 
@@ -828,7 +828,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.add`
 
@@ -845,7 +845,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L344"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L344"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.restore_state`
 
@@ -860,14 +860,14 @@ restore_state()
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L355"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L355"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CScrollArea`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L356"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L356"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.__init__`
 
@@ -889,7 +889,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L393"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L393"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.add`
 
@@ -906,7 +906,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L414"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L414"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.addLayout`
 
@@ -920,7 +920,7 @@ addLayout(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L411"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L411"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.addWidget`
 
@@ -935,14 +935,14 @@ addWidget(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L424"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L424"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PersistentCScrollArea`
 
 
 
 
-<a href="../../qtstrap/widgets/layouts.py#L425"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L425"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.__init__`
 
@@ -963,7 +963,7 @@ __init__(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.add`
 
@@ -981,7 +981,7 @@ add(
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L439"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L439"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.restore_state`
 
@@ -995,7 +995,7 @@ restore_state()
 
 ---
 
-<a href="../../qtstrap/widgets/layouts.py#L436"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L436"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.scroll_to`
 

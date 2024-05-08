@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="../../qtstrap/extras/code_editor/code_line.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/code_line.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `extras.code_editor.code_line`
 
@@ -18,14 +18,14 @@
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/code_line.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/code_line.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CodeLine`
 
 
 
 
-<a href="../../qtstrap/extras/code_editor/code_line.py#L6"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/code_line.py#L6"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeLine.__init__`
 
@@ -42,7 +42,7 @@ __init__(*args, **kwargs)
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/code_line.py#L13"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/code_line.py#L13"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CodeLine.keyPressEvent`
 

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `extras.code_editor.highlighters.python`
 
@@ -18,7 +18,7 @@
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `format`
 
@@ -31,7 +31,7 @@ Return a QTextCharFormat with the given attributes.
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `get_style`
 
@@ -46,12 +46,12 @@ get_style(kind)
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PythonHighlighter`
 Syntax highlighter for the Python language. 
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.__init__`
 
@@ -68,7 +68,7 @@ __init__(document)
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.build_rules`
 
@@ -82,7 +82,7 @@ build_rules()
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L137"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L137"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.highlightBlock`
 
@@ -94,7 +94,7 @@ Apply syntax highlighting to the given block of text.
 
 ---
 
-<a href="../../qtstrap/extras/code_editor/highlighters/python.py#L156"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/code_editor/highlighters/python.py#L156"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PythonHighlighter.match_multiline`
 

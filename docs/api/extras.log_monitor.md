@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="../../qtstrap/extras/log_monitor/__init__.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/__init__.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `extras.log_monitor`
 
@@ -19,7 +19,7 @@
 
 ---
 
-<a href="../../qtstrap/extras/log_monitor/__init__.py#L16"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/__init__.py#L16"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `install`
 

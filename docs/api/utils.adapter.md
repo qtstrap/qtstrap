@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="../../qtstrap/utils/adapter.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/adapter.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `utils.adapter`
 
@@ -11,7 +11,7 @@
 
 ---
 
-<a href="../../qtstrap/utils/adapter.py#L10"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/adapter.py#L10"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `Adapter`
 A signal adapter that helps create disposable connections between objects. 
@@ -24,7 +24,7 @@ This will allow some other object to connect to these signals for whatever purpo
 
 Technically, Qt Signals already have a .disconnect() method, but I've never gotten it work reliably. Using an Adapter essentially gives you a nuclear .disconnect(). 
 
-<a href="../../qtstrap/utils/adapter.py#L25"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/adapter.py#L25"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Adapter.__init__`
 
@@ -41,7 +41,7 @@ __init__(other=None)
 
 ---
 
-<a href="../../qtstrap/utils/adapter.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/adapter.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Adapter.adapter`
 
@@ -55,7 +55,7 @@ adapter()
 
 ---
 
-<a href="../../qtstrap/utils/adapter.py#L57"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/adapter.py#L57"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Adapter.kill`
 
