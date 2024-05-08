@@ -12,3 +12,12 @@ def trace(func):
         return func(*args, **kwargs)
 
     return new
+
+
+if __name__ == '__main__':
+
+    @trace
+    def test():
+        print('test')
+
+    test()
