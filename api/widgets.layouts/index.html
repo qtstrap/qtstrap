@@ -82,6 +82,8 @@
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../experimental/">Experimental</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_line/">Extras.code editor.code line</a>
@@ -117,6 +119,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../optional/">Optional</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
@@ -157,6 +161,12 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Widgets.layouts</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-contextlayoutbase">class ContextLayoutBase</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-contextlayoutbaseadd">method ContextLayoutBase.add</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#class-contextlayout">class ContextLayout</a>
         <ul>
@@ -223,6 +233,10 @@
     <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayout__init__">method CGridLayout.__init__</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutadd">method CGridLayout.add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutaddlayout">method CGridLayout.addLayout</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutaddwidget">method CGridLayout.addWidget</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-cgridlayoutform">method CGridLayout.form</a>
     </li>
@@ -292,6 +306,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollarea__init__">method PersistentCScrollArea.__init__</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollareaadd">method PersistentCScrollArea.add</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollarearestore_state">method PersistentCScrollArea.restore_state</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-persistentcscrollareascroll_to">method PersistentCScrollArea.scroll_to</a>
@@ -342,295 +358,418 @@
               
                 <!-- markdownlint-disable -->
 
-<p><a href="..\..\qtstrap\widgets\layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h1 id="module-widgetslayouts"><kbd>module</kbd> <code>widgets.layouts</code></h1>
 <h2 id="global-variables"><strong>Global Variables</strong></h2>
 <ul>
-<li><strong>TYPE_CHECKING</strong></li>
-<li><strong>PYQT6</strong></li>
-<li><strong>PYQT5</strong></li>
-<li><strong>PYSIDE2</strong></li>
-<li><strong>PYSIDE6</strong></li>
 <li><strong>alignments</strong></li>
 <li><strong>orientations</strong></li>
 </ul>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L27"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-contextlayoutbase"><kbd>class</kbd> <code>ContextLayoutBase</code></h2>
+<hr />
+<p><a href="../../qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-contextlayoutbaseadd"><kbd>method</kbd> <code>ContextLayoutBase.add</code></h3>
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+</code></pre>
+<hr />
+<p><a href="../../qtstrap/widgets/layouts.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-contextlayout"><kbd>class</kbd> <code>ContextLayout</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayout__init__"><kbd>method</kbd> <code>ContextLayout.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    stretch: int | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayoutadd"><kbd>method</kbd> <code>ContextLayout.add</code></h3>
-<pre><code class="language-python">add(item, *args, **kwargs)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayoutform"><kbd>method</kbd> <code>ContextLayout.form</code></h3>
 <pre><code class="language-python">form(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayoutgrid"><kbd>method</kbd> <code>ContextLayout.grid</code></h3>
 <pre><code class="language-python">grid(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L90"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayouthbox"><kbd>method</kbd> <code>ContextLayout.hbox</code></h3>
 <pre><code class="language-python">hbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L109"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayoutscroll"><kbd>method</kbd> <code>ContextLayout.scroll</code></h3>
-<pre><code class="language-python">scroll(name=None, **kwargs)
+<pre><code class="language-python">scroll(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayoutsplit"><kbd>method</kbd> <code>ContextLayout.split</code></h3>
-<pre><code class="language-python">split(name=None, **kwargs)
+<pre><code class="language-python">split(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L86"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-contextlayoutvbox"><kbd>method</kbd> <code>ContextLayout.vbox</code></h3>
 <pre><code class="language-python">vbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L132"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L217"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-cvboxlayout"><kbd>class</kbd> <code>CVBoxLayout</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayout__init__"><kbd>method</kbd> <code>CVBoxLayout.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    stretch: int | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayoutadd"><kbd>method</kbd> <code>CVBoxLayout.add</code></h3>
-<pre><code class="language-python">add(item, *args, **kwargs)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayoutform"><kbd>method</kbd> <code>CVBoxLayout.form</code></h3>
 <pre><code class="language-python">form(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayoutgrid"><kbd>method</kbd> <code>CVBoxLayout.grid</code></h3>
 <pre><code class="language-python">grid(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L90"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayouthbox"><kbd>method</kbd> <code>CVBoxLayout.hbox</code></h3>
 <pre><code class="language-python">hbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L109"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayoutscroll"><kbd>method</kbd> <code>CVBoxLayout.scroll</code></h3>
-<pre><code class="language-python">scroll(name=None, **kwargs)
+<pre><code class="language-python">scroll(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayoutsplit"><kbd>method</kbd> <code>CVBoxLayout.split</code></h3>
-<pre><code class="language-python">split(name=None, **kwargs)
+<pre><code class="language-python">split(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L86"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cvboxlayoutvbox"><kbd>method</kbd> <code>CVBoxLayout.vbox</code></h3>
 <pre><code class="language-python">vbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L133"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L221"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-chboxlayout"><kbd>class</kbd> <code>CHBoxLayout</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayout__init__"><kbd>method</kbd> <code>CHBoxLayout.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    stretch: int | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayoutadd"><kbd>method</kbd> <code>CHBoxLayout.add</code></h3>
-<pre><code class="language-python">add(item, *args, **kwargs)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayoutform"><kbd>method</kbd> <code>CHBoxLayout.form</code></h3>
 <pre><code class="language-python">form(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayoutgrid"><kbd>method</kbd> <code>CHBoxLayout.grid</code></h3>
 <pre><code class="language-python">grid(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L90"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayouthbox"><kbd>method</kbd> <code>CHBoxLayout.hbox</code></h3>
 <pre><code class="language-python">hbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L109"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayoutscroll"><kbd>method</kbd> <code>CHBoxLayout.scroll</code></h3>
-<pre><code class="language-python">scroll(name=None, **kwargs)
+<pre><code class="language-python">scroll(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayoutsplit"><kbd>method</kbd> <code>CHBoxLayout.split</code></h3>
-<pre><code class="language-python">split(name=None, **kwargs)
+<pre><code class="language-python">split(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L86"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-chboxlayoutvbox"><kbd>method</kbd> <code>CHBoxLayout.vbox</code></h3>
 <pre><code class="language-python">vbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L134"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L225"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-cgridlayout"><kbd>class</kbd> <code>CGridLayout</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayout__init__"><kbd>method</kbd> <code>CGridLayout.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    stretch: int | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayoutadd"><kbd>method</kbd> <code>CGridLayout.add</code></h3>
-<pre><code class="language-python">add(item, *args, **kwargs)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L245"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutaddlayout"><kbd>method</kbd> <code>CGridLayout.addLayout</code></h3>
+<pre><code class="language-python">addLayout(
+    item: PySide2.QtWidgets.QLayout,
+    row: int,
+    column: int,
+    row_span: int = 1,
+    column_span: int = 1,
+    rowSpan: int = 1,
+    columnSpan: int = 1,
+    **kwargs
+) → None
+</code></pre>
+<p>Change the function signature to allow using the spans as named params </p>
+<hr />
+<p><a href="../../qtstrap/widgets/layouts.py#L228"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-cgridlayoutaddwidget"><kbd>method</kbd> <code>CGridLayout.addWidget</code></h3>
+<pre><code class="language-python">addWidget(
+    item: PySide2.QtWidgets.QWidget,
+    row: int,
+    column: int,
+    row_span: int = 1,
+    column_span: int = 1,
+    rowSpan: int = 1,
+    columnSpan: int = 1,
+    **kwargs
+) → None
+</code></pre>
+<p>Change the function signature to allow using the spans as named params </p>
+<hr />
+<p><a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayoutform"><kbd>method</kbd> <code>CGridLayout.form</code></h3>
 <pre><code class="language-python">form(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayoutgrid"><kbd>method</kbd> <code>CGridLayout.grid</code></h3>
 <pre><code class="language-python">grid(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L90"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayouthbox"><kbd>method</kbd> <code>CGridLayout.hbox</code></h3>
 <pre><code class="language-python">hbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L109"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayoutscroll"><kbd>method</kbd> <code>CGridLayout.scroll</code></h3>
-<pre><code class="language-python">scroll(name=None, **kwargs)
+<pre><code class="language-python">scroll(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayoutsplit"><kbd>method</kbd> <code>CGridLayout.split</code></h3>
-<pre><code class="language-python">split(name=None, **kwargs)
+<pre><code class="language-python">split(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L86"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cgridlayoutvbox"><kbd>method</kbd> <code>CGridLayout.vbox</code></h3>
 <pre><code class="language-python">vbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L135"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L263"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-cformlayout"><kbd>class</kbd> <code>CFormLayout</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L28"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayout__init__"><kbd>method</kbd> <code>CFormLayout.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, stretch=None, margins=None, align=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    stretch: int | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L75"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayoutadd"><kbd>method</kbd> <code>CFormLayout.add</code></h3>
-<pre><code class="language-python">add(item, *args, **kwargs)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L98"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayoutform"><kbd>method</kbd> <code>CFormLayout.form</code></h3>
 <pre><code class="language-python">form(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayoutgrid"><kbd>method</kbd> <code>CFormLayout.grid</code></h3>
 <pre><code class="language-python">grid(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L90"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayouthbox"><kbd>method</kbd> <code>CFormLayout.hbox</code></h3>
 <pre><code class="language-python">hbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L109"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayoutscroll"><kbd>method</kbd> <code>CFormLayout.scroll</code></h3>
-<pre><code class="language-python">scroll(name=None, **kwargs)
+<pre><code class="language-python">scroll(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayoutsplit"><kbd>method</kbd> <code>CFormLayout.split</code></h3>
-<pre><code class="language-python">split(name=None, **kwargs)
+<pre><code class="language-python">split(name: str | None = None, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L86"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cformlayoutvbox"><kbd>method</kbd> <code>CFormLayout.vbox</code></h3>
 <pre><code class="language-python">vbox(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L270"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-csplitter"><kbd>class</kbd> <code>CSplitter</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L142"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L271"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-csplitter__init__"><kbd>method</kbd> <code>CSplitter.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, margins=None, orientation=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    orientation: typing.Optional[typing.Literal[PySide2.QtCore.Qt.Orientation.Horizontal, PySide2.QtCore.Qt.Orientation.Vertical, 'horizontal', 'h', 'vertical', 'v']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L159"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-csplitteradd"><kbd>method</kbd> <code>CSplitter.add</code></h3>
-<pre><code class="language-python">add(item, stretch=None)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    stretch: int | None = None
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L180"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L332"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-persistentcsplitter"><kbd>class</kbd> <code>PersistentCSplitter</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L181"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L333"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcsplitter__init__"><kbd>method</kbd> <code>PersistentCSplitter.__init__</code></h3>
-<pre><code class="language-python">__init__(name, parent=None, **kwargs)
+<pre><code class="language-python">__init__(
+    name: str,
+    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L159"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcsplitteradd"><kbd>method</kbd> <code>PersistentCSplitter.add</code></h3>
-<pre><code class="language-python">add(item, stretch=None)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    stretch: int | None = None
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L344"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcsplitterrestore_state"><kbd>method</kbd> <code>PersistentCSplitter.restore_state</code></h3>
 <pre><code class="language-python">restore_state()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L198"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L355"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-cscrollarea"><kbd>class</kbd> <code>CScrollArea</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L199"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L356"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cscrollarea__init__"><kbd>method</kbd> <code>CScrollArea.__init__</code></h3>
-<pre><code class="language-python">__init__(parent=None, margins=None, orientation=None, **kwargs)
+<pre><code class="language-python">__init__(
+    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
+    orientation: typing.Optional[typing.Literal[PySide2.QtCore.Qt.Orientation.Horizontal, PySide2.QtCore.Qt.Orientation.Vertical, 'horizontal', 'h', 'vertical', 'v']] = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L221"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L393"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cscrollareaadd"><kbd>method</kbd> <code>CScrollArea.add</code></h3>
-<pre><code class="language-python">add(item, stretch=None)
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    stretch: int = None
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L238"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L414"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cscrollareaaddlayout"><kbd>method</kbd> <code>CScrollArea.addLayout</code></h3>
 <pre><code class="language-python">addLayout(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L235"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L411"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-cscrollareaaddwidget"><kbd>method</kbd> <code>CScrollArea.addWidget</code></h3>
 <pre><code class="language-python">addWidget(*args, **kwargs)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L248"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L424"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-persistentcscrollarea"><kbd>class</kbd> <code>PersistentCScrollArea</code></h2>
-<p><a href="..\..\qtstrap\widgets\layouts.py#L249"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L425"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcscrollarea__init__"><kbd>method</kbd> <code>PersistentCScrollArea.__init__</code></h3>
-<pre><code class="language-python">__init__(name, parent=None, **kwargs)
+<pre><code class="language-python">__init__(
+    name: str,
+    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    **kwargs
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L258"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-persistentcscrollareaadd"><kbd>method</kbd> <code>PersistentCScrollArea.add</code></h3>
+<pre><code class="language-python">add(
+    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    *args,
+    **kwargs
+) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+</code></pre>
+<hr />
+<p><a href="../../qtstrap/widgets/layouts.py#L439"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcscrollarearestore_state"><kbd>method</kbd> <code>PersistentCScrollArea.restore_state</code></h3>
 <pre><code class="language-python">restore_state()
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\widgets\layouts.py#L255"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/widgets/layouts.py#L436"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcscrollareascroll_to"><kbd>method</kbd> <code>PersistentCScrollArea.scroll_to</code></h3>
-<pre><code class="language-python">scroll_to(value)
+<pre><code class="language-python">scroll_to(value: int)
 </code></pre>
 <hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>

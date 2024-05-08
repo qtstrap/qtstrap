@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="David Kincaid" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Widgets.persistent tab widget - qtstrap</title>
+    <title>Experimental - qtstrap</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Widgets.persistent tab widget";
-        var mkdocs_page_input_path = "api/widgets.persistent_tab_widget.md";
+        var mkdocs_page_name = "Experimental";
+        var mkdocs_page_input_path = "api/experimental.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -82,7 +82,9 @@
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../experimental/">Experimental</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Experimental</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
                   </li>
@@ -166,31 +168,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets/">Widgets</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Widgets.persistent tab widget</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-persistenttabwidget">class PersistentTabWidget</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidget__init__">method PersistentTabWidget.__init__</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgetclose_tab">method PersistentTabWidget.close_tab</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgetmenu">method PersistentTabWidget.menu</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgetmove_tab">method PersistentTabWidget.move_tab</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgetrestore_state">method PersistentTabWidget.restore_state</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgettab_order">method PersistentTabWidget.tab_order</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgetunhide_all">method PersistentTabWidget.unhide_all</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistenttabwidgetvisible_tabs">method PersistentTabWidget.visible_tabs</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_tab_widget/">Widgets.persistent tab widget</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.persistent_widgets/">Widgets.persistent widgets</a>
                   </li>
@@ -214,9 +192,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">API Reference</li>
-      <li class="breadcrumb-item active">Widgets.persistent tab widget</li>
+      <li class="breadcrumb-item active">Experimental</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/api/widgets.persistent_tab_widget.md">Edit on qtstrap/qtstrap</a>
+          <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/api/experimental.md">Edit on qtstrap/qtstrap</a>
     </li>
   </ul>
   <hr/>
@@ -226,66 +204,16 @@
               
                 <!-- markdownlint-disable -->
 
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h1 id="module-widgetspersistent_tab_widget"><kbd>module</kbd> <code>widgets.persistent_tab_widget</code></h1>
-<h2 id="global-variables"><strong>Global Variables</strong></h2>
-<ul>
-<li><strong>TYPE_CHECKING</strong></li>
-<li><strong>PYQT6</strong></li>
-<li><strong>PYQT5</strong></li>
-<li><strong>PYSIDE2</strong></li>
-<li><strong>PYSIDE6</strong></li>
-</ul>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h2 id="class-persistenttabwidget"><kbd>class</kbd> <code>PersistentTabWidget</code></h2>
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidget__init__"><kbd>method</kbd> <code>PersistentTabWidget.__init__</code></h3>
-<pre><code class="language-python">__init__(name, tabs=None, *args, **kwargs)
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L87"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgetclose_tab"><kbd>method</kbd> <code>PersistentTabWidget.close_tab</code></h3>
-<pre><code class="language-python">close_tab(index)
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L30"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgetmenu"><kbd>method</kbd> <code>PersistentTabWidget.menu</code></h3>
-<pre><code class="language-python">menu(pos) → None
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgetmove_tab"><kbd>method</kbd> <code>PersistentTabWidget.move_tab</code></h3>
-<pre><code class="language-python">move_tab(old, new)
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgetrestore_state"><kbd>method</kbd> <code>PersistentTabWidget.restore_state</code></h3>
-<pre><code class="language-python">restore_state(tabs=None)
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgettab_order"><kbd>method</kbd> <code>PersistentTabWidget.tab_order</code></h3>
-<pre><code class="language-python">tab_order()
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgetunhide_all"><kbd>method</kbd> <code>PersistentTabWidget.unhide_all</code></h3>
-<pre><code class="language-python">unhide_all()
-</code></pre>
-<hr />
-<p><a href="../../qtstrap/widgets/persistent_tab_widget.py#L78"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistenttabwidgetvisible_tabs"><kbd>method</kbd> <code>PersistentTabWidget.visible_tabs</code></h3>
-<pre><code class="language-python">visible_tabs()
-</code></pre>
+<p><a href="../../qtstrap/experimental/__init__.py"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h1 id="module-experimental"><kbd>module</kbd> <code>experimental</code></h1>
 <hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../widgets/" class="btn btn-neutral float-left" title="Widgets"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../widgets.persistent_widgets/" class="btn btn-neutral float-right" title="Widgets.persistent widgets">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../extras/styles/" class="btn btn-neutral float-left" title="Styles"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../extras.code_editor.code_editor/" class="btn btn-neutral float-right" title="Extras.code editor.code editor">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -312,10 +240,10 @@
         </span>
     
     
-      <span><a href="../widgets/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../extras/styles/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../widgets.persistent_widgets/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../extras.code_editor.code_editor/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

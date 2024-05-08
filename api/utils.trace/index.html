@@ -82,6 +82,8 @@
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../experimental/">Experimental</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_line/">Extras.code editor.code line</a>
@@ -118,6 +120,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../optional/">Optional</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
@@ -149,6 +153,8 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Utils.trace</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#function-out">function out</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#function-trace">function trace</a>
     </li>
@@ -204,17 +210,25 @@
               
                 <!-- markdownlint-disable -->
 
-<p><a href="..\..\qtstrap\utils\trace.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/trace.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h1 id="module-utilstrace"><kbd>module</kbd> <code>utils.trace</code></h1>
 <h2 id="global-variables"><strong>Global Variables</strong></h2>
 <ul>
 <li><strong>start_time</strong></li>
 </ul>
 <hr />
-<p><a href="..\..\qtstrap\utils\trace.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/trace.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="function-out"><kbd>function</kbd> <code>out</code></h2>
+<pre><code class="language-python">out(*args)
+</code></pre>
+<p>The print function used by the trace decorator. </p>
+<p>Overwrite this function to change the output behavior, eg to use logging instead of print. </p>
+<hr />
+<p><a href="../../qtstrap/utils/trace.py#L16"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-trace"><kbd>function</kbd> <code>trace</code></h2>
 <pre><code class="language-python">trace(func)
 </code></pre>
+<p>A decorator that logs registration, execution, and completion times of a function. </p>
 <hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
               

@@ -82,6 +82,8 @@
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../experimental/">Experimental</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_line/">Extras.code editor.code line</a>
@@ -117,6 +119,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../optional/">Optional</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
@@ -210,25 +214,29 @@
               
                 <!-- markdownlint-disable -->
 
-<p><a href="..\..\qtstrap\utils\string_builder.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/string_builder.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h1 id="module-utilsstring_builder"><kbd>module</kbd> <code>utils.string_builder</code></h1>
 <hr />
-<p><a href="..\..\qtstrap\utils\string_builder.py#L3"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/string_builder.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-builder"><kbd>class</kbd> <code>Builder</code></h2>
 <p>Utility class for incrementally building strings. </p>
-<p><a href="..\..\qtstrap\utils\string_builder.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/string_builder.py#L9"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-builder__init__"><kbd>method</kbd> <code>Builder.__init__</code></h3>
-<pre><code class="language-python">__init__(out=None, indent=4)
+<pre><code class="language-python">__init__(
+    out: typing.Optional[typing.Callable[[str], NoneType]] = None,
+    indent: int = 4,
+    endl: str = '\n'
+)
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\utils\string_builder.py#L25"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/string_builder.py#L37"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-builderjoin"><kbd>method</kbd> <code>Builder.join</code></h3>
-<pre><code class="language-python">join(base: str)
+<pre><code class="language-python">join(base: str = '')
 </code></pre>
 <hr />
-<p><a href="..\..\qtstrap\utils\string_builder.py#L19"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../../qtstrap/utils/string_builder.py#L31"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-builderline"><kbd>method</kbd> <code>Builder.line</code></h3>
-<pre><code class="language-python">line(string='')
+<pre><code class="language-python">line(string: str = '')
 </code></pre>
 <hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>

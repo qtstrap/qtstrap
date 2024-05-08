@@ -82,6 +82,8 @@
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../experimental/">Experimental</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_editor/">Extras.code editor.code editor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.code_editor.code_line/">Extras.code editor.code line</a>
@@ -117,6 +119,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style/">Extras.style</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../extras.style.themes/">Extras.style.themes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../optional/">Optional</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../options/">Options</a>
                   </li>
@@ -209,6 +213,7 @@
 <h1 id="api-overview">API Overview</h1>
 <h2 id="modules">Modules</h2>
 <ul>
+<li><a href="../experimental/#module-experimental"><code>experimental</code></a></li>
 <li><a href="../extras/#module-extras"><code>extras</code></a></li>
 <li><a href="../extras.code_editor/#module-extrascode_editor"><code>extras.code_editor</code></a></li>
 <li><a href="../extras.code_editor.code_editor/#module-extrascode_editorcode_editor"><code>extras.code_editor.code_editor</code></a></li>
@@ -227,6 +232,7 @@
 <li><a href="../extras.style.colors/#module-extrasstylecolors"><code>extras.style.colors</code></a></li>
 <li><a href="../extras.style.dark_palette/#module-extrasstyledark_palette"><code>extras.style.dark_palette</code></a></li>
 <li><a href="../extras.style.themes/#module-extrasstylethemes"><code>extras.style.themes</code></a></li>
+<li><a href="../optional/#module-optional"><code>optional</code></a></li>
 <li><a href="../options/#module-options"><code>options</code></a></li>
 <li><a href="../utils/#module-utils"><code>utils</code></a></li>
 <li><a href="../utils.adapter/#module-utilsadapter"><code>utils.adapter</code></a></li>
@@ -277,12 +283,12 @@
 <li><a href="../extras.style.colors/#class-colors"><code>colors.colors</code></a></li>
 <li><a href="../extras.style.colors/#class-qcolors"><code>colors.qcolors</code></a></li>
 <li><a href="../options/#class-options"><code>options.OPTIONS</code></a></li>
-<li><a href="../utils.adapter/#class-adapter"><code>adapter.Adapter</code></a>: A signal adapter that helps create disposable connections between objects. </li>
+<li><a href="../utils.adapter/#class-adapter"><code>adapter.Adapter</code></a>: A signal adapter that helps create disposable connections between objects.</li>
 <li><a href="../utils.defer/#class-defer"><code>defer.Defer</code></a>: A context manager that emulates the defer keyword from other languages.</li>
 <li><a href="../utils.drag_and_drop/#class-previewdrag"><code>drag_and_drop.PreviewDrag</code></a></li>
 <li><a href="../utils.signals/#class-signalblocker"><code>signals.SignalBlocker</code></a>: A context manager that blocks the signals of the provided widget.</li>
 <li><a href="../utils.string_builder/#class-builder"><code>string_builder.Builder</code></a>: Utility class for incrementally building strings.</li>
-<li><a href="../utils.timestamp/#class-timestamp"><code>timestamp.TimeStamp</code></a></li>
+<li><a href="../utils.timestamp/#class-timestamp"><code>timestamp.TimeStamp</code></a>: A TimeStamp object that can be used to track the time since it was created.</li>
 <li><a href="../widgets.buttons/#class-confirmtogglebutton"><code>buttons.ConfirmToggleButton</code></a></li>
 <li><a href="../widgets.buttons/#class-icontogglebutton"><code>buttons.IconToggleButton</code></a></li>
 <li><a href="../widgets.buttons/#class-menubutton"><code>buttons.MenuButton</code></a></li>
@@ -295,6 +301,7 @@
 <li><a href="../widgets.layouts/#class-csplitter"><code>layouts.CSplitter</code></a></li>
 <li><a href="../widgets.layouts/#class-cvboxlayout"><code>layouts.CVBoxLayout</code></a></li>
 <li><a href="../widgets.layouts/#class-contextlayout"><code>layouts.ContextLayout</code></a></li>
+<li><a href="../widgets.layouts/#class-contextlayoutbase"><code>layouts.ContextLayoutBase</code></a></li>
 <li><a href="../widgets.layouts/#class-persistentcscrollarea"><code>layouts.PersistentCScrollArea</code></a></li>
 <li><a href="../widgets.layouts/#class-persistentcsplitter"><code>layouts.PersistentCSplitter</code></a></li>
 <li><a href="../widgets.line_widgets/#class-hline"><code>line_widgets.HLine</code></a></li>
@@ -330,9 +337,10 @@
 <li><a href="../utils.drag_and_drop/#function-accepts_file_drops"><code>drag_and_drop.accepts_file_drops</code></a>: Decorator that enables drag-and-drop on a QWidget.</li>
 <li><a href="../utils.drag_and_drop/#function-draggable"><code>drag_and_drop.draggable</code></a></li>
 <li><a href="../utils.get_ip/#function-get_ip"><code>get_ip.get_ip</code></a>: Get the current machine's IPv4 address.</li>
-<li><a href="../utils.singleton/#function-singleton"><code>singleton.singleton</code></a>:     </li>
-<li><a href="../utils.timestamp/#function-time_since"><code>timestamp.time_since</code></a></li>
-<li><a href="../utils.trace/#function-trace"><code>trace.trace</code></a></li>
+<li><a href="../utils.singleton/#function-singleton"><code>singleton.singleton</code></a>: Class decorator that only allows one instance to be created.</li>
+<li><a href="../utils.timestamp/#function-time_since"><code>timestamp.time_since</code></a>: Calculate the elapsed time since the given TimeStamp or time value.</li>
+<li><a href="../utils.trace/#function-out"><code>trace.out</code></a>: The print function used by the trace decorator.</li>
+<li><a href="../utils.trace/#function-trace"><code>trace.trace</code></a>: A decorator that logs registration, execution, and completion times of a function.</li>
 <li><a href="../utils.utils/#function-disable_children"><code>utils.disable_children</code></a>: Recursively walk the provided thing and disable all of its widget children.</li>
 <li><a href="../utils.utils/#function-enable_children"><code>utils.enable_children</code></a>: Recursively walk the provided thing and enable all of its widget children.</li>
 <li><a href="../utils.utils/#function-get_children"><code>utils.get_children</code></a>: Recursively visit all the children of the specified object and collect them in a list.</li>
