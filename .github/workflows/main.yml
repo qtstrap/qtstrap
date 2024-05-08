@@ -23,7 +23,7 @@ jobs:
           python3 -m pip install mkdocs-literate-nav
       - name: Build site
         run: |
-          python3 buiid_docs.py
+          # python3 buiid_docs.py
           mkdocs build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
