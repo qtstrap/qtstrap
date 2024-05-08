@@ -1,7 +1,7 @@
 site_name: qtstrap
 site_description: 'Like Bootstrap, but Qt-er!'
 site_author: 'David Kincaid'
-docs_dir: docs/
+docs_dir: /
 repo_name: 'qtstrap/qtstrap'
 repo_url: 'https://github.com/qtstrap/qtstrap'
 theme:
