@@ -1,4 +1,4 @@
-from typing import TypeAlias, Literal
+from typing import TypeAlias, Literal, Sequence
 from qtpy.QtCore import (
     Qt,
     QSettings,
@@ -79,8 +79,8 @@ MarginsType: TypeAlias = QMargins | tuple | int | None
 
 class ContextLayoutBase:
     def add(
-        self, item: QWidget | QLayout | list[QWidget | QLayout], *args, **kwargs
-    ) -> QWidget | QLayout | list[QWidget | QLayout]:
+        self, item: QWidget | QLayout | Sequence[QWidget | QLayout], *args, **kwargs
+    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
         return item
 
     def __enter__(self):
@@ -129,7 +129,7 @@ class ContextLayout(ContextLayoutBase):
         if align in alignments:
             self.setAlignment(alignments[align])
 
-        self._stack: list[ContextLayoutBase] = []
+        self._stack: Sequence[ContextLayoutBase] = []
         self.next_layout: ContextLayoutBase | None = None
 
     def __getattr__(self, name: str):
@@ -145,24 +145,31 @@ class ContextLayout(ContextLayoutBase):
     def __call__(self):
         return self._layout
 
+    def __add__(
+        self,
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
+        self.add(item)
+        return item
+
     def __iadd__(
         self,
-        item: QWidget | QLayout | list[QWidget | QLayout],
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
     ):
         self.add(item)
         return self
 
     def add(
         self,
-        item: QWidget | QLayout | list[QWidget | QLayout],
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
         *args,
         **kwargs,
-    ) -> QWidget | QLayout | list[QWidget | QLayout]:
+    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
         if isinstance(item, QWidget):
             self._layout.addWidget(item, *args, **kwargs)
         elif isinstance(item, QLayout):
             self._layout.addLayout(item, *args, **kwargs)
-        elif isinstance(item, list):
+        elif isinstance(item, Sequence):
             for i in item:
                 self._layout.add(i, *args, **kwargs)
 
@@ -214,12 +221,10 @@ class ContextLayout(ContextLayoutBase):
 # *************************************************************************** #
 
 
-class CVBoxLayout(ContextLayout, QVBoxLayout):
-    ...
+class CVBoxLayout(ContextLayout, QVBoxLayout): ...
 
 
-class CHBoxLayout(ContextLayout, QHBoxLayout):
-    ...
+class CHBoxLayout(ContextLayout, QHBoxLayout): ...
 
 
 class CGridLayout(ContextLayout, QGridLayout):
@@ -261,13 +266,53 @@ class CGridLayout(ContextLayout, QGridLayout):
 
 
 class CFormLayout(ContextLayout, QFormLayout):
-    ...
+    def __add__(
+        self,
+        item: tuple[str, QWidget | QLayout],
+    ) -> QWidget | QLayout:
+        self.add(item)
+        return item[1]
+
+    def __iadd__(
+        self,
+        item: tuple[str, QWidget | QLayout],
+    ):
+        self.add(item)
+        return self
+
+    def add(
+        self,
+        a: str
+        | QWidget
+        | QLayout
+        | tuple[str, QWidget | QLayout]
+        | Sequence[tuple[str, QWidget | QLayout]]
+        | dict[str, QWidget | QLayout],
+        b: QWidget = None,
+    ):
+        if b is not None:
+            self._layout.addRow(a, b)
+            return b
+
+        if isinstance(a, Sequence):
+            if isinstance(a[0], (str, QWidget, QLayout)):
+                self._layout.addRow(*a)
+                return a[1]
+            if isinstance(a[0], Sequence):
+                for item in a:
+                    self._layout.addRow(*item)
+                return a
+        if isinstance(a, dict):
+            for name, obj in a.items():
+                self._layout.addRow(name, obj)
+
+        return b
 
 
 # --------------------------------------------------------------------------- #
 
 
-class CSplitter(QSplitter, ContextLayoutBase):
+class CSplitter(QSplitter, ContextLayout):
     def __init__(
         self,
         parent: QWidget | QLayout | ContextLayoutBase | None = None,
@@ -299,16 +344,16 @@ class CSplitter(QSplitter, ContextLayoutBase):
 
     def __iadd__(
         self,
-        item: QWidget | QLayout | list[QWidget | QLayout],
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
     ):
         self.add(item)
         return self
 
     def add(
         self,
-        item: QWidget | QLayout | list[QWidget | QLayout],
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
         stretch: int | None = None,
-    ) -> QWidget | QLayout | list[QWidget | QLayout]:
+    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
         if isinstance(item, QWidget):
             self.addWidget(item)
             if stretch:
@@ -317,7 +362,7 @@ class CSplitter(QSplitter, ContextLayoutBase):
             self.addWidget(QWidget(self, layout=item))
             if stretch:
                 self.setStretchFactor(self.count() - 1, stretch)
-        elif isinstance(item, list):
+        elif isinstance(item, Sequence):
             for i in item:
                 self.add(i)
         return item
@@ -385,16 +430,16 @@ class CScrollArea(QScrollArea, ContextLayoutBase):
 
     def __iadd__(
         self,
-        item: QWidget | QLayout | list[QWidget | QLayout],
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
     ):
         self.add(item)
         return self
 
     def add(
         self,
-        item: QWidget | QLayout | list[QWidget | QLayout],
+        item: QWidget | QLayout | Sequence[QWidget | QLayout],
         stretch: int = None,
-    ) -> QWidget | QLayout | list[QWidget | QLayout]:
+    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
         if isinstance(item, QWidget):
             self.widget().layout().addWidget(item)
             if stretch:
@@ -403,7 +448,7 @@ class CScrollArea(QScrollArea, ContextLayoutBase):
             self.addWidget(QWidget(self, layout=item))
             if stretch:
                 self.setStretchFactor(self.count() - 1, stretch)
-        elif isinstance(item, list):
+        elif isinstance(item, Sequence):
             for i in item:
                 self.add(i)
         return item
