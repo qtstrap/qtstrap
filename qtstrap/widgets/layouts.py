@@ -129,7 +129,7 @@ class ContextLayout(ContextLayoutBase):
         if align in alignments:
             self.setAlignment(alignments[align])
 
-        self._stack: Sequence[ContextLayoutBase] = []
+        self._stack: list[ContextLayoutBase] = []
         self.next_layout: ContextLayoutBase | None = None
 
     def __getattr__(self, name: str):
@@ -312,7 +312,7 @@ class CFormLayout(ContextLayout, QFormLayout):
 # --------------------------------------------------------------------------- #
 
 
-class CSplitter(QSplitter, ContextLayout):
+class CSplitter(QSplitter, ContextLayoutBase):
     def __init__(
         self,
         parent: QWidget | QLayout | ContextLayoutBase | None = None,
