@@ -39,10 +39,14 @@ tox: venv
 
 #
 tests: venv
-	$(VENV_PYTHON) -m pytest
+	$(VENV_PYTHON) -m pytest -s
 
 coverage: venv
 	$(VENV_PYTHON) -m pytest --cov
+
+docs: venv
+	$(VENV_PYTHON) build_docs.py
+.PHONY: docs
 
 # remove build artifacts
 clean:
@@ -76,7 +80,8 @@ CP := cp
 
 # Add this as a requirement to any make target that relies on the venv
 .PHONY: venv
-venv: $(VENV_DIR) $(VENV_CANARY_FILE)
+# venv: $(VENV_DIR) $(VENV_CANARY_FILE)
+venv: $(VENV_DIR)
 
 # Create the venv if it doesn't exist
 $(VENV_DIR):
@@ -84,8 +89,7 @@ $(VENV_DIR):
 
 # Update the venv if the canary is out of date
 $(VENV_CANARY_FILE): $(REQUIREMENTS)
-	$(VENV_PYTHON) -m pip install --upgrade pip
-	$(VENV_PYTHON) -m pip install -r $(REQUIREMENTS)
+	uv pip install -r $(REQUIREMENTS)
 	-$(RM) $(VENV_CANARY_DIR)
 	-mkdir $(VENV_CANARY_DIR)
 	-$(CP) $(REQUIREMENTS) $(VENV_CANARY_FILE)
@@ -102,8 +106,7 @@ freeze_reqs: venv
 
 # try to update the venv - expirimental feature, don't rely on it
 update_venv: venv
-	$(VENV_PYTHON) -m pip install --upgrade pip
-	$(VENV_PYTHON) -m pip install --upgrade -r $(REQUIREMENTS)
+	uv pip install -r $(REQUIREMENTS)
 	-$(RM) $(VENV_CANARY_DIR)
 	-mkdir $(VENV_CANARY_DIR)
 	-$(CP) $(REQUIREMENTS) $(VENV_CANARY_FILE)
@@ -118,18 +121,3 @@ clean_venv:
 
 # clean the venv and rebuild it
 reset_venv: clean_venv update_venv
-
-# **************************************************************************** #
-# expirimental, probably not reliable
-
-# If the first argument is "pip"...
-ifeq (pip,$(firstword $(MAKECMDGOALS)))
-  # use the rest as arguments for "pip"
-  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  # ...and turn them into do-nothing targets
-  $(eval $(RUN_ARGS):;@:)
-endif
-
-# forward pip commands to the venv
-pip: venv
-	$(VENV_PYTHON) -m pip $(RUN_ARGS)
