@@ -52,7 +52,7 @@
 
 - [`code_editor.CodeEditor`](./extras.code_editor.code_editor.md#class-codeeditor)
 - [`code_line.CodeLine`](./extras.code_editor.code_line.md#class-codeline)
-- [`python.PythonHighlighter`](./extras.code_editor.highlighters.python.md#class-pythonhighlighter): Syntax highlighter for the Python language.
+- [`python.PythonHighlighter`](./extras.code_editor.highlighters.python.md#class-pythonhighlighter)
 - [`command_palette.Command`](./extras.command_palette.command_palette.md#class-command)
 - [`command_palette.CommandCompleter`](./extras.command_palette.command_palette.md#class-commandcompleter)
 - [`command_palette.CommandModel`](./extras.command_palette.command_palette.md#class-commandmodel)
@@ -74,7 +74,7 @@
 - [`colors.colors`](./extras.style.colors.md#class-colors)
 - [`colors.qcolors`](./extras.style.colors.md#class-qcolors)
 - [`options.OPTIONS`](./options.md#class-options)
-- [`adapter.Adapter`](./utils.adapter.md#class-adapter): A signal adapter that helps create disposable connections between objects.
+- [`adapter.Adapter`](./utils.adapter.md#class-adapter)
 - [`defer.Defer`](./utils.defer.md#class-defer): A context manager that emulates the defer keyword from other languages.
 - [`drag_and_drop.PreviewDrag`](./utils.drag_and_drop.md#class-previewdrag)
 - [`signals.SignalBlocker`](./utils.signals.md#class-signalblocker): A context manager that blocks the signals of the provided widget.

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.layouts`
 
@@ -15,7 +15,7 @@
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `ContextLayoutBase`
 
@@ -27,16 +27,16 @@
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayoutBase.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     *args,
     **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -46,23 +46,23 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `ContextLayout`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QMainWindow | PySide6.QtWidgets.QSplitter | PySide6.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
     stretch: int | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    align: Optional[Literal[<AlignmentFlag.AlignLeft: 1>, <AlignmentFlag.AlignRight: 2>, <AlignmentFlag.AlignTop: 32>, <AlignmentFlag.AlignBottom: 64>, <AlignmentFlag.AlignCenter: 132>, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
     **kwargs
 )
 ```
@@ -76,16 +76,16 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L162"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     *args,
     **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -94,7 +94,7 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.form`
 
@@ -108,7 +108,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.grid`
 
@@ -122,7 +122,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.hbox`
 
@@ -136,7 +136,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L201"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.scroll`
 
@@ -150,7 +150,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.split`
 
@@ -164,7 +164,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ContextLayout.vbox`
 
@@ -179,23 +179,23 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L217"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L224"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CVBoxLayout`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QMainWindow | PySide6.QtWidgets.QSplitter | PySide6.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
     stretch: int | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    align: Optional[Literal[<AlignmentFlag.AlignLeft: 1>, <AlignmentFlag.AlignRight: 2>, <AlignmentFlag.AlignTop: 32>, <AlignmentFlag.AlignBottom: 64>, <AlignmentFlag.AlignCenter: 132>, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
     **kwargs
 )
 ```
@@ -209,16 +209,16 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L162"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     *args,
     **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -227,7 +227,7 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.form`
 
@@ -241,7 +241,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.grid`
 
@@ -255,7 +255,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.hbox`
 
@@ -269,7 +269,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L201"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.scroll`
 
@@ -283,7 +283,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.split`
 
@@ -297,7 +297,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CVBoxLayout.vbox`
 
@@ -312,23 +312,23 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L221"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L227"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CHBoxLayout`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QMainWindow | PySide6.QtWidgets.QSplitter | PySide6.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
     stretch: int | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    align: Optional[Literal[<AlignmentFlag.AlignLeft: 1>, <AlignmentFlag.AlignRight: 2>, <AlignmentFlag.AlignTop: 32>, <AlignmentFlag.AlignBottom: 64>, <AlignmentFlag.AlignCenter: 132>, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
     **kwargs
 )
 ```
@@ -342,16 +342,16 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L162"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     *args,
     **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -360,7 +360,7 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.form`
 
@@ -374,7 +374,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.grid`
 
@@ -388,7 +388,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.hbox`
 
@@ -402,7 +402,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L201"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.scroll`
 
@@ -416,7 +416,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.split`
 
@@ -430,7 +430,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CHBoxLayout.vbox`
 
@@ -445,23 +445,23 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L225"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L230"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CGridLayout`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QMainWindow | PySide6.QtWidgets.QSplitter | PySide6.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
     stretch: int | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    align: Optional[Literal[<AlignmentFlag.AlignLeft: 1>, <AlignmentFlag.AlignRight: 2>, <AlignmentFlag.AlignTop: 32>, <AlignmentFlag.AlignBottom: 64>, <AlignmentFlag.AlignCenter: 132>, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
     **kwargs
 )
 ```
@@ -475,16 +475,16 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L162"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     *args,
     **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -493,13 +493,13 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L245"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L250"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.addLayout`
 
 ```python
 addLayout(
-    item: PySide2.QtWidgets.QLayout,
+    item: PySide6.QtWidgets.QLayout,
     row: int,
     column: int,
     row_span: int = 1,
@@ -514,13 +514,13 @@ Change the function signature to allow using the spans as named params
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L228"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L233"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.addWidget`
 
 ```python
 addWidget(
-    item: PySide2.QtWidgets.QWidget,
+    item: PySide6.QtWidgets.QWidget,
     row: int,
     column: int,
     row_span: int = 1,
@@ -535,7 +535,7 @@ Change the function signature to allow using the spans as named params
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.form`
 
@@ -549,7 +549,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.grid`
 
@@ -563,7 +563,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.hbox`
 
@@ -577,7 +577,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L201"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.scroll`
 
@@ -591,7 +591,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.split`
 
@@ -605,7 +605,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CGridLayout.vbox`
 
@@ -620,23 +620,23 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L263"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L268"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CFormLayout`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QMainWindow | PySide2.QtWidgets.QSplitter | PySide2.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QMainWindow | PySide6.QtWidgets.QSplitter | PySide6.QtWidgets.QWidget | widgets.layouts.ContextLayoutBase | None = None,
     stretch: int | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    align: typing.Optional[typing.Literal[PySide2.QtCore.Qt.AlignmentFlag.AlignLeft, PySide2.QtCore.Qt.AlignmentFlag.AlignRight, PySide2.QtCore.Qt.AlignmentFlag.AlignTop, PySide2.QtCore.Qt.AlignmentFlag.AlignBottom, PySide2.QtCore.Qt.AlignmentFlag.AlignCenter, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    align: Optional[Literal[<AlignmentFlag.AlignLeft: 1>, <AlignmentFlag.AlignRight: 2>, <AlignmentFlag.AlignTop: 32>, <AlignmentFlag.AlignBottom: 64>, <AlignmentFlag.AlignCenter: 132>, 'left', 'l', 'right', 'r', 'top', 't', 'bottom', 'bot', 'b', 'center', 'c']] = None,
     **kwargs
 )
 ```
@@ -650,16 +650,15 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L283"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
-    *args,
-    **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+    a: Union[str, PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, tuple[str, PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout], Sequence[tuple[str, PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]], dict[str, PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
+    b: PySide6.QtWidgets.QWidget = None
+)
 ```
 
 
@@ -668,7 +667,7 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L183"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.form`
 
@@ -682,7 +681,7 @@ form(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.grid`
 
@@ -696,7 +695,7 @@ grid(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L175"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.hbox`
 
@@ -710,7 +709,7 @@ hbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L201"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.scroll`
 
@@ -724,7 +723,7 @@ scroll(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.split`
 
@@ -738,7 +737,7 @@ split(name: str | None = None, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L171"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CFormLayout.vbox`
 
@@ -753,22 +752,22 @@ vbox(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L270"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L315"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CSplitter`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L271"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L316"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CSplitter.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    orientation: typing.Optional[typing.Literal[PySide2.QtCore.Qt.Orientation.Horizontal, PySide2.QtCore.Qt.Orientation.Vertical, 'horizontal', 'h', 'vertical', 'v']] = None,
+    parent: PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    orientation: Optional[Literal[<Orientation.Horizontal: 1>, <Orientation.Vertical: 2>, 'horizontal', 'h', 'vertical', 'v']] = None,
     **kwargs
 )
 ```
@@ -782,15 +781,85 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L352"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CSplitter.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     stretch: int | None = None
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `CSplitter.form`
+
+```python
+form(*args, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `CSplitter.grid`
+
+```python
+grid(*args, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `CSplitter.hbox`
+
+```python
+hbox(*args, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `CSplitter.split`
+
+```python
+split(name: str | None = None, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `CSplitter.vbox`
+
+```python
+vbox(*args, **kwargs)
 ```
 
 
@@ -800,21 +869,21 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L332"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L377"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PersistentCSplitter`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L333"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L378"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.__init__`
 
 ```python
 __init__(
     name: str,
-    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
     **kwargs
 )
 ```
@@ -828,15 +897,15 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L307"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L352"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     stretch: int | None = None
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -845,7 +914,49 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L344"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `PersistentCSplitter.form`
+
+```python
+form(*args, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `PersistentCSplitter.grid`
+
+```python
+grid(*args, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `PersistentCSplitter.hbox`
+
+```python
+hbox(*args, **kwargs)
+```
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L389"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.restore_state`
 
@@ -857,25 +968,53 @@ restore_state()
 
 
 
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `PersistentCSplitter.split`
+
+```python
+split(name: str | None = None, **kwargs)
+```
+
+
+
+
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L355"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `PersistentCSplitter.vbox`
+
+```python
+vbox(*args, **kwargs)
+```
+
+
+
+
+
+
+---
+
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L400"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `CScrollArea`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L356"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L401"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.__init__`
 
 ```python
 __init__(
-    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
-    margins: PySide2.QtCore.QMargins | tuple | int | None = None,
-    orientation: typing.Optional[typing.Literal[PySide2.QtCore.Qt.Orientation.Horizontal, PySide2.QtCore.Qt.Orientation.Vertical, 'horizontal', 'h', 'vertical', 'v']] = None,
+    parent: PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    margins: PySide6.QtCore.QMargins | tuple | int | None = None,
+    orientation: Optional[Literal[<Orientation.Horizontal: 1>, <Orientation.Vertical: 2>, 'horizontal', 'h', 'vertical', 'v']] = None,
     **kwargs
 )
 ```
@@ -889,15 +1028,15 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L393"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L438"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     stretch: int = None
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -906,7 +1045,7 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L414"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L459"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.addLayout`
 
@@ -920,7 +1059,7 @@ addLayout(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L411"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L456"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `CScrollArea.addWidget`
 
@@ -935,21 +1074,21 @@ addWidget(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L424"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L469"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PersistentCScrollArea`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L425"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L470"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.__init__`
 
 ```python
 __init__(
     name: str,
-    parent: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
+    parent: PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout | widgets.layouts.ContextLayoutBase | None = None,
     **kwargs
 )
 ```
@@ -963,16 +1102,16 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.add`
 
 ```python
 add(
-    item: PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout],
+    item: Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]],
     *args,
     **kwargs
-) → PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout | list[PySide2.QtWidgets.QWidget | PySide2.QtWidgets.QLayout]
+) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 ```
 
 
@@ -981,7 +1120,7 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L439"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L484"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.restore_state`
 
@@ -995,7 +1134,7 @@ restore_state()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/layouts.py#L436"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L481"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCScrollArea.scroll_to`
 

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/drag_and_drop.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\drag_and_drop.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `utils.drag_and_drop`
 
@@ -17,7 +17,7 @@
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/drag_and_drop.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\drag_and_drop.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `accepts_file_drops`
 
@@ -30,7 +30,7 @@ Decorator that enables drag-and-drop on a QWidget. Accepts a str or a list of st
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/drag_and_drop.py#L48"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\drag_and_drop.py#L48"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `draggable`
 
@@ -45,14 +45,14 @@ draggable(target)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/drag_and_drop.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\drag_and_drop.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PreviewDrag`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/utils/drag_and_drop.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\drag_and_drop.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PreviewDrag.__init__`
 

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.toggle`
 
@@ -18,23 +18,23 @@
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `Toggle`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L11"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L11"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Toggle.__init__`
 
 ```python
 __init__(
     *args,
-    bar_color=PySide2.QtCore.Qt.GlobalColor.gray,
+    bar_color=<GlobalColor.gray: 5>,
     checked_color='#00B0FF',
-    handle_color=PySide2.QtCore.Qt.GlobalColor.white,
+    handle_color=<GlobalColor.white: 3>,
     **kwargs
 )
 ```
@@ -48,7 +48,7 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Toggle.handle_state_change`
 
@@ -62,12 +62,12 @@ handle_state_change(value)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Toggle.hitButton`
 
 ```python
-hitButton(pos: PySide2.QtCore.QPoint)
+hitButton(pos: PySide6.QtCore.QPoint)
 ```
 
 
@@ -76,12 +76,12 @@ hitButton(pos: PySide2.QtCore.QPoint)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L41"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L41"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Toggle.paintEvent`
 
 ```python
-paintEvent(e: PySide2.QtGui.QPaintEvent)
+paintEvent(e: PySide6.QtGui.QPaintEvent)
 ```
 
 
@@ -90,7 +90,7 @@ paintEvent(e: PySide2.QtGui.QPaintEvent)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `Toggle.sizeHint`
 
@@ -105,14 +105,14 @@ sizeHint()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L102"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `AnimatedToggle`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L106"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L106"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `AnimatedToggle.__init__`
 
@@ -134,7 +134,7 @@ __init__(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L131"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L131"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `AnimatedToggle.handle_state_change`
 
@@ -148,12 +148,12 @@ handle_state_change(value)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `AnimatedToggle.hitButton`
 
 ```python
-hitButton(pos: PySide2.QtCore.QPoint)
+hitButton(pos: PySide6.QtCore.QPoint)
 ```
 
 
@@ -162,12 +162,12 @@ hitButton(pos: PySide2.QtCore.QPoint)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L140"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L140"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `AnimatedToggle.paintEvent`
 
 ```python
-paintEvent(e: PySide2.QtGui.QPaintEvent)
+paintEvent(e: PySide6.QtGui.QPaintEvent)
 ```
 
 
@@ -176,7 +176,7 @@ paintEvent(e: PySide2.QtGui.QPaintEvent)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `AnimatedToggle.sizeHint`
 
@@ -191,14 +191,14 @@ sizeHint()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L184"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L184"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PersistentToggle`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L185"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L185"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentToggle.__init__`
 
@@ -215,7 +215,7 @@ __init__(name, changed=None, *args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentToggle.handle_state_change`
 
@@ -229,12 +229,12 @@ handle_state_change(value)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentToggle.hitButton`
 
 ```python
-hitButton(pos: PySide2.QtCore.QPoint)
+hitButton(pos: PySide6.QtCore.QPoint)
 ```
 
 
@@ -243,12 +243,12 @@ hitButton(pos: PySide2.QtCore.QPoint)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L41"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L41"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentToggle.paintEvent`
 
 ```python
-paintEvent(e: PySide2.QtGui.QPaintEvent)
+paintEvent(e: PySide6.QtGui.QPaintEvent)
 ```
 
 
@@ -257,7 +257,7 @@ paintEvent(e: PySide2.QtGui.QPaintEvent)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L195"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L195"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentToggle.restore_state`
 
@@ -271,7 +271,7 @@ restore_state()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentToggle.sizeHint`
 
@@ -286,14 +286,14 @@ sizeHint()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L203"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L203"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `PersistentAnimatedToggle`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L204"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L204"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentAnimatedToggle.__init__`
 
@@ -310,7 +310,7 @@ __init__(name, changed=None, *args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L131"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L131"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentAnimatedToggle.handle_state_change`
 
@@ -324,12 +324,12 @@ handle_state_change(value)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentAnimatedToggle.hitButton`
 
 ```python
-hitButton(pos: PySide2.QtCore.QPoint)
+hitButton(pos: PySide6.QtCore.QPoint)
 ```
 
 
@@ -338,12 +338,12 @@ hitButton(pos: PySide2.QtCore.QPoint)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L140"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L140"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentAnimatedToggle.paintEvent`
 
 ```python
-paintEvent(e: PySide2.QtGui.QPaintEvent)
+paintEvent(e: PySide6.QtGui.QPaintEvent)
 ```
 
 
@@ -352,7 +352,7 @@ paintEvent(e: PySide2.QtGui.QPaintEvent)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L214"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L214"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentAnimatedToggle.restore_state`
 
@@ -366,7 +366,7 @@ restore_state()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\toggle.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentAnimatedToggle.sizeHint`
 

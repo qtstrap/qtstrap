@@ -48,3 +48,55 @@ with CVBoxLayout(window) as layout:
 All of the backtracking and repetition is gone. The pointless effort of naming each layout is gone. The indentation helps show the structure of the layout.
 
 The top level `CVBoxLayout` adds itself to its parent correctly and automatically. The `.add()` method can handle a layout or a widget or even a mixed list of both.
+
+The `.add()` method also returns the item you give it, which allows us to remove even more duplication in some situations:
+
+```py
+# note that a with block does not create a new scope
+with CHBoxLayout(QWidget()) as layout:
+    button1 = layout.add(QPushButton("One"))
+    button2 = layout.add(QPushButton("Two"))
+
+# so these references are available after the with block closes
+print(button1) 
+```
+
+Context layouts also support more advanced usages:
+
+```py
+with CVBoxLayout(QWidget()) as layout:
+    # supports '+='
+    layout += QLabel('Title') 
+    # supports '+', which returns the added widget
+    button1 = layout + QPushButton("One")
+    # All add() methods also support lists and tuples of widgets
+    button2, button3 = layout.add((QPushButton("Two"), QPushButton("Three")))
+    button4, button5 = layout + [QPushButton("Four"), QPushButton("Five")]
+```
+
+# Advanced Layouts
+
+Other Qt layout types are supported:
+
+- Forms:
+    ```py
+    with CFormLayout(QWidget()) as layout:
+        layout.add('label', QPushButton(''))
+        layout += ['label', QPushButton('')]
+        layout += {
+            'label': QPushButton(''),
+            'label': QPushButton(''),
+        }
+    ```
+- Splitters:
+    ```py
+    with CSplitter(QWidget()) as split:
+        # coming soon
+        pass
+    ```
+- Scroll Areas:
+    ```py
+    with CScrollArea(QWidget()) as layout:
+        # coming soon
+        pass
+    ```

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `widgets.buttons`
 
@@ -18,14 +18,14 @@
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `StateButton`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L17"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L17"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `StateButton.__init__`
 
@@ -50,7 +50,7 @@ __init__(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L26"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L26"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `StateButton.next_state`
 
@@ -64,7 +64,7 @@ next_state()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L29"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L29"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `StateButton.update_icon`
 
@@ -79,14 +79,14 @@ update_icon()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `IconToggleButton`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `IconToggleButton.__init__`
 
@@ -103,7 +103,7 @@ __init__(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `IconToggleButton.update_icon`
 
@@ -118,14 +118,14 @@ update_icon()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L52"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L52"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `ConfirmToggleButton`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L66"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L66"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ConfirmToggleButton.__init__`
 
@@ -150,7 +150,7 @@ __init__(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L88"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L88"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ConfirmToggleButton.check`
 
@@ -164,7 +164,7 @@ check()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ConfirmToggleButton.confirm`
 
@@ -178,7 +178,7 @@ confirm()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ConfirmToggleButton.next_state`
 
@@ -192,7 +192,7 @@ next_state()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ConfirmToggleButton.uncheck`
 
@@ -206,7 +206,7 @@ uncheck()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L101"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L101"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `ConfirmToggleButton.update_icon`
 
@@ -221,14 +221,14 @@ update_icon()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L106"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L106"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `MenuButton`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L107"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L107"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `MenuButton.__init__`
 
@@ -245,7 +245,7 @@ __init__(*args, **kwargs)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/widgets/buttons.py#L113"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\buttons.py#L113"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `MenuButton.addAction`
 

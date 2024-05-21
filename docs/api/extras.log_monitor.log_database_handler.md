@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `extras.log_monitor.log_database_handler`
 
@@ -21,14 +21,14 @@
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L62"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L62"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `DatabaseHandler`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `DatabaseHandler.__init__`
 
@@ -53,7 +53,7 @@ __init__(database_name)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `DatabaseHandler.emit`
 
@@ -67,7 +67,7 @@ emit(record)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L76"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L76"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `DatabaseHandler.format_time`
 
@@ -81,7 +81,7 @@ format_time(record)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L104"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L104"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>classmethod</kbd> `DatabaseHandler.register_callback`
 
@@ -95,7 +95,7 @@ register_callback(cb)
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master/qtstrap/extras/log_monitor/log_database_handler.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_database_handler.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `DatabaseHandler.write`
 
