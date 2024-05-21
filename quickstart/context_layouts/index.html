@@ -245,6 +245,48 @@ with CVBoxLayout(window) as layout:
 </code></pre>
 <p>All of the backtracking and repetition is gone. The pointless effort of naming each layout is gone. The indentation helps show the structure of the layout.</p>
 <p>The top level <code>CVBoxLayout</code> adds itself to its parent correctly and automatically. The <code>.add()</code> method can handle a layout or a widget or even a mixed list of both.</p>
+<p>The <code>.add()</code> method also returns the item you give it, which allows us to remove even more duplication in some situations:</p>
+<pre><code class="language-py"># note that a with block does not create a new scope
+with CHBoxLayout(QWidget()) as layout:
+    button1 = layout.add(QPushButton(&quot;One&quot;))
+    button2 = layout.add(QPushButton(&quot;Two&quot;))
+
+# so these references are available after the with block closes
+print(button1) 
+</code></pre>
+<p>Context layouts also support more advanced usages:</p>
+<pre><code class="language-py">with CVBoxLayout(QWidget()) as layout:
+    # supports '+='
+    layout += QLabel('Title') 
+    # supports '+', which returns the added widget
+    button1 = layout + QPushButton(&quot;One&quot;)
+    # All add() methods also support lists and tuples of widgets
+    button2, button3 = layout.add((QPushButton(&quot;Two&quot;), QPushButton(&quot;Three&quot;)))
+    button4, button5 = layout + [QPushButton(&quot;Four&quot;), QPushButton(&quot;Five&quot;)]
+</code></pre>
+<h1 id="advanced-layouts">Advanced Layouts</h1>
+<p>Other Qt layout types are supported:</p>
+<ul>
+<li>Forms:
+    <code>py
+    with CFormLayout(QWidget()) as layout:
+        layout.add('label', QPushButton(''))
+        layout += ['label', QPushButton('')]
+        layout += {
+            'label': QPushButton(''),
+            'label': QPushButton(''),
+        }</code></li>
+<li>Splitters:
+    <code>py
+    with CSplitter(QWidget()) as split:
+        # coming soon
+        pass</code></li>
+<li>Scroll Areas:
+    <code>py
+    with CScrollArea(QWidget()) as layout:
+        # coming soon
+        pass</code></li>
+</ul>
               
             </div>
           </div><footer>
