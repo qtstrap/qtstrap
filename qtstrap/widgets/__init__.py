@@ -15,6 +15,7 @@ from .buttons import (
     ConfirmToggleButton,
     MenuButton,
 )
+from .dock_widget import BaseDockWidget
 from .labeledit import LabelEdit
 from .link_label import LinkLabel
 from .line_widgets import VLine, HLine
