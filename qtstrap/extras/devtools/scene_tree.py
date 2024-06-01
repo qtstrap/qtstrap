@@ -200,7 +200,8 @@ class SceneTree(QTreeWidget):
             else:
                 menu.addAction('Show').triggered.connect(item.toggle_visibility)
 
-        menu.addAction('Show').triggered.connect(item.toggle_visibility)
+        menu.addAction('Open REPL')
+        menu.addAction('Edit Style')
 
         menu.exec_(pos)
 
