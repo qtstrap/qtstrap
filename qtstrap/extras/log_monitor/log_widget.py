@@ -56,39 +56,21 @@ class LogMonitorWidget(QWidget):
         self.filter_controls.logger_filter.register_loggers(loggers)
 
 
-class LogMonitorDockWidget(QDockWidget):
-    def __init__(self, parent=None, shortcut='Ctrl+L'):
-        super().__init__('Log Monitor', parent=parent)
-        self.setObjectName('LogMonitor')
+class LogMonitorDockWidget(BaseDockWidget):
+    _title = 'Log Monitor'
+    _starting_area = Qt.BottomDockWidgetArea
+    _shortcut = 'Ctrl+`'
 
-        self.shortcut = shortcut
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
 
         self.setWidget(LogMonitorWidget(self))
 
         if command_palette_available:
             self.commands = [
-                Command('Log Monitor: Show log monitor', triggered=self.show, shortcut='Ctrl+L'),
+                Command('Log Monitor: Show log monitor', triggered=self.show),
                 Command('Log Monitor: Hide log monitor', triggered=self.hide),
             ]
-
-        self.setAllowedAreas(Qt.AllDockWidgetAreas)
-        self.dockLocationChanged.connect(lambda: QTimer.singleShot(0, self.adjust_size))
-
-        self.starting_area = Qt.BottomDockWidgetArea
-
-        if not self.parent().restoreDockWidget(self):
-            self.parent().addDockWidget(self.starting_area, self)
-
-        self.closeEvent = lambda x: self.hide()
-
-    def adjust_size(self):
-        if self.isFloating():
-            self.adjustSize()
-
-    def toggleViewAction(self):
-        action = super().toggleViewAction()
-        action.setShortcut(self.shortcut)
-        return action
 
 
 class LogMonitorDropdown(QWidget):
