@@ -13,61 +13,6 @@ except:
     command_palette_available = False
 
 
-class SceneTreeDelegate(QStyledItemDelegate):
-    def __init__(self):
-        super().__init__()
-
-        self.label = QLabel()
-        self.doc = QtGui.QTextDocument()
-
-    def paint(self, painter, option, index):
-        self.initStyleOption(option, index)
-        text = index.data(Qt.DisplayRole)
-
-        if text is None:
-            super().paint(painter, option, index)
-            return
-
-        r = QRect(option.rect)
-        bg_rect = QRect(r.x() - 3, r.y(), r.width() + 3, r.height())
-
-        if option.state & QStyle.State_MouseOver:
-            brush = QBrush(QColor('#e5f3ff'))
-            painter.fillRect(QRect(bg_rect), brush)
-        if option.state & QStyle.State_Selected:
-            if option.state & QStyle.State_Active:
-                brush = QBrush(QColor('#cde8ff'))
-            elif option.state & QStyle.State_MouseOver:
-                brush = QBrush(QColor('#cde8ff'))
-            else:
-                brush = QBrush(QColor('#d9d9d9'))
-            painter.fillRect(QRect(bg_rect), brush)
-
-            if option.state & QStyle.State_MouseOver:
-                painter.setPen(QColor('#99d1ff'))
-                r = QRect(bg_rect)
-                painter.drawLine(r.topLeft(), r.topRight())
-                painter.drawLine(r.bottomLeft(), r.bottomRight())
-                painter.drawLine(r.topLeft(), r.bottomLeft())
-
-        painter.save()
-
-        parts = text.split('<')
-        parts[1] = '<' + parts[1]
-
-        rect = QRect(option.rect)
-
-        if parts[0]:
-            painter.setPen(qcolors.white)
-            prev = painter.drawText(rect, Qt.AlignLeft, parts[0])
-            rect = QRect(prev.x() + prev.width(), prev.y(), option.rect.width(), prev.height())
-        else:
-            painter.setPen(qcolors.gray)
-            painter.drawText(rect, Qt.AlignLeft, parts[1])
-
-        painter.restore()
-
-
 class SceneTreeWidgetItem(QTreeWidgetItem):
     def __init__(self, parent, node):
         super().__init__(parent)
@@ -77,16 +22,12 @@ class SceneTreeWidgetItem(QTreeWidgetItem):
 
         obj = node.obj
 
-        name = obj.objectName()
-        klass = type(obj).__name__
-
-        s = ''
-        if name:
-            s += f'{name} '
-
-        s += f'<{klass}>'
-
-        self.setText(0, s)
+        if name := obj.objectName():
+            self.setForeground(0, qcolors.white)
+            self.setText(0, name)
+        else:
+            self.setForeground(0, qcolors.gray)
+            self.setText(0, f'<{type(obj).__name__}>')
 
         self.update_visibility_icon()
 
@@ -163,7 +104,6 @@ class SceneTree(QTreeWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
-        self.setItemDelegate(SceneTreeDelegate())
         self.setColumnCount(2)
         self.header().hide()
         self.header().setMinimumSectionSize(1)
