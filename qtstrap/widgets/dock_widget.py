@@ -1,4 +1,4 @@
-from qtpy.QtCore import Qt
+from qtpy.QtCore import Qt, QTimer
 from qtpy.QtWidgets import QDockWidget, QWidget
 
 
@@ -16,12 +16,17 @@ class BaseDockWidget(QDockWidget):
         self.setWidget(self._widget)
 
         self.setFeatures(self._features)
+        self.dockLocationChanged.connect(lambda: QTimer.singleShot(0, self.adjust_size))
 
         if not parent.restoreDockWidget(self):
             parent.addDockWidget(self._starting_area, self)
             self.hide()
 
         self.closeEvent = lambda x: self.hide()
+
+    def adjust_size(self):
+        if self.isFloating():
+            self.adjustSize()
 
     def toggleViewAction(self):
         action = super().toggleViewAction()
