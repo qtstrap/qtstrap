@@ -1,5 +1,4 @@
 from qtstrap import *
-
 from monaco import MonacoWidget
 
 
