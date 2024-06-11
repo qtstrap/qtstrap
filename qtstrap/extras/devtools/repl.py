@@ -1,6 +1,14 @@
 from qtstrap import *
 
 
+class Repl(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+
+        with CVBoxLayout(self, margins=2) as layout:
+            layout.add(QLabel('REPL'))
+
+
 class ReplDockWidget(BaseDockWidget):
     _title = 'REPL'
     _starting_area = Qt.BottomDockWidgetArea
@@ -9,5 +17,5 @@ class ReplDockWidget(BaseDockWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
-        with CVBoxLayout(self._widget, margins=2) as layout:
-            layout.add(QLabel('REPL goes here'))
+        self.repl = Repl(self)
+        self.setWidget(self.repl)
