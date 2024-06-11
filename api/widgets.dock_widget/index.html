@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="David Kincaid" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Utils.signals - qtstrap</title>
+    <title>Widgets.dock widget - qtstrap</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Utils.signals";
-        var mkdocs_page_input_path = "api/utils.signals.md";
+        var mkdocs_page_name = "Widgets.dock widget";
+        var mkdocs_page_input_path = "api/widgets.dock_widget.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -144,15 +144,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Utils.signals</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#class-signalblocker">class SignalBlocker</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#method-signalblocker__init__">method SignalBlocker.__init__</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils.signals/">Utils.signals</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils.singleton/">Utils.singleton</a>
                   </li>
@@ -166,7 +158,19 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.buttons/">Widgets.buttons</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../widgets.dock_widget/">Widgets.dock widget</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Widgets.dock widget</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#class-basedockwidget">class BaseDockWidget</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-basedockwidget__init__">method BaseDockWidget.__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-basedockwidgetadjust_size">method BaseDockWidget.adjust_size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-basedockwidgettoggleviewaction">method BaseDockWidget.toggleViewAction</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.labeledit/">Widgets.labeledit</a>
                   </li>
@@ -202,9 +206,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">API Reference</li>
-      <li class="breadcrumb-item active">Utils.signals</li>
+      <li class="breadcrumb-item active">Widgets.dock widget</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/api/utils.signals.md">Edit on qtstrap/qtstrap</a>
+          <a href="https://github.com/qtstrap/qtstrap/edit/master/docs/api/widgets.dock_widget.md">Edit on qtstrap/qtstrap</a>
     </li>
   </ul>
   <hr/>
@@ -214,16 +218,24 @@
               
                 <!-- markdownlint-disable -->
 
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\signals.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h1 id="module-utilssignals"><kbd>module</kbd> <code>utils.signals</code></h1>
+<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\dock_widget.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h1 id="module-widgetsdock_widget"><kbd>module</kbd> <code>widgets.dock_widget</code></h1>
 <hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\signals.py#L1"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h2 id="class-signalblocker"><kbd>class</kbd> <code>SignalBlocker</code></h2>
-<p>A context manager that blocks the signals of the provided widget. </p>
-<p>The signals are unblocked at the end of the with block. </p>
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\utils\signals.py#L7"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-signalblocker__init__"><kbd>method</kbd> <code>SignalBlocker.__init__</code></h3>
-<pre><code class="language-python">__init__(widget)
+<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\dock_widget.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-basedockwidget"><kbd>class</kbd> <code>BaseDockWidget</code></h2>
+<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\dock_widget.py#L11"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-basedockwidget__init__"><kbd>method</kbd> <code>BaseDockWidget.__init__</code></h3>
+<pre><code class="language-python">__init__(parent=None)
+</code></pre>
+<hr />
+<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\dock_widget.py#L27"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-basedockwidgetadjust_size"><kbd>method</kbd> <code>BaseDockWidget.adjust_size</code></h3>
+<pre><code class="language-python">adjust_size()
+</code></pre>
+<hr />
+<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\dock_widget.py#L31"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-basedockwidgettoggleviewaction"><kbd>method</kbd> <code>BaseDockWidget.toggleViewAction</code></h3>
+<pre><code class="language-python">toggleViewAction()
 </code></pre>
 <hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
@@ -231,8 +243,8 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../utils/" class="btn btn-neutral float-left" title="Utils"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../utils.singleton/" class="btn btn-neutral float-right" title="Utils.singleton">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../widgets.buttons/" class="btn btn-neutral float-left" title="Widgets.buttons"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../widgets.labeledit/" class="btn btn-neutral float-right" title="Widgets.labeledit">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -259,10 +271,10 @@
         </span>
     
     
-      <span><a href="../utils/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../widgets.buttons/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../utils.singleton/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../widgets.labeledit/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

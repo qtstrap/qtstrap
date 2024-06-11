@@ -158,6 +158,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.buttons/">Widgets.buttons</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../widgets.dock_widget/">Widgets.dock widget</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../widgets.labeledit/">Widgets.labeledit</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Widgets.layouts</a>
@@ -280,16 +282,6 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-csplitteradd">method CSplitter.add</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-csplitterform">method CSplitter.form</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-csplittergrid">method CSplitter.grid</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-csplitterhbox">method CSplitter.hbox</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-csplittersplit">method CSplitter.split</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-csplittervbox">method CSplitter.vbox</a>
-    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#class-persistentcsplitter">class PersistentCSplitter</a>
@@ -298,17 +290,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitteradd">method PersistentCSplitter.add</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitterform">method PersistentCSplitter.form</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplittergrid">method PersistentCSplitter.grid</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitterhbox">method PersistentCSplitter.hbox</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplitterrestore_state">method PersistentCSplitter.restore_state</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplittersplit">method PersistentCSplitter.split</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-persistentcsplittervbox">method PersistentCSplitter.vbox</a>
     </li>
         </ul>
     </li>
@@ -709,31 +691,6 @@
 ) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 </code></pre>
 <hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-csplitterform"><kbd>method</kbd> <code>CSplitter.form</code></h3>
-<pre><code class="language-python">form(*args, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-csplittergrid"><kbd>method</kbd> <code>CSplitter.grid</code></h3>
-<pre><code class="language-python">grid(*args, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-csplitterhbox"><kbd>method</kbd> <code>CSplitter.hbox</code></h3>
-<pre><code class="language-python">hbox(*args, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-csplittersplit"><kbd>method</kbd> <code>CSplitter.split</code></h3>
-<pre><code class="language-python">split(name: str | None = None, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-csplittervbox"><kbd>method</kbd> <code>CSplitter.vbox</code></h3>
-<pre><code class="language-python">vbox(*args, **kwargs)
-</code></pre>
-<hr />
 <p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L377"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-persistentcsplitter"><kbd>class</kbd> <code>PersistentCSplitter</code></h2>
 <p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L378"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
@@ -753,34 +710,9 @@
 ) → Union[PySide6.QtWidgets.QWidget, PySide6.QtWidgets.QLayout, Sequence[PySide6.QtWidgets.QWidget | PySide6.QtWidgets.QLayout]]
 </code></pre>
 <hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistentcsplitterform"><kbd>method</kbd> <code>PersistentCSplitter.form</code></h3>
-<pre><code class="language-python">form(*args, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistentcsplittergrid"><kbd>method</kbd> <code>PersistentCSplitter.grid</code></h3>
-<pre><code class="language-python">grid(*args, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistentcsplitterhbox"><kbd>method</kbd> <code>PersistentCSplitter.hbox</code></h3>
-<pre><code class="language-python">hbox(*args, **kwargs)
-</code></pre>
-<hr />
 <p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L389"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h3 id="method-persistentcsplitterrestore_state"><kbd>method</kbd> <code>PersistentCSplitter.restore_state</code></h3>
 <pre><code class="language-python">restore_state()
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistentcsplittersplit"><kbd>method</kbd> <code>PersistentCSplitter.split</code></h3>
-<pre><code class="language-python">split(name: str | None = None, **kwargs)
-</code></pre>
-<hr />
-<p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-persistentcsplittervbox"><kbd>method</kbd> <code>PersistentCSplitter.vbox</code></h3>
-<pre><code class="language-python">vbox(*args, **kwargs)
 </code></pre>
 <hr />
 <p><a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L400"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
