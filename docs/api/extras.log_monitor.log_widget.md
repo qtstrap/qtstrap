@@ -80,13 +80,14 @@ query_existing_loggers()
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L60"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogMonitorDockWidget.__init__`
 
 ```python
-__init__(parent=None, shortcut='Ctrl+L')
+__init__(parent=None)
 ```
+
 
 
 
@@ -97,43 +98,14 @@ __init__(parent=None, shortcut='Ctrl+L')
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `LogMonitorDockWidget.adjust_size`
-
-```python
-adjust_size()
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L88"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `LogMonitorDockWidget.toggleViewAction`
-
-```python
-toggleViewAction()
-```
-
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L76"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `LogMonitorDropdown`
 
 
 
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L95"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L77"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogMonitorDropdown.__init__`
 
@@ -150,7 +122,7 @@ __init__(parent=None, shortcut='`')
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L136"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L118"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogMonitorDropdown.center_on_parent`
 
@@ -164,7 +136,7 @@ center_on_parent()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L114"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L96"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogMonitorDropdown.eventFilter`
 
@@ -178,7 +150,7 @@ eventFilter(source: PySide6.QtCore.QObject, event: PySide6.QtCore.QEvent) → bo
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L123"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L105"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogMonitorDropdown.toggleViewAction`
 
@@ -192,7 +164,7 @@ toggleViewAction()
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L129"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\extras\log_monitor\log_widget.py#L111"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `LogMonitorDropdown.toggle_view`
 

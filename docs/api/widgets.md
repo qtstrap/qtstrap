@@ -11,6 +11,7 @@
 ---------------
 - **layouts**
 - **buttons**
+- **dock_widget**
 - **labeledit**
 - **link_label**
 - **line_widgets**

@@ -796,76 +796,6 @@ add(
 
 
 
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `CSplitter.form`
-
-```python
-form(*args, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `CSplitter.grid`
-
-```python
-grid(*args, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `CSplitter.hbox`
-
-```python
-hbox(*args, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `CSplitter.split`
-
-```python
-split(name: str | None = None, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `CSplitter.vbox`
-
-```python
-vbox(*args, **kwargs)
-```
-
-
-
-
-
 
 ---
 
@@ -914,82 +844,12 @@ add(
 
 ---
 
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L190"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `PersistentCSplitter.form`
-
-```python
-form(*args, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L186"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `PersistentCSplitter.grid`
-
-```python
-grid(*args, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L182"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `PersistentCSplitter.hbox`
-
-```python
-hbox(*args, **kwargs)
-```
-
-
-
-
-
----
-
 <a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L389"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `PersistentCSplitter.restore_state`
 
 ```python
 restore_state()
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `PersistentCSplitter.split`
-
-```python
-split(name: str | None = None, **kwargs)
-```
-
-
-
-
-
----
-
-<a href="https://github.com/qtstrap/qtstrap/blob/master\qtstrap\widgets\layouts.py#L178"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `PersistentCSplitter.vbox`
-
-```python
-vbox(*args, **kwargs)
 ```
 
 
