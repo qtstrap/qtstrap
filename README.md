@@ -12,7 +12,7 @@ The goal of qtstrap is get your applications up and running quickly, so you can 
 
 # Features
 
-More complete docs are available [here](https://qtstrap.github.io/).
+More complete docs are available [here](https://docs.qtstrap.dev).
 
 * `qtstrap` command line tool to bootstrap new projects
 * crossplatform makefile with useful development commands
