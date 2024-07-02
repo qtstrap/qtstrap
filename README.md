@@ -86,7 +86,7 @@ If you see a window like this, then you're good to go:
 # Dependencies
 
 * Python 3
-* PySide2 or PyQt5
+* PySide2/PySide6 or PyQt5/PyQt6
 * Make(optional, but recommended)
 
 # Installation
