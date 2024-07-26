@@ -1,4 +1,0 @@
-include qtstrap/template/*
-include qtstrap/template/src/*
-include qtstrap/template/scripts/*
-include qtstrap/template/resources/*
