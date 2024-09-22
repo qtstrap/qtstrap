@@ -1,13 +1,12 @@
 from qtstrap import QSettings
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, ConfigDict, field_validator, ValidationInfo
 
 
 model_state = {}
 
 
 class SettingsModel(BaseModel):
-    class Config:
-        validate_assignment = True
+    model_config = ConfigDict(validate_assignment=True)
 
     def __init__(self):
         model_state[type(self).__name__] = False
@@ -16,15 +15,15 @@ class SettingsModel(BaseModel):
 
     def load_settings(self):
         model_state[type(self).__name__] = False
-        prefix = self.Config.prefix
-        for name, field in self.__fields__.items():
-            value = QSettings().value(f'{prefix}/{name}', field.default)
+        for name, field in self.model_fields.items():
+            value = QSettings().value(f'{self.Config.prefix}/{name}', field.default)
             setattr(self, name, value)
 
         model_state[type(self).__name__] = True
 
-    @validator('*')
-    def autosave(cls, value, field):
+    @field_validator('*')
+    @classmethod
+    def autosave(cls, value, info: ValidationInfo):
         if model_state[cls.__name__]:
-            QSettings().setValue(f'{cls.Config.prefix}/{field.name}', value)
+            QSettings().setValue(f'{cls.Config.prefix}/{info.field_name}', value)
         return value
