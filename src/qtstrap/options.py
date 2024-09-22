@@ -4,7 +4,7 @@ from appdirs import AppDirs
 
 
 class OPTIONS:
-    APPLICATION_PATH = Path(sys.argv[0]).parent.absolute()
+    APPLICATION_PATH = Path(sys.argv[0]).resolve().parent
     app_info_available = False
     app_info = None
     portable = False
@@ -15,7 +15,7 @@ class OPTIONS:
 
 # attempt to import app_info.py
 try:
-    import app_info
+    import app_info # type: ignore
 
     OPTIONS.app_info_available = True
     OPTIONS.app_info = app_info

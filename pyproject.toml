@@ -1,6 +1,6 @@
 [project]
 name = "qtstrap"
-version = "0.6.5"
+version = "0.6.6"
 description = "Like Bootstrap, but qt-er."
 readme = "README.md"
 authors = [{ name = "David Kincaid", email = "daelonsuzuka@gmail.com" }]
