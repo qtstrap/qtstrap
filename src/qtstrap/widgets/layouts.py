@@ -1,43 +1,43 @@
-from typing import TypeAlias, Literal, Sequence
+from typing import Literal, Sequence, TypeAlias, TypeVar
+
 from qtpy.QtCore import (
-    Qt,
-    QSettings,
     QMargins,
+    QSettings,
+    Qt,
 )
 from qtpy.QtWidgets import (
-    QMainWindow,
-    QWidget,
+    QFormLayout,
+    QGridLayout,
+    QHBoxLayout,
     QLayout,
+    QMainWindow,
+    QScrollArea,
     QSplitter,
     QVBoxLayout,
-    QHBoxLayout,
-    QGridLayout,
-    QFormLayout,
-    QScrollArea,
+    QWidget,
 )
 
-
 alignments = {
-    'left': Qt.AlignLeft,
-    'l': Qt.AlignLeft,
-    'right': Qt.AlignRight,
-    'r': Qt.AlignRight,
-    'top': Qt.AlignTop,
-    't': Qt.AlignTop,
-    'bottom': Qt.AlignBottom,
-    'bot': Qt.AlignBottom,
-    'b': Qt.AlignBottom,
-    'center': Qt.AlignCenter,
-    'c': Qt.AlignCenter,
+    'left': Qt.AlignmentFlag.AlignLeft,
+    'l': Qt.AlignmentFlag.AlignLeft,
+    'right': Qt.AlignmentFlag.AlignRight,
+    'r': Qt.AlignmentFlag.AlignRight,
+    'top': Qt.AlignmentFlag.AlignTop,
+    't': Qt.AlignmentFlag.AlignTop,
+    'bottom': Qt.AlignmentFlag.AlignBottom,
+    'bot': Qt.AlignmentFlag.AlignBottom,
+    'b': Qt.AlignmentFlag.AlignBottom,
+    'center': Qt.AlignmentFlag.AlignCenter,
+    'c': Qt.AlignmentFlag.AlignCenter,
 }
 
 AlignmentType: TypeAlias = (
     Literal[
-        Qt.AlignLeft,
-        Qt.AlignRight,
-        Qt.AlignTop,
-        Qt.AlignBottom,
-        Qt.AlignCenter,
+        Qt.AlignmentFlag.AlignLeft,
+        Qt.AlignmentFlag.AlignRight,
+        Qt.AlignmentFlag.AlignTop,
+        Qt.AlignmentFlag.AlignBottom,
+        Qt.AlignmentFlag.AlignCenter,
         'left',
         'l',
         'right',
@@ -54,18 +54,18 @@ AlignmentType: TypeAlias = (
 )
 
 orientations = {
-    'horizontal': Qt.Horizontal,
-    'h': Qt.Horizontal,
-    'vertical': Qt.Vertical,
-    'v': Qt.Vertical,
+    'horizontal': Qt.Orientation.Horizontal,
+    'h': Qt.Orientation.Horizontal,
+    'vertical': Qt.Orientation.Vertical,
+    'v': Qt.Orientation.Vertical,
 }
 
 OrientationType: TypeAlias = (
     Literal[
-        Qt.Horizontal,
-        Qt.Horizontal,
-        Qt.Vertical,
-        Qt.Vertical,
+        Qt.Orientation.Horizontal,
+        Qt.Orientation.Horizontal,
+        Qt.Orientation.Vertical,
+        Qt.Orientation.Vertical,
         'horizontal',
         'h',
         'vertical',
@@ -76,11 +76,11 @@ OrientationType: TypeAlias = (
 
 MarginsType: TypeAlias = QMargins | tuple | int | None
 
+WidgetType = TypeVar('WidgetType', bound=QWidget | QLayout | Sequence[QWidget | QLayout])
+
 
 class ContextLayoutBase:
-    def add(
-        self, item: QWidget | QLayout | Sequence[QWidget | QLayout], *args, **kwargs
-    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
+    def add(self, item: WidgetType, *args, **kwargs) -> WidgetType:
         return item
 
     def __enter__(self):
@@ -147,24 +147,24 @@ class ContextLayout(ContextLayoutBase):
 
     def __add__(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
-    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
+        item: WidgetType,
+    ) -> WidgetType:
         self.add(item)
         return item
 
     def __iadd__(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+        item: WidgetType,
     ):
         self.add(item)
         return self
 
     def add(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+        item: WidgetType,
         *args,
         **kwargs,
-    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
+    ) -> WidgetType:
         if isinstance(item, QWidget):
             self._layout.addWidget(item, *args, **kwargs)
         elif isinstance(item, QLayout):
@@ -344,16 +344,16 @@ class CSplitter(QSplitter, ContextLayoutBase):
 
     def __iadd__(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+        item: WidgetType,
     ):
         self.add(item)
         return self
 
     def add(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+        item: WidgetType,
         stretch: int | None = None,
-    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
+    ) -> WidgetType:
         if isinstance(item, QWidget):
             self.addWidget(item)
             if stretch:
@@ -430,16 +430,16 @@ class CScrollArea(QScrollArea, ContextLayoutBase):
 
     def __iadd__(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+        item: WidgetType,
     ):
         self.add(item)
         return self
 
     def add(
         self,
-        item: QWidget | QLayout | Sequence[QWidget | QLayout],
+        item: WidgetType,
         stretch: int = None,
-    ) -> QWidget | QLayout | Sequence[QWidget | QLayout]:
+    ) -> WidgetType:
         if isinstance(item, QWidget):
             self.widget().layout().addWidget(item)
             if stretch:
