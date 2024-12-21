@@ -4,12 +4,6 @@ import sys
 from pathlib import Path
 
 
-try:
-    import pretty_errors
-except ImportError:
-    pass
-
-
 from .options import *
 
 
