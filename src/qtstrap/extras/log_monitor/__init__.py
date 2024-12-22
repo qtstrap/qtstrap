@@ -1,19 +1,22 @@
-from .log_widget import (
-    LogMonitorWidget,
-    LogMonitorDockWidget,
-    LogMonitorDropdown,
-)
-from .log_database_handler import DatabaseHandler
 import logging
-from qtstrap import OPTIONS
 import sys
 
+from qtstrap import OPTIONS
 
-db_path = (OPTIONS.config_dir / 'log.db').as_posix()
+from .log_database_handler import DatabaseHandler
+from .log_widget import (
+    LogMonitorDockWidget,
+    LogMonitorDropdown,
+    LogMonitorWidget,
+)
+
 exception_logger_name = 'exceptions'
 
 
-def install(database_name=db_path, install_excepthook=True):
+def install(database_name=None, install_excepthook=True):
+    if database_name is None:
+        database_name = (OPTIONS.config_dir / 'log.db').as_posix()
+
     logger = logging.getLogger()
     logger.setLevel(1)
     logger.addHandler(DatabaseHandler(database_name))
