@@ -1,12 +1,13 @@
+import qtawesome as qta
+from qtpy.shiboken import delete, isValid
+
 from qtstrap import *
 from qtstrap.extras.style import qcolors
-from qtpy.shiboken import isValid, delete
-import qtawesome as qta
+
 from .inspector import Inspector
 
-
 try:
-    from qtstrap.extras.command_palette import CommandPalette, Command
+    from qtstrap.extras.command_palette import Command, CommandPalette
 
     command_palette_available = True
 except:
@@ -14,7 +15,7 @@ except:
 
 
 class SceneTreeWidgetItem(QTreeWidgetItem):
-    def __init__(self, parent, node):
+    def __init__(self, parent, node: 'TreeNode'):
         super().__init__(parent)
 
         self.node = node
@@ -49,13 +50,12 @@ class SceneTreeWidgetItem(QTreeWidgetItem):
 
 
 class TreeNode(QObject):
-    inverse = {}
+    inverse: dict[QObject, 'TreeNode'] = {}
 
-    def __init__(self, obj=None, parent=None, item_parent=None):
-        super().__init__()
+    def __init__(self, obj: QObject = None, parent: QObject = None, item_parent: QObject = None):
+        super().__init__(parent)
         self.obj = obj
-        self.parent = parent
-        self._children = []
+        self._children: list[TreeNode] = []
         self.item = SceneTreeWidgetItem(item_parent, self)
 
         self.inverse[obj] = self
@@ -63,14 +63,14 @@ class TreeNode(QObject):
         self.obj.installEventFilter(self)
         # self.obj.destroyed.connect(self.obj_destroyed)
 
-    def eventFilter(self, watched, event) -> bool:
+    def eventFilter(self, watched: QObject, event) -> bool:
         if not isValid(self.item):
             return False
 
-        if event.type() in (QEvent.Show, QEvent.Hide):
+        if isinstance(event, (QShowEvent, QHideEvent)):
             self.item.update_visibility_icon()
 
-        if event.type() == QEvent.ChildAdded:
+        if isinstance(event, QChildEvent):
             new_obj = event.child()
             if isinstance(new_obj, (QWidget, QLayout)):
                 self.scan()
@@ -117,21 +117,21 @@ class SceneTree(QTreeWidget):
         self.itemDoubleClicked.connect(self.double_click)
         self.itemSelectionChanged.connect(self.selection_changed)
 
-    def click(self, item, column):
+    def click(self, item: SceneTreeWidgetItem, column: int):
         if column == 0:
             self.inspection_requested.emit(item)
         if column == 1:
             item.toggle_visibility()
 
-    def double_click(self, item, column):
+    def double_click(self, item: SceneTreeWidgetItem, column: int):
         pass
 
     def selection_changed(self):
         pass
 
-    def contextMenuEvent(self, event):
+    def contextMenuEvent(self, event: QContextMenuEvent):
         pos = event.globalPos()
-        item = self.itemAt(self.viewport().mapFromGlobal(pos))
+        item: SceneTreeWidgetItem = self.itemAt(self.viewport().mapFromGlobal(pos))
         menu = QMenu()
 
         if isinstance(item.obj, QWidget):

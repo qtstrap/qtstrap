@@ -1,5 +1,5 @@
 from qtpy.QtCore import Qt, QTimer
-from qtpy.QtWidgets import QDockWidget, QWidget
+from qtpy.QtWidgets import QDockWidget, QMainWindow, QWidget
 
 
 class BaseDockWidget(QDockWidget):
@@ -8,7 +8,7 @@ class BaseDockWidget(QDockWidget):
     _shortcut = ''
     _features = QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: QMainWindow = None):
         super().__init__(self._title, parent=parent)
         self.setObjectName(self._title.replace(' ', ''))
 
