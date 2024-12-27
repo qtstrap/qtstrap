@@ -2,11 +2,11 @@ import sys
 from pathlib import Path
 import inspect
 
-# import qtawesome as qta
+import qtawesome as qta
 from appdirs import AppDirs
 
 from qtstrap import OPTIONS, BaseAppInfo
-# from qtstrap.extras.style import apply_theme
+from qtstrap.extras.style import apply_theme
 
 from .qt import *
 
@@ -57,19 +57,19 @@ class BaseApplication(QApplication):
 
         Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
 
-    #     default_theme = 'light'
-    #     theme = QSettings().value('theme', default_theme)
-    #     self.change_theme(theme)
+        default_theme = 'light'
+        theme = QSettings().value('theme', default_theme)
+        self.change_theme(theme)
 
-    # def change_theme(self, theme: str, force=False):
-    #     if not force and theme == OPTIONS.theme:
-    #         return
+    def change_theme(self, theme: str, force=False):
+        if not force and theme == OPTIONS.theme:
+            return
 
-    #     OPTIONS.theme = theme
-    #     QSettings().setValue('theme', theme)
+        OPTIONS.theme = theme
+        QSettings().setValue('theme', theme)
 
-    #     # TODO: find and redraw all icons
-    #     qta.reset_cache()
-    #     apply_theme(theme, self)
+        # TODO: find and redraw all icons
+        qta.reset_cache()
+        apply_theme(theme, self)
 
-    #     self.theme_changed.emit()
+        self.theme_changed.emit()
