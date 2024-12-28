@@ -112,3 +112,32 @@ class MenuButton(QPushButton):
 
     def addAction(self, *args, **kwargs):
         return self._menu.addAction(*args, **kwargs)
+
+
+class ColorPickerButton(QToolButton):
+    changed = Signal()
+
+    def __init__(self, title: str, color: QColor | str, changed):
+        super().__init__()
+        self.title = title
+        self.set_color(color)
+        self.setToolTip(title)
+        self.setMinimumSize(30, 30)
+
+        self.clicked.connect(self.on_click)
+        self.changed.connect(changed)
+
+    def on_click(self):
+        self.dialog = QColorDialog(self.color)
+        self.dialog.setWindowTitle(self.title)
+        self.dialog.setModal(True)
+        self.dialog.show()
+        self.dialog.colorSelected.connect(self.color_selected)
+
+    def set_color(self, new_color: QColor | str):
+        self.color = QColor(new_color)
+        self.setStyleSheet(f'background:{self.color.name()}')
+
+    def color_selected(self, new_color: QColor):
+        self.set_color(new_color)
+        self.changed.emit()

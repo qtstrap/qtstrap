@@ -15,6 +15,7 @@ from .buttons import (
     IconToggleButton,
     ConfirmToggleButton,
     MenuButton,
+    ColorPickerButton,
 )
 from .dock_widget import BaseDockWidget
 from .labeledit import LabelEdit
