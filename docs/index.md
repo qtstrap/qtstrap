@@ -1,6 +1,6 @@
 # Welcome to qtstrap's documentation
 
-qtstrap is a framework that helps you skip over the boring and tedious parts of developing applications with PySide2/PyQt. 
+qtstrap is a framework that helps you skip over the boring and tedious parts of developing applications with PySide6/PyQt. 
 
 # Features
 
