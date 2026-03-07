@@ -50,13 +50,29 @@ class LogTableView(QTableView):
 
         self.setModel(self.db_model)
         self.need_to_refresh = False
+        self._is_visible = True  # Track visibility state
 
+        # Timer only runs when widget is visible
         self.scan_timer = QTimer()
         self.scan_timer.timeout.connect(self.attempt_refresh)
-        self.scan_timer.start(200)
+        # Don't start timer here - visibility handler will control it
+
+    def set_visible_state(self, visible: bool):
+        """
+        Control whether the table view is actively polling.
+        Call with False when parent dock/widget is hidden.
+        """
+        self._is_visible = visible
+        if visible:
+            # Start polling and do immediate refresh
+            self.scan_timer.start(200)
+            self.attempt_refresh()
+        else:
+            # Stop polling when hidden
+            self.scan_timer.stop()
 
     def attempt_refresh(self):
-        if self.need_to_refresh:
+        if self.need_to_refresh and self._is_visible:
             self.db_model.log_level_column = self.profile.get_log_level_column()
             self.refresh()
             self.need_to_refresh = False

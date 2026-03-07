@@ -2,7 +2,7 @@ from qtstrap import *
 from qtpy.QtSql import *
 from .log_table_view import LogTableView
 from .log_filter_controls import FilterControls
-from .log_database_handler import DatabaseHandler, db_conn_name
+from .async_database_handler import AsyncDatabaseHandler, db_conn_name
 
 
 try:
@@ -24,7 +24,7 @@ class LogMonitorWidget(QWidget):
             ]
 
         self.log_table = LogTableView()
-        DatabaseHandler.register_callback(self.log_table.schedule_refresh)
+        AsyncDatabaseHandler.register_callback(self.log_table.schedule_refresh)
 
         self.filter_controls = FilterControls(table=self.log_table)
         self.filter_controls.update_filter()
@@ -34,6 +34,11 @@ class LogMonitorWidget(QWidget):
         with PersistentCSplitter('log_monitor_splitter', self) as splitter:
             splitter.add(self.filter_controls, 1)
             splitter.add(self.log_table, 10)
+
+    def set_visible_state(self, visible: bool):
+        """Control visibility state - starts/stops polling and DB flushing."""
+        self.log_table.set_visible_state(visible)
+        AsyncDatabaseHandler.set_visible(visible)
 
     def open_profile_prompt(self):
         profiles = list(self.filter_controls.settings['profiles'].keys())
@@ -64,13 +69,24 @@ class LogMonitorDockWidget(BaseDockWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
-        self.setWidget(LogMonitorWidget(self))
+        self.log_widget = LogMonitorWidget(self)
+        self.setWidget(self.log_widget)
 
         if command_palette_available:
             self.commands = [
                 Command('Log Monitor: Show log monitor', triggered=self.show),
                 Command('Log Monitor: Hide log monitor', triggered=self.hide),
             ]
+
+    def showEvent(self, event):
+        """Called when dock widget becomes visible."""
+        super().showEvent(event)
+        self.log_widget.set_visible_state(True)
+
+    def hideEvent(self, event):
+        """Called when dock widget is hidden."""
+        super().hideEvent(event)
+        self.log_widget.set_visible_state(False)
 
 
 class LogMonitorDropdown(QWidget):
@@ -83,7 +99,8 @@ class LogMonitorDropdown(QWidget):
 
         parent.installEventFilter(self)
 
-        CHBoxLayout(self, margins=0).add(LogMonitorWidget(self))
+        self.log_widget = LogMonitorWidget(self)
+        CHBoxLayout(self, margins=0).add(self.log_widget)
 
         if command_palette_available:
             self.commands = [
@@ -92,6 +109,16 @@ class LogMonitorDropdown(QWidget):
             ]
 
         self.hide()
+
+    def showEvent(self, event):
+        """Called when dropdown becomes visible."""
+        super().showEvent(event)
+        self.log_widget.set_visible_state(True)
+
+    def hideEvent(self, event):
+        """Called when dropdown is hidden."""
+        super().hideEvent(event)
+        self.log_widget.set_visible_state(False)
 
     def eventFilter(self, source: QObject, event: QEvent) -> bool:
         if self.isVisible():
