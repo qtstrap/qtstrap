@@ -1,3 +1,6 @@
+instances = {}
+
+
 def singleton(class_):
     """
     Class decorator that only allows one instance to be created.
@@ -9,7 +12,6 @@ def singleton(class_):
     assert Test() is Test() # True
     ```
     """
-    instances = {}
 
     def getinstance(*args, **kwargs):
         if class_ not in instances:
