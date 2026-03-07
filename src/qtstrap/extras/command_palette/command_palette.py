@@ -3,30 +3,6 @@ import typing
 import re
 
 
-COMMAND_PALETTE_COLORS = {
-    'dark': {
-        'text_normal': 'gray',
-        'text_highlighted': 'lightgray',
-        'text_contains': '#0074D9',
-        'selected_text_normal': 'lightgray',
-        'selected_text_highlighted': 'gray',
-        'bg_highlighted': '#243F89',
-    },
-    'light': {
-        'text_normal': 'black',
-        'text_highlighted': 'gray',
-        'text_contains': '#0074D9',
-        'selected_text_normal': 'lightgray',
-        'selected_text_highlighted': 'gray',
-        'bg_highlighted': '#0060c0',
-    },
-}
-
-
-def get_color(key):
-    return COMMAND_PALETTE_COLORS[OPTIONS.theme][key]
-
-
 class CommandRegistry(QObject):
     def __init__(self) -> None:
         self.registry = {}
@@ -63,11 +39,25 @@ class PopupDelegate(QStyledItemDelegate):
         self.prefix = ''
 
     def get_colors(self):
-        self.normal = QPen(get_color('text_normal'))
-        self.selected = QPen(get_color('selected_text_normal'))
-        self.contains = QPen(get_color('text_highlighted'))
-        self.highlight = QPen(QColor(get_color('text_contains')))
-        self.background = QColor(get_color('bg_highlighted'))
+        palette = QApplication.palette()
+        
+        # Normal text color from palette
+        self.normal = QPen(palette.color(QPalette.WindowText))
+        
+        # Selected item text
+        self.selected = QPen(QColor('#FFFFFF'))
+        
+        # Text that matches search prefix - use same as normal
+        self.contains = QPen(self.normal.color())
+        
+        # Highlighted match color (cyan stands out on muted background)
+        self.highlight = QPen(QColor('#00d4ff'))
+        
+        # Selection background - desaturated to let cyan matches stand out
+        if palette.color(QPalette.Window).lightness() < 128:
+            self.background = QColor('#3d4f5f')  # Muted blue-gray for dark theme
+        else:
+            self.background = QColor('#b0c4d1')  # Muted blue-gray for light theme
 
     def set_prefix(self, prefix):
         self.prefix = prefix
