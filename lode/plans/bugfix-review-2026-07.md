@@ -956,6 +956,50 @@ them or wire them to the existing `repl.py` / `style_editor.py` widgets.
   `QSettings().value()` as the fallback and then into validation; decide the
   behavior (skip loading required-but-unsaved fields, or raise a clear error).
 
+### P1-17: `Adapter.kill()` is a silent no-op — CONFIRMED, root cause identified
+
+**File:** `src/qtstrap/utils/adapter.py`
+
+Running the file's own `__main__` demo shows the mirror adapter still receives
+signals after `kill()` (output: original, copy, original, **copy**). The test
+file (`test/utils/test_signal_adapter.py`) has the kill() assertions commented
+out — this was fought before and parked.
+
+**Root cause (empirically verified):** the adapter connects to
+`getattr(other, name).connect(getattr(self, name).emit)`. A `SignalInstance`'s
+`.emit` is a **fresh bound-method object on every attribute access**, so no later
+`disconnect(...)` call can ever match it — this single fact explains the
+docstring's "I've never gotten .disconnect() to work reliably." The current
+`kill()` additionally uses old-style `SIGNAL(name)` without a signature, which
+also never matches.
+
+**Fix (one word + simplification), all three verified working under PySide6:**
+
+1. Connect **signal-to-signal** — drop `.emit`:
+   ```python
+   getattr(other, name).connect(getattr(self, name))
+   ```
+2. `kill()` then works two ways — pick either:
+   - `getattr(self._other, name).disconnect(getattr(self, name))` — signals
+     match by identity (verified), or
+   - simply `self.deleteLater()` — signal-to-signal connections auto-drop when
+     the receiver QObject is destroyed (verified). This is the truly nuclear
+     version and makes `kill()` five lines shorter.
+3. Restore the commented-out assertions in `test_signal_adapter.py` — they
+   should pass as written once the fix lands.
+
+**Edge cases:** signal-to-signal requires matching (or contravariant) signatures
+— same-named signals on the same class always match, so the Adapter pattern is
+safe. If `kill()` uses `deleteLater()`, document that the adapter object is dead
+afterward (accessing it raises) — that's the semantic the docstring already
+promises. Alternative belt-and-braces: store the `QMetaObject.Connection`
+objects returned by `connect()` and `QObject.disconnect(conn)` each — also
+verified working — but signal-to-signal is simpler and fixes auto-cleanup too.
+
+**Downstream note:** codex's `SigBundle`/`SlotBundle` are the draft this class
+supersedes (see codex lode plans/v2-directions.md) — fixing Adapter here
+unblocks migrating codex's subscription internals onto it.
+
 ### Verified non-issues (checked, do not "fix")
 
 - `CodeEditor.update_tab_width` calling `setTabStopWidth` on Qt6: PySide6 still
