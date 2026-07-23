@@ -1,1 +1,2 @@
 - dock_widget.py:19 lambda references self.adjust_size which no longer exists (AttributeError on dockLocationChanged, seen via LogMonitorDockWidget in Stagehand 2026-07-22) — rename casualty, find the new name or delete the hook
+- install_ctrlc_handler (SIGINT handler + interpreter-wake timer) was deleted in 7ae3c81 startup refactor (Dec 2024) and never reinstated — deliberate? Stagehand covers SIGINT via QtAsyncio handle_sigint; other fleet apps may have no ctrl-c handling at all
