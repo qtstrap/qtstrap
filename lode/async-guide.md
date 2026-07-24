@@ -393,7 +393,10 @@ class BaseApplication(QApplication):
         if backend == 'qtasyncio':
             import PySide6.QtAsyncio as QtAsyncio
             self._install_async_exception_handler()
-            return QtAsyncio.run(handle_sigint=True)
+            # handle_sigint must stay False: it is literally
+            # signal.signal(SIGINT, SIG_DFL), which clobbers BaseApplication's
+            # graceful SIGINT/SIGTERM handlers with immediate death
+            return QtAsyncio.run(handle_sigint=False)
         if backend == 'qasync':
             import qasync, asyncio
             loop = qasync.QEventLoop(self)
@@ -418,6 +421,12 @@ class BaseApplication(QApplication):
 Assembly happens in `__init__` (after the existing AppInfo/dirs/theme sequence)
 except where noted. Order matters and is fixed:
 
+0. **Signal handlers** — *implemented (2026-07)*: `INSTALL_SIGNAL_HANDLERS = True`
+   (opt-out class attr, deliberately default-on unlike the flags below — it
+   restores the old unconditional `install_ctrlc_handler` behavior, modernized:
+   `set_wakeup_fd` + `QSocketNotifier` instead of the 10ms polling timer, and
+   covers SIGTERM so logout/kill runs the graceful quit path). Once the
+   shutdown pipeline (item 6) lands, signal-quit flows through it for free.
 1. **Main-thread dispatcher** (utilities plan §1) — *always on, not a flag.*
    Created first so every later subsystem can rely on `run_on_main`. Costs one
    idle QObject.
