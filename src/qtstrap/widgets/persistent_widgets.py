@@ -10,13 +10,17 @@ class PersistentCheckBox(QCheckBox):
         if changed:
             self.stateChanged.connect(changed)
 
-        self.stateChanged.connect(lambda: QSettings().setValue(self.name, self.checkState()))
+        self.stateChanged.connect(lambda: QSettings().setValue(self.name, int(self.checkState())))
 
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
-        if prev_state == Qt.Checked:
+        try:
+            prev_state = int(prev_state)
+        except (TypeError, ValueError):
+            return
+        if prev_state == int(Qt.Checked):
             self.setCheckState(Qt.Checked)
-        elif prev_state == Qt.PartiallyChecked:
+        elif prev_state == int(Qt.PartiallyChecked):
             self.setCheckState(Qt.PartiallyChecked)
 
     def __bool__(self):
@@ -72,10 +76,10 @@ class PersistentPlainTextEdit(QPlainTextEdit):
 
 
 class PersistentListWidget(QListWidget):
-    def __init__(self, name, items=[], default=[], changed=None, *args, **kwargs):
+    def __init__(self, name, items=None, default=None, changed=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
-        self.default_selection = default
+        self.default_selection = default or []
 
         if items:
             self.addItems(items)
@@ -92,16 +96,18 @@ class PersistentListWidget(QListWidget):
     def restore_state(self):
         prev_items = QSettings().value(self.name, self.default_selection)
         if prev_items:
+            if isinstance(prev_items, str):
+                prev_items = [prev_items]
             for i in range(self.count()):
                 if self.item(i).text() in prev_items:
                     self.item(i).setSelected(True)
 
 
 class PersistentTreeWidget(QTreeWidget):
-    def __init__(self, name, items=[], index_column=0, default=[], changed=None, *args, **kwargs):
+    def __init__(self, name, items=None, index_column=0, default=None, changed=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
-        self.default_selection = default
+        self.default_selection = default or []
         self.index_column = index_column
 
         if items:
@@ -119,13 +125,15 @@ class PersistentTreeWidget(QTreeWidget):
     def restore_state(self):
         prev_items = QSettings().value(self.name, self.default_selection)
         if prev_items:
+            if isinstance(prev_items, str):
+                prev_items = [prev_items]
             for i in range(self.count()):
                 if self.item(i).text(self.index_column) in prev_items:
                     self.item(i).setSelected(True)
 
 
 class PersistentComboBox(QComboBox):
-    def __init__(self, name, items=[], changed=None, *args, **kwargs):
+    def __init__(self, name, items=None, changed=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
 
@@ -140,8 +148,11 @@ class PersistentComboBox(QComboBox):
 
     def restore_state(self):
         prev_index = QSettings().value(self.name, 0)
-        if isinstance(prev_index, int):
-            self.setCurrentIndex(prev_index)
+        try:
+            prev_index = int(prev_index)
+        except (TypeError, ValueError):
+            return
+        self.setCurrentIndex(prev_index)
 
 
 class PersistentCheckableAction(QAction):
@@ -155,9 +166,9 @@ class PersistentCheckableAction(QAction):
 
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
-        if prev_state == 'true':
+        if prev_state in (True, 'true', 1, '1'):
             self.setChecked(True)
-        elif prev_state == 'false':
+        elif prev_state in (False, 'false', 0, '0'):
             self.setChecked(False)
 
     def __bool__(self):

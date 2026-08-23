@@ -190,10 +190,14 @@ class PersistentToggle(Toggle):
         if changed:
             self.stateChanged.connect(changed)
 
-        self.stateChanged.connect(lambda: QSettings().setValue(self.name, self.checkState()))
+        self.stateChanged.connect(lambda: QSettings().setValue(self.name, int(self.checkState())))
 
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
+        try:
+            prev_state = int(prev_state)
+        except (TypeError, ValueError):
+            return
         if prev_state == int(Qt.Checked):
             self.setCheckState(Qt.Checked)
         elif prev_state == int(Qt.PartiallyChecked):
@@ -205,14 +209,14 @@ class PersistentAnimatedToggle(AnimatedToggle):
         super().__init__(*args, **kwargs)
         self.name = name
         self.restore_state()
-
-        if changed:
-            self.stateChanged.connect(changed)
-
-        self.stateChanged.connect(lambda: QSettings().setValue(self.name, self.checkState()))
+        self.stateChanged.connect(lambda: QSettings().setValue(self.name, int(self.checkState())))
 
     def restore_state(self):
         prev_state = QSettings().value(self.name, 0)
+        try:
+            prev_state = int(prev_state)
+        except (TypeError, ValueError):
+            return
         if prev_state == int(Qt.Checked):
             self.setCheckState(Qt.Checked)
         elif prev_state == int(Qt.PartiallyChecked):

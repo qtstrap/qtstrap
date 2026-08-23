@@ -66,7 +66,7 @@ class PersistentTabWidget(QTabWidget):
         prev_index = QSettings().value(self.name + '/current', 0)
         try:
             self.setCurrentIndex(min(int(prev_index), self.count()))
-        except:
+        except (TypeError, ValueError):
             pass
 
         self.currentChanged.connect(lambda i: QSettings().setValue(self.name + '/current', i))
