@@ -322,6 +322,45 @@ The app code declares what it needs, not how to build it.
 
 The chassis provides the *slots*. The app fills them.
 
+### The contribution IS the widget
+
+Inspired by Stagehand's `StagehandStatusBarItem(QWidget): pass` — the only
+requirement for contributing a status bar item is "be a QWidget subclass of
+the marker class." No JSON manifest, no callback registration, no data
+structure the framework interprets. You write a QWidget, it shows up.
+
+Every chassis component follows this principle:
+- **StatusBar** — subclass the marker, your widget appears in the status bar
+- **Panel** — subclass `Panel`, your widget appears in the sidebar
+- **Page** — subclass `Page`, your widget appears in the tab system
+- **Dock** — subclass `BaseDockWidget`, your widget appears as a dock
+
+This is a deliberate rebellion against the VSCode extension API, where the
+framework owns the entire presentation layer and contributions are data
+structures or narrow callback handlers. qtstrap chassis is the opposite: the
+widget is the contribution, the framework provides the slot.
+
+### Required vs. optional
+
+Required attributes are enforced at class definition time via
+`__init_subclass__` (missing `name`, missing `page_type`, duplicates). These
+are the minimal requirements for the chassis to do its job — a panel needs
+a name so the sidebar can address it, a page needs a type so the tab system
+can save/load it.
+
+Everything else is optional and degrades gracefully:
+- `icon_name` missing → Panel shows with a default icon
+- `display_name` missing → Panel uses `name` as display name
+- `serialize()` missing → Page can't be persisted, works for the session
+- `_shortcut` missing → Dock has no keyboard shortcut
+- No `Panel` subclasses → Sidebar is empty, no error
+- No `StatusBarItem` subclasses → StatusBar has just the standard items
+- No `Page` subclasses → TabSystem starts with no tabs
+
+The rule: helper features MUST be optional and degrade gracefully. A missing
+attribute or method never crashes the chassis — it just means that feature
+isn't available for that contribution.
+
 ### Continuous granularity
 
 Each chassis piece is usable independently. Composing more of them gives you
