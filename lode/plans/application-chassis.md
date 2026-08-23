@@ -78,21 +78,35 @@ class Panel(QWidget):
         name: unique identifier (used for lookup)
         display_name: human-readable name (shown in tooltip)
         icon_name: qtawesome icon name (shown in activity bar)
-    Discovery is automatic via __subclasses__().
+    Registration is automatic via __init_subclass__ — subclassing Panel is
+    the registration. No decorator, no manifest, no __subclasses__() walk.
     """
+    _registry: dict[str, type['Panel']] = {}
+
     name = ''
     display_name = ''
     icon_name = ''
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        if not getattr(cls, 'name', ''):
+            raise TypeError(f'{cls.__name__} must define a name')
+        if cls.name in Panel._registry:
+            raise TypeError(f'{cls.__name__} duplicates panel name {cls.name!r}')
+        Panel._registry[cls.name] = cls
 ```
 
-Replaces `StagehandSidebar`. No behavioral change — just renamed and moved.
+Replaces `StagehandSidebar`. Registration is automatic, validated, and
+deduplicated at class definition time. Import errors (missing `name`,
+duplicate names) surface immediately instead of at runtime when the sidebar
+tries to instantiate a panel and gets a confusing failure.
 
 ### `Sidebar` container
 
 ```python
 class Sidebar(QWidget):
     """Manages all sidebar panels in a QStackedWidget.
-    Auto-discovers Panel subclasses. Toggle via activity bar.
+    Reads from Panel._registry. Toggle via activity bar.
     Persists which panel is visible and whether sidebar is shown.
     """
     def __init__(self, parent=None): ...
@@ -101,8 +115,9 @@ class Sidebar(QWidget):
     def register_panel(self, panel: type[Panel]): ...  # explicit registration
 ```
 
-Replaces `SidebarContainer`. Adds explicit `register_panel()` for apps that
-don't want to rely on `__subclasses__()` discovery.
+Replaces `SidebarContainer`. Reads from `Panel._registry` instead of
+`__subclasses__()`. Explicit `register_panel()` available for apps that
+need dynamic registration (e.g. plugin loading at runtime).
 
 ### `ActivityBar`
 
@@ -121,14 +136,27 @@ Replaces `create_activity_bar()`. No more manual button creation in
 
 ```python
 class Page(QWidget):
-    """Base class for tab pages with serialization."""
+    """Base class for tab pages with serialization.
+    Registration is automatic via __init_subclass__.
+    """
+    _registry: dict[str, type['Page']] = {}
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        if not getattr(cls, 'page_type', ''):
+            raise TypeError(f'{cls.__name__} must define a page_type')
+        if cls.page_type in Page._registry:
+            raise TypeError(f'{cls.__name__} duplicates page type {cls.page_type!r}')
+        Page._registry[cls.page_type] = cls
+
+    page_type = ''
     def get_name(self) -> str: ...
     def serialize(self) -> dict: ...
     def deserialize(self, data: dict): ...
 
 class TabSystem(QTabWidget):
     """Persistent tabs with drag reorder, context menu, save/load.
-    Pages register via subclass discovery or explicit registration.
+    Reads from Page._registry.
     """
     def create_page(self, page_type: str = None): ...
     def add(self, page: Page): ...
@@ -238,14 +266,16 @@ The chassis provides the *slots*. The app fills them.
 
 ## 5. Implementation order
 
-1. **`Panel` + `Sidebar`** — extract from `SidebarContainer`, add explicit
-   registration. Test with a minimal panel.
+1. **`Panel` + `Sidebar`** — extract from `SidebarContainer`. Panel uses
+   `__init_subclass__` for automatic, validated registration (replaces
+   `__subclasses__()` walk). Test with a minimal panel.
 2. **`ActivityBar`** — extract from `create_activity_bar()`. Auto-populate
    from `Sidebar`.
 3. **`StatusBar` + `SettingsMenu`** — extract from `create_statusbar()` and
    `init_settings_menu()`. Standard items built in.
 4. **`Page` + `TabSystem`** — extract from `MainTabWidget` + `StagehandPage`.
-   Generalize the save/load format.
+   Page uses `__init_subclass__` for registration (replaces
+   `get_subclasses()` walk). Generalize the save/load format.
 5. **Integration test** — build a minimal app using all chassis primitives,
    verify it works without Stagehand-specific code.
 6. **Migrate Stagehand** — replace `SidebarContainer`, `create_activity_bar()`,
