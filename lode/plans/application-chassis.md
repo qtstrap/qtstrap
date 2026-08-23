@@ -227,29 +227,65 @@ the slot; the split interaction is the app's problem to own or delegate.
 
 ```python
 class StatusBar(BaseToolbar):
-    """Status bar with settings menu and registered items."""
+    """Status bar with left and right zones.
+    Left zone: status items (connection, sync, etc.)
+    Right zone: actions (notifications, etc.)
+    """
     def __init__(self, parent): ...
-    def add_item(self, widget: QWidget): ...
-    def add_settings_action(self, text: str, callback): ...
+    def add_item(self, widget: QWidget, side='left'): ...
+    def add_action(self, text: str, callback, side='right'): ...
 ```
 
-Replaces `create_statusbar()` + `init_statusbar_items()`. Standard items
-(theme, font, about, exit) are added automatically; apps register custom
-items via `add_item()`.
+Replaces `create_statusbar()` + `init_statusbar_items()`. The settings
+button does NOT live here — it's in the activity bar. The status bar is
+purely status items (left) and actions (right), separated by a spacer.
+Apps register custom items via `add_item()` or by subclassing the marker
+`StatusBarItem` class for auto-discovery.
 
 ### `SettingsMenu`
 
+The settings menu is accessed via the activity bar's settings button, not
+the status bar. Standard items (theme, font, about, exit) are built in;
+app-specific items are additive via `add_action()`.
+
+### Notification / toast system
+
+A lightweight, app-agnostic toast/notification queue. Notifications stack
+in a corner (above the status bar's right zone or top-right), auto-dismiss
+after a timeout, and are clickable. Registered via a simple API:
+
 ```python
-class SettingsMenu(QMenu):
-    """Standard settings menu with theme, font, about, exit.
-    Apps add custom actions via add_action().
-    """
-    def __init__(self, parent=None): ...
-    def add_action(self, text: str, callback, shortcut=None): ...
+NotificationCenter.notify(title, message, timeout=5000, callback=None)
 ```
 
-Replaces `init_settings_menu()`. The standard items are built in; app-specific
-items are additive.
+App-agnostic — the notification system doesn't know or care what the
+notifications are about. Just a queue of `(title, message, timeout, callback)`
+tuples rendered as floating widgets.
+
+### Injection: every component is replaceable
+
+Every chassis component is injectable. An app developer can pass their own
+implementation to the window without subclassing the chassis:
+
+```python
+class MainWindow(BaseMainWindow):
+    def __init__(self):
+        self.sidebar = MyCustomSidebar(self)      # duck-conforming replacement
+        self.activity_bar = ActivityBar(self, self.sidebar)
+        self.tabs = MyTabSystem(self)
+        self.status_bar = MyStatusBar(self)
+```
+
+The containers don't check `isinstance(widget, Sidebar)` — they check for
+the interface they need. `ActivityBar` needs something with
+`toggle_panel(name)` and `show_panel(name)`. `TabSystem` needs something
+with `add(page)` and `create_page(type)`. Duck typing, not inheritance.
+
+An app can build a completely custom sidebar that doesn't inherit from
+`Sidebar` at all — as long as it has `show_panel` and `toggle_panel`, the
+activity bar works with it. Same for every other component. This is the
+same "interfaces, not inheritance" rule from the continuous granularity
+principle, applied at the container level.
 
 ### `DockRegistry`
 
