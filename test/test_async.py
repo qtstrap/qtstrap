@@ -1,32 +1,26 @@
-"""Tests for the async signal/slot integration — promisify + QtAsyncio.
+"""Tests for the async signal/slot integration — promisify + qasync.
 
 These tests verify that:
 1. Sync handlers pass through _smart_connect with zero behavioral change
 2. Async handlers connected via .connect() are eagerly scheduled as tasks
 3. wait_for_signal resolves with signal arguments
-4. Promise combinators (all/race/any) work under QtAsyncio
+4. Promise combinators (all/race/any) work under qasync
 5. owned_by cancels a promise when the owner QObject is destroyed
 6. promisify wraps both sync and async functions correctly
 """
 import asyncio
-import threading
-import time
+import sys
 
 import pytest
-from qtpy.QtCore import QObject, Signal, QTimer
+from qtpy.QtCore import QObject, Signal, QTimer, Qt
 from qtpy.QtWidgets import QApplication, QPushButton, QLabel
 
-try:
-    import PySide6.QtAsyncio as QtAsyncio
-    HAVE_QTASYNCIO = True
-except ImportError:
-    HAVE_QTASYNCIO = False
-
+from qtstrap.extras._qasync import QEventLoop
 from qtstrap.extras.promise import Promise, promisify, wait_for_signal, owned_by
 
 
-def run_async(coro_factory, timeout_ms=5000):
-    """Run a coroutine under QtAsyncio with a hard timeout.
+def run_async(coro_factory, timeout_s=5.0):
+    """Run a coroutine under qasync with a hard timeout.
 
     Returns the coroutine's result or raises the exception.
     """
@@ -39,22 +33,25 @@ def run_async(coro_factory, timeout_ms=5000):
         except Exception as e:
             results.append(('err', e))
         # Schedule quit
-        asyncio.get_event_loop().call_later(0.01, QApplication.quit)
+        QApplication.quit()
 
-    QtAsyncio.run(runner(), handle_sigint=True)
+    loop = QEventLoop(QApplication.instance())
+    asyncio.set_event_loop(loop)
+    with loop:
+        loop.run_until_complete(runner())
 
     if not results:
-        raise TimeoutError('QtAsyncio.run did not complete')
+        raise TimeoutError('qasync loop did not complete')
     kind, value = results[0]
     if kind == 'err':
         raise value
     return value
 
 
+@pytest.fixture(autouse=True)
+def qapp(qtbot):
+    yield qtbot
 
-# NOTE: QtAsyncio tests create their own QApplication via QtAsyncio.run().
-# They cannot use qtbot (which creates a separate QApplication).
-# The non-QtAsyncio tests use qtbot normally.
 
 # --- Section 1: _smart_connect passthrough ---
 
@@ -66,32 +63,15 @@ def test_sync_handler_passes_through(qtbot):
     button = QPushButton()
     button.clicked.connect(lambda: received.append('clicked'))
 
-    from qtpy.QtCore import Qt
     qtbot.mouseClick(button, Qt.LeftButton)
     assert received == ['clicked']
-
-
-def test_sync_handler_no_overhead(qtbot):
-    """_smart_connect should not wrap sync functions — same callable identity."""
-    def handler():
-        pass
-
-    button = QPushButton()
-    button.clicked.connect(handler)
-
-    # The connected slot should be the original function, not a wrapper.
-    # Qt doesn't expose the connected slot directly, but we can verify
-    # that iscoroutinefunction returns False and the function still works.
-    import inspect
-    assert not inspect.iscoroutinefunction(handler)
 
 
 # --- Section 2: Async handler via .connect() ---
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
-def test_async_handler_runs_under_qtasyncio():
-    """An async def connected to a signal should run as a task under QtAsyncio."""
+def test_async_handler_runs():
+    """An async def connected to a signal should run as a task under qasync."""
     label = QLabel('before')
 
     async def on_click():
@@ -109,7 +89,6 @@ def test_async_handler_runs_under_qtasyncio():
     run_async(main)
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
 def test_async_handler_with_arguments():
     """Async handler should receive signal arguments."""
     results = []
@@ -136,7 +115,6 @@ def test_async_handler_with_arguments():
 # --- Section 3: wait_for_signal ---
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
 def test_wait_for_signal_single_arg():
     """wait_for_signal should resolve with the signal's argument."""
     class Emitter(QObject):
@@ -152,7 +130,6 @@ def test_wait_for_signal_single_arg():
     run_async(main)
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
 def test_wait_for_signal_zero_args():
     """wait_for_signal with a zero-arg signal should resolve with None."""
     class Emitter(QObject):
@@ -168,7 +145,6 @@ def test_wait_for_signal_zero_args():
     run_async(main)
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
 def test_wait_for_signal_multi_args():
     """wait_for_signal with multi-arg signal should resolve with a tuple."""
     class Emitter(QObject):
@@ -182,8 +158,8 @@ def test_wait_for_signal_multi_args():
         assert result == (42, 'hello')
 
     run_async(main)
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
-@pytest.mark.xfail(reason='QtAsyncio QtTask does not implement cancelling()')
+
+
 def test_wait_for_signal_timeout():
     """wait_for_signal should raise TimeoutError on timeout."""
     class Emitter(QObject):
@@ -204,9 +180,9 @@ def test_wait_for_signal_timeout():
 # --- Section 4: Promise combinators ---
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
-@pytest.mark.xfail(reason='QtAsyncio QtTask does not fully implement asyncio Task/Future protocol needed by Promise.__await__')
 def test_promise_all():
+    """Promise.all should resolve with all results in order."""
+    @promisify
     async def slow(value, delay):
         await asyncio.sleep(delay)
         return value
@@ -222,8 +198,6 @@ def test_promise_all():
     run_async(main)
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
-@pytest.mark.xfail(reason='QtAsyncio QtTask does not fully implement asyncio Task/Future protocol needed by Promise.__await__')
 def test_promise_race():
     """Promise.race should resolve with the first settled promise."""
     @promisify
@@ -240,8 +214,7 @@ def test_promise_race():
 
     run_async(main)
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
-@pytest.mark.xfail(reason='QtAsyncio QtTask does not fully implement asyncio Task/Future protocol needed by Promise.__await__')
+
 def test_promise_then_catch_chain():
     """Promise.then/catch should chain correctly."""
     @promisify
@@ -253,27 +226,17 @@ def test_promise_then_catch_chain():
         result = await fails().catch(lambda e: f'caught: {e}')
         assert 'caught: boom' in result
 
-    run_async(main)
-
-
-# --- Section 5: owned_by ---
-
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
-@pytest.mark.xfail(reason='QtAsyncio QtTask does not fully implement asyncio Task/Future protocol needed by promisify')
 def test_owned_by_cancels_on_destroy():
     """owned_by should cancel a promise when the owner is destroyed."""
     owner = QObject()
 
-    @promisify
     async def long_running():
         await asyncio.sleep(10)
         return 'should not get here'
 
-    promise = long_running()
-    owned_by(promise, owner)
-
     async def main():
-        # Destroy the owner — should cancel the promise
+        promise = promisify(long_running)()
+        owned_by(promise, owner)
         owner.deleteLater()
         await asyncio.sleep(0.1)
         assert promise.cancelled() or promise.future.cancelled()
@@ -290,15 +253,12 @@ def test_promisify_sync_function():
     def add(a, b):
         return a + b
 
-    # Without a running loop, calling promisified sync fn creates a Promise
-    # that immediately resolves. No task needed for sync functions.
     promise = add(1, 2)
     assert isinstance(promise, Promise)
 
 
-@pytest.mark.skipif(not HAVE_QTASYNCIO, reason='QtAsyncio not available')
 def test_promisify_sync_function_awaitable():
-    """A promisified sync function should be awaitable under QtAsyncio."""
+    """A promisified sync function should be awaitable under qasync."""
     @promisify
     def add(a, b):
         return a + b

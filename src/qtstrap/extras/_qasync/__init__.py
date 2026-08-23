@@ -1,0 +1,791 @@
+"""
+qasync — vendored from https://github.com/CabbageDevelopment/qasync
+
+Implementation of the PEP 3156 Event-Loop with Qt.
+BSD License. Do not modify — copy upstream fixes in directly.
+"""
+
+__all__ = ["QEventLoop", "QThreadExecutor", "asyncSlot", "asyncClose", "asyncWrap"]
+
+import asyncio
+import contextlib
+import functools
+import importlib
+import inspect
+import itertools
+import logging
+import os
+import sys
+import time
+from concurrent.futures import Future
+from queue import Queue
+from typing import TYPE_CHECKING, Literal, Tuple, cast, get_args
+
+logger = logging.getLogger(__name__)
+
+QtFlavor = Literal["PyQt6", "PyQt5", "PySide6", "PySide2"]
+QT_ALL = cast(Tuple[QtFlavor, ...], get_args(QtFlavor))
+
+
+def _get_qt_flavor() -> QtFlavor:
+    env = os.getenv("QT_API", "").strip().lower()
+    if env:
+        lookup = {name.lower(): name for name in QT_ALL}
+        try:
+            name = lookup[env]
+        except KeyError as err:
+            raise ImportError(
+                f"QT_API={env!r} is not one of {', '.join(QT_ALL)}"
+            ) from err
+        logger.info("Forcing use of %s as Qt implementation", name)
+        return cast(QtFlavor, name)
+    for name in QT_ALL:
+        if name in sys.modules:
+            return cast(QtFlavor, name)
+    for name in QT_ALL:
+        try:
+            importlib.import_module(name)
+            return cast(QtFlavor, name)
+        except ImportError:
+            continue
+    raise ImportError("No Qt implementations found")
+
+
+if TYPE_CHECKING:
+    from PySide6 import QtCore, QtWidgets
+    from PySide6.QtCore import Slot
+
+    QApplication = QtWidgets.QApplication
+    AllEvents = QtCore.QEventLoop.ProcessEventsFlag(0x00)
+else:
+    qt_flavor = _get_qt_flavor()
+    QtCore = importlib.import_module(f"{qt_flavor}.QtCore")
+    QtWidgets = importlib.import_module(f"{qt_flavor}.QtWidgets")
+    QApplication = QtWidgets.QApplication
+
+    Slot = getattr(QtCore, "pyqtSlot", None) or getattr(QtCore, "Slot", None)
+
+    Flags = getattr(QtCore.QEventLoop, "ProcessEventsFlags", None) or getattr(
+        QtCore.QEventLoop, "ProcessEventsFlag"
+    )
+    AllEvents = Flags(0x00)
+
+from ._common import with_logger  # noqa
+
+background_tasks = set()
+
+
+@with_logger
+class _QThreadWorker(QtCore.QThread):
+    def __init__(self, queue, num, stackSize=None):
+        self.__queue = queue
+        self.__stop = False
+        self.__num = num
+        super().__init__()
+        if stackSize is not None:
+            self.setStackSize(stackSize)
+
+    def run(self):
+        queue = self.__queue
+        while True:
+            command = queue.get()
+            if command is None:
+                break
+
+            future, callback, args, kwargs = command
+            self._logger.debug(
+                "#%s got callback %s with args %s and kwargs %s from queue",
+                self.__num,
+                callback,
+                args,
+                kwargs,
+            )
+            if future.set_running_or_notify_cancel():
+                self._logger.debug("Invoking callback")
+                try:
+                    r = callback(*args, **kwargs)
+                except Exception as err:
+                    self._logger.debug("Setting Future exception: %s", err)
+                    future.set_exception(err)
+                else:
+                    self._logger.debug("Setting Future result: %s", r)
+                    future.set_result(r)
+                finally:
+                    r = None
+            else:
+                self._logger.debug("Future was canceled")
+
+            del command, future, callback, args, kwargs
+
+        self._logger.debug("Thread #%s stopped", self.__num)
+
+    def wait(self):
+        self._logger.debug("Waiting for thread #%s to stop...", self.__num)
+        super().wait()
+
+
+@with_logger
+class QThreadExecutor:
+    def __init__(self, max_workers=10, stack_size=None):
+        super().__init__()
+        self.__max_workers = max_workers
+        self.__queue = Queue()
+        if stack_size is None:
+            if sys.platform.startswith("darwin"):
+                stack_size = 16 * 2**20
+            elif sys.platform.startswith("freebsd"):
+                stack_size = 4 * 2**20
+            elif sys.platform.startswith("aix"):
+                stack_size = 2 * 2**20
+        self.__workers = [
+            _QThreadWorker(self.__queue, i + 1, stack_size) for i in range(max_workers)
+        ]
+        self.__been_shutdown = False
+
+        for w in self.__workers:
+            w.start()
+
+    def submit(self, callback, *args, **kwargs):
+        if self.__been_shutdown:
+            raise RuntimeError("QThreadExecutor has been shutdown")
+
+        future = Future()
+        self._logger.debug(
+            "Submitting callback %s with args %s and kwargs %s to thread worker queue",
+            callback,
+            args,
+            kwargs,
+        )
+        self.__queue.put((future, callback, args, kwargs))
+        return future
+
+    def map(self, func, *iterables, timeout=None):
+        raise NotImplementedError("use as_completed on the event loop")
+
+    def shutdown(self, wait=True):
+        if self.__been_shutdown:
+            raise RuntimeError("QThreadExecutor has been shutdown")
+
+        self.__been_shutdown = True
+
+        self._logger.debug("Shutting down")
+        for i in range(len(self.__workers)):
+            self.__queue.put(None)
+        if wait:
+            for w in self.__workers:
+                w.wait()
+
+    def __enter__(self, *args):
+        if self.__been_shutdown:
+            raise RuntimeError("QThreadExecutor has been shutdown")
+        return self
+
+    def __exit__(self, *args):
+        self.shutdown()
+
+
+def _format_handle(handle: asyncio.Handle):
+    cb = getattr(handle, "_callback", None)
+    if isinstance(getattr(cb, "__self__", None), asyncio.tasks.Task):
+        return repr(cb.__self__)
+    return str(handle)
+
+
+def _make_signaller(qtimpl_qtcore, *args):
+    class Signaller(qtimpl_qtcore.QObject):
+        try:
+            signal = qtimpl_qtcore.Signal(*args)
+        except AttributeError:
+            signal = qtimpl_qtcore.pyqtSignal(*args)
+
+    return Signaller()
+
+
+@with_logger
+class _SimpleTimer(QtCore.QObject):
+    def __init__(self):
+        super().__init__()
+        self.__callbacks = {}
+        self._stopped = False
+        self.__debug_enabled = False
+
+    def add_callback(self, handle, delay=0):
+        timerid = self.startTimer(int(max(0, delay) * 1000))
+        self.__log_debug("Registering timer id %s", timerid)
+        assert timerid not in self.__callbacks
+        self.__callbacks[timerid] = handle
+        return handle
+
+    def timerEvent(self, event):
+        timerid = event.timerId()
+        self.__log_debug("Timer event on id %s", timerid)
+        if self._stopped:
+            self.__log_debug("Timer stopped, killing %s", timerid)
+            self.killTimer(timerid)
+            del self.__callbacks[timerid]
+        else:
+            try:
+                handle = self.__callbacks[timerid]
+            except KeyError as e:
+                self.__log_debug(e)
+                pass
+            else:
+                if handle._cancelled:
+                    self.__log_debug("Handle %s cancelled", handle)
+                else:
+                    if self.__debug_enabled:
+                        loop = asyncio.get_event_loop()
+                        try:
+                            loop._current_handle = handle
+                            self._logger.debug("Calling handle %s", handle)
+                            t0 = time.time()
+                            handle._run()
+                            dt = time.time() - t0
+                            if dt >= loop.slow_callback_duration:
+                                self._logger.warning(
+                                    "Executing %s took %.3f seconds",
+                                    _format_handle(handle),
+                                    dt,
+                                )
+                        finally:
+                            loop._current_handle = None
+                    else:
+                        handle._run()
+            finally:
+                del self.__callbacks[timerid]
+                handle = None
+            self.killTimer(timerid)
+
+    def stop(self):
+        self.__log_debug("Stopping timers")
+        self._stopped = True
+
+    def set_debug(self, enabled):
+        self.__debug_enabled = enabled
+
+    def __log_debug(self, *args, **kwargs):
+        if self.__debug_enabled:
+            self._logger.debug(*args, **kwargs)
+
+
+def _fileno(fd):
+    if isinstance(fd, int):
+        return fd
+    try:
+        return int(fd.fileno())
+    except (AttributeError, TypeError, ValueError):
+        raise ValueError(f"Invalid file object: {fd!r}") from None
+
+
+@with_logger
+class _QEventLoop:
+    def __init__(
+        self, app=None, set_running_loop=False, already_running=False, qtparent=None
+    ):
+        self.__app = app or QApplication.instance()
+        assert self.__app is not None, "No QApplication has been instantiated"
+        self.__is_running = False
+        self.__debug_enabled = False
+        self.__default_executor = None
+        self.__exception_handler = None
+        self._read_notifiers = {}
+        self._write_notifiers = {}
+        self._timer = _SimpleTimer()
+        self.qtparent = qtparent or self.__app
+
+        self.__call_soon_signaller = signaller = _make_signaller(QtCore, object, tuple)
+
+        self.__call_soon_signal = signaller.signal
+        self.__call_soon_signal.connect(
+            lambda callback, args: self.call_soon(callback, *args)
+        )
+
+        assert self.__app is not None
+        super().__init__()
+
+        if (
+            self.qtparent is not None
+            and self.qtparent.thread() is not QtCore.QThread.currentThread()
+        ):
+            raise RuntimeError(
+                "qt_parent must belong to the same QThread as the event loop"
+            )
+        self._timer.setParent(self.qtparent)
+        signaller.setParent(self.qtparent)
+
+        if already_running:
+            self.__is_running = True
+            self._before_run_forever()
+            self.__app.aboutToQuit.connect(self._after_run_forever)
+            asyncio.events._set_running_loop(self)
+
+    def get_qtparent(self):
+        return self.qtparent
+
+    def run_forever(self):
+        if self.__is_running:
+            raise RuntimeError("Event loop already running")
+
+        self.__is_running = True
+        self._before_run_forever()
+
+        try:
+            self.__log_debug("Starting Qt event loop")
+            asyncio.events._set_running_loop(self)
+            rslt = -1
+            if hasattr(self.__app, "exec"):
+                rslt = self.__app.exec()
+            else:
+                rslt = self.__app.exec_()
+            self.__log_debug("Qt event loop ended with result %s", rslt)
+            return rslt
+        finally:
+            asyncio.events._set_running_loop(None)
+            self._after_run_forever()
+            self.__is_running = False
+
+    def run_until_complete(self, future):
+        if self.__is_running:
+            raise RuntimeError("Event loop already running")
+
+        self.__log_debug("Running %s until complete", future)
+
+        future = asyncio.ensure_future(future, loop=self)
+
+        def stop(*args):
+            self.stop()
+
+        future.add_done_callback(stop)
+        try:
+            self.run_forever()
+        finally:
+            future.remove_done_callback(stop)
+        self.__app.eventDispatcher().processEvents(AllEvents)
+        if not future.done():
+            raise RuntimeError("Event loop stopped before Future completed.")
+
+        self.__log_debug("Future %s finished running", future)
+        return future.result()
+
+    def stop(self):
+        if not self.__is_running:
+            self.__log_debug("Already stopped")
+            return
+
+        self.__log_debug("Stopping event loop...")
+        self.__is_running = False
+        self.__app.exit()
+        self.__log_debug("Stopped event loop")
+
+    def is_running(self):
+        return self.__is_running
+
+    def close(self):
+        if self.is_running():
+            raise RuntimeError("Cannot close a running event loop")
+        if self.is_closed():
+            return
+
+        self.__log_debug("Closing event loop...")
+        try:
+            poller = self.get_proactor_event_poller()
+        except AttributeError:
+            pass
+        else:
+            poller.stop()
+
+        if self.__default_executor is not None:
+            self.__default_executor.shutdown()
+
+        try:
+            self.__call_soon_signal.disconnect()
+        except Exception:
+            pass
+        try:
+            self.__call_soon_signaller.deleteLater()
+        except Exception:
+            pass
+
+        self._timer.stop()
+        try:
+            self._timer.deleteLater()
+        except Exception:
+            pass
+
+        for notifier in itertools.chain(
+            self._read_notifiers.values(), self._write_notifiers.values()
+        ):
+            self._delete_notifier(notifier)
+
+        self._read_notifiers.clear()
+        self._write_notifiers.clear()
+
+        super().close()
+
+        self.__app = None
+
+    def call_later(self, delay, callback, *args, context=None):
+        if inspect.iscoroutinefunction(callback):
+            raise TypeError("coroutines cannot be used with call_later")
+        if not callable(callback):
+            raise TypeError(
+                "callback must be callable: {}".format(type(callback).__name__)
+            )
+
+        self.__log_debug(
+            "Registering callback %s to be invoked with arguments %s after %s second(s)",
+            callback,
+            args,
+            delay,
+        )
+
+        if sys.version_info >= (3, 7):
+            return self._add_callback(
+                asyncio.Handle(callback, args, self, context=context), delay
+            )
+        return self._add_callback(asyncio.Handle(callback, args, self), delay)
+
+    def _add_callback(self, handle, delay=0):
+        return self._timer.add_callback(handle, delay)
+
+    def call_soon(self, callback, *args, context=None):
+        return self.call_later(0, callback, *args, context=context)
+
+    def call_at(self, when, callback, *args, context=None):
+        return self.call_later(when - self.time(), callback, *args, context=context)
+
+    def time(self):
+        return time.monotonic()
+
+    def _add_reader(self, fd, callback, *args):
+        self._check_closed()
+
+        try:
+            existing = self._read_notifiers[fd]
+        except KeyError:
+            pass
+        else:
+            self._delete_notifier(existing)
+
+        notifier = QtCore.QSocketNotifier(
+            _fileno(fd), QtCore.QSocketNotifier.Type.Read, self.__app
+        )
+        notifier.setEnabled(True)
+        self.__log_debug("Adding reader callback for file descriptor %s", fd)
+        notifier.activated["int"].connect(
+            lambda *_: self.__on_notifier_ready(
+                self._read_notifiers, notifier, fd, callback, args
+            )
+        )
+        self._read_notifiers[fd] = notifier
+
+    def _remove_reader(self, fd):
+        if self.is_closed():
+            return
+
+        self.__log_debug("Removing reader callback for file descriptor %s", fd)
+        try:
+            notifier = self._read_notifiers.pop(fd)
+        except KeyError:
+            return False
+        else:
+            self._delete_notifier(notifier)
+            return True
+
+    def _add_writer(self, fd, callback, *args):
+        self._check_closed()
+        try:
+            existing = self._write_notifiers[fd]
+        except KeyError:
+            pass
+        else:
+            self._delete_notifier(existing)
+
+        notifier = QtCore.QSocketNotifier(
+            _fileno(fd),
+            QtCore.QSocketNotifier.Type.Write,
+            self.__app,
+        )
+        notifier.setEnabled(True)
+        self.__log_debug("Adding writer callback for file descriptor %s", fd)
+        notifier.activated["int"].connect(
+            lambda *_: self.__on_notifier_ready(
+                self._write_notifiers, notifier, fd, callback, args
+            )
+        )
+        self._write_notifiers[fd] = notifier
+
+    def _remove_writer(self, fd):
+        if self.is_closed():
+            return
+
+        self.__log_debug("Removing writer callback for file descriptor %s", fd)
+        try:
+            notifier = self._write_notifiers.pop(fd)
+        except KeyError:
+            return False
+        else:
+            self._delete_notifier(notifier)
+            return True
+
+    def __notifier_cb_wrapper(self, notifiers, notifier, fd, callback, args):
+        if notifiers.get(fd, None) is not notifier:
+            return
+        try:
+            callback(*args)
+        finally:
+            if notifiers.get(fd, None) is notifier:
+                notifier.setEnabled(True)
+
+    def __on_notifier_ready(self, notifiers, notifier, fd, callback, args):
+        if fd not in notifiers:
+            self._logger.warning(
+                "Socket notifier for fd %s is ready, even though it should "
+                "be disabled, not calling %s and disabling",
+                fd,
+                callback,
+            )
+            self._delete_notifier(notifier)
+            return
+
+        assert notifier.isEnabled()
+        self.__log_debug("Socket notifier for fd %s is ready", fd)
+        notifier.setEnabled(False)
+        self.call_soon(
+            self.__notifier_cb_wrapper, notifiers, notifier, fd, callback, args
+        )
+
+    @staticmethod
+    def _delete_notifier(notifier):
+        notifier.setEnabled(False)
+        try:
+            notifier.activated["int"].disconnect()
+        except Exception:
+            pass
+        try:
+            notifier.deleteLater()
+        except Exception:
+            pass
+
+    def call_soon_threadsafe(self, callback, *args, context=None):
+        self.__call_soon_signal.emit(callback, args)
+
+    def run_in_executor(self, executor, callback, *args):
+        self.__log_debug("Running callback %s with args %s in executor", callback, args)
+        if isinstance(callback, asyncio.Handle):
+            assert not args
+            assert not isinstance(callback, asyncio.TimerHandle)
+            if callback._cancelled:
+                f = asyncio.Future()
+                f.set_result(None)
+                return f
+            callback, args = callback.callback, callback.args
+
+        if executor is None:
+            self.__log_debug("Using default executor")
+            executor = self.__default_executor
+
+        if executor is None:
+            self.__log_debug("Creating default executor")
+            executor = self.__default_executor = QThreadExecutor()
+
+        return asyncio.wrap_future(executor.submit(callback, *args))
+
+    def set_default_executor(self, executor):
+        self.__default_executor = executor
+
+    def set_exception_handler(self, handler):
+        self.__exception_handler = handler
+
+    def default_exception_handler(self, context):
+        self.__log_debug("Default exception handler executing")
+        message = context.get("message")
+        if not message:
+            message = "Unhandled exception in event loop"
+
+        try:
+            exception = context["exception"]
+        except KeyError:
+            exc_info = False
+        else:
+            exc_info = (type(exception), exception, exception.__traceback__)
+
+        log_lines = [message]
+        for key in [k for k in sorted(context) if k not in {"message", "exception"}]:
+            log_lines.append("{}: {!r}".format(key, context[key]))
+
+        self.__log_error("\n".join(log_lines), exc_info=exc_info)
+
+    def call_exception_handler(self, context):
+        if self.__exception_handler is None:
+            try:
+                self.default_exception_handler(context)
+            except Exception:
+                self.__log_error(
+                    "Exception in default exception handler", exc_info=True
+                )
+            return
+
+        try:
+            self.__exception_handler(self, context)
+        except Exception as exc:
+            try:
+                self.default_exception_handler(
+                    {
+                        "message": "Unhandled error in custom exception handler",
+                        "exception": exc,
+                        "context": context,
+                    }
+                )
+            except Exception:
+                self.__log_error(
+                    "Exception in default exception handler while handling an unexpected error "
+                    "in custom exception handler",
+                    exc_info=True,
+                )
+
+    def get_debug(self):
+        return self.__debug_enabled
+
+    def set_debug(self, enabled):
+        super().set_debug(enabled)
+        self.__debug_enabled = enabled
+        self._timer.set_debug(enabled)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.stop()
+        self.close()
+
+    def __log_debug(self, *args, **kwargs):
+        if self.__debug_enabled:
+            self._logger.debug(*args, **kwargs)
+
+    @classmethod
+    def __log_error(cls, *args, **kwds):
+        try:
+            cls._logger.error(*args, **kwds)
+        except Exception:
+            sys.stderr.write("{!r}, {!r}\n".format(args, kwds))
+
+
+if sys.platform == "win32":
+    from ._windows import _ProactorEventLoop
+
+    class QIOCPEventLoop(_QEventLoop, _ProactorEventLoop): ...
+
+    QEventLoop = QIOCPEventLoop
+else:
+    from ._unix import _SelectorEventLoop
+
+    class QSelectorEventLoop(_QEventLoop, _SelectorEventLoop): ...
+
+    QEventLoop = QSelectorEventLoop
+
+
+class _Cancellable:
+    def __init__(self, timer, loop):
+        self.__timer = timer
+        self.__loop = loop
+
+    def cancel(self):
+        self.__timer.stop()
+
+
+def asyncClose(fn):
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        loop = asyncio.get_running_loop()
+        assert isinstance(loop, QEventLoop)
+        task = loop.create_task(fn(*args, **kwargs))
+        while not task.done():
+            QApplication.processEvents(AllEvents)
+        try:
+            return task.result()
+        except asyncio.CancelledError:
+            pass
+
+    return wrapper
+
+
+def asyncSlot(*args, **kwargs):
+    async def _error_handler(fn, args, kwargs):
+        try:
+            await fn(*args, **kwargs)
+        except Exception:
+            sys.excepthook(*sys.exc_info())
+
+    def outer_decorator(fn):
+        @Slot(*args, **kwargs)
+        @functools.wraps(fn)
+        def wrapper(*args, **kwargs):
+            while True:
+                try:
+                    inspect.signature(fn).bind(*args, **kwargs)
+                except TypeError:
+                    if len(args):
+                        args = list(args)
+                        args.pop()
+                        continue
+                    else:
+                        raise TypeError(
+                            "asyncSlot was not callable from Signal. Potential signature mismatch."
+                        )
+                else:
+                    task = asyncio.create_task(_error_handler(fn, args, kwargs))
+                    background_tasks.add(task)
+                    task.add_done_callback(background_tasks.discard)
+                    return
+
+        return wrapper
+
+    return outer_decorator
+
+
+async def asyncWrap(fn, *args, **kwargs):
+    future = asyncio.Future()
+
+    @functools.wraps(fn)
+    def helper():
+        try:
+            result = fn(*args, **kwargs)
+        except Exception as e:
+            future.set_exception(e)
+        else:
+            future.set_result(result)
+
+    QtCore.QTimer.singleShot(0, helper)
+    return await future
+
+
+def _get_qevent_loop():
+    return QEventLoop(QApplication.instance() or QApplication(sys.argv))
+
+
+if sys.version_info >= (3, 12):
+
+    def run(*args, **kwargs):
+        return asyncio.run(
+            *args,
+            **kwargs,
+            loop_factory=_get_qevent_loop,
+        )
+else:
+    class DefaultQEventLoopPolicy(asyncio.DefaultEventLoopPolicy):
+        def new_event_loop(self):
+            return _get_qevent_loop()
+
+    @contextlib.contextmanager
+    def _set_event_loop_policy(policy):
+        old_policy = asyncio.get_event_loop_policy()
+        asyncio.set_event_loop_policy(policy)
+        try:
+            yield
+        finally:
+            asyncio.set_event_loop_policy(old_policy)
+
+    def run(*args, **kwargs):
+        with _set_event_loop_policy(DefaultQEventLoopPolicy()):
+            return asyncio.run(*args, **kwargs)
