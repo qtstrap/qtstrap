@@ -1,273 +1,231 @@
 ---
 type: plan
 status: idea
-tags: [plan, devtools, debug-port, scene-tree, http, agent]
-keywords: [devtools, debug port, http server, scene tree, inspector, repl, agent control, qt devtools, control port]
-summary: Agent-friendly debug control port for Qt apps — embedded HTTP server exposing live widget tree, property inspection, style manipulation, eval, and log tailing.
+tags: [plan, devtools, debug-port, scene-tree, inspector, repl, style-editor, http, agent]
+keywords: [devtools, debug port, http server, scene tree, inspector, repl, style editor, agent control, qt devtools, control port]
+summary: Qt devtools system — in-app dock widgets (scene tree, inspector, style editor, REPL) plus an agent-friendly HTTP debug control port. Shared backend, two transports.
 ---
 
-# Plan: Qt Devtools Control Port
+# Plan: Qt Devtools
 
 ## Context
 
-qtstrap already has the pieces of a Qt devtools panel: a scene tree viewer
+qtstrap has the pieces of a Qt devtools panel: a scene tree viewer
 (`extras/devtools/scene_tree.py`), an inspector, a style editor, and a REPL
-stub. These are in-app dock widgets for a human looking at the screen. An agent
-(or a developer with curl) can't use them.
+stub. These are in-app dock widgets for a human looking at the screen. They share
+backend logic (QObject tree walking, property extraction) but each implements
+it independently with no reusable extraction layer.
 
-At work, the author has been embedding debug HTTP servers into IDE extensions.
-The same pattern applied to Qt gives agents remote access to a running app's
-live state — inspect widgets, read properties, push style changes, eval code,
-tail logs — without a human in the loop.
+At work, the author embedded debug HTTP servers into IDE extensions for agent
+access. The same pattern applied to Qt gives agents remote access to a running
+app's live state — inspect widgets, read properties, push style changes, eval
+code, tail logs — without a human in the loop.
 
-The scene tree's `TreeNode.inverse` dict already maintains a QObject-to-node
-registry. The log database is already queryable. The inspector already extracts
-type/property info. The debug port is a new transport for existing capability.
+This plan covers the **entire devtools system**: fixing the existing in-app
+widgets, extracting shared backend logic, and adding the HTTP control port as
+a parallel transport.
 
 Related: [../async-guide.md](../async-guide.md) §5 (BaseApplication packaging —
 devtools as a declarative flag), [new-utilities.md](new-utilities.md) §1
-(`run_on_main_sync` — the marshaling primitive the HTTP server needs).
+(`run_on_main_sync` — the marshaling primitive the HTTP server needs),
+[bugfix-review-2026-07.md](bugfix-review-2026-07.md) P2-15 (scene tree bugs).
 
 ---
 
-## 1. Goal
+## 1. Existing state
 
-An embedded HTTP server that lets an agent inspect and manipulate a running Qt
-application's live state. Not a production web server — a debug tool. One agent
-or one developer at a time.
+### Scene tree (`scene_tree.py`)
+- `TreeNode` walks the QObject tree, installs event filters for child
+  add/remove and show/hide. Maintains a class-level `inverse` dict mapping
+  QObject → TreeNode for reverse lookup.
+- `SceneTreeWidgetItem` displays objectName (or `<ClassName>`), visibility icon.
+- `SceneTree` (QTreeWidget) handles click (inspect), icon click (toggle
+  visibility), context menu.
+- `SceneTreeDockWidget` wraps it, scans on a 2-second `call_later`.
 
-Design priorities, in order:
-1. **Safe by default.** The server is off unless explicitly enabled. No
-   unauthenticated remote access to eval or property mutation in production.
-2. **Agent-native.** JSON responses, predictable paths, no ceremony. An agent
-   with `curl` or `requests` should be able to do useful work immediately.
-3. **Main-thread-safe.** All Qt access goes through `run_on_main_sync`. No
-   direct widget touching from the HTTP thread.
-4. **Composable.** Each endpoint is a handler function. Apps can register custom
-   endpoints for domain-specific debugging.
+**Bugs (P2-15):**
+- `TreeNode.inverse` never cleared — `destroyed` signal is commented out. Rescan
+  produces a nearly empty tree because `scan()` skips objects still in `inverse`.
+  Dead QObjects leak for the app's lifetime.
+- `contextMenuEvent` doesn't check for `None` — right-clicking empty space crashes.
+- 'Open REPL' and 'Edit Style' context menu actions are unconnected no-ops.
+- `qtpy.shiboken` import breaks under PyQt (only exists under PySide).
+- `qcolors.white` foreground on named items is invisible on light theme.
 
----
+### Inspector (`inspector.py`)
+- Shows objectName, type, base type (first QtWidgets class in MRO).
+- `inspect(item)` sets QLabel text directly — no reusable data extraction.
 
-## 2. Architecture
+### Style editor (`style_editor.py`)
+- Monaco-based QSS editor, persists to QSettings, applies to parent widget.
+- Depends on `monaco` package — heavy, optional at best.
+- Only edits the parent widget's stylesheet, not per-widget.
 
-### Transport: stdlib HTTP server in a thread
-
-```python
-from http.server import HTTPServer, BaseHTTPRequestHandler
-import threading
-
-class DevtoolsServer:
-    def __init__(self, port=8765):
-        self.port = port
-        self._server = None
-        self._thread = None
-
-    def start(self):
-        self._server = HTTPServer(('127.0.0.1', self.port), DevtoolsHandler)
-        self._thread = threading.Thread(target=self._server.serve_forever, daemon=True)
-        self._thread.start()
-
-    def stop(self):
-        if self._server:
-            self._server.shutdown()
-            self._server = None
-```
-
-Every handler that touches Qt marshals via `run_on_main_sync`. The HTTP thread
-blocks until the main thread executes the request and returns the result. For
-a debug tool this latency is irrelevant.
-
-### Handler pattern
-
-```python
-class DevtoolsHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        path = self.path
-        if path == '/scene':
-            result = run_on_main_sync(lambda: dump_scene_tree())
-            self._json(200, result)
-        elif path.startswith('/scene/'):
-            name = path.split('/')[-1]
-            result = run_on_main_sync(lambda: inspect_widget(name))
-            self._json(200, result)
-        elif path == '/logs':
-            result = run_on_main_sync(lambda: tail_logs(100))
-            self._json(200, result)
-        else:
-            self._json(404, {'error': 'not found'})
-
-    def do_POST(self):
-        # /eval, /scene/<name>/style, /scene/<name>/property
-        ...
-
-    def _json(self, code, body):
-        import json
-        data = json.dumps(body).encode()
-        self.send_response(code)
-        self.send_header('Content-Type', 'application/json')
-        self.send_header('Content-Length', len(data))
-        self.end_headers()
-        self.wfile.write(data)
-```
-
-### Registration: apps can add endpoints
-
-```python
-DevtoolsServer.register_endpoint('/myapp/status', my_status_handler)
-```
-
-App-specific endpoints receive the parsed request body and return a JSON-serializable
-dict. The server handles serialization and error wrapping.
+### REPL (`repl.py`)
+- Stub. A QLabel saying 'REPL'. Not functional.
 
 ---
 
-## 3. Endpoints
+## 2. Design
 
-### Scene tree
+### Two transports, one backend
 
-| Method | Path | Returns |
-|--------|------|---------|
-| GET | `/scene` | Full QObject tree as nested JSON (objectName, className, children, visibility) |
-| GET | `/scene/<objectName>` | Single widget: properties, signals, state, geometry, stylesheet |
-| GET | `/scene/<objectName>/children` | Direct children list |
-| GET | `/scene/<objectName>/properties` | All readable properties (QMetaObject property dump) |
+The in-app dock widgets and the HTTP control port are two front-ends for the
+same backend. Extract the shared logic into reusable functions that return plain
+data (dicts, lists), not Qt widget mutations.
 
-### Mutation
+```
+┌─────────────────────────────────────────────┐
+│               Backend (pure)                 │
+│  collect_widget_info(obj) -> dict            │
+│  dump_scene_tree(root) -> list[dict]         │
+│  set_widget_style(obj, qss) -> None          │
+│  set_widget_property(obj, name, value)       │
+│  eval_in_app(code) -> Any                    │
+│  tail_logs(limit) -> list[dict]              │
+└──────────┬──────────────────┬───────────────┘
+           │                  │
+     ┌─────┴─────┐     ┌──────┴──────┐
+     │  In-app   │     │  HTTP port  │
+     │  docks    │     │  (agents)   │
+     └───────────┘     └─────────────┘
+```
 
-| Method | Path | Body | Effect |
-|--------|------|------|--------|
-| POST | `/scene/<objectName>/style` | `{"style": "..."}` | Set stylesheet on widget |
-| POST | `/scene/<objectName>/property` | `{"name": "...", "value": ...}` | Set a Qt property |
-| POST | `/scene/<objectName>/visible` | `{"visible": true/false}` | Show/hide widget |
-| POST | `/scene/<objectName>/click` | `{}` | Simulate a click |
+The in-app docks format the dict into widgets. The HTTP handlers serialize it
+to JSON. Both call the same backend functions on the main thread.
 
-### Eval
+### Backend functions
+
+```python
+def collect_widget_info(obj: QObject) -> dict:
+    """Extract widget metadata, properties, geometry, and state as a dict."""
+    # Refactored from Inspector.inspect()
+    # Returns: {objectName, className, baseType, visible, geometry, 
+    #           properties: {name: value}, signals: [name, ...], 
+    #           stylesheet: str, children: [objectName, ...]}
+
+def dump_scene_tree(root: QObject) -> list[dict]:
+    """Walk the QObject tree from root, return nested JSON."""
+    # Uses the same walk logic as TreeNode.scan()
+    # Each node: {objectName, className, visible, children: [...]}
+
+def set_widget_style(obj: QObject, qss: str) -> None:
+    obj.setStyleSheet(qss)
+
+def set_widget_property(obj: QObject, name: str, value) -> None:
+    obj.setProperty(name, value)
+
+def eval_in_app(code: str, namespace: dict = None) -> Any:
+    """Eval code in the app's namespace on the main thread."""
+```
+
+### In-app dock refactoring
+
+- **Scene tree:** fix the `inverse` leak (P2-15), clear on rescan, re-enable
+  `destroyed` hookup with `isValid` guards. Fix `qtpy.shiboken` import with
+  `qtpy.API_NAME` guard for PyQt. Fix `contextMenuEvent` None crash. Wire the
+  'Open REPL' and 'Edit Style' menu actions to the actual dock widgets. Fix
+  `qcolors.white` → use palette text color.
+- **Inspector:** call `collect_widget_info(obj)` and format the dict into
+  labels instead of setting them directly. Show properties, geometry, signals
+  — not just name/type/baseType.
+- **Style editor:** make Monaco optional (fall back to `QPlainTextEdit` or the
+  `CodeEditor` from `extras/code_editor`). Support per-widget style editing,
+  not just the parent. Use `collect_widget_info` to show current stylesheet.
+- **REPL:** implement a functional REPL. A `QPlainTextEdit` for input, a
+  `QTextEdit` for output, `exec`/`eval` in a namespace that includes
+  `QApplication.instance()`, `QApplication.topLevelWidgets()`, and the app
+  module. History with up/down arrows.
+
+### HTTP control port
+
+Stdlib `http.server` in a thread. All Qt access via `run_on_main_sync`.
+
+#### Endpoints
 
 | Method | Path | Body | Returns |
 |--------|------|------|---------|
-| POST | `/eval` | `{"code": "..."}` | Result of `eval(code)` in app namespace, or error |
+| GET | `/scene` | | Full QObject tree as nested JSON |
+| GET | `/scene/<objectName>` | | Widget info (properties, geometry, signals, style) |
+| GET | `/scene/<objectName>/children` | | Direct children list |
+| GET | `/scene/<objectName>/properties` | | All readable properties |
+| POST | `/scene/<objectName>/style` | `{"style": "..."}` | Set stylesheet |
+| POST | `/scene/<objectName>/property` | `{"name": "...", "value": ...}` | Set property |
+| POST | `/scene/<objectName>/visible` | `{"visible": bool}` | Show/hide |
+| POST | `/scene/<objectName>/click` | `{}` | Simulate click |
+| POST | `/eval` | `{"code": "..."}` | Eval result or error |
+| GET | `/logs?limit=100` | | Recent log records |
+| GET | `/logs?level=ERROR` | | Filtered logs |
+| GET | `/settings` | | All QSettings keys/values |
+| GET | `/settings/<key>` | | Single setting |
+| POST | `/settings/<key>` | `{"value": ...}` | Set setting |
+| GET | `/app` | | App name, version, theme, uptime |
+| GET | `/app/widgets` | | Flat list of all live widgets |
 
-Eval runs on the main thread via `run_on_main_sync`. The namespace includes
-`QApplication.instance()`, `QApplication.topLevelWidgets()`, and any registered
-globals. Dangerous — must be off by default.
+Custom endpoints: apps register handlers via `DevtoolsServer.register(path, fn)`.
 
-### Logs
+#### Security
 
-| Method | Path | Returns |
-|--------|------|---------|
-| GET | `/logs?limit=100` | Recent log records as JSON |
-| GET | `/logs?level=ERROR` | Filtered logs |
-| GET | `/logs/count` | Total record count |
-
-### Settings
-
-| Method | Path | Returns |
-|--------|------|---------|
-| GET | `/settings` | All QSettings keys/values |
-| GET | `/settings/<key>` | Single setting |
-| POST | `/settings/<key>` | Set a setting |
-
-### App info
-
-| Method | Path | Returns |
-|--------|------|---------|
-| GET | `/app` | App name, version, theme, process info, uptime |
-| GET | `/app/widgets` | Flat list of all live widgets (objectName → className) |
+- Bind to `127.0.0.1` only.
+- Optional `DEVTOOLS_TOKEN` — if set, requests need `Authorization: Bearer`.
+- `/eval` requires separate `DEVTOOLS_EVAL=True` flag.
 
 ---
 
-## 4. Integration with BaseApplication
-
-Two integration patterns, ordered by complexity:
+## 3. Integration with BaseApplication
 
 ### Phase 1: Explicit opt-in
 
 ```python
 from qtstrap.extras.devtools import DevtoolsServer
 
-app = BaseApplication(app_info=AppInfo)
-
 devtools = DevtoolsServer(port=8765)
 devtools.start()
 ```
-
-No BaseApplication changes. Apps that want the debug port import and start it
-themselves. Simplest, no risk to existing apps.
 
 ### Phase 2: Declarative flag (ties into async-guide §5)
 
 ```python
 class Application(BaseApplication):
-    DEVTOOLS = True  # or DEVTOOLS_PORT = 8765
+    DEVTOOLS = True
 
 app = Application()
 app.run()  # devtools starts as part of run()
 ```
 
-The flag enables the server during pre-init, alongside the CLI flag parser and
-config resolution. The server shuts down in `aboutToQuit`.
-
-### Security
-
-- Bind to `127.0.0.1` only — no remote access.
-- Optional `DEVTOOLS_TOKEN` env var or flag. If set, requests must include
-  `Authorization: Bearer <token>`. If unset, no auth (localhost-only trust model).
-- `/eval` requires explicit `DEVTOOLS_EVAL=True` — separate from the server
-  enable flag. Defense in depth against accidental eval exposure.
+Server shuts down in `aboutToQuit`.
 
 ---
 
-## 5. Relationship to existing devtools
+## 4. Open questions
 
-The existing in-app dock widgets (`SceneTreeDockWidget`, `StyleEditorDockWidget`,
-`ReplDockWidget`) stay as-is — they're for humans. The HTTP server is a parallel
-access path for agents, not a replacement.
-
-Shared backend:
-- `TreeNode.inverse` registry → used by both scene tree widget and `/scene` endpoint
-- `inspect_widget()` logic → extracted from `Inspector.inspect()` into a reusable
-  function returning a dict instead of setting QLabel text
-- `tail_logs()` → queries the log database directly (same schema, different
-  transport than `LogTableView`)
-
-The inspector needs refactoring: currently it sets QLabel text directly. Extract
-a `collect_widget_info(obj) -> dict` that both the inspector and the HTTP handler
-call. The inspector formats the dict into labels; the HTTP handler serializes it
-to JSON.
+- **WebSocket vs HTTP:** HTTP is simpler for agents. WebSocket gives push for
+  scene tree changes. Start HTTP, add WS later.
+- **Scene tree change notifications:** `TreeNode.eventFilter` already detects
+  child add/remove and show/hide. Could expose `/scene/watch` (SSE). Low priority.
+- **Persistent REPL sessions:** `/eval` is stateless per call. A persistent REPL
+  maintaining namespace across calls needs session management. Defer.
+- **Monaco dependency:** make optional. Fall back to `CodeEditor` or `QPlainTextEdit`.
+- **`qtpy.shiboken` vs PyQt:** scene tree uses `isValid`/`delete` from shiboken,
+  which doesn't exist under PyQt. Need a `qtpy.API_NAME` guard or a compat shim.
 
 ---
 
-## 6. Open questions
+## 5. Implementation order
 
-- **WebSocket vs HTTP:** HTTP is simpler for agents (curl, requests). WebSocket
-  gives push notifications for scene tree changes. Start with HTTP, add WS later
-  if push is needed.
-- **Scene tree change notifications:** the existing `TreeNode` uses
-  `eventFilter` to detect child additions/removals. Could expose a
-  `/scene/watch` SSE endpoint for live updates. Low priority.
-- **REPL over HTTP:** `/eval` is the simple version. A persistent REPL session
-  (maintaining namespace across calls) would need session management. Defer.
-- **Style editor over HTTP:** `POST /scene/<name>/style` sets a stylesheet. The
-  existing `StyleEditorDockWidget` uses Monaco for editing — that's a UI concern,
-  not a backend one. The backend is just `widget.setStyleSheet(style)`.
-- **Monaco dependency:** `style_editor.py` imports `monaco` which is a heavy
-  dependency. The HTTP style endpoint doesn't need it. Consider making Monaco
-  optional and falling back to a plain `QPlainTextEdit`.
-
----
-
-## 7. Implementation order
-
-1. **`run_on_main_sync`** (from new-utilities §1) — prerequisite. The HTTP server
-   can't touch Qt without it.
-2. **`collect_widget_info(obj) -> dict`** — extract from `Inspector`, reusable
-   by both the inspector and HTTP handlers.
-3. **`DevtoolsServer` + `/scene` + `/scene/<name>`** — minimal viable debug port.
-   Prove the marshaling pattern works.
-4. **`/eval`** — the killer feature for agents. Requires `DEVTOOLS_EVAL` flag.
-5. **`/logs`** — query the existing log database.
-6. **`/settings` + `/app`** — introspection endpoints.
-7. **Mutation endpoints** (`/style`, `/property`, `/visible`, `/click`) — after
-   the read side is solid.
-8. **Declarative flag integration** — once the server is proven, wire it into
-   `BaseApplication` as a flag.
+1. **Fix scene tree bugs (P2-15):** clear `inverse` on rescan, re-enable
+   `destroyed` hookup, fix `contextMenuEvent` None crash, fix `qtpy.shiboken`
+   import, fix `qcolors.white`. Wire menu actions.
+2. **Extract `collect_widget_info(obj) -> dict`** from `Inspector.inspect()`.
+   Refactor inspector to call it and format the dict.
+3. **Extract `dump_scene_tree(root) -> list[dict]`** from `TreeNode.scan()`.
+   Refactor scene tree to call it and build items from the dict.
+4. **Implement the REPL** — functional `exec`/`eval` with history.
+5. **Make Monaco optional** in style editor — fall back to `CodeEditor`.
+6. **`run_on_main_sync`** (from new-utilities §1) — prerequisite for HTTP server.
+7. **`DevtoolsServer` + `/scene` + `/scene/<name>`** — minimal viable port.
+8. **`/eval`** — requires `DEVTOOLS_EVAL` flag.
+9. **`/logs`** — query the log database.
+10. **`/settings` + `/app`** — introspection.
+11. **Mutation endpoints** — style, property, visible, click.
+12. **Declarative flag integration** — wire into BaseApplication.
