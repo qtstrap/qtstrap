@@ -254,6 +254,3 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
         
         super().close()
 
-
-# Backwards compatibility alias
-DatabaseHandler = AsyncDatabaseHandler

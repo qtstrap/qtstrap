@@ -3,7 +3,7 @@ from qtpy.QtSql import *
 import time
 from .log_filter_controls import get_color
 from .log_profile import LogProfile
-from .log_database_handler import db_conn_name
+from .async_database_handler import db_conn_name
 
 
 session_start_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
