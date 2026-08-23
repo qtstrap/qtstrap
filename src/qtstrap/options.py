@@ -18,9 +18,9 @@ class OPTIONS:
 
     theme = 'light'
 
-    portable = False
     PORTABLE_SETTINGS_FILE = APPLICATION_PATH / 'settings.ini'
     PORTABLE_FLAG_PATH = APPLICATION_PATH / '.portable'
+    portable = PORTABLE_FLAG_PATH.exists()
 
     config_dir: Path
     dirs: AppDirs

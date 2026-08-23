@@ -13,8 +13,6 @@ else:
     if OPTIONS.portable:
         from .settings import PortableSettings as QSettings
 
-        QSettings._install()
-
     from .base_application import BaseApplication
     from .base_window import (
         BaseMainWindow,

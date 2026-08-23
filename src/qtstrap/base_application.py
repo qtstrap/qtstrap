@@ -51,21 +51,30 @@ class BaseApplication(QApplication):
         self.setWindowIcon(QIcon(OPTIONS.ICON_PATH))
 
         OPTIONS.dirs = AppDirs(info.NAME, info.PUBLISHER)
+        self._resolve_config()
+
+        default_theme = 'light'
+        theme = QSettings().value('theme', default_theme)
+        self.change_theme(theme)
+
+    def _resolve_config(self) -> None:
+        """Resolve config directory and install portable settings if needed.
+
+        Extracted as a method so a future CLI flag entry point can call it
+        during pre-init resolution.
+        """
         OPTIONS.config_dir = Path(OPTIONS.dirs.user_config_dir)
 
-        if Path(OPTIONS.PORTABLE_FLAG_PATH).exists():
-            OPTIONS.portable = True
-
+        if OPTIONS.portable:
             if OPTIONS.PORTABLE_FLAG_PATH.is_dir():
                 OPTIONS.config_dir = OPTIONS.PORTABLE_FLAG_PATH
             else:
                 OPTIONS.config_dir = OPTIONS.PORTABLE_FLAG_PATH.parent
 
-        Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
+            from .settings import PortableSettings
+            PortableSettings._install()
 
-        default_theme = 'light'
-        theme = QSettings().value('theme', default_theme)
-        self.change_theme(theme)
+        Path(OPTIONS.config_dir).mkdir(parents=True, exist_ok=True)
 
     def _install_signal_handlers(self) -> None:
         """Make SIGINT (ctrl-c) and SIGTERM (logout, kill) quit gracefully.
