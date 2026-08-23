@@ -67,9 +67,22 @@ NodeGraphQt/
 ├── constants.py            — enums, colors, sizes
 └── errors.py
 ```
+### Design principle: locality of behavior
+
+If a developer wants to contribute a node type, they should write one class
+in one file and import it. No manifest, no factory call, no JSON config, no
+remote registration. The class definition *is* the registration.
+
+This principle shapes every API decision in the fork:
+- Node registration via `__init_subclass__`, not `graph.register_node()`
+- Context menus built in code, not JSON files
+- One aggregated `graph_changed` signal, not 12 hand-wired connections
+- Property widgets mapped to qtstrap types, not a string-keyed factory
+- No `__identifier__` reverse-DNS — just `node_type = 'math.add'`
+
+If you want to change X, you go to X.py.
 
 ### What works
-
 - **Graphics:** `QGraphicsScene`/`QGraphicsView` with zoom, pan, rubber band
   selection, port drag-to-connect, bezier connections, connection slicing,
   backdrops, group nodes. This is thousands of hours of work that works.
