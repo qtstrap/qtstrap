@@ -1,5 +1,7 @@
 from typing import Literal, Sequence, TypeAlias, TypeVar
 
+from qtstrap.utils.call_later import call_later
+
 from qtpy.QtCore import (
     QMargins,
     QSettings,
@@ -466,7 +468,7 @@ class CScrollArea(QScrollArea, ContextLayoutBase):
         pass
 
 
-class PersistentCScrollArea(QScrollArea, ContextLayoutBase):
+class PersistentCScrollArea(CScrollArea):
     def __init__(
         self,
         name: str,
@@ -475,15 +477,29 @@ class PersistentCScrollArea(QScrollArea, ContextLayoutBase):
     ):
         super().__init__(parent, **kwargs)
         self.name = name
+        self._restored = False
+        self.verticalScrollBar().valueChanged.connect(self._save_state)
 
-        self.scrolled.connect(lambda: QSettings().setValue(self.name, self.saveState()))
+    def _save_state(self, value: int) -> None:
+        if self._restored:
+            QSettings().setValue(self.name, value)
+
+    def restore_state(self) -> None:
+        value = QSettings().value(self.name, None)
+        if value is not None:
+            try:
+                self.verticalScrollBar().setValue(int(value))
+            except (TypeError, ValueError):
+                pass
+        self._restored = True
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        if not self._restored:
+            self.restore_state()
 
     def scroll_to(self, value: int):
         self.verticalScrollBar().setValue(value)
 
-    def restore_state(self):
-        if state := QSettings().value(self.name, None):
-            self.restoreState(state)
-
     def __exit__(self, *args):
-        self.restore_state()
+        call_later(self.restore_state, 10)

@@ -68,12 +68,56 @@ def test_form_layout():
     assert len(get_children(widget)) == 9
 
 
-def test_splitter():
-    pass
+def test_splitter(qtbot):
+    from qtstrap import CSplitter, PersistentCSplitter
+    from qtpy.QtWidgets import QLabel
+
+    widget = QWidget()
+    qtbot.addWidget(widget)
+
+    with CVBoxLayout(widget) as layout:
+        with layout.split() as splitter:
+            splitter.add(QLabel('left'))
+            splitter.add(QLabel('right'))
+            assert splitter._layout.count() == 2
+
+    # PersistentCSplitter should also work
+    widget2 = QWidget()
+    qtbot.addWidget(widget2)
+
+    with CVBoxLayout(widget2) as layout:
+        with layout.split('test_persistent_splitter') as splitter:
+            splitter.add(QLabel('a'))
+            splitter.add(QLabel('b'))
+            assert splitter._layout.count() == 2
 
 
-def test_scrollarea():
-    pass
+def test_scrollarea(qtbot):
+    from qtstrap import CScrollArea, PersistentCScrollArea
+    from qtpy.QtWidgets import QLabel
+
+    # CScrollArea: children should land in the inner widget's layout
+    widget = QWidget()
+    qtbot.addWidget(widget)
+
+    with CVBoxLayout(widget) as layout:
+        with layout.scroll() as scroll:
+            for i in range(50):
+                scroll.add(QLabel(f'label {i}'))
+            # scroll is a ContextLayout; scroll._layout is the CScrollArea on the stack
+            inner_layout = scroll._layout.widget().layout()
+            assert inner_layout.count() == 50
+
+    # PersistentCScrollArea: should also accept children and persist scroll position
+    widget2 = QWidget()
+    qtbot.addWidget(widget2)
+
+    with CVBoxLayout(widget2) as layout:
+        with layout.scroll('test_persistent_scroll') as scroll:
+            for i in range(10):
+                scroll.add(QLabel(f'item {i}'))
+            inner_layout = scroll._layout.widget().layout()
+            assert inner_layout.count() == 10
 
 
 def test_margins_formats():
