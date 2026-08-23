@@ -196,7 +196,67 @@ class SettingsMenu(QMenu):
 Replaces `init_settings_menu()`. The standard items are built in; app-specific
 items are additive.
 
----
+### `DockRegistry`
+
+```python
+class DockRegistry:
+    """Central registry for dock widgets.
+    Docks register via __init_subclass__ on BaseDockWidget or explicit registration.
+    MainWindow can auto-instantiate all registered docks.
+    """
+    def register(self, dock: type[BaseDockWidget]): ...
+    def instantiate_all(self, parent: QMainWindow) -> dict[str, BaseDockWidget]: ...
+```
+
+Replaces manual `self.log_monitor = LogMonitorDockWidget(self)` in
+`MainWindow.__init__`. Docks that need deferred instantiation or conditional
+visibility can be registered with a factory.
+
+### `CommandRegistry`
+
+```python
+class CommandRegistry:
+    """Central registry for command palette commands.
+    Any object can register commands. The command palette reads from here.
+    """
+    def register(self, command: Command): ...
+    def register_all(self, obj: QObject): ...  # reads obj.commands attribute
+    def get_commands(self) -> list[Command]: ...
+```
+
+Replaces the scattered `self.commands = [Command(...)]` pattern. Each chassis
+component (panels, docks, pages) can register its own commands via
+`register_all(self)` and they all appear in the command palette automatically.
+
+### `SystemTray`
+
+```python
+class SystemTray(QObject):
+    """System tray icon with minimize-to-tray and notification support.
+    """
+    def __init__(self, parent, icon=None): ...
+    def set_menu(self, actions: list): ...
+    def notify(self, title: str, message: str): ...
+    def set_minimize_to_tray(self, enabled: bool): ...
+```
+
+Replaces the hand-rolled tray setup in `MainWindow.__init__`. The minimize-to-
+tray behavior uses a `PersistentCheckableAction` for its toggle.
+
+### `ShortcutManager`
+
+```python
+class ShortcutManager:
+    """Registers and manages QShortcuts on a widget.
+    Shortcuts can be registered by name and looked up later.
+    """
+    def register(self, name: str, sequence: str, callback, widget=None): ...
+    def get(self, name: str) -> QShortcut: ...
+    def register_tab_shortcuts(self, tab_system, count=10): ...
+```
+
+Replaces the manual `for i in range(10): QShortcut(...)` loop. Standard
+shortcut sets (tab switching, panel toggling) are built-in helpers.
 
 ## 3. Composition
 
@@ -262,6 +322,23 @@ The app code declares what it needs, not how to build it.
 
 The chassis provides the *slots*. The app fills them.
 
+### Continuous granularity
+
+Each chassis piece is usable independently. Composing more of them gives you
+more, but no piece requires another to function:
+
+- `Panel` + `Sidebar` without `ActivityBar` — sidebar with manual switching
+- `StatusBar` without `Sidebar` — just a status bar with settings menu
+- `TabSystem` with plain `QWidget`s — tabs without the `Page` registration system
+- `CommandRegistry` without any other chassis piece — just a command palette
+
+This is the same principle as qtstrap's context layouts: `CVBoxLayout` doesn't
+require `CFormLayout`. Each piece stands alone.
+
+The mechanism: interfaces, not inheritance. `TabSystem` accepts any `QWidget`
+that has `serialize()`/`deserialize()`, not only `Page` subclasses. `ActivityBar`
+works with any object exposing `toggle_panel(name)`, not only the qtstrap
+`Sidebar`. No piece forces another into your app.
 ---
 
 ## 5. Implementation order
@@ -276,9 +353,14 @@ The chassis provides the *slots*. The app fills them.
 4. **`Page` + `TabSystem`** — extract from `MainTabWidget` + `StagehandPage`.
    Page uses `__init_subclass__` for registration (replaces
    `get_subclasses()` walk). Generalize the save/load format.
-5. **Integration test** — build a minimal app using all chassis primitives,
+5. **`DockRegistry`** — central dock registration, auto-instantiation.
+6. **`CommandRegistry`** — central command registration, auto-collection
+   from chassis components.
+7. **`SystemTray`** — tray icon, minimize-to-tray, notifications.
+8. **`ShortcutManager`** — shortcut registration, standard shortcut sets.
+9. **Integration test** — build a minimal app using all chassis primitives,
    verify it works without Stagehand-specific code.
-6. **Migrate Stagehand** — replace `SidebarContainer`, `create_activity_bar()`,
-   `MainTabWidget`, `create_statusbar()` with chassis primitives. Verify
-   nothing breaks.
-7. **Documentation** — example app showing the chassis in use.
+10. **Migrate Stagehand** — replace `SidebarContainer`, `create_activity_bar()`,
+   `MainTabWidget`, `create_statusbar()`, manual dock wiring, manual shortcut
+   loops, `self.commands` lists with chassis primitives. Verify nothing breaks.
+11. **Documentation** — example app showing the chassis in use.
