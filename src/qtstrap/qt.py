@@ -20,6 +20,28 @@ elif qtpy.PYSIDE_VERSION:
     SignalInstance.__call__ = SignalInstance.connect
 
 """
+helper that allows async functions to be connected to signals directly
+
+button.clicked.connect(sync_handler)   # works as before
+button.clicked.connect(async_handler)  # auto-wraps with promisify
+
+sync functions pass through with zero overhead; async functions get
+eagerly scheduled as asyncio tasks via promisify.
+"""
+if qtpy.PYSIDE_VERSION:
+    _orig_connect = SignalInstance.connect
+
+    def _smart_connect(self, slot, *args, **kwargs):
+        import asyncio
+        import inspect
+        if inspect.iscoroutinefunction(slot):
+            from qtstrap.extras.promise import promisify
+            slot = promisify(slot)
+        return _orig_connect(self, slot, *args, **kwargs)
+
+    SignalInstance.connect = _smart_connect
+
+"""
 helper that allows for easily finding QObjects by name
 
 some_widget['name_of_child']
