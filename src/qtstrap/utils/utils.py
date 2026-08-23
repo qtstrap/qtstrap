@@ -13,6 +13,9 @@ def enable_children(thing: QObject) -> None:
     if isinstance(thing, QWidget):
         thing = thing.layout()
 
+    if thing is None:
+        return
+
     for i in range(thing.count()):
         if thing.itemAt(i).widget():
             thing.itemAt(i).widget().setEnabled(True)
@@ -31,6 +34,9 @@ def disable_children(thing: QObject) -> None:
     # QWidgets don't have children, they have a layout that has children
     if isinstance(thing, QWidget):
         thing = thing.layout()
+
+    if thing is None:
+        return
 
     for i in range(thing.count()):
         if thing.itemAt(i).widget():

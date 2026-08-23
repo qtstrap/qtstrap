@@ -1,13 +1,10 @@
-from qtpy.QtCore import QTimer
-
-
-_call_timers = []
+from qtpy.QtCore import QTimer, QCoreApplication
 
 
 def call_later(what, msec: int = 1):
     """call the given function after a specified delay"""
-    timer = QTimer(singleShot=True)
+    parent = QCoreApplication.instance()
+    timer = QTimer(parent, singleShot=True)
     timer.timeout.connect(what)
-    timer.timeout.connect(lambda: _call_timers.remove(timer))
+    timer.timeout.connect(timer.deleteLater)
     timer.start(msec)
-    _call_timers.append(timer)
