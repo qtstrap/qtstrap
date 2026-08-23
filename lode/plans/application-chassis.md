@@ -119,6 +119,40 @@ Replaces `SidebarContainer`. Reads from `Panel._registry` instead of
 `__subclasses__()`. Explicit `register_panel()` available for apps that
 need dynamic registration (e.g. plugin loading at runtime).
 
+### Sidebar: custom, not QDockWidget
+
+Sidebars are custom `QStackedWidget` containers, not `QDockWidget`s. VSCode
+sidebars are fixed to their side — not draggable, floatable, or relocatable.
+Locking down a `QDockWidget` with `NoDockWidgetFeatures` would just rebuild
+a plain widget with extra steps. The custom sidebar gives exact behavior
+with less code and full QSS styling control.
+
+`QDockWidget` stays for peripheral docks (log monitor, devtools, scene tree)
+which *should* be draggable and floatable. Three mechanisms for three roles:
+
+- **Sidebar** (left/right) — custom `QStackedWidget`, toggled by activity bar
+- **Docks** (peripheral) — `QDockWidget`, auto-discovered via `DockRegistry`
+- **TabPanel** (main content) — `QTabWidget`, pages auto-discovered
+
+A secondary sidebar (right side) uses the same `Sidebar` class mirrored.
+
+### Settings as a widget
+
+Settings are presented as a widget that can be a dock, a tab, or an overlay
+— same pattern as the log monitor (`LogMonitorWidget` can be a dock or an
+overlay). The content is the contribution; the presentation is the app's
+choice.
+
+Apps register `SettingsModel`s into a settings surface. The surface generates
+a form from the model's pydantic fields (the settings form generator). The
+settings button in the activity bar opens the surface as a popup or a tab.
+
+`SettingsModel` needs to become a `QObject` with a `changed = Signal(str,
+object)` (field name, new value) so widgets can react to live setting
+changes. This is a separate task with its own edge cases (init ordering,
+signal suppression during load, pydantic + QObject MRO) — not part of the
+initial chassis implementation.
+
 ### `ActivityBar`
 
 ```python
