@@ -50,7 +50,7 @@ class LogTableView(QTableView):
 
         self.setModel(self.db_model)
         self.need_to_refresh = False
-        self._is_visible = True  # Track visibility state
+        self._is_visible = False  # Track visibility state
 
         # Timer only runs when widget is visible
         self.scan_timer = QTimer()
