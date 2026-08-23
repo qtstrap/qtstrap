@@ -13,7 +13,7 @@ import logging
 import time
 import threading
 from collections import deque
-from qtstrap import QObject, Signal, QTimer
+from qtstrap import QObject, Signal, QTimer, Slot
 from qtpy.QtSql import QSqlDatabase
 
 
@@ -82,6 +82,12 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
         logging.Handler.__init__(self)
         QObject.__init__(self)
         
+        from qtpy.QtWidgets import QApplication
+        from qtpy.QtCore import QThread
+        app = QApplication.instance()
+        if app is not None and QThread.currentThread() is not app.thread():
+            raise RuntimeError('AsyncDatabaseHandler must be created on the main thread')
+
         self.flush_interval = flush_interval_ms
         self.formatter = logging.Formatter('%(asctime)s')
         
@@ -108,7 +114,7 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
             AsyncDatabaseHandler._callback_timer = QTimer()
             AsyncDatabaseHandler._callback_timer.setSingleShot(True)
             AsyncDatabaseHandler._callback_timer.timeout.connect(self._emit_callbacks)
-    
+
     def format_time(self, record):
         """Add formatted timestamp to record."""
         record.dbtime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(record.created))
@@ -138,12 +144,18 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
             with AsyncDatabaseHandler._queue_lock:
                 AsyncDatabaseHandler._queue.append(formatted)
             
-            # Schedule callback notification (debounced)
-            self._schedule_callback()
+            # Schedule callback notification on the main thread (thread-safe).
+            # QMetaObject.invokeMethod with QueuedConnection delivers across threads.
+            # Can't use self.log_added.emit() — PySide6 routes .emit() on the signal
+            # to logging.Handler.emit() because the class inherits from both.
+            if not AsyncDatabaseHandler._pending_callback:
+                from qtpy.QtCore import QMetaObject, Qt
+                QMetaObject.invokeMethod(self, '_schedule_callback', Qt.QueuedConnection)
         except Exception:
             # Don't crash the app if logging fails
             self.handleError(record)
     
+    @Slot()
     def _schedule_callback(self):
         """Schedule a debounced callback notification."""
         if not AsyncDatabaseHandler._pending_callback:
