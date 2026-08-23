@@ -1,6 +1,6 @@
 from qtstrap import *
 import typing
-import re
+import time
 
 
 class CommandRegistry(QObject):
@@ -34,7 +34,9 @@ class Command(QAction):
 
         registry.register_command(self)
 
-        self.usage_count = 0
+        # Load frecency data from QSettings
+        self.usage_count = int(QSettings().value(f'command_palette/{self.text()}/count', 0))
+        self.last_used = float(QSettings().value(f'command_palette/{self.text()}/last_used', 0))
         self.triggered.connect(self.used)
 
         # Auto-unregister when the command is destroyed
@@ -43,6 +45,9 @@ class Command(QAction):
 
     def used(self):
         self.usage_count += 1
+        self.last_used = time.time()
+        QSettings().setValue(f'command_palette/{self.text()}/count', self.usage_count)
+        QSettings().setValue(f'command_palette/{self.text()}/last_used', self.last_used)
 
 class PopupDelegate(QStyledItemDelegate):
     def __init__(self, parent=None):
@@ -151,14 +156,41 @@ class CommandModel(QAbstractListModel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.sorted_commands = []
+        self._source = []
+
+    def set_source(self, items):
+        """Set the source list. Items can be QAction objects (command mode)
+        or plain strings (option picker mode)."""
+        self._source = items
+        self.sort_commands('')
+
+    def _frecency_score(self, item):
+        """Score by frequency + recency. Higher = more relevant."""
+        count = getattr(item, 'usage_count', 0)
+        last_used = getattr(item, 'last_used', 0)
+        if count == 0:
+            return 0
+        # Recency decay: score halves every 24 hours
+        age = time.time() - last_used
+        recency = 1.0 / (1.0 + age / 86400.0)
+        return count * recency
 
     def sort_commands(self, prefix):
         self.beginResetModel()
-        self.sorted_commands = [cmd for cmd in registry.commands if prefix.lower() in cmd.text().lower()]
-        result = bool(self.sorted_commands)
-        self.sorted_commands.extend([cmd for cmd in registry.commands if prefix.lower() not in cmd.text().lower()])
+        if prefix:
+            matched = [item for item in self._source if prefix.lower() in self._item_text(item).lower()]
+            unmatched = [item for item in self._source if prefix.lower() not in self._item_text(item).lower()]
+            # Sort matched by frecency (most used/recent first), then alphabetically
+            matched.sort(key=lambda item: (-self._frecency_score(item), self._item_text(item).lower()))
+            self.sorted_commands = matched + unmatched
+        else:
+            # No prefix: sort all by frecency, then alphabetically
+            self.sorted_commands = sorted(self._source, key=lambda item: (-self._frecency_score(item), self._item_text(item).lower()))
         self.endResetModel()
-        return result
+        return bool(self.sorted_commands)
+
+    def _item_text(self, item):
+        return item.text() if hasattr(item, 'text') else str(item)
 
     def rowCount(self, parent: QtCore.QModelIndex) -> int:
         return len(self.sorted_commands)
@@ -167,11 +199,15 @@ class CommandModel(QAbstractListModel):
         if not index.isValid():
             return None
 
+        item = self.sorted_commands[index.row()]
+
         if role == Qt.EditRole:
-            return self.sorted_commands[index.row()].text()
+            return self._item_text(item)
 
         elif role == Qt.UserRole:
-            return self.sorted_commands[index.row()].shortcut().toString()
+            if hasattr(item, 'shortcut'):
+                return item.shortcut().toString()
+            return ''
 
     def index(self, row: int, column: int, parent: QtCore.QModelIndex) -> QtCore.QModelIndex:
         return self.createIndex(row, column)
@@ -184,11 +220,16 @@ class CommandCompleter(QWidget):
         self.list.setUniformItemSizes(True)
         self.list.setSelectionRectVisible(True)
         self.list.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.list.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.list.setFixedHeight(500)
         self.list.setResizeMode(QListView.Adjust)
 
-        self.command_model = CommandModel(self)
+    def open(self, source=None):
+        self.active = True
+        if source is not None:
+            self.command_model.set_source(source)
+        else:
+            self.command_model.set_source(registry.commands)
+        self.update_prefix('')
+        super().show()
         self.list.setModel(self.command_model)
 
         self.delegate = PopupDelegate(self)
@@ -306,6 +347,11 @@ class CommandPalette(QDialog):
         self.line.setValidator(validator)
         self.line.setInputMask(mask)
 
+        if choices is not None:
+            self.command_completer.open(source=choices)
+        else:
+            self.command_completer.close()
+
         self.command_completer.reset()
         self.center_on_parent()
         self.show()
@@ -331,7 +377,12 @@ class CommandPalette(QDialog):
         if self.command_completer.active:
             name = self.command_completer.get_selection()
             self.dismiss()
-            registry.execute(name)
+            if self.callback:
+                # Option picker mode — return selection to callback
+                self.callback(name)
+            else:
+                # Command mode — execute the command
+                registry.execute(name)
         else:
             result = self.line.text()
             if self.callback:
