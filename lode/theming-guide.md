@@ -155,15 +155,57 @@ constants). Problems, in rough severity order:
 
 ## 3. The rules (project conventions)
 
-1. Fusion, always, both themes, all platforms.
-2. Theming = `QApplication.setStyle` then `QApplication.setPalette`. Nothing else.
+### Design direction: themes as examples, not an imposed system
+
+qtstrap does not impose theming. Apps that want native Qt appearance should
+not have to fight a framework-level theme. The theme system provides:
+
+- Two standard built-in themes (light, dark) for apps that want sensible
+  defaults without writing their own.
+- Example "exotic" themes (vscode-dark, flat-material) that demonstrate QSS
+  presentation — not just colors but the whole visual language: flat buttons,
+  borderless panels, tab bar styling, status bar accent. These serve as
+  templates, not requirements.
+- A registry so apps can register their own themes and use them by name.
+
+Apps that want no theming at all can skip `apply_theme` and use native styles.
+The `DEFAULT_THEME` class attribute on `BaseApplication` controls startup;
+ setting
+ it to `None` disables qtstrap theming entirely.
+
+### Conventions when a theme IS active
+
+1. Fusion, always, for both standard themes, all platforms. Exotic themes
+   may set a different style if it serves the presentation.
+2. Theming = `QApplication.setStyle` then `QApplication.setPalette` then
+   optionally `QApplication.setStyleSheet`. Nothing else.
 3. Never `setPalette` on an individual widget for theming purposes.
-4. No per-widget stylesheets in apps. State styling uses dynamic properties with
-   rules defined in the theme.
+4. No per-widget stylesheets in apps. State styling uses dynamic properties
+   with rules defined in the theme.
 5. Paint code reads `option.palette`/`self.palette()` at paint time, or the
    semantic vocabulary. No hex literals outside theme definitions.
-6. Icons are theme-managed (§4.5) — no literal `color=` at `qta.icon` call sites.
+6. Icons are theme-managed (§4.5) — no literal `color=` at `qta.icon` call
+   sites.
 7. New themes are *registered*, never hardcoded into qtstrap.
+
+### Exotic themes and the application chassis
+
+The [application chassis](plans/application-chassis.md) provides named widget
+classes (`ActivityBar`, `Sidebar`, `TabSystem`, `StatusBar`, `Panel`) that
+exotic themes can target with QSS selectors. A VSCode-dark theme would style
+those classes to reproduce VSCode's visual language:
+
+```css
+ActivityBar { background: #333; border: none; }
+ActivityBar QToolButton { border: none; padding: 4px; }
+StatusBar { background: #007acc; color: white; }
+TabSystem::tab-bar { background: #2d2d2d; }
+/* etc. */
+```
+
+This is why exotic themes depend on the chassis landing first — without
+named widget classes, QSS has nothing to target beyond generic `QMainWindow`
+and `QWidget`.
 
 ---
 
@@ -320,8 +362,6 @@ Pragmatic v1 (avoid the proxy complexity): a `ThemedIconMixin` /
 `refresh_icons()` protocol — widgets that own icons implement `refresh_icons()`
 and register via `App().theme_changed.connect(self.refresh_icons)`; plus
 `qta.set_defaults(color=theme.icon_color)` called inside `apply_theme` **before**
-`qta.reset_cache()` so newly-created icons are right by default. The
-BaseApplication TODO comment gets replaced by this mechanism.
 
 **Edge case:** `theme_changed.connect` from widgets needs the connection to die
 with the widget — connect with the widget as context/receiver
@@ -363,3 +403,9 @@ Ties into [async-guide.md](async-guide.md) §5's declarative-flags design:
    QApplication (offscreen), assert `app.style().objectName() == 'fusion'` and a
    couple of palette roles per theme — this catches the setStyle-resets-palette
    class of regression permanently.
+6. Add exotic example themes (vscode-dark, flat-material) once the [application
+   chassis](plans/application-chassis.md) lands — they need named widget classes
+   to target with QSS. These demonstrate full presentation theming, not just
+   palette colors.
+7. Delete `extras/style/dark_palette.py` and `extras/style/colors.py` (dead
+   code superseded by registry + semantic vocabulary).
