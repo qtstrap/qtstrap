@@ -25,6 +25,9 @@ class BaseApplication(QApplication):
 
     AppInfo: BaseAppInfo = None
     INSTALL_SIGNAL_HANDLERS = True
+    ASYNC: bool | str = False  # False | True (auto) | 'qasync'
+
+    _shutdown_callbacks: list = None
 
     def __init__(self, app_info: BaseAppInfo = None) -> None:
         super().__init__(sys.argv)
@@ -56,6 +59,9 @@ class BaseApplication(QApplication):
         default_theme = 'light'
         theme = QSettings().value('theme', default_theme)
         self.change_theme(theme)
+
+        self._shutdown_callbacks = []
+        self.aboutToQuit.connect(self._run_shutdown)
 
     def _resolve_config(self) -> None:
         """Resolve config directory and install portable settings if needed.
@@ -115,3 +121,57 @@ class BaseApplication(QApplication):
         apply_theme(theme, self)
 
         self.theme_changed.emit()
+
+    def on_shutdown(self, callback, priority: int = 0) -> None:
+        """Register a callback to run on application shutdown.
+
+        Callbacks run in priority order (lowest first). App callbacks
+        should use priority 0; qtstrap's own teardown registers at
+        priority 100 so it runs after app callbacks.
+        """
+        self._shutdown_callbacks.append((priority, callback))
+
+    def _run_shutdown(self) -> None:
+        """Flush shutdown callbacks in priority order."""
+        for _, callback in sorted(self._shutdown_callbacks):
+            try:
+                callback()
+            except Exception:
+                pass  # Don't let one callback block the rest
+
+    def run(self) -> int:
+        """Start the event loop.
+
+        With ASYNC=False (default), this is equivalent to exec_().
+        With ASYNC=True or ASYNC='qasync', installs the qasync event loop
+        and runs it, enabling await/async patterns.
+
+        Existing apps calling exec_() directly keep working forever.
+        """
+        if not self.ASYNC:
+            return self.exec_()
+
+        import asyncio
+        from qtstrap.extras._qasync import QEventLoop
+
+        loop = QEventLoop(self)
+        asyncio.set_event_loop(loop)
+        self._install_async_exception_handler(loop)
+        with loop:
+            return loop.run_forever()
+
+    def _install_async_exception_handler(self, loop) -> None:
+        """Install an asyncio exception handler that logs instead of crashing."""
+        import asyncio
+        import logging
+
+        def _handle_async_exception(loop, context):
+            exc = context.get('exception')
+            if isinstance(exc, asyncio.CancelledError):
+                return  # lifecycle noise, not an error
+            logging.getLogger('async.unhandled').error(
+                context.get('message', 'unhandled async exception'),
+                exc_info=exc,
+            )
+
+        loop.set_exception_handler(_handle_async_exception)

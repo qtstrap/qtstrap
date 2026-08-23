@@ -1,27 +1,37 @@
-from asyncio import Event
-
-from qtpy.QtWidgets import QDialog
+from qtstrap import *
+from qtstrap.extras.promise import wait_for_signal
 
 
 class AwaitableDialog(QDialog):
+    """A dialog that can be awaited like a NiceGUI dialog.
+
+    Usage:
+        result = await ConfirmDialog()
+        if result:
+            do_thing()
+
+    The dialog opens non-modally (open(), not exec()) so the async
+    coroutine suspends without spinning a nested event loop.
+
+    Call submit(result) from inside the dialog to resolve the await.
+    Esc, X, or reject() resolves the await with None — no hang.
+    """
+
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent, **kwargs)
-
         self._result = None
-        self._submitted = Event()
 
     def submit(self, result=None):
+        """Resolve the dialog with a result value."""
         self._result = result
-        self._submitted.set()
+        self.accept()
 
     def __await__(self):
-        self.show()
+        # open() is non-modal — no nested event loop
+        self.open()
 
-        # block until the Event gets set
-        # reference: https://github.com/zauberzeug/nicegui/blob/main/nicegui/elements/dialog.py#L45
-        yield from self._submitted.wait().__await__()
+        # Wait for the finished signal — fires for accept, reject, Esc, X
+        yield from wait_for_signal(self.finished).__await__()
 
-        self.close()
         self.deleteLater()
-
         return self._result
