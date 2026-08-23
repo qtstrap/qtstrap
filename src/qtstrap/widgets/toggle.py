@@ -182,17 +182,29 @@ class AnimatedToggle(Toggle):
 
 
 class PersistentToggle(Toggle):
-    def __init__(self, name, changed=None, *args, **kwargs):
+    def __init__(self, name, changed=None, model=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
+        self.model = model
         self.restore_state()
 
         if changed:
             self.stateChanged.connect(changed)
 
-        self.stateChanged.connect(lambda: QSettings().setValue(self.name, int(self.checkState())))
+        self.stateChanged.connect(self._save_state)
+
+    def _save_state(self):
+        if self.model is not None:
+            setattr(self.model, self.name, bool(self.checkState() == Qt.Checked))
+        else:
+            QSettings().setValue(self.name, int(self.checkState()))
 
     def restore_state(self):
+        if self.model is not None:
+            if getattr(self.model, self.name):
+                self.setCheckState(Qt.Checked)
+            return
+
         prev_state = QSettings().value(self.name, 0)
         try:
             prev_state = int(prev_state)
@@ -205,13 +217,29 @@ class PersistentToggle(Toggle):
 
 
 class PersistentAnimatedToggle(AnimatedToggle):
-    def __init__(self, name, changed=None, *args, **kwargs):
+    def __init__(self, name, changed=None, model=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
+        self.model = model
         self.restore_state()
-        self.stateChanged.connect(lambda: QSettings().setValue(self.name, int(self.checkState())))
+
+        if changed:
+            self.stateChanged.connect(changed)
+
+        self.stateChanged.connect(self._save_state)
+
+    def _save_state(self):
+        if self.model is not None:
+            setattr(self.model, self.name, bool(self.checkState() == Qt.Checked))
+        else:
+            QSettings().setValue(self.name, int(self.checkState()))
 
     def restore_state(self):
+        if self.model is not None:
+            if getattr(self.model, self.name):
+                self.setCheckState(Qt.Checked)
+            return
+
         prev_state = QSettings().value(self.name, 0)
         try:
             prev_state = int(prev_state)
