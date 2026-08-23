@@ -18,6 +18,94 @@ Related: [plans/bugfix-review-2026-07.md](plans/bugfix-review-2026-07.md) P2-16
 (style small fixes — superseded in detail by §4 here),
 [async-guide.md](async-guide.md) §5 (BaseApplication packaging — theming hooks in).
 
+## 0. What do I actually do?
+
+You have a `BaseMainWindow` and you want to change how it looks. Here is the
+complete decision tree:
+
+### I just want dark mode
+
+```python
+class Application(BaseApplication):
+    DEFAULT_THEME = 'dark'
+```
+Done. `BaseApplication` handles the rest.
+
+### I want to tweak a color or two
+
+Register a custom theme with a modified `ThemeColors`:
+
+```python
+from qtstrap.extras.style import Theme, ThemeColors, register_theme, build_palette
+
+my_colors = ThemeColors(
+    window='#1e1e1e',
+    base='#252526',
+    text='#d4d4d4',
+    accent='#007acc',
+)
+
+register_theme(Theme(
+    name='my-theme',
+    palette=lambda: build_palette(my_colors),
+))
+
+class Application(BaseApplication):
+    DEFAULT_THEME = 'my-theme'
+```
+
+That's it. Four hex values, a lambda, a registration. No QSS, no QPalette
+role-by-role manual, no `QStyleFactory`.
+
+### I want my app to look like VSCode
+
+Use the built-in `vscode-dark` theme (once it lands — depends on the
+[application chassis](plans/application-chassis.md) for named widget classes):
+
+```python
+class Application(BaseApplication):
+    DEFAULT_THEME = 'vscode-dark'
+```
+
+The `vscode-dark` theme uses a palette + a QSS stylesheet that targets
+`ActivityBar`, `StatusBar`, `TabSystem`, `Sidebar`, `Panel` — the chassis
+widgets — to reproduce VSCode's visual language: flat buttons, borderless
+panels, the blue status bar, the dark activity bar.
+
+Or register your own exotic theme with QSS:
+
+```python
+register_theme(Theme(
+    name='my-vscode-clone',
+    palette=lambda: build_palette(my_colors),
+    qss=MY_VSCODE_QSS,
+))
+```
+
+### I want full custom styling
+
+Write a `Theme` with a custom palette factory, a QSS stylesheet, and an icon
+color. Register it. This is the same mechanism the built-in themes use — no
+special API, no subclassing required.
+
+### I don't want qtstrap theming at all
+
+```python
+class Application(BaseApplication):
+    DEFAULT_THEME = None
+```
+
+Qt's native style is used. No palette, no QSS, no Fusion. Your app looks like
+whatever the platform default is.
+
+### When to read the rest of this guide
+
+The four-layer model below is for understanding *why* the above works — what
+QStyle, QPalette, QSS, and paint code each contribute, and what breaks when
+you mix them. Read it if you're implementing a theme, debugging why a widget
+ignores your palette, or wondering why your QSS broke Fusion's hover states.
+If you just want dark mode, the decision tree above is all you need.
+
 ---
 
 ## 1. The four-layer model
