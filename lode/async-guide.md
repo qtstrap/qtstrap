@@ -498,6 +498,13 @@ byte-for-byte today's behavior.
    the exception and forces the qasync backend.
 5. Every promise chain a user can trigger ends in `.catch`; the loop exception
    handler is the net, not the plan.
-6. Promises consumed by widgets get `owned_by(promise, widget)`.
-7. `dialog.open()` + await/then, never `dialog.exec()` from async-adjacent code.
-8. Vendor promisio; don't fork it.
+6. The awaitable dialog pattern (`result = await ConfirmDialog()`, inspired by
+   [NiceGUI's dialog `__await__`](https://daelon.dev/posts/nicegui_dialogs/))
+   is the motivating use case for the promise layer. The existing
+   `AwaitableDialog` widget has the right shape but is broken — `show()` instead
+   of `open()`, and `asyncio.Event` that never fires on Esc/close. §3.5's fix
+   (`wait_for_signal(self.finished)`) is the correct implementation, and should
+   be the first example in the docs once `run()` + the promise runtime land.
+7. Promises consumed by widgets get `owned_by(promise, widget)`.
+8. `dialog.open()` + await/then, never `dialog.exec()` from async-adjacent code.
+9. Vendor promisio; don't fork it.
