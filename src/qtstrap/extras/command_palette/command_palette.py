@@ -216,11 +216,24 @@ class CommandCompleter(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.active = False
+        self.delegate = PopupDelegate(self)
+
         self.list = QListView()
         self.list.setUniformItemSizes(True)
         self.list.setSelectionRectVisible(True)
         self.list.setSelectionMode(QAbstractItemView.SingleSelection)
         self.list.setResizeMode(QListView.Adjust)
+        self.list.setItemDelegate(self.delegate)
+
+        self.command_model = CommandModel(self)
+        self.list.setModel(self.command_model)
+
+        with CVBoxLayout(self, margins=0) as layout:
+            layout.add(self.list)
+
+    def reset(self):
+        self.delegate.get_colors()
 
     def open(self, source=None):
         self.active = True
@@ -228,23 +241,6 @@ class CommandCompleter(QWidget):
             self.command_model.set_source(source)
         else:
             self.command_model.set_source(registry.commands)
-        self.update_prefix('')
-        super().show()
-        self.list.setModel(self.command_model)
-
-        self.delegate = PopupDelegate(self)
-        self.list.setItemDelegate(self.delegate)
-
-        with CVBoxLayout(self, margins=0) as layout:
-            layout.add(self.list)
-
-        self.active = False
-
-    def reset(self):
-        self.delegate.get_colors()
-
-    def open(self):
-        self.active = True
         self.update_prefix('')
         super().show()
 
@@ -256,14 +252,6 @@ class CommandCompleter(QWidget):
     def update_prefix(self, prefix):
         self.delegate.set_prefix(prefix)
         self.command_model.sort_commands(prefix)
-
-        index = self.list.model().index(0, 0, QModelIndex())
-        self.list.setCurrentIndex(index)
-
-        # redraw items in popup
-        for row in range(self.list.model().rowCount(QModelIndex())):
-            index = self.list.model().index(row, 0, QModelIndex())
-            self.list.update(index)
 
     def move_selection_up(self):
         current = self.list.currentIndex()
