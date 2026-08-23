@@ -39,10 +39,8 @@ CREATE TABLE IF NOT EXISTS log(
 """
 
 # Enable WAL mode for better concurrent access
-pragma_sql = """
-PRAGMA journal_mode=WAL;
-PRAGMA synchronous=NORMAL;
-"""
+pragma_sql_1 = "PRAGMA journal_mode=WAL"
+pragma_sql_2 = "PRAGMA synchronous=NORMAL"
 
 
 class AsyncDatabaseHandler(logging.Handler, QObject):
@@ -99,7 +97,8 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
         
         # Create table with performance pragmas
         db.exec_(initial_sql)
-        db.exec_(pragma_sql)
+        db.exec_(pragma_sql_1)
+        db.exec_(pragma_sql_2)
         
         # Initialize class-level shared state (singleton pattern)
         if AsyncDatabaseHandler._instance is None:
@@ -115,35 +114,35 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
             AsyncDatabaseHandler._callback_timer.setSingleShot(True)
             AsyncDatabaseHandler._callback_timer.timeout.connect(self._emit_callbacks)
 
-    def format_time(self, record):
-        """Add formatted timestamp to record."""
-        record.dbtime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(record.created))
-    
-    def format_for_insert(self, record) -> str:
-        """Format a log record as an INSERT statement."""
-        self.format(record)
-        self.format_time(record)
-        
-        # Escape single quotes
-        record.msg = str(record.msg).replace("'", "''")
-        
-        if record.exc_info:
-            exc_text = self.formatter.formatException(record.exc_info).replace("'", "''")
-        else:
-            exc_text = ''
-        
-        return f"""('{record.dbtime}', '{record.name}', {record.levelno}, '{record.levelname}', '{record.msg}', '{record.args}', '{record.module}', '{record.funcName}', {record.lineno}, '{exc_text}', {record.process}, '{record.thread}', '{record.threadName}')"""
-    
     def emit(self, record):
         """
         Queue a log record for async insertion.
         This is called on every log and must be fast (no DB access).
         """
         try:
-            formatted = self.format_for_insert(record)
+            if record.exc_info:
+                exc_text = self.formatter.formatException(record.exc_info)
+            else:
+                exc_text = ''
+
+            values = (
+                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(record.created)),
+                record.name,
+                record.levelno,
+                record.levelname,
+                record.getMessage(),
+                str(record.args) if record.args else '',
+                record.module,
+                record.funcName,
+                record.lineno,
+                exc_text,
+                record.process,
+                str(record.thread),
+                record.threadName,
+            )
             with AsyncDatabaseHandler._queue_lock:
-                AsyncDatabaseHandler._queue.append(formatted)
-            
+                AsyncDatabaseHandler._queue.append(values)
+
             # Schedule callback notification on the main thread (thread-safe).
             # QMetaObject.invokeMethod with QueuedConnection delivers across threads.
             # Can't use self.log_added.emit() — PySide6 routes .emit() on the signal
@@ -177,46 +176,37 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
                     pass  # Don't let callback errors crash logging
     
     def _flush_queue(self):
-        """
-        Flush queued records to SQLite.
-        This runs on a timer and does the actual DB writes.
-        """
-        # Grab all queued records
+        """Flush queued records to SQLite using prepared statements."""
         with AsyncDatabaseHandler._queue_lock:
             if not AsyncDatabaseHandler._queue:
                 return
             records = list(AsyncDatabaseHandler._queue)
             AsyncDatabaseHandler._queue.clear()
-        
+
         if not records:
             return
-        
-        # Batch insert
+
         db = QSqlDatabase.database(db_conn_name)
         if not db.isValid() or not db.isOpen():
             return
-        
-        # Build batch INSERT
-        columns = "(TimeStamp, Source, LogLevel, LogLevelName, Message, Args, Module, FuncName, LineNo, Exception, Process, Thread, ThreadName)"
-        values = ", ".join(records)
-        sql = f"INSERT INTO log {columns} VALUES {values};"
-        
-        # For very large batches, split into chunks
-        chunk_size = 500
-        if len(records) > chunk_size:
-            self._insert_in_chunks(db, records, chunk_size)
-        else:
-            db.exec_(sql)
-    
-    def _insert_in_chunks(self, db, records: list, chunk_size: int):
-        """Insert records in batches to avoid巨型 SQL statements."""
-        columns = "(TimeStamp, Source, LogLevel, LogLevelName, Message, Args, Module, FuncName, LineNo, Exception, Process, Thread, ThreadName)"
-        
-        for i in range(0, len(records), chunk_size):
-            chunk = records[i:i + chunk_size]
-            values = ", ".join(chunk)
-            sql = f"INSERT INTO log {columns} VALUES {values};"
-            db.exec_(sql)
+
+        from qtpy.QtSql import QSqlQuery
+        query = QSqlQuery(db)
+        query.prepare(
+            'INSERT INTO log (TimeStamp, Source, LogLevel, LogLevelName, Message, Args,'
+            ' Module, FuncName, LineNo, Exception, Process, Thread, ThreadName)'
+            ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        )
+
+        db.transaction()
+        for row in records:
+            for value in row:
+                query.addBindValue(value)
+            if not query.exec_():
+                # Drop only the bad row, keep the batch
+                import sys
+                print(f'log db insert failed: {query.lastError().text()}', file=sys.stderr)
+        db.commit()
     
     @classmethod
     def register_callback(cls, cb):

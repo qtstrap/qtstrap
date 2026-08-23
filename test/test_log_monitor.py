@@ -1,6 +1,7 @@
 """Tests for AsyncDatabaseHandler — thread safety and basic logging."""
 import logging
 import os
+import sqlite3
 import tempfile
 import threading
 
@@ -28,11 +29,13 @@ def handler(qtbot, db_path):
     """Create an AsyncDatabaseHandler on the main thread."""
     h = AsyncDatabaseHandler(db_path)
     yield h
-    # Remove from all loggers before resetting class state
-    for name in logging.Logger.manager.loggerDict.keys():
+    for name in list(logging.Logger.manager.loggerDict.keys()):
         logger = logging.getLogger(name)
         if h in logger.handlers:
             logger.removeHandler(h)
+    root = logging.getLogger()
+    if h in root.handlers:
+        root.removeHandler(h)
     h.close()
     AsyncDatabaseHandler._instance = None
     AsyncDatabaseHandler._queue = None
@@ -42,6 +45,7 @@ def handler(qtbot, db_path):
     AsyncDatabaseHandler._pending_callback = False
     AsyncDatabaseHandler.callbacks = []
     AsyncDatabaseHandler._is_visible = True
+
 
 def test_handler_constructs_on_main_thread(handler):
     """Handler should construct successfully on the main thread."""
@@ -109,3 +113,27 @@ def test_log_from_main_thread_triggers_callback(handler, qtbot):
 
     qtbot.waitUntil(called.is_set, timeout=2000)
     assert called.is_set()
+
+
+def test_sql_injection_does_not_poison_batch(handler, qtbot, db_path):
+    """A logger name with a single quote should not corrupt the batch."""
+    root = logging.getLogger()
+    root.addHandler(handler)
+    root.setLevel(logging.DEBUG)
+
+    # Log 100 normal messages + 1 with a quote in the logger name
+    for i in range(100):
+        root.info(f'message {i}')
+    logging.getLogger("it's-a-trap").info("don't break the batch")
+
+    # Force flush
+    AsyncDatabaseHandler.force_flush()
+
+    # Verify all rows made it to the DB
+    conn = sqlite3.connect(db_path)
+    cursor = conn.execute('SELECT COUNT(*) FROM log')
+    count = cursor.fetchone()[0]
+    conn.close()
+
+    # All 101 messages should be in the DB
+    assert count >= 101
