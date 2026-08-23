@@ -168,6 +168,27 @@ Replaces `MainTabWidget` + `TabBar` + `StagehandPage`. The drag/reorder,
 context menu, and save/load logic is Stagehand-agnostic — it operates on
 the `Page` interface, not on Stagehand's action system.
 
+### Split panels: explicitly out of scope
+
+VSCode-style split editor areas (drag tabs between splits, drop-to-split
+overlays, nested splitters, tear-off floating windows) are NOT in the chassis.
+The interaction edges — drag thresholds, drop target highlighting, tab
+tear-off vs reorder, empty split cleanup, focus management, resize during
+drag, keyboard navigation, platform-specific DnD semantics — are each small
+in code but enormous in edge cases. A quarter-polished implementation would
+feel broken where it matters most.
+
+Worse, a split manager that owns the interaction edges would impose
+constraints on tab contents — wrapping or intercepting them for focus and
+drag management. That violates the chassis principle: the content owns
+itself, the framework provides a slot.
+
+The chassis `TabSystem` provides single-tab-bar persistence and reorder.
+Apps that need VSCode-style splitting build their own split manager and wire
+it into the `TabSystem` slot, or bring a docking engine (KDDockWidgets,
+Qt-Advanced-Docking-System). qtstrap provides the registration system and
+the slot; the split interaction is the app's problem to own or delegate.
+
 ### `StatusBar`
 
 ```python
