@@ -94,11 +94,19 @@ class LogTableView(QTableView):
 
         db = QSqlDatabase.database(db_conn_name)
 
-        query = db.exec_("SELECT COUNT(*) FROM 'log'")
+        query = db.exec_('SELECT COUNT(*) FROM "log"')
         query.next()
         row_count = query.value(0)
 
-        self.db_model.setQuery(self.profile.build_query(row_count), db)
+        from qtpy.QtSql import QSqlQuery
+        sql, params = self.profile.build_query(row_count)
+        prepared = QSqlQuery(db)
+        prepared.prepare(sql)
+        for param in params:
+            prepared.addBindValue(param)
+        prepared.exec_()
+
+        self.db_model.setQuery(prepared)
         while self.db_model.canFetchMore():
             self.db_model.fetchMore()
 

@@ -13,7 +13,7 @@ import logging
 import time
 import threading
 from collections import deque
-from qtstrap import QObject, Signal, QTimer, Slot
+from qtstrap import QObject, QTimer, Slot
 from qtpy.QtSql import QSqlDatabase
 
 
@@ -54,10 +54,6 @@ class AsyncDatabaseHandler(logging.Handler, QObject):
     - Debounced callbacks (max 10Hz)
     - Visible-only refresh (only polls when widget is visible)
     """
-    
-    # Signals for thread-safe UI communication
-    log_added = Signal()
-    flush_complete = Signal()
     
     # Class-level state
     callbacks = []

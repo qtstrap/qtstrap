@@ -9,7 +9,7 @@ try:
     from qtstrap.extras.command_palette import CommandPalette, Command
 
     command_palette_available = True
-except:
+except Exception:
     command_palette_available = False
 
 
@@ -54,7 +54,7 @@ class LogMonitorWidget(QWidget):
 
     def query_existing_loggers(self):
         db = QSqlDatabase.database(db_conn_name)
-        query = db.exec_("SELECT Source FROM 'log'")
+        query = db.exec_('SELECT Source FROM "log"')
         loggers = set()
         while query.next():
             loggers.add(query.value(0))

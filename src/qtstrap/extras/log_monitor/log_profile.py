@@ -97,28 +97,36 @@ class LogProfile:
                     columns.append(f'{col.title}')
 
         query += ', '.join(columns)
-        query += " FROM 'log'"
+        query += ' FROM "log"'
 
         where = []
-        if self.current_session_only:
-            where.append(f"TimeStamp > '{session_start_time}'")
+        params = []
 
-        if self.query_limit:
-            where.append(f'rowid > {row_count - self.query_limit}')
+        if self.current_session_only:
+            where.append('TimeStamp > ?')
+            params.append(session_start_time)
 
         if self.text_filter:
-            where.append(f"Message LIKE '%{self.text_filter}%'")
+            where.append('Message LIKE ?')
+            params.append(f'%{self.text_filter}%')
 
         if self.visible_loggers:
             sources = []
             for logger in self.visible_loggers:
-                levels = ', '.join([f'"{l}"' for l in self.loggers[logger]])
-                s = f'(Source = "{logger}" AND LogLevelName IN ({levels}))'
+                levels = ', '.join(['?' for _ in self.loggers[logger]])
+                s = f'(Source = ? AND LogLevelName IN ({levels}))'
                 sources.append(s)
-
+                params.append(logger)
+                params.extend(self.loggers[logger])
             where.append(f"({' OR '.join(sources)})")
 
         if where:
             query += ' WHERE ' + ' AND '.join(where)
 
-        return query
+        query += ' ORDER BY rowid DESC'
+
+        if self.query_limit:
+            query += ' LIMIT ?'
+            params.append(self.query_limit)
+
+        return query, params
