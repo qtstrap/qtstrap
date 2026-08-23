@@ -17,19 +17,20 @@ DatabaseHandler = AsyncDatabaseHandler
 exception_logger_name = 'exceptions'
 
 
-def install(database_name=None, install_excepthook=True):
+def install(database_name=None, install_excepthook=True, level=logging.DEBUG):
     """
     Install the log monitor handler.
 
     Args:
         database_name: Path to SQLite database file (default: OPTIONS.config_dir/log.db)
         install_excepthook: Whether to install exception handler (default: True)
+        level: Root logger level (default: DEBUG). Use INFO to suppress third-party debug spam.
     """
     if database_name is None:
         database_name = (OPTIONS.config_dir / 'log.db').as_posix()
 
     logger = logging.getLogger()
-    logger.setLevel(1)
+    logger.setLevel(level)
 
     logger.addHandler(AsyncDatabaseHandler(database_name))
 
@@ -39,11 +40,16 @@ def install(database_name=None, install_excepthook=True):
         _excepthook = sys.excepthook
 
         def handle_exception(exc_type, exc_value, exc_traceback):
-            module = exc_traceback.tb_frame.f_code.co_filename
-            lineno = exc_traceback.tb_lineno
-            funcName = exc_traceback.tb_frame.f_code.co_name
-
-            msg = f'[{module}:{lineno}, in {funcName}] {exc_type.__name__} {exc_value}'
+            if exc_traceback is not None:
+                tb = exc_traceback
+                while tb.tb_next is not None:
+                    tb = tb.tb_next
+                module = tb.tb_frame.f_code.co_filename
+                lineno = tb.tb_lineno
+                funcName = tb.tb_frame.f_code.co_name
+                msg = f'[{module}:{lineno}, in {funcName}] {exc_type.__name__} {exc_value}'
+            else:
+                msg = f'{exc_type.__name__} {exc_value}'
 
             exception_logger.error(msg, exc_info=(exc_type, exc_value, exc_traceback))
             _excepthook(exc_type, exc_value, exc_traceback)
