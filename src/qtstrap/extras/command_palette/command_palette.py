@@ -14,6 +14,13 @@ class CommandRegistry(QObject):
         self.commands.append(command)
         self.commands.sort(key=lambda x: x.text())
 
+    def unregister_command(self, name):
+        if name in self.registry:
+            del self.registry[name]
+            cmd = next((c for c in self.commands if c.text() == name), None)
+            if cmd:
+                self.commands.remove(cmd)
+
     def execute(self, command_name):
         self.registry[command_name].triggered.emit()
 
@@ -30,9 +37,12 @@ class Command(QAction):
         self.usage_count = 0
         self.triggered.connect(self.used)
 
+        # Auto-unregister when the command is destroyed
+        text = self.text()
+        self.destroyed.connect(lambda _=None: registry.unregister_command(text))
+
     def used(self):
         self.usage_count += 1
-
 
 class PopupDelegate(QStyledItemDelegate):
     def __init__(self, parent=None):
@@ -138,16 +148,20 @@ class PopupDelegate(QStyledItemDelegate):
 
 
 class CommandModel(QAbstractListModel):
-    sorted_commands = []
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.sorted_commands = []
 
     def sort_commands(self, prefix):
+        self.beginResetModel()
         self.sorted_commands = [cmd for cmd in registry.commands if prefix.lower() in cmd.text().lower()]
         result = bool(self.sorted_commands)
         self.sorted_commands.extend([cmd for cmd in registry.commands if prefix.lower() not in cmd.text().lower()])
+        self.endResetModel()
         return result
 
     def rowCount(self, parent: QtCore.QModelIndex) -> int:
-        return len(registry.commands)
+        return len(self.sorted_commands)
 
     def data(self, index: QtCore.QModelIndex, role: int) -> typing.Any:
         if not index.isValid():
@@ -161,7 +175,6 @@ class CommandModel(QAbstractListModel):
 
     def index(self, row: int, column: int, parent: QtCore.QModelIndex) -> QtCore.QModelIndex:
         return self.createIndex(row, column)
-
 
 class CommandCompleter(QWidget):
     def __init__(self, parent=None):
@@ -365,6 +378,13 @@ class CommandPalette(QDialog):
         return False
 
     def center_on_parent(self):
-        r = self.parent().frameGeometry()
+        parent = self.parent()
+        if parent is not None:
+            r = parent.frameGeometry()
+        else:
+            screen = QApplication.primaryScreen()
+            if screen is None:
+                return
+            r = screen.availableGeometry()
         rect = QRect(r.x() - (self.width() / 2), r.y(), r.width(), 100)
         self.move(rect.center())
