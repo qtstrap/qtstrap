@@ -1,5 +1,6 @@
 """Tests for the model= kwarg on persistent widgets."""
 from qtstrap import *
+from pydantic import ConfigDict
 from qtstrap.extras.settings_model import SettingsModel
 import pytest
 
@@ -10,8 +11,7 @@ class AppSettings(SettingsModel):
     enabled: bool = False
     index: int = 0
 
-    class Config:
-        prefix = 'test_persistent_model'
+    model_config = ConfigDict(prefix='test_persistent_model')
 
 @pytest.fixture
 def settings():
@@ -41,6 +41,7 @@ def test_persistent_check_box_with_model(qtbot, settings):
 
 
 def test_persistent_combo_box_with_model(qtbot, settings):
+    settings.index = 0
     widget = PersistentComboBox('index', items=['A', 'B', 'C'], model=settings)
     qtbot.addWidget(widget)
 

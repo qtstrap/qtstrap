@@ -16,7 +16,7 @@ class SettingsModel(BaseModel):
     def load_settings(self):
         model_state[type(self).__name__] = False
         for name, field in self.model_fields.items():
-            value = QSettings().value(f'{self.Config.prefix}/{name}', field.default)
+            value = QSettings().value(f'{self.model_config["prefix"]}/{name}', field.default)
             setattr(self, name, value)
 
         model_state[type(self).__name__] = True
@@ -25,5 +25,5 @@ class SettingsModel(BaseModel):
     @classmethod
     def autosave(cls, value, info: ValidationInfo):
         if model_state[cls.__name__]:
-            QSettings().setValue(f'{cls.Config.prefix}/{info.field_name}', value)
+            QSettings().setValue(f'{cls.model_config["prefix"]}/{info.field_name}', value)
         return value
