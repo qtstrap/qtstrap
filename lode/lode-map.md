@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [lode-map, navigation, routing]
+keywords: [lode-map, navigation, routing, index, docs, qtstrap]
+summary: Navigation index and entry point for the qtstrap lode documentation.
+---
+
 # Lode Map
 
 qtstrap — Qt application bootstrapping framework (published on PyPI).

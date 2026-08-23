@@ -14,16 +14,17 @@ class StateButton(QPushButton):
             self._state = state
             self.state_changed.emit(self._state)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, icons=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setIconSize(QSize(60, 60))
-        self.icons = []
-        self._state = None
-
+        self.icons = icons or []
+        self._state = 0 if self.icons else None
         self.clicked.connect(self.next_state)
         self.state_changed.connect(self.update_icon)
 
     def next_state(self):
+        if not self.icons:
+            return
         self.state = (self.state + 1) % len(self.icons)
 
     def update_icon(self):

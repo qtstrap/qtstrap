@@ -1,3 +1,11 @@
+---
+type: plan
+status: accepted
+tags: [plan, bugfix, code-review]
+keywords: [qtstrap, bugfix, code-review, plan, 2026-07]
+summary: Bugfix plan documenting code review findings for qtstrap as of July 2026.
+---
+
 # Bugfix Plan: Code Review Findings (2026-07)
 
 Findings from a full review of qtstrap master (HEAD = `25f30b6 Fix logging performance`).

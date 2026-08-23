@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [guide, async, promises, asyncio, qt]
+keywords: [async, promises, asyncio, Qt, qtasyncio, qasync, promisio, signals, slots]
+summary: How qtstrap applications get async capability without converting to async as a programming model.
+---
+
 # Async Interop Guide: asyncio, Promises, and Qt
 
 How qtstrap applications get async *capability* without converting to async as a

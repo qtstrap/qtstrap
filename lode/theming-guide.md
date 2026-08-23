@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [guide, theming, qpalette, qss, style]
+keywords: [qt, styling, theme, palette, fusion, qss, stylesheet, dark, light, theming, qtstrap]
+summary: A deep guide to Qt's layered theming mechanisms and the qtstrap theme system overhaul spec.
+---
+
 # Theming Guide: How Qt Styling Actually Works, and the qtstrap Theme System Overhaul
 
 Qt theming is confusing because Qt has **four theming mechanisms stacked on top of

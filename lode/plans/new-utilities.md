@@ -1,3 +1,11 @@
+---
+type: plan
+status: idea
+tags: [plan, utilities, concurrency, debounce]
+keywords: [qtstrap, utilities, concurrency, thread-marshaling, background-worker, debounce, throttle, pyqt, pyside, qthread, single-instance, crash-dialog, toast, updater, testing]
+summary: "Plan for adding a concurrency and utility toolkit to qtstrap, including main-thread marshaling, background workers, debounce/throttle, updater, single-instance guard, crash dialog, toast, and pytest fixtures."
+---
+
 # Plan: New Utilities for qtstrap
 
 > **See also:** [../async-guide.md](../async-guide.md) — the async interop design

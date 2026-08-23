@@ -30,4 +30,4 @@ class LinkLabel(QLabel):
         self.setLink(value)
 
     def _update_text(self):
-        super().setText(f'<a href="{self._text}">{self._link}</a>')
+        super().setText(f'<a href="{self._link}">{self._text}</a>')
