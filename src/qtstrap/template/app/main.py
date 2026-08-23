@@ -1,10 +1,16 @@
 from qtstrap import *
 
 
+class AppInfo(BaseAppInfo):
+    NAME = 'myapp'
+    VERSION = '0.1.0'
+    PUBLISHER = 'publisher'
+    ICON_PATH = ''
+
+
 def run():
     # create the fundamental Qt objects
-    app = BaseApplication()
-    window = BaseMainWindow()
+    app = BaseApplication(app_info=AppInfo)
 
     # make everything a little easier to see
     set_font_options(window, {'setPointSize': 12})

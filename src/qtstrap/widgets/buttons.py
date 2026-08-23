@@ -21,6 +21,7 @@ class StateButton(QPushButton):
         self._state = 0 if self.icons else None
         self.clicked.connect(self.next_state)
         self.state_changed.connect(self.update_icon)
+        self.update_icon()
 
     def next_state(self):
         if not self.icons:

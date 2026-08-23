@@ -26,7 +26,7 @@ class BaseApplication(QApplication):
     AppInfo: BaseAppInfo = None
     INSTALL_SIGNAL_HANDLERS = True
 
-    def __init__(self) -> None:
+    def __init__(self, app_info: BaseAppInfo = None) -> None:
         super().__init__(sys.argv)
 
         if self.INSTALL_SIGNAL_HANDLERS:
@@ -35,10 +35,10 @@ class BaseApplication(QApplication):
         if type(self) is not BaseApplication:
             OPTIONS.BASE_PATH = Path(inspect.getfile(type(self))).resolve().parent
 
-        if self.AppInfo is None:
+        info = app_info or self.AppInfo
+        if info is None:
             raise AppConfigError
 
-        info = self.AppInfo
         OPTIONS.app_info = info
 
         # set Qt app info

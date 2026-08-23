@@ -2,6 +2,13 @@ from qtstrap import *
 import pytest
 
 
+class AppInfo(BaseAppInfo):
+    NAME = 'test-app'
+    VERSION = '0.0.0'
+    PUBLISHER = 'test'
+    ICON_PATH = ''
+
+
 class MainWindow(BaseMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -14,6 +21,8 @@ class MainWindow(BaseMainWindow):
 
 
 class Application(BaseApplication):
+    AppInfo = AppInfo
+
     def __init__(self) -> None:
         super().__init__()
 
