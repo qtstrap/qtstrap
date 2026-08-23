@@ -1,9 +1,8 @@
 from qtstrap import QObject
-from qtpy.QtCore import SIGNAL
 
 try:
     from qtstrap import SignalInstance
-except:
+except Exception:
     from qtstrap import pyqtBoundSignal as SignalInstance
 
 
@@ -16,22 +15,25 @@ class Adapter(QObject):
     the existing adapter's signals to the same-named signals on the new Adapter.
 
     This will allow some other object to connect to these signals for whatever purpose, and
-    then simply delete the new Adapter object when it now longer wants to recieve signals.
+    then simply call kill() when it no longer wants to receive signals.
 
-    Technically, Qt Signals already have a .disconnect() method, but I've never gotten it work
-    reliably. Using an Adapter essentially gives you a nuclear .disconnect().
+    Connections are stored as QMetaObject.Connection objects so kill() can disconnect
+    them explicitly. Signal-to-signal doesn't work here because Adapter.__call__
+    interferes with PySide6's connect resolution.
     """
 
     def __init__(self, other=None):
         super().__init__()
         self._other = other
+        self._connections = []
         if other is None:
             self._original = True
             return
         self._original = False
 
         for name in self._get_signals(other):
-            getattr(other, name).connect(getattr(self, name).emit)
+            conn = getattr(other, name).connect(getattr(self, name).emit)
+            self._connections.append(conn)
 
     def _get_signals(self, obj):
         signals = []
@@ -55,11 +57,12 @@ class Adapter(QObject):
         return self.__class__(self)
 
     def kill(self):
+        """Disconnect all adapter connections. The adapter stops receiving
+        signals but the object itself remains valid."""
         if self._other:
-            for name in self._get_signals(self._other):
-                self.disconnect(self._other, SIGNAL(name), getattr(self, name).emit)
-            #     # TODO: this might not be safe
-            #     getattr(self._other, name).disconnect(getattr(self, name).emit)
+            for conn in self._connections:
+                self._other.disconnect(conn)
+            self._connections.clear()
 
 
 if __name__ == '__main__':

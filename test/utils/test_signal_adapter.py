@@ -21,14 +21,8 @@ def test_adapter(qtbot):
 
     assert out == ['original', 'copy']
     out.clear()
-    
-    # copy.kill()
-    # timer = QTimer(singleShot=True)
-    # with qtbot.waitSignal(timer.timeout):
-    #     timer.start(10)
+    copy.kill()
 
-    # original.sig.emit()
-    # with qtbot.assertNotEmitted(copy.sig, wait=100):
-    #     original.sig.emit()
+    original.sig.emit()
 
-    # assert out == ['original']
+    assert out == ['original']

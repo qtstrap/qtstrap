@@ -5,6 +5,7 @@ import re
 
 class CommandRegistry(QObject):
     def __init__(self) -> None:
+        super().__init__()
         self.registry = {}
         self.commands = []
 
@@ -92,7 +93,7 @@ class PopupDelegate(QStyledItemDelegate):
             painter.drawText(option.rect, Qt.AlignLeft, value)
         else:
             if prefix.lower() in value.lower():
-                parts = re.split(prefix, value, flags=re.IGNORECASE)
+                parts = re.split(re.escape(prefix), value, flags=re.IGNORECASE)
 
                 # the split is case insensitive, so use the lengths of the
                 # parts to slice the original text out of the complete string
