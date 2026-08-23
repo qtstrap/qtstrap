@@ -2,7 +2,7 @@ from __future__ import annotations
 from qtstrap import *
 
 
-def accepts_file_drops(extensions: str | [str]):
+def accepts_file_drops(extensions: str | list[str]):
     """
     Decorator that enables drag-and-drop on a QWidget.
     Accepts a str or a list of strings of the valid file extensions.

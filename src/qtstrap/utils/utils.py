@@ -66,7 +66,7 @@ def print_children(obj: QObject, prefix='') -> None:
     Recursively visit all the children of the specified object and print them.
     """
     for child in obj.children():
-        print(prefix, child)
+        print(prefix + str(child))
         print_children(child, '  ' + prefix)
 
 
