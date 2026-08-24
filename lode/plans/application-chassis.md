@@ -1,6 +1,6 @@
 ---
 type: plan
-status: idea
+status: active
 tags: [plan, application-chassis, panels, sidebar, tabs, statusbar, extraction]
 keywords: [application chassis, panel, sidebar, activity bar, tab system, status bar, settings menu, stagehand extraction, vscode layout]
 summary: Extract Stagehand's working window chassis — activity bar, sidebar, tab system, status bar, settings menu — into qtstrap primitives so every app doesn't rebuild them.
@@ -223,7 +223,7 @@ it into the `TabSystem` slot, or bring a docking engine (KDDockWidgets,
 Qt-Advanced-Docking-System). qtstrap provides the registration system and
 the slot; the split interaction is the app's problem to own or delegate.
 
-### `StatusBar`
+### `StatusBar` — IMPLEMENTED
 
 ```python
 class StatusBar(BaseToolbar):
@@ -231,16 +231,46 @@ class StatusBar(BaseToolbar):
     Left zone: status items (connection, sync, etc.)
     Right zone: actions (notifications, etc.)
     """
-    def __init__(self, parent): ...
+    def __init__(self, parent, name='status_bar'): ...
     def add_item(self, widget: QWidget, side='left'): ...
     def add_action(self, text: str, callback, side='right'): ...
+    def get_item(self, name: str) -> QWidget: ...
 ```
 
 Replaces `create_statusbar()` + `init_statusbar_items()`. The settings
 button does NOT live here — it's in the activity bar. The status bar is
 purely status items (left) and actions (right), separated by a spacer.
-Apps register custom items via `add_item()` or by subclassing the marker
-`StatusBarItem` class for auto-discovery.
+
+Left/right zones use inner `QHBoxLayout` containers with zero margins
+and 4px spacing, not positional insertion into `QToolBar`. This avoids
+`QToolBar.insertWidget`'s `(QAction, QWidget)` signature and gives free
+add/remove without index math.
+
+### `StatusBarItem` — two registration patterns
+
+**Auto-discovered singleton** (subsystem-owned, global status):
+Subclass `StatusBarItem` + decorate with `@singleton`. The subsystem
+owns the instance and updates it directly. The status bar auto-discovers
+the class, finds the singleton wrapper via `cls._singleton_wrapper`, and
+`addWidget` re-parents the existing instance for display. The subsystem
+never needs a framework handle — it already has the reference.
+
+**Manual non-singleton** (window-specific status):
+Don't subclass `StatusBarItem`. Create the widget with context
+(`SelectionStatus(file_list)`), call `bar.add_item(widget, side='left')`,
+hold your own reference. Two windows get two independent instances.
+
+`StatusBarItem` class attributes:
+- `name` — unique identifier (required, enforced by `__init_subclass__`)
+- `side` — `'left'` (default) or `'right'`; auto-discovery respects it
+
+`StatusBar.get_item(name)` recovers an auto-discovered item by name.
+
+The singleton pattern is proven in Stagehand (`ObsStatusWidget`,
+`GodotStatusWidget`, `HttpServerStatusWidget` are all `@singleton`).
+It breaks multi-window (two status bars fight over one instance), but
+singleton items are inherently global — the multi-window case is for
+window-specific items, which use manual `add_item()` instead.
 
 ### `SettingsMenu`
 
@@ -451,46 +481,23 @@ Everything else is optional and degrades gracefully:
 The rule: helper features MUST be optional and degrade gracefully. A missing
 attribute or method never crashes the chassis — it just means that feature
 isn't available for that contribution.
-
-### Continuous granularity
-
-Each chassis piece is usable independently. Composing more of them gives you
-more, but no piece requires another to function:
-
-- `Panel` + `Sidebar` without `ActivityBar` — sidebar with manual switching
-- `StatusBar` without `Sidebar` — just a status bar with settings menu
-- `TabSystem` with plain `QWidget`s — tabs without the `Page` registration system
-- `CommandRegistry` without any other chassis piece — just a command palette
-
-This is the same principle as qtstrap's context layouts: `CVBoxLayout` doesn't
-require `CFormLayout`. Each piece stands alone.
-
-The mechanism: interfaces, not inheritance. `TabSystem` accepts any `QWidget`
-that has `serialize()`/`deserialize()`, not only `Page` subclasses. `ActivityBar`
-works with any object exposing `toggle_panel(name)`, not only the qtstrap
-`Sidebar`. No piece forces another into your app.
 ---
 
 ## 5. Implementation order
 
-1. **`Panel` + `Sidebar`** — extract from `SidebarContainer`. Panel uses
-   `__init_subclass__` for automatic, validated registration (replaces
-   `__subclasses__()` walk). Test with a minimal panel.
-2. **`ActivityBar`** — extract from `create_activity_bar()`. Auto-populate
-   from `Sidebar`.
-3. **`StatusBar` + `SettingsMenu`** — extract from `create_statusbar()` and
-   `init_settings_menu()`. Standard items built in.
-4. **`Page` + `TabSystem`** — extract from `MainTabWidget` + `StagehandPage`.
-   Page uses `__init_subclass__` for registration (replaces
-   `get_subclasses()` walk). Generalize the save/load format.
-5. **`DockRegistry`** — central dock registration, auto-instantiation.
-6. **`CommandRegistry`** — central command registration, auto-collection
+1. ✅ **`Panel` + `Sidebar`** — `__init_subclass__` registration, validated.
+2. ✅ **`ActivityBar`** — auto-populates from Sidebar.
+3. ✅ **`StatusBar`** — inner-container left/right zones, `StatusBarItem`
+   auto-discovery with `side` attribute, `get_item()`, singleton-aware.
+4. ✅ **`Page` + `TabPanel`** — `__init_subclass__` registration, save/load.
+5. ☐ **`DockRegistry`** — central dock registration, auto-instantiation.
+6. ☐ **`CommandRegistry`** — central command registration, auto-collection
    from chassis components.
-7. **`SystemTray`** — tray icon, minimize-to-tray, notifications.
-8. **`ShortcutManager`** — shortcut registration, standard shortcut sets.
-9. **Integration test** — build a minimal app using all chassis primitives,
-   verify it works without Stagehand-specific code.
-10. **Migrate Stagehand** — replace `SidebarContainer`, `create_activity_bar()`,
-   `MainTabWidget`, `create_statusbar()`, manual dock wiring, manual shortcut
-   loops, `self.commands` lists with chassis primitives. Verify nothing breaks.
-11. **Documentation** — example app showing the chassis in use.
+7. ☐ **`SystemTray`** — tray icon, minimize-to-tray, notifications.
+8. ☐ **`ShortcutManager`** — shortcut registration, standard shortcut sets.
+9. ✅ **Integration test** — `test/test_chassis.py` (21 tests). Gallery app
+   (`gallery/main.py`) exercises all implemented chassis primitives.
+10. ☐ **Migrate Stagehand** — replace `SidebarContainer`,
+    `create_activity_bar()`, `MainTabWidget`, `create_statusbar()`, manual
+    dock wiring, manual shortcut loops, `self.commands` lists.
+11. ✅ **Documentation** — gallery app is the living example.
