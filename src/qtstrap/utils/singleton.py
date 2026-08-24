@@ -18,4 +18,7 @@ def singleton(class_):
             instances[class_] = class_(*args, **kwargs)
         return instances[class_]
 
+    # Mark the raw class so other systems (e.g. StatusBar auto-discovery)
+    # can find the wrapper after decoration.
+    class_._singleton_wrapper = getinstance
     return getinstance

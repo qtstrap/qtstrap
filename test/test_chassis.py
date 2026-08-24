@@ -197,7 +197,63 @@ def test_status_bar_add_item(qtbot):
     custom = QLabel('custom')
     bar.add_item(custom, side='right')
     # Verify the item was added to the toolbar
-    assert custom.parent() is bar
+    # Item is parented to the inner container, not the toolbar directly
+    assert custom.parent() is not None
+    assert custom in [bar._right_layout.itemAt(i).widget() for i in range(bar._right_layout.count())]
+
+
+def test_status_bar_side_attribute(qtbot):
+    class LeftStatus(StatusBarItem):
+        name = 'left_side_test'
+        side = 'left'
+        def __init__(self, parent=None):
+            super().__init__(parent=parent)
+
+    class RightStatus(StatusBarItem):
+        name = 'right_side_test'
+        side = 'right'
+        def __init__(self, parent=None):
+            super().__init__(parent=parent)
+
+    bar = StatusBar(None)
+    qtbot.addWidget(bar)
+
+    left_widgets = [bar._left_layout.itemAt(i).widget() for i in range(bar._left_layout.count())]
+    right_widgets = [bar._right_layout.itemAt(i).widget() for i in range(bar._right_layout.count())]
+
+    assert any(isinstance(w, LeftStatus) for w in left_widgets)
+    assert any(isinstance(w, RightStatus) for w in right_widgets)
+
+
+def test_status_bar_get_item(qtbot):
+    class GetItemTest(StatusBarItem):
+        name = 'get_item_test'
+        def __init__(self, parent=None):
+            super().__init__(parent=parent)
+
+    bar = StatusBar(None)
+    qtbot.addWidget(bar)
+
+    item = bar.get_item('get_item_test')
+    assert item is not None
+    assert isinstance(item, GetItemTest)
+
+
+def test_status_bar_singleton_discovery(qtbot):
+    from qtstrap.utils.singleton import singleton
+
+    @singleton
+    class SingletonStatus(StatusBarItem):
+        name = 'singleton_test'
+        def __init__(self, parent=None):
+            super().__init__(parent=parent)
+
+    bar = StatusBar(None)
+    qtbot.addWidget(bar)
+
+    discovered = bar.get_item('singleton_test')
+    direct = SingletonStatus(None)
+    assert discovered is direct
 
 # --- ActivityBar tests ---
 

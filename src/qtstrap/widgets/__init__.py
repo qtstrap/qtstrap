@@ -1,4 +1,5 @@
 from .awaitable_dialog import AwaitableDialog
+from .context_menu import CMenu
 from .layouts import (
     ContextLayout,
     CVBoxLayout,

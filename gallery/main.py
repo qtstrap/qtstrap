@@ -12,6 +12,7 @@ This app showcases:
   - Async support: ASYNC=True with qasync + promisio
 """
 from qtstrap import *
+from qtstrap.widgets.context_menu import CMenu
 from qtstrap.chassis import Panel, Sidebar, ActivityBar, StatusBar, StatusBarItem, Page, TabPanel
 from qtstrap.extras.settings_model import SettingsModel
 from qtstrap.extras.command_palette import CommandPalette, Command
@@ -284,6 +285,14 @@ class ConnectionStatus(StatusBarItem):
             layout.add(self.label)
             layout.add(self.text)
 
+    def contextMenuEvent(self, event):
+        with CMenu(self, event) as menu:
+            menu.add('Reconnect', lambda: self.text.setText('Reconnecting...'))
+            menu.add('Disconnect', lambda: self.text.setText('Disconnected'))
+            with menu.submenu('Copy'):
+                menu.add('Status', lambda: QApplication.clipboard().setText(self.text.text()))
+                menu.add('Label', lambda: QApplication.clipboard().setText(self.label.text()))
+
 
 class ClockStatus(StatusBarItem):
     name = 'clock'
@@ -300,9 +309,45 @@ class ClockStatus(StatusBarItem):
         with CHBoxLayout(self, margins=0) as layout:
             layout.add(self.label)
 
+    def contextMenuEvent(self, event):
+        with CMenu(self, event) as menu:
+            menu.add('Copy time', lambda: QApplication.clipboard().setText(self.label.text()))
+            menu.sep()
+            menu.add('Stop clock', self.timer.stop)
+            menu.add('Start clock', self.timer.start)
+
     def _tick(self):
         self.label.setText(time.strftime('%H:%M:%S'))
 
+
+class MemoryStatus(StatusBarItem):
+    name = 'memory'
+    side = 'right'
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.label = QLabel('0 MB')
+
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self._tick)
+        self.timer.start(2000)
+        self._tick()
+
+        with CHBoxLayout(self, margins=0) as layout:
+            layout.add(self.label)
+
+    def contextMenuEvent(self, event):
+        with CMenu(self, event) as menu:
+            menu.add('Refresh', self._tick)
+            menu.add('Copy', lambda: QApplication.clipboard().setText(self.label.text()))
+
+    def _tick(self):
+        import os
+        mem = os.popen('grep VmRSS /proc/self/status 2>/dev/null').read().strip()
+        if mem:
+            self.label.setText(mem.split(':')[1].strip())
+        else:
+            self.label.setText('? MB')
 
 # --- Main Window ---
 
